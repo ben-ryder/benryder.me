@@ -1,0 +1,10 @@
+# Custom
+notes
+
+# IDE
+.idea
+
+# JS
+node_modules/
+.cache/
+public
