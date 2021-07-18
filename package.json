@@ -30,5 +30,14 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "tailwindcss": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-webpack-plugin": "^2.5.4",
+    "gatsby-plugin-eslint": "^3.0.0",
+    "prettier": "2.3.2"
   }
 }
