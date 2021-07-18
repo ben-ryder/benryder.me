@@ -4,6 +4,11 @@ notes
 # IDE
 .idea
 
+# Environment
+.env
+.env.development
+.env.production
+
 # JS
 node_modules/
 .cache/
