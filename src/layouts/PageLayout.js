@@ -1,14 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
 // Region Components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/region/Header";
+import Footer from "../components/region/Footer";
 
 // Assets
 import SiteIcon from "../images/icon.png";
 
-const RegularPage = ({ children }) => {
+const PageLayout = ({ children }) => {
     return (
         <div>
             <Helmet>
@@ -26,5 +27,8 @@ const RegularPage = ({ children }) => {
     )
 }
 
+PageLayout.propTypes = {
+    children: PropTypes.any
+}
 
-export default RegularPage;
+export default PageLayout;

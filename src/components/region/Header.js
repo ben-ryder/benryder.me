@@ -1,24 +1,24 @@
 import React from "react";
-import {Link} from "gatsby";
+import LinkComponent from "../elements/LinkComponent";
 
 const Header = () => {
     const mainMenuLinks = [
-        {text: "About", url: "/"},
+        {text: "About", url: "/about"},
         {text: "Projects", url: "/projects"},
         {text: "Blog", url: "/blog"},
-        {text: "Contact", url: "/blog"},
+        {text: "Contact", url: "/contact"},
     ];
-    
+
     return (
         <header>
             <nav>
-                <Link to={"/"}>
+                <LinkComponent url={"/"}>
                     <p>Ben Ryder</p>
-                </Link>
+                </LinkComponent>
                 <ul>
                     {mainMenuLinks.map((navLink) =>
                         <li key={navLink.url}>
-                            <Link to={navLink.url}>{navLink.text}</Link>
+                            <LinkComponent url={navLink.url} text={navLink.text}/>
                         </li>
                     )}
                 </ul>

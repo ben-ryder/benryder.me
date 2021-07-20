@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "gatsby";
+import LinkComponent from "../elements/LinkComponent";
 
 const Footer = () => {
     const footerMenus = [
@@ -32,8 +32,8 @@ const Footer = () => {
         }
     ];
 
-    const signOffText = "&#169; Ben Ryder 2021"
-    
+    const signOffText = "© Ben Ryder 2021"
+
     return (
         <footer>
             <div>
@@ -42,9 +42,7 @@ const Footer = () => {
                         <p>{menu.displayName}</p>
                         <ul>
                             {menu.menuLinks.map((link) =>
-                                <li key={link.url}>
-                                    <a href={link.url}>{link.text}</a>
-                                </li>
+                                <LinkComponent key={link.url} url={link.url} text={link.text}/>
                             )}
                         </ul>
                     </div>
