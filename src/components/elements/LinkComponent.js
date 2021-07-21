@@ -21,11 +21,18 @@ const LinkComponent = (props) => {
         throw new Error("No content found to populate link");
     }
 
+    let filteredProps = {};
+    Object.keys(props).forEach(key => {
+        if (!["url", "text", "to", "href"].includes(key)) {
+            filteredProps[key] = props[key];
+        }
+    })
+
     if (props.url.startsWith("/")) {
-        return <Link to={props.url}>{content}</Link>
+        return <Link to={props.url} {...filteredProps}>{content}</Link>
     }
     else {
-        return <a href={props.url}>{content}</a>
+        return <a href={props.url} {...filteredProps}>{content}</a>
     }
 }
 

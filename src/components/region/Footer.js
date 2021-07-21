@@ -32,24 +32,25 @@ const Footer = () => {
         }
     ];
 
-    const signOffText = "© Ben Ryder 2021"
+    const signOffContent = <p>© Ben Ryder 2021</p>;
 
     return (
-        <footer>
-            <div>
+        <footer className="text-gray-500">
+            <div className="sm:flex sm:justify-between max-w-2xl mx-auto px-4 border-t-2">
                 {footerMenus.map((menu) =>
-                    <div key={menu.displayName.toLowerCase()}>
-                        <p>{menu.displayName}</p>
-                        <ul>
+                    <div key={menu.displayName.toLowerCase()} className="mt-4">
+                        <ul className="mt-1">
                             {menu.menuLinks.map((link) =>
-                                <LinkComponent key={link.url} url={link.url} text={link.text}/>
+                                <li key={link.url}>
+                                    <LinkComponent className="block py-1" url={link.url} text={link.text}/>
+                                </li>
                             )}
                         </ul>
                     </div>
                 )}
             </div>
-            <div>
-                { signOffText }
+            <div className="flex justify-center max-w-2xl mx-auto py-4">
+                { signOffContent }
             </div>
         </footer>
     )
