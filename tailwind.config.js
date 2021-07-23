@@ -2,5 +2,8 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {},
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms')
+  ],
 };

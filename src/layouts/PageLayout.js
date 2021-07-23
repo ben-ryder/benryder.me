@@ -11,7 +11,7 @@ import SiteIcon from "../images/icon.png";
 
 const PageLayout = ({ children }) => {
     return (
-        <div>
+        <>
             <Helmet>
                 <html lang='en' />
                 <meta charSet="utf-8" />
@@ -19,11 +19,11 @@ const PageLayout = ({ children }) => {
                 <link rel="icon" href={SiteIcon} />
             </Helmet>
             <Header />
-            <main>
+            <div>
                 { children }
-            </main>
+            </div>
             <Footer />
-        </div>
+        </>
     )
 }
 
