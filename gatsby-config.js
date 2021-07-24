@@ -34,11 +34,18 @@ module.exports = {
     },
     "gatsby-plugin-eslint",
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: "gatsby-transformer-remark",
       options: {
         footnotes: true,
         gfm: true,
-        plugins: [],
+        plugins: [
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              noInlineHighlight: true,
+            }
+          }
+        ],
       },
     },
   ],
