@@ -5,8 +5,11 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://benryder.me",
-    title: "benryder.me",
+    title: "Ben Ryder",
+    titleTemplate: "%s | Ben Ryder",
+    description: "The personal website of Ben Ryder.",
+    author: "Ben Ryder",
+    siteUrl: "https://benryder.me"
   },
   flags: {
     DEV_SSR: false,
@@ -30,5 +33,13 @@ module.exports = {
       },
     },
     "gatsby-plugin-eslint",
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        footnotes: true,
+        gfm: true,
+        plugins: [],
+      },
+    },
   ],
 };

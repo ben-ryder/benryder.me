@@ -3,16 +3,25 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 
 const ProseContent = (props) => {
+    const className = classNames("prose max-w-2xl mx-auto px-2 overflow-x-hidden", props.className);
+
     return (
-        <div className={classNames("prose max-w-2xl mx-auto px-2", props.className)}>
-            {props.children}
-        </div>
+        <>
+            {props.htmlString
+                ? <div
+                    className={className}
+                    dangerouslySetInnerHTML={{__html: props.htmlString}}
+                />
+                :  <div className={className}>{props.children}</div>
+            }
+        </>
     )
 }
 
 ProseContent.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.any
+    children: PropTypes.any,
+    htmlString: PropTypes.string
 }
 
 export default ProseContent;
