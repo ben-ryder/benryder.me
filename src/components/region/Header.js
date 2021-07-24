@@ -1,4 +1,5 @@
 import React from "react";
+import {Helmet} from "react-helmet";
 import classNames from "classnames";
 
 import LinkComponent from "../elements/LinkComponent";
@@ -17,7 +18,14 @@ const Header = () => {
     const [mainMenuIsOpen, setMainMenuIsOpen] = React.useState(false);
 
     return (
-        <header id="main-header" className="sticky top-0 w-full z-10 flex h-20 px-4 bg-white mt-5">
+        <header id="main-header" className="sticky top-0 w-full z-10 flex h-20 px-4 bg-white sm:mt-5">
+            {mainMenuIsOpen &&
+                <Helmet
+                    bodyAttributes={{
+                        class: "overflow-hidden"
+                    }}
+                />
+            }
             <nav className="w-full flex justify-between max-w-3xl mx-auto">
                 <LinkComponent url="/" className="z-20 flex items-center">
                     <i className="w-9 h-9 rounded-full bg-blue-600" />
@@ -28,7 +36,7 @@ const Header = () => {
                         "hidden": !mainMenuIsOpen,
                         "flex": mainMenuIsOpen,
                     },
-                    "absolute py-20 w-full h-full bg-white left-0 items-center justify-center flex-col", // fullscreen mobile layout
+                    "fixed top-0 py-20 w-full h-full bg-white left-0 items-center justify-center flex-col", // fullscreen mobile layout
                     "sm:relative sm:py-0 sm:w-auto sm:h-auto sm:bg-transparent sm:items-start  sm:justify-start sm:flex-row ", // reverting mobile layout for desktop
                     "sm:flex sm:justify-between sm:items-center", // desktop layout
                 )}>
