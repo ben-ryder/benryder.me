@@ -2,4 +2,4 @@
 import "./src/css/tailwind.css";
 
 // Prism CSS Theme
-import "./src/css/prism-dracula.css"
+import "./src/css/prism-dracula.css";

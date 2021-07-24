@@ -10,25 +10,23 @@ import Footer from "../components/region/Footer";
 import SiteIcon from "../images/icon.png";
 
 const PageLayout = ({ children }) => {
-    return (
-        <>
-            <Helmet>
-                <html lang='en' />
-                <meta charSet="utf-8" />
-                <title>Ben Ryder</title>
-                <link rel="icon" href={SiteIcon} />
-            </Helmet>
-            <Header />
-            <div>
-                { children }
-            </div>
-            <Footer />
-        </>
-    )
-}
+  return (
+    <>
+      <Helmet>
+        <html lang="en" />
+        <meta charSet="utf-8" />
+        <title>Ben Ryder</title>
+        <link rel="icon" href={SiteIcon} />
+      </Helmet>
+      <Header />
+      <div>{children}</div>
+      <Footer />
+    </>
+  );
+};
 
 PageLayout.propTypes = {
-    children: PropTypes.any
-}
+  children: PropTypes.any,
+};
 
 export default PageLayout;

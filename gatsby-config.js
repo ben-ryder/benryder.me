@@ -9,7 +9,7 @@ module.exports = {
     titleTemplate: "%s | Ben Ryder",
     description: "The personal website of Ben Ryder.",
     author: "Ben Ryder",
-    siteUrl: "https://benryder.me"
+    siteUrl: "https://benryder.me",
   },
   flags: {
     DEV_SSR: false,
@@ -43,8 +43,8 @@ module.exports = {
             resolve: "gatsby-remark-prismjs",
             options: {
               noInlineHighlight: true,
-            }
-          }
+            },
+          },
         ],
       },
     },

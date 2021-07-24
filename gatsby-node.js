@@ -7,28 +7,28 @@ const path = require("path");
  * @param createResolvers
  */
 exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions;
+  const { createPage } = actions;
 
-    const result = await graphql(`
-        query AllArticles {
-            allContentfulArticle {
-                nodes {
-                    id
-                    titleSlug
-                }
-            }
+  const result = await graphql(`
+    query AllArticles {
+      allContentfulArticle {
+        nodes {
+          id
+          titleSlug
         }
-    `);
+      }
+    }
+  `);
 
-    result.data.allContentfulArticle.nodes.forEach(node => {
-        const url = "/blog/" + node.titleSlug;
+  result.data.allContentfulArticle.nodes.forEach((node) => {
+    const url = "/blog/" + node.titleSlug;
 
-        createPage({
-            path: url,
-            component: path.resolve("./src/layouts/ArticlePage.js"),
-            context: {
-                articleID: node.id
-            }
-        })
-    })
+    createPage({
+      path: url,
+      component: path.resolve("./src/layouts/ArticlePage.js"),
+      context: {
+        articleID: node.id,
+      },
+    });
+  });
 };
