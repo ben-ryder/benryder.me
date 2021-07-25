@@ -33,7 +33,7 @@ const IndexPage = ({data}) => {
                   url={ project.fields.urlSlug }
                   title={ project.title }
                   description={ project.description.description }
-                  key={ project.titleSlug }
+                  key={ project.fields.urlSlug }
                 />
               )}
             </div>
@@ -48,7 +48,7 @@ const IndexPage = ({data}) => {
                   url={ article.fields.urlSlug }
                   title={ article.title }
                   description={ article.description.description }
-                  key={ article.titleSlug }
+                  key={ article.fields.urlSlug }
                 />
               )}
             </div>
