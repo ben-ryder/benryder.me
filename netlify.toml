@@ -1,0 +1,16 @@
+# Build Configuration
+[build]
+publish = "public"
+command = "npm run build"
+
+# Gatsby build cache package to improve build times.
+# https://github.com/jlengstorf/netlify-plugin-gatsby-cache
+[[plugins]]
+package = "netlify-plugin-gatsby-cache"
+
+# Environment plugin to allow for contextual env variables.
+# https://github.com/cball/netlify-plugin-contextual-env
+[[plugins]]
+package = "netlify-plugin-contextual-env"
+[plugins.inputs]
+mode = 'prefix'
