@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import PageLayout from "../layouts/PageLayout";
 import PageMetadata from "../components/PageMetadata";
-import LinkComponent from "../components/elements/LinkComponent";
+import Teaser from "../components/Teaser";
 
 const IndexPage = ({data}) => {
   console.log(data);
@@ -31,12 +31,12 @@ const IndexPage = ({data}) => {
             <h2 className="text-3xl font-extrabold text-gray-900">Featured Projects</h2>
             <div className="mt-2">
               {data.allContentfulProject.nodes.map((project) =>
-                <div key={ project.title } className="mt-2">
-                  <LinkComponent url={ "/projects/" + project.titleSlug }>
-                    <h3 className="text-2xl font-extrabold text-gray-800">{ project.title }</h3>
-                    <p className="text-gray-700">{ project.description.description }</p>
-                  </LinkComponent>
-                </div>
+                <Teaser
+                  url={ "/projects/" + project.titleSlug }
+                  title={ project.title }
+                  description={ project.description.description }
+                  key={ project.titleSlug }
+                />
               )}
             </div>
           </div>
@@ -46,12 +46,12 @@ const IndexPage = ({data}) => {
             <h2 className="text-3xl font-extrabold text-gray-900">Featured Articles</h2>
             <div className="mt-2">
               {data.allContentfulArticle.nodes.map((article) =>
-                <div key={ article.title } className="mt-2">
-                  <LinkComponent url={ "/blog/" + article.titleSlug }>
-                    <h3 className="text-2xl font-extrabold text-gray-800">{ article.title }</h3>
-                    <p className="text-gray-700">{ article.description.description }</p>
-                  </LinkComponent>
-                </div>
+                <Teaser
+                  url={ "/blog/" + article.titleSlug }
+                  title={ article.title }
+                  description={ article.description.description }
+                  key={ article.titleSlug }
+                />
               )}
             </div>
           </div>
