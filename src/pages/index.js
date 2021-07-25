@@ -32,7 +32,7 @@ const IndexPage = ({data}) => {
             <div className="mt-2">
               {data.allContentfulProject.nodes.map((project) =>
                 <Teaser
-                  url={ "/projects/" + project.titleSlug }
+                  url={ project.fields.urlSlug }
                   title={ project.title }
                   description={ project.description.description }
                   key={ project.titleSlug }
@@ -47,7 +47,7 @@ const IndexPage = ({data}) => {
             <div className="mt-2">
               {data.allContentfulArticle.nodes.map((article) =>
                 <Teaser
-                  url={ "/blog/" + article.titleSlug }
+                  url={ article.fields.urlSlug }
                   title={ article.title }
                   description={ article.description.description }
                   key={ article.titleSlug }
@@ -70,7 +70,9 @@ export const query = graphql`
     allContentfulArticle(filter: {featured: {eq: true}}) {
         nodes {
             title
-            titleSlug
+            fields {
+                urlSlug
+            }
             description {
                 description
             }
@@ -79,7 +81,9 @@ export const query = graphql`
     allContentfulProject(filter: {featured: {eq: true}}) {
         nodes {
             title
-            titleSlug
+            fields {
+                urlSlug
+            }
             description {
                 description
             }

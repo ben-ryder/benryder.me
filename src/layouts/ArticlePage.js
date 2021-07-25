@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
-import readingTime from "reading-time";
 
 import PageLayout from "../layouts/PageLayout";
 
@@ -10,8 +9,6 @@ import PageMetadata from "../components/PageMetadata";
 
 const ArticlePage = ({ data }) => {
   data = data.contentfulArticle;
-
-  const articleReadingTime = readingTime(data.body.childMarkdownRemark.html);
 
   return (
     <PageLayout>
@@ -26,7 +23,7 @@ const ArticlePage = ({ data }) => {
             {data.title}
           </h1>
           <p className="mt-3 text-sm text-gray-500">
-            Published {data.publishedDate} / {articleReadingTime.text}
+            Published {data.publishedDate} / {data.fields.readingTime}
           </p>
         </div>
         {data.body.childMarkdownRemark && (
@@ -49,6 +46,9 @@ export const query = graphql`
         description
       }
       publishedDate(formatString: "do MMM, YYYY")
+      fields {
+        readingTime
+      }
       tags
       body {
         childMarkdownRemark {
