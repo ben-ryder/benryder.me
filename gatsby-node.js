@@ -4,7 +4,7 @@ const readingTime = require("reading-time");
 /**
  * Implements Gatsby's onCreateNode hook
  * Used to add custom fields to nodes:
- * - urlSlug on articles and projects used for page creation and linking.
+ * - urlSlug on articles and projects.
  * - readingTime on articles.
  *
  * @param node
@@ -50,7 +50,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const result = await graphql(`
+  // Create Article Pages
+  const articlesResult = await graphql(`
     query AllArticles {
       allContentfulArticle {
         nodes {
@@ -63,12 +64,34 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  result.data.allContentfulArticle.nodes.forEach((node) => {
+  articlesResult.data.allContentfulArticle.nodes.forEach((node) => {
     createPage({
       path: node.fields.urlSlug,
       component: path.resolve("./src/layouts/ArticlePage.js"),
       context: {
         articleID: node.id,
+      },
+    });
+  });
+
+  // Create Basic Pages
+  const basicPageResults = await graphql(`
+    query AllBasicPages {
+      allContentfulBasicPage {
+        nodes {
+          id
+          url
+        }
+      }
+    }
+  `);
+
+  basicPageResults.data.allContentfulBasicPage.nodes.forEach((node) => {
+    createPage({
+      path: node.url,
+      component: path.resolve("./src/layouts/BasicPage.js"),
+      context: {
+        pageID: node.id,
       },
     });
   });

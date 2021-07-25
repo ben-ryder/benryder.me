@@ -7,8 +7,8 @@ import PageLayout from "../layouts/PageLayout";
 import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
 
-const ArticlePage = ({ data }) => {
-  data = data.contentfulArticle;
+const BasicPage = ({ data }) => {
+  data = data.contentfulBasicPage;
 
   return (
     <PageLayout>
@@ -18,14 +18,6 @@ const ArticlePage = ({ data }) => {
         keywords={data.metaData.keywords}
       />
       <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
-        <div className="max-w-2xl mx-auto px-2 mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-900">
-            {data.title}
-          </h1>
-          <p className="mt-3 text-sm text-gray-500">
-            Published {data.publishedDate} / {data.fields.readingTime}
-          </p>
-        </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}
@@ -34,22 +26,13 @@ const ArticlePage = ({ data }) => {
   );
 };
 
-ArticlePage.propTypes = {
+BasicPage.propTypes = {
   data: PropTypes.object,
 };
 
 export const query = graphql`
-  query ($articleID: String!) {
-    contentfulArticle(id: { eq: $articleID }) {
-      title
-      description {
-        description
-      }
-      publishedDate(formatString: "do MMM, YYYY")
-      fields {
-        readingTime
-      }
-      tags
+  query ($pageID: String!) {
+    contentfulBasicPage(id: { eq: $pageID }) {
       body {
         childMarkdownRemark {
           html
@@ -66,4 +49,4 @@ export const query = graphql`
   }
 `;
 
-export default ArticlePage;
+export default BasicPage;
