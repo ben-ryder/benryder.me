@@ -7,8 +7,6 @@ import PageMetadata from "../components/PageMetadata";
 import Teaser from "../components/Teaser";
 
 const IndexPage = ({data}) => {
-  console.log(data);
-
   return (
     <PageLayout>
       <PageMetadata
@@ -24,7 +22,7 @@ const IndexPage = ({data}) => {
             In my spare time I make websites, desktop apps, python games and
             anything else that catches my interest.
           </p>
-          <p className="prose mt-2">Find me online: <a href="">GitHub</a>, <a href="">LinkedIn</a>, <a href="">Drupal.org</a>.</p>
+          <p className="prose mt-2">Find me online: <a href="">GitHub</a> / <a href="">LinkedIn</a> / <a href="">Drupal.org</a>.</p>
         </div>
         {data.allContentfulProject.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">

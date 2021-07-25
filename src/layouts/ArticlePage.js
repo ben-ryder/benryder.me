@@ -14,7 +14,7 @@ const ArticlePage = ({ data }) => {
     <PageLayout>
       <PageMetadata
         title={data.metaData.title}
-        description={data.metaData.description}
+        description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
       <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
