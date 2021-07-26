@@ -95,4 +95,28 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  // Create project pages
+  const projectPagesResult = await graphql(`
+    query AllProjects {
+      allContentfulProject {
+        nodes {
+          id
+          fields {
+            urlSlug
+          }
+        }
+      }
+    }
+  `);
+
+  projectPagesResult.data.allContentfulProject.nodes.forEach((node) => {
+    createPage({
+      path: node.fields.urlSlug,
+      component: path.resolve("./src/layouts/ProjectPage.js"),
+      context: {
+        projectID: node.id,
+      },
+    });
+  });
 };
