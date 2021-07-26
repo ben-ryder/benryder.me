@@ -1,0 +1,10 @@
+/*
+Fix for the gatsby-remark-autolink-headers plugin not using the offsetY option.
+See https://github.com/gatsbyjs/gatsby/issues/31747.
+*/
+.prose-content h2[id],
+.prose-content h3[id],
+.prose-content h4[id],
+.prose-content h5[id] {
+    scroll-margin-top: 5rem;
+}

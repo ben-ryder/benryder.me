@@ -40,6 +40,13 @@ module.exports = {
         gfm: true,
         plugins: [
           {
+            resolve: "gatsby-remark-autolink-headers",
+            options: {
+              isIconAfterHeader: true,
+              offsetY: 80,
+            }
+          },
+          {
             resolve: "gatsby-remark-prismjs",
             options: {
               noInlineHighlight: true,

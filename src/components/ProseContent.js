@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 const ProseContent = (props) => {
   const className = classNames(
+    "prose-content",
     "prose max-w-2xl mx-auto px-2 overflow-x-hidden",
     props.className
   );
