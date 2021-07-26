@@ -25,7 +25,7 @@ const Footer = () => {
       menuLinks: [
         { text: "Credits", url: "/credits" },
         { text: "License", url: "/license" },
-        { text: "Cookie & Privacy Policy", url: "/cookie-and-privacy-policy" },
+        { text: "Privacy & Cookie Policy", url: "/privacy-and-cookie-policy" },
       ],
     },
   ];

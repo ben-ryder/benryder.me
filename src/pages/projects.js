@@ -17,7 +17,7 @@ const ProjectsPage = ({data}) => {
       <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
         {data.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">
-            <h2 className="text-3xl font-extrabold text-gray-900">My Projects</h2>
+            <h1 className="text-3xl font-extrabold text-gray-900">My Projects</h1>
             <p className="text-gray-700">Below you can find a list of all my projects including websites, python games and more. Why not check a few out!</p>
             <div className="mt-8">
               {data.nodes.map((project) =>

@@ -26,7 +26,7 @@ const LinkComponent = (props) => {
     }
   });
 
-  if (props.url.startsWith("/")) {
+  if (props.url.startsWith("/") && !props.target) {
     return (
       <Link to={props.url} {...filteredProps}>
         {content}
