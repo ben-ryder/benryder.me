@@ -7,7 +7,7 @@ import PageMetadata from "../components/PageMetadata";
 import Teaser from "../components/Teaser";
 import TagList from "../components/TagList";
 
-const ProjectsPage = ({data}) => {
+const ProjectTagsPage = ({data, pageContext}) => {
   return (
     <PageLayout>
       <PageMetadata
@@ -21,9 +21,9 @@ const ProjectsPage = ({data}) => {
             <div className="mt-8">
               <TagList
                 tagList={ data.allProjectTags.distinct }
+                currentTag={ pageContext.tagName }
                 tagHomeUrl={ "/projects" }
                 tagUrl={ "/projects/tags/" }
-                currentTag={ "View All" }
               />
               <div className="mt-8">
                 {data.allContentfulProject.nodes.map((project) =>
@@ -34,25 +34,29 @@ const ProjectsPage = ({data}) => {
                     key={ project.fields.urlSlug }
                   />
                 )}
+              </div>
             </div>
           </div>
-        </div>
         }
       </main>
     </PageLayout>
   );
 };
 
-ProjectsPage.propTypes = {
-    data: PropTypes.object,
+ProjectTagsPage.propTypes = {
+  data: PropTypes.object,
+  pageContext: PropTypes.object,
 };
 
 export const query = graphql`
-  query AllProjects {
+  query AllProjectsWithTag($tagName: String!)  {
     allProjectTags: allContentfulProject {
       distinct(field: fields___tags___name)
     }
-    allContentfulProject(sort: {fields: publishedDate, order: DESC}) {
+    allContentfulProject(
+      filter: {fields: {tags: {elemMatch: {name: {eq: $tagName}}}}}
+      sort: {fields: publishedDate, order: DESC}
+    ) {
       nodes {
         title
         fields {
@@ -66,4 +70,4 @@ export const query = graphql`
   }
 `;
 
-export default ProjectsPage;
+export default ProjectTagsPage;

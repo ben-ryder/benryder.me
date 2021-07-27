@@ -151,4 +151,25 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  // Create project tag pages.
+  const projectTagsResult = await graphql(`
+    query AllProjectTags {
+      allContentfulProject {
+        group(field: fields___tags___name) {
+          tagName: fieldValue
+        }
+      }
+    }
+  `);
+
+  projectTagsResult.data.allContentfulProject.group.forEach(tag => {
+    createPage({
+      path: "/projects/tags/" + tag.tagName,
+      component: path.resolve("./src/layouts/ProjectTagsPage.js"),
+      context: {
+        tagName: tag.tagName,
+      },
+    });
+  })
 };
