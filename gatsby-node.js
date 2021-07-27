@@ -30,6 +30,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: "readingTime",
       value: articleReadingTime.text
     })
+
+    // Preprocess article tags to add the urlSlug.
+    if (Array.isArray(node.tags)) {
+      const articleTags = node.tags.map(tag => {
+        return {
+          name: tag,
+          urlSlug: "/blog/tags/" + tag,
+        }
+      });
+
+      createNodeField({
+        node,
+        name: "tags",
+        value: articleTags
+      })
+    }
   }
   else if(node.internal.type === "ContentfulProject") {
     // Add urlSlug used to create the article page.
@@ -38,6 +54,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: "urlSlug",
       value: "/projects/" + node.titleSlug
     })
+
+    // Preprocess project tags to add the urlSlug.
+    if (Array.isArray(node.tags)) {
+      const projectTags = node.tags.map(tag => {
+        return {
+          name: tag,
+          urlSlug: "/projects/tags/" + tag,
+        }
+      });
+
+      createNodeField({
+        node,
+        name: "tags",
+        value: projectTags
+      })
+    }
   }
 }
 
