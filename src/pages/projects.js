@@ -34,9 +34,9 @@ const ProjectsPage = ({data}) => {
                     key={ project.fields.urlSlug }
                   />
                 )}
+              </div>
             </div>
           </div>
-        </div>
         }
       </main>
     </PageLayout>

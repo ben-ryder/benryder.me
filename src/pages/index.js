@@ -22,7 +22,12 @@ const IndexPage = ({data}) => {
             In my spare time I make websites, desktop apps, python games and
             anything else that catches my interest.
           </p>
-          <p className="prose mt-2">Find me online: <a href="">GitHub</a> / <a href="">LinkedIn</a> / <a href="">Drupal.org</a>.</p>
+          <p className="prose mt-2">
+            Find me online:{" "}
+            <a href="https://github.com/Ben-Ryder">GitHub</a> /{" "}
+            <a href="https://www.linkedin.com/in/benryderdev/">LinkedIn</a> /{" "}
+            <a href="https://www.drupal.org/u/ben-ryder">Drupal.org</a>.
+          </p>
         </div>
         {data.allContentfulProject.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">

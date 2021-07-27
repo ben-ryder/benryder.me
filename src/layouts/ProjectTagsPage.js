@@ -59,11 +59,11 @@ export const query = graphql`
     ) {
       nodes {
         title
-        fields {
-          urlSlug
-        }
         description {
           description
+        }
+        fields {
+          urlSlug
         }
       }
     }

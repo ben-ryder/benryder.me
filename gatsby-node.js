@@ -82,6 +82,28 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  // Create Basic Pages
+  const basicPageResults = await graphql(`
+    query AllBasicPages {
+      allContentfulBasicPage {
+        nodes {
+          id
+          url
+        }
+      }
+    }
+  `);
+
+  basicPageResults.data.allContentfulBasicPage.nodes.forEach((node) => {
+    createPage({
+      path: node.url,
+      component: path.resolve("./src/layouts/BasicPage.js"),
+      context: {
+        pageID: node.id,
+      },
+    });
+  });
+
   // Create Article Pages
   const articlesResult = await graphql(`
     query AllArticles {
@@ -106,27 +128,26 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // Create Basic Pages
-  const basicPageResults = await graphql(`
-    query AllBasicPages {
-      allContentfulBasicPage {
-        nodes {
-          id
-          url
+  // Create article tag pages.
+  const articleTagsResult = await graphql(`
+    query AllArticleTags {
+      allContentfulArticle {
+        group(field: fields___tags___name) {
+          tagName: fieldValue
         }
       }
     }
   `);
 
-  basicPageResults.data.allContentfulBasicPage.nodes.forEach((node) => {
+  articleTagsResult.data.allContentfulArticle.group.forEach(tag => {
     createPage({
-      path: node.url,
-      component: path.resolve("./src/layouts/BasicPage.js"),
+      path: "/blog/tags/" + tag.tagName,
+      component: path.resolve("./src/layouts/ArticleTagsPage.js"),
       context: {
-        pageID: node.id,
+        tagName: tag.tagName,
       },
     });
-  });
+  })
 
   // Create project pages
   const projectPagesResult = await graphql(`
