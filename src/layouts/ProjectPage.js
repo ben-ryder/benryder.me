@@ -6,6 +6,7 @@ import PageLayout from "../layouts/PageLayout";
 
 import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
+import CTALink from "../components/CTALink";
 
 const ProjectPage = ({ data }) => {
   data = data.contentfulProject;
@@ -29,10 +30,15 @@ const ProjectPage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="mt-5 mb-10 sm:mt-8 sm:mb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-900">{data.title}</h1>
-          <p className="prose mt-3 text-sm text-gray-500">{projectData}</p>
+          <div className="font-bold text-gray-700">
+            <CTALink url="/projects" text="All Projects" direction="left" />
+          </div>
+          <div className="mt-5 sm:mt-8">
+            <h1 className="text-4xl font-extrabold text-gray-900">{data.title}</h1>
+            <p className="prose mt-3 text-sm text-gray-500">{projectData}</p>
+          </div>
         </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html}/>

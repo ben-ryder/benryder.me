@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import PageLayout from "../layouts/PageLayout";
 import PageMetadata from "../components/PageMetadata";
 import Teaser from "../components/Teaser";
+import CTALink from "../components/CTALink";
 
 const IndexPage = ({data}) => {
   return (
@@ -42,6 +43,9 @@ const IndexPage = ({data}) => {
                 />
               )}
             </div>
+            <div className="mt-3 flex justify-end font-bold text-gray-700">
+              <CTALink url="/projects" text="View More" direction="right" />
+            </div>
           </div>
         }
         {data.allContentfulArticle.nodes.length > 0 &&
@@ -56,6 +60,9 @@ const IndexPage = ({data}) => {
                   key={ article.fields.urlSlug }
                 />
               )}
+            </div>
+            <div className="mt-3 flex justify-end font-bold text-gray-700">
+              <CTALink url="/blog" text="View More" direction="right" />
             </div>
           </div>
         }

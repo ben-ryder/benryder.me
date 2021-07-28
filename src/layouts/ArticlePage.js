@@ -6,6 +6,7 @@ import PageLayout from "../layouts/PageLayout";
 
 import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
+import CTALink from "../components/CTALink";
 
 const ArticlePage = ({ data }) => {
   data = data.contentfulArticle;
@@ -17,14 +18,19 @@ const ArticlePage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="mt-5 mb-10 sm:mt-8 sm:mb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-900">
-            {data.title}
-          </h1>
-          <p className="mt-3 text-sm text-gray-500">
-            Published {data.publishedDate} / {data.fields.readingTime}
-          </p>
+          <div className="font-bold text-gray-700">
+            <CTALink url="/blog" text="All Posts" direction="left" />
+          </div>
+          <div className="mt-5 sm:mt-8">
+            <h1 className="text-4xl font-extrabold text-gray-900">
+              {data.title}
+            </h1>
+            <p className="mt-3 text-sm text-gray-500">
+              Published {data.publishedDate} / {data.fields.readingTime}
+            </p>
+          </div>
         </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
