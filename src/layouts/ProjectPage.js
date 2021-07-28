@@ -7,6 +7,7 @@ import PageLayout from "../layouts/PageLayout";
 import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
 import CTALink from "../components/CTALink";
+import RelatedContent from "../components/RelatedContent";
 
 const ProjectPage = ({ data }) => {
   data = data.contentfulProject;
@@ -43,6 +44,12 @@ const ProjectPage = ({ data }) => {
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html}/>
         )}
+        {(data.relatedArticles || data.relatedProjects) &&
+          <RelatedContent
+            articles={data.relatedArticles}
+            projects={data.relatedProjects}
+          />
+        }
       </main>
     </PageLayout>
   );
@@ -70,6 +77,24 @@ export const query = graphql`
           description
         }
         keywords
+      }
+      relatedArticles {
+        title
+        fields {
+          urlSlug
+        }
+        description {
+          description
+        }
+      }
+      relatedProjects {
+        title
+        fields {
+          urlSlug
+        }
+        description {
+          description
+        }
       }
     }
   }
