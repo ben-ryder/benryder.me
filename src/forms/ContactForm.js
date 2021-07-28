@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
+import axios from "axios";
 
 import FormRow from "../components/forms/FormRow";
 import FormInput from "../components/forms/FormInput";
@@ -26,19 +27,41 @@ const ContactForm = () => {
     subject: "",
     message: "",
   };
+  const [formMessage, setFormMessage] = useState(null);
 
-  const contactFormOnSubmit = () => {
-    console.log("form submit")
-  }
+  const contactFormSubmit = async (values) => {
+    return axios.post(
+      "/",
+      new URLSearchParams(values).toString(),
+      {
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      })
+      .then(() => {
+        setFormMessage({
+          type: "success",
+          message: "Thank you for getting in touch. I'll try to get back to you as soon as possible."
+        })
+      })
+      .catch(() => {
+        setFormMessage({
+          type: "error",
+          message: "There was an error submitting the form, please try again."
+        })
+      })
+  };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={contactFormSchema}
-      onSubmit={contactFormOnSubmit}
+      onSubmit={contactFormSubmit}
     >
       {({ errors, touched, isSubmitting }) => (
-        <Form>
+        <Form
+          data-netlify="true"
+          netlify-honeypot="honeypot"
+          name="contact"
+        >
           <FormRow>
             <FormInput
               type="text"
@@ -77,6 +100,22 @@ const ContactForm = () => {
               htmlResize={false}
             />
           </FormRow>
+          <FormRow className="hidden">
+            <FormInput
+              type="text"
+              id="honeypot"
+              name="honeypot"
+              label="honeypot"
+            />
+          </FormRow>
+          {formMessage &&
+            <FormRow>
+              {formMessage.type === "success"
+                ? <p className="text-sm text-green-600">{ formMessage.message }</p>
+                : <p className="text-sm text-red-600">{ formMessage.message }</p>
+              }
+            </FormRow>
+          }
           <FormRow className="mt-4 flex justify-end">
             <FormSubmitButton type="submit" isSubmitting={isSubmitting}>Send</FormSubmitButton>
           </FormRow>
