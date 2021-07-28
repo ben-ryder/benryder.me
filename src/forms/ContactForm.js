@@ -31,7 +31,7 @@ const ContactForm = () => {
 
   const contactFormSubmit = async (values) => {
     return axios.post(
-      "/",
+      "",
       new URLSearchParams(values).toString(),
       {
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
