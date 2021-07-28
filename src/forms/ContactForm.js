@@ -26,13 +26,14 @@ const ContactForm = () => {
     email: "",
     subject: "",
     message: "",
+    honeypot: ""
   };
   const [formMessage, setFormMessage] = useState(null);
 
   const contactFormSubmit = async (values) => {
     return axios.post(
       "",
-      new URLSearchParams(values).toString(),
+      new URLSearchParams({"form-name": "contact", ...values}).toString(),
       {
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
       })
