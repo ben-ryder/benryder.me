@@ -18,7 +18,8 @@ const ContactForm = () => {
     subject: Yup.string()
       .required("It's useful to know what you're contacting me about."),
     message: Yup.string()
-      .required("What actual message do you want to send to me?")
+      .required("What actual message do you want to send to me?"),
+    honeypot: Yup.string()
   });
 
   const initialValues = {
@@ -30,7 +31,7 @@ const ContactForm = () => {
   };
   const [formMessage, setFormMessage] = useState(null);
 
-  const contactFormSubmit = async (values) => {
+  const contactFormSubmit = async (values, actions) => {
     return axios.post(
       "",
       new URLSearchParams({"form-name": "contact", ...values}).toString(),
@@ -41,7 +42,8 @@ const ContactForm = () => {
         setFormMessage({
           type: "success",
           message: "Thank you for getting in touch. I'll try to get back to you as soon as possible."
-        })
+        });
+        actions.resetForm();
       })
       .catch(() => {
         setFormMessage({

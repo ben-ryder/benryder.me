@@ -9,7 +9,7 @@ const FormInput = (props) => {
   return (
     <>
       {props.label && props.id &&
-        <label htmlFor={props.id}>{props.label}</label>
+        <label className={classNames({"hidden": props.type === "hidden"})} htmlFor={props.id}>{props.label}</label>
       }
       <Field
         {...props}
@@ -32,7 +32,8 @@ FormInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
-  error: PropTypes.any
+  error: PropTypes.any,
+  type: PropTypes.string.isRequired,
 }
 
 export default FormInput;
