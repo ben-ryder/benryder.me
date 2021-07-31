@@ -56,6 +56,7 @@ const ContactForm = () => {
         if (recaptchaRef) {
           recaptchaRef.reset();
         }
+        setFormMessage(null);
       })
       .catch(() => {
         setFormMessage({
