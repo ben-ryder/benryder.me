@@ -53,10 +53,9 @@ const ContactForm = () => {
 
         // Reset the form
         actions.resetForm();
-        if (recaptchaRef) {
-          recaptchaRef.reset();
+        if (recaptchaRef && recaptchaRef.current) {
+          recaptchaRef.current.reset();
         }
-        setFormMessage(null);
       })
       .catch(() => {
         setFormMessage({
