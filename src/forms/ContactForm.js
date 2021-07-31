@@ -72,7 +72,7 @@ const ContactForm = () => {
       validationSchema={contactFormSchema}
       onSubmit={contactFormSubmit}
     >
-      {({ errors, touched, isSubmitting, values, submitCount }) => (
+      {({ errors, touched, isSubmitting, values, submitCount, validateForm }) => (
         <Form
           data-netlify="true"
           netlify-honeypot="honeypot"
@@ -127,8 +127,16 @@ const ContactForm = () => {
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={ process.env.GATSBY_CAPTCHA_SITE_KEY }
-              onChange={(value) => {values["g-recaptcha-key"] = value}}
-              onExpired={() => {values["g-recaptcha-key"] = ""}}
+              onChange={(value) => {
+                // Manually set value and trigger formik to validate.
+                values["g-recaptcha-key"] = value;
+                return validateForm();
+              }}
+              onExpired={() => {
+                // Manually reset value and trigger validation to show error message.
+                values["g-recaptcha-key"] = "";
+                return validateForm();
+              }}
             />
             {(errors["g-recaptcha-key"] && submitCount > 0) &&
               <FormError>{ errors["g-recaptcha-key"] }</FormError>
