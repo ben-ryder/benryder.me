@@ -127,6 +127,7 @@ const ContactForm = () => {
               ref={recaptchaRef}
               sitekey={ process.env.GATSBY_CAPTCHA_SITE_KEY }
               onChange={(value) => {values["g-recaptcha-key"] = value}}
+              onExpired={() => {values["g-recaptcha-key"] = ""}}
             />
             {errors["g-recaptcha-key"] &&
               <FormError>{ errors["g-recaptcha-key"] }</FormError>
