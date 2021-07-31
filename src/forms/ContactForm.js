@@ -72,7 +72,7 @@ const ContactForm = () => {
       validationSchema={contactFormSchema}
       onSubmit={contactFormSubmit}
     >
-      {({ errors, touched, isSubmitting, values }) => (
+      {({ errors, touched, isSubmitting, values, submitCount }) => (
         <Form
           data-netlify="true"
           netlify-honeypot="honeypot"
@@ -130,7 +130,7 @@ const ContactForm = () => {
               onChange={(value) => {values["g-recaptcha-key"] = value}}
               onExpired={() => {values["g-recaptcha-key"] = ""}}
             />
-            {errors["g-recaptcha-key"] &&
+            {(errors["g-recaptcha-key"] && submitCount > 0) &&
               <FormError>{ errors["g-recaptcha-key"] }</FormError>
             }
           </FormRow>
