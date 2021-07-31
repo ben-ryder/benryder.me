@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import FormRow from "../components/forms/FormRow";
 import FormInput from "../components/forms/FormInput";
 import FormSubmitButton from "../components/forms/FormSubmitButton";
 import FormTextArea from "../components/forms/FormTextArea";
+import FormError from "../components/forms/FormError";
 
 const ContactForm = () => {
   const contactFormSchema = Yup.object().shape({
@@ -19,7 +21,9 @@ const ContactForm = () => {
       .required("It's useful to know what you're contacting me about."),
     message: Yup.string()
       .required("What actual message do you want to send to me?"),
-    honeypot: Yup.string()
+    honeypot: Yup.string(),
+    "g-recaptcha-key": Yup.string()
+      .required("Please prove you are human.")
   });
 
   const initialValues = {
@@ -27,9 +31,12 @@ const ContactForm = () => {
     email: "",
     subject: "",
     message: "",
-    honeypot: ""
+    honeypot: "",
+    "g-recaptcha-key": ""
   };
   const [formMessage, setFormMessage] = useState(null);
+
+  const recaptchaRef = React.useRef(null);
 
   const contactFormSubmit = async (values, actions) => {
     return axios.post(
@@ -43,7 +50,12 @@ const ContactForm = () => {
           type: "success",
           message: "Thank you for getting in touch. I'll try to get back to you as soon as possible."
         });
+
+        // Reset the form
         actions.resetForm();
+        if (recaptchaRef) {
+          recaptchaRef.reset();
+        }
       })
       .catch(() => {
         setFormMessage({
@@ -59,7 +71,7 @@ const ContactForm = () => {
       validationSchema={contactFormSchema}
       onSubmit={contactFormSubmit}
     >
-      {({ errors, touched, isSubmitting }) => (
+      {({ errors, touched, isSubmitting, values }) => (
         <Form
           data-netlify="true"
           netlify-honeypot="honeypot"
@@ -100,7 +112,6 @@ const ContactForm = () => {
               label="Message"
               error={errors.message && touched.message ? errors.message : null}
               rows={3}
-              htmlResize={false}
             />
           </FormRow>
           <FormRow className="hidden">
@@ -110,6 +121,16 @@ const ContactForm = () => {
               name="honeypot"
               label="honeypot"
             />
+          </FormRow>
+          <FormRow>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={ process.env.GATSBY_CAPTCHA_SITE_KEY }
+              onChange={(value) => {values["g-recaptcha-key"] = value}}
+            />
+            {errors["g-recaptcha-key"] &&
+              <FormError>{ errors["g-recaptcha-key"] }</FormError>
+            }
           </FormRow>
           {formMessage &&
             <FormRow>
