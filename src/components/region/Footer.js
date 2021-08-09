@@ -24,7 +24,7 @@ const Footer = () => {
       displayName: "Legal Bits",
       menuLinks: [
         { text: "Credits", url: "/credits" },
-        { text: "License", url: "/license" },
+        { text: "Licenses", url: "/licenses" },
         { text: "Privacy & Cookie Policy", url: "/privacy-and-cookie-policy" },
       ],
     },
