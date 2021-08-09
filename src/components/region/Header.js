@@ -56,6 +56,7 @@ const Header = () => {
           ))}
         </ul>
         <button
+          aria-label="Toggle Main Menu"
           className="z-20 sm:hidden"
           onClick={() => {
             setMainMenuIsOpen(!mainMenuIsOpen);
