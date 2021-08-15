@@ -15,7 +15,6 @@ const Footer = () => {
     {
       displayName: "Projects",
       menuLinks: [
-        { text: "TwoPence", url: "https://twopence.benryder.dev/" },
         { text: "Terminal Site", url: "https://terminal.benryder.me/" },
         { text: "Writing Prompts", url: "https://writingprompts.benryder.me/" },
       ],
