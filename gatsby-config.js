@@ -32,7 +32,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    "gatsby-plugin-eslint",
     {
       resolve: "gatsby-transformer-remark",
       options: {
