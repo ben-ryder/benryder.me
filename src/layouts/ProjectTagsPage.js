@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import PageLayout from "../layouts/PageLayout";
 import PageMetadata from "../components/PageMetadata";
 import Teaser from "../components/Teaser";
-import TagList from "../components/TagList";
+import TagFilterList from "../components/TagFilterList";
 
 const ProjectTagsPage = ({data, pageContext}) => {
   return (
@@ -19,7 +19,7 @@ const ProjectTagsPage = ({data, pageContext}) => {
             <h1 className="text-3xl font-extrabold text-gray-900">My Projects</h1>
             <p className="text-gray-700">Below you can find a list of all my projects including websites, python games and more. Why not check a few out!</p>
             <div className="mt-8">
-              <TagList
+              <TagFilterList
                 tagList={ data.allProjectTags.distinct }
                 currentTag={ pageContext.tagName }
                 tagHomeUrl={ "/projects" }

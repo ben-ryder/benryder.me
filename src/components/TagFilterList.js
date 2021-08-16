@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Tag from "./Tag";
+import TagFilterItem from "./TagFilterItem";
 
-const TagList = (props) => {
+const TagFilterList = (props) => {
   return (
     <ul className="flex flex-wrap">
-      <Tag
+      <TagFilterItem
         text="View All"
         url={props.tagHomeUrl }
         active={ "View All" === props.currentTag }
       />
       {props.tagList.map(tag =>
-        <Tag
+        <TagFilterItem
           key={ tag }
           text={ tag }
           url={ props.tagUrl + tag }
@@ -23,11 +23,11 @@ const TagList = (props) => {
   );
 }
 
-TagList.propTypes = {
+TagFilterList.propTypes = {
   tagList: PropTypes.array.isRequired,
   currentTag: PropTypes.string,
   tagUrl: PropTypes.string.isRequired,
   tagHomeUrl: PropTypes.string.isRequired
 }
 
-export default TagList;
+export default TagFilterList;

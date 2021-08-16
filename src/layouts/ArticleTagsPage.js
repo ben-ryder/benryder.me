@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import PageLayout from "../layouts/PageLayout";
 import PageMetadata from "../components/PageMetadata";
 import Teaser from "../components/Teaser";
-import TagList from "../components/TagList";
+import TagFilterList from "../components/TagFilterList";
 
 const ArticleTagsPage = ({data, pageContext}) => {
   return (
@@ -19,7 +19,7 @@ const ArticleTagsPage = ({data, pageContext}) => {
           <h1 className="text-3xl font-extrabold text-gray-900">My Blog</h1>
           <p className="text-gray-700">Everything from tutorials, project walkthroughs and random thoughts.</p>
           <div className="mt-8">
-            <TagList
+            <TagFilterList
               tagList={ data.allArticleTags.distinct }
               currentTag={ pageContext.tagName }
               tagHomeUrl={ "/blog" }

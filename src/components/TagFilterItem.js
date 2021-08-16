@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import LinkComponent from "./elements/LinkComponent";
 
-const TagList = (props) => {
+const TagFilterItem = (props) => {
   return (
     <li className="mr-2 mb-2">
       <LinkComponent
@@ -22,10 +22,10 @@ const TagList = (props) => {
   );
 }
 
-TagList.propTypes = {
+TagFilterItem.propTypes = {
   url: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   active: PropTypes.bool
 }
 
-export default TagList;
+export default TagFilterItem;
