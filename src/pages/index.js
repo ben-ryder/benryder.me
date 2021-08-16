@@ -77,7 +77,10 @@ IndexPage.propTypes = {
 
 export const query = graphql`
   query FeaturedContent {
-    allContentfulArticle(filter: {featured: {eq: true}}) {
+    allContentfulArticle(
+      filter: {featured: {eq: true}}
+      sort: {fields: publishedDate, order: DESC}
+    ) {
         nodes {
             title
             fields {
@@ -88,7 +91,10 @@ export const query = graphql`
             }
         }
     }
-    allContentfulProject(filter: {featured: {eq: true}}) {
+    allContentfulProject(
+      filter: {featured: {eq: true}}
+      sort: {fields: publishedDate, order: DESC}
+    ) {
         nodes {
             title
             fields {
