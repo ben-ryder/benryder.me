@@ -8,6 +8,10 @@ import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
 import CTALink from "../components/CTALink";
 import RelatedContent from "../components/RelatedContent";
+import MetadataSection from "../components/MetadataSection";
+import TagList from "../components/TagList";
+
+import { Calendar as CalendarIcon, Clock as ClockIcon } from "lucide-react";
 
 const ArticlePage = ({ data }) => {
   data = data.contentfulArticle;
@@ -19,7 +23,7 @@ const ArticlePage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-5 mb-10 sm:mt-8 sm:mb-20">
+      <main className="mt-5 mb-10 sm:mt-8 sm:mb-16">
         <div className="max-w-2xl mx-auto px-2 mb-8">
           <div className="font-bold text-gray-700">
             <CTALink url="/blog" text="All Posts" direction="left" />
@@ -28,14 +32,26 @@ const ArticlePage = ({ data }) => {
             <h1 className="text-4xl font-extrabold text-gray-900">
               {data.title}
             </h1>
-            <p className="mt-3 text-sm text-gray-500">
-              Published {data.publishedDate} / {data.fields.readingTime}
-            </p>
+            <MetadataSection
+              data={[
+                {
+                  text: "Published " + data.publishedDate,
+                  icon: <CalendarIcon size="20" />
+                },
+                {
+                  text: data.fields.readingTime,
+                  icon: <ClockIcon size="20" />
+                }
+              ]}
+            />
           </div>
         </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}
+        <div className="max-w-2xl mx-auto mt-6">
+          <TagList tagList={data.tags} tagUrl="/blog/tags/" />
+        </div>
         {(data.relatedArticles || data.relatedProjects) &&
           <RelatedContent
             articles={data.relatedArticles}

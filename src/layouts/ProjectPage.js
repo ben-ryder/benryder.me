@@ -8,20 +8,37 @@ import ProseContent from "../components/ProseContent";
 import PageMetadata from "../components/PageMetadata";
 import CTALink from "../components/CTALink";
 import RelatedContent from "../components/RelatedContent";
+import MetadataSection from "../components/MetadataSection";
+import TagList from "../components/TagList";
+
+import {
+  Calendar as CalendarIcon,
+  Github as GithubIcon,
+  Globe as GlobeIcon
+} from "lucide-react";
 
 const ProjectPage = ({ data }) => {
   data = data.contentfulProject;
 
-  let projectData;
-  if (data.repositoryUrl && data.productUrl) {
-    projectData = <>Published {data.publishedDate} / <a href={data.repositoryUrl}>Source Code</a> / <a
-      href={data.productUrl}>Live Project</a></>
-  } else if (data.repositoryUrl) {
-    projectData = <>Published {data.publishedDate} / <a href={data.repositoryUrl}>Source Code</a></>
-  } else if (data.productUrl) {
-    projectData = <>Published {data.publishedDate} / <a href={data.productUrl}>Live Project</a></>
-  } else {
-    projectData = <>Published {data.publishedDate}</>
+  let projectMetadata = [
+    {
+      text: "Published " + data.publishedDate,
+      icon: <CalendarIcon size="20" />
+    }
+  ];
+  if (data.repositoryUrl) {
+    projectMetadata.push({
+      text: "Source Code",
+      link: data.repositoryUrl,
+      icon: <GithubIcon size="20" />
+    })
+  }
+  if (data.productUrl) {
+    projectMetadata.push({
+      text: "Live Project",
+      link: data.productUrl,
+      icon: <GlobeIcon size="20" />
+    })
   }
 
   return (
@@ -31,19 +48,22 @@ const ProjectPage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-5 mb-10 sm:mt-8 sm:mb-20">
+      <main className="mt-5 mb-10 sm:mt-8 sm:mb-16">
         <div className="max-w-2xl mx-auto px-2 mb-8">
           <div className="font-bold text-gray-700">
             <CTALink url="/projects" text="All Projects" direction="left" />
           </div>
           <div className="mt-5 sm:mt-8">
             <h1 className="text-4xl font-extrabold text-gray-900">{data.title}</h1>
-            <p className="prose mt-3 text-sm text-gray-500">{projectData}</p>
+            <MetadataSection data={projectMetadata} />
           </div>
         </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html}/>
         )}
+        <div className="max-w-2xl mx-auto mt-6">
+          <TagList tagList={data.tags} tagUrl="/projects/tags/" />
+        </div>
         {(data.relatedArticles || data.relatedProjects) &&
           <RelatedContent
             articles={data.relatedArticles}
@@ -64,6 +84,7 @@ export const query = graphql`
     contentfulProject(id: {eq: $projectID}) {
       title
       publishedDate(formatString: "do MMM, YYYY")
+      tags
       repositoryUrl
       productUrl
       body {
