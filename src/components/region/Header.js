@@ -11,14 +11,16 @@ import { Menu as MenuIcon, X as MenuCloseIcon } from "lucide-react";
 const Header = () => {
   const mainMenuLinks = useStaticQuery(graphql`
     query MainNavigationMenu {
-      contentfulMainNavigationMenu {
-        menuLinks {
-          text
-          url
+      contentfulMainNavigation {
+        menu {
+          links {
+            text
+            url
+          }
         }
       }
     }
-  `).contentfulMainNavigationMenu.menuLinks;
+  `).contentfulMainNavigation.menu.links;
 
   const [mainMenuIsOpen, setMainMenuIsOpen] = React.useState(false);
 
