@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d2029afe-20d9-417a-976d-8c2d444bc382/deploy-status)](https://app.netlify.com/sites/ben-ryder/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2b22e31f-be46-41e7-af00-8fce392deb6f/deploy-status)](https://app.netlify.com/sites/ben-ryder/deploys)
 
 # benryder.me
 My personal portfolio site built using Gatsby and Tailwind CSS with content being pulled in at build time from Contentful. 
