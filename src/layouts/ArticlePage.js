@@ -10,11 +10,20 @@ import CTALink from "../components/CTALink";
 import RelatedContent from "../components/RelatedContent";
 import MetadataSection from "../components/MetadataSection";
 import TagList from "../components/TagList";
+import TableOfContents from "../components/TableOfContents";
 
 import { Calendar as CalendarIcon, Clock as ClockIcon } from "lucide-react";
 
 const ArticlePage = ({ data }) => {
   data = data.contentfulArticle;
+
+  const tocLinks = data.body.childMarkdownRemark.headings.map(heading => {
+    return {
+      text: heading.value,
+      link: "#" + heading.id,
+      depth: heading.depth
+    }
+  });
 
   return (
     <PageLayout>
@@ -46,6 +55,9 @@ const ArticlePage = ({ data }) => {
             />
           </div>
         </div>
+        {tocLinks.length > 0 &&
+          <TableOfContents links={tocLinks} />
+        }
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}
@@ -82,6 +94,11 @@ export const query = graphql`
       body {
         childMarkdownRemark {
           html
+          headings {
+            id
+            value
+            depth  
+          }
         }
       }
       metaData {

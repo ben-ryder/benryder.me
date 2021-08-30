@@ -1,4 +1,5 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import { Helmet } from "react-helmet";
 import classNames from "classnames";
 
@@ -8,12 +9,18 @@ import LinkComponent from "../elements/LinkComponent";
 import { Menu as MenuIcon, X as MenuCloseIcon } from "lucide-react";
 
 const Header = () => {
-  const mainMenuLinks = [
-    { text: "About", url: "/about" },
-    { text: "Projects", url: "/projects" },
-    { text: "Blog", url: "/blog" },
-    { text: "Contact", url: "/contact" },
-  ];
+  const mainMenuLinks = useStaticQuery(graphql`
+    query MainNavigationMenu {
+      contentfulMainNavigation {
+        menu {
+          links {
+            text
+            url
+          }
+        }
+      }
+    }
+  `).contentfulMainNavigation.menu.links;
 
   const [mainMenuIsOpen, setMainMenuIsOpen] = React.useState(false);
 
