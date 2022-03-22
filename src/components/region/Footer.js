@@ -23,8 +23,8 @@ const Footer = () => {
   `).contentfulFooter;
 
   return (
-    <footer className="text-gray-500">
-      <div className="sm:flex sm:justify-between max-w-2xl mx-auto px-4 border-t-2">
+    <footer className="py-4 text-gray-500 bg-brand-background-secondary text-brand-text-secondary">
+      <div className="sm:flex sm:justify-between max-w-2xl mx-auto px-4">
         {footerData.menus.map((menu) => (
           <div key={menu.title} className="mt-4">
             <ul className="mt-1">

@@ -7,4 +7,12 @@ See https://github.com/gatsbyjs/gatsby/issues/31747.
 .prose-content h4[id],
 .prose-content h5[id] {
     scroll-margin-top: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.prose-content .after svg {
+    fill: #0D9488;
+    width: 25px;
+    height: 25px;
 }

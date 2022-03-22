@@ -16,7 +16,7 @@ const FormSubmitButton = (props) => {
         "rounded-md py-2 px-5 text-white flex font-bold",
         {
           "bg-gray-400": props.isSubmitting,
-          "bg-blue-700": !props.isSubmitting,
+          "bg-brand": !props.isSubmitting,
         },
         domProps.className
       )}

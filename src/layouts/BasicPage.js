@@ -17,7 +17,7 @@ const BasicPage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}

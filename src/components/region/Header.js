@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <header
       id="main-header"
-      className="sticky top-0 w-full z-10 flex h-20 px-4 bg-white sm:mt-5"
+      className="sticky top-0 w-full z-10 flex h-20 px-4 bg-brand-background-secondary text-brand-text-secondary"
     >
       {mainMenuIsOpen && (
         <Helmet
@@ -38,8 +38,8 @@ const Header = () => {
       )}
       <nav className="w-full flex justify-between max-w-3xl mx-auto">
         <LinkComponent url="/" className="z-20 flex items-center">
-          <i className="w-9 h-9 rounded-full bg-blue-600" />
-          <p className="pl-2">Ben Ryder</p>
+          <i className="w-9 h-9 rounded-full bg-brand" />
+          <p className="pl-2 font-bold">Ben Ryder</p>
         </LinkComponent>
         <ul
           className={classNames(

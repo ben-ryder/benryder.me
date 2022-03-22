@@ -11,7 +11,7 @@ const BlogTest = () => {
       <Helmet>
         <title>Blog Test</title>
       </Helmet>
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <ProseContent>
           <p className="lead">
             This copy comes from the @tailwindcss/typography project, a project
