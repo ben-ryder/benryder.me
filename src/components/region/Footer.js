@@ -31,7 +31,7 @@ const Footer = () => {
               {menu.links.map((link) => (
                 <li key={link.url}>
                   <LinkComponent
-                    className="block py-1"
+                    className="block py-1 hover:underline"
                     url={link.url}
                     text={link.text}
                   />

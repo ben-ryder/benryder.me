@@ -57,7 +57,7 @@ const Header = () => {
               <LinkComponent
                 url={navLink.url}
                 text={navLink.text}
-                className="block py-5 sm:py-0"
+                className="block py-5 sm:py-0 hover:underline"
               />
             </li>
           ))}

@@ -6,7 +6,7 @@ import Teaser from "./Teaser";
 
 const RelatedContent = (props) => {
   return (
-    <div className="max-w-2xl mx-auto px-2 border-t mt-5">
+    <div className="max-w-2xl mx-auto px-2 border-t border-brand-interface-primary mt-5">
       {props.articles &&
         <div className="mt-5">
           <h2 className="text-3xl font-extrabold text-brand-text-primary">Related Articles</h2>

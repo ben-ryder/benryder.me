@@ -53,6 +53,11 @@ module.exports = {
             '--tw-prose-pre-bg': brandColours["brand-background"].tertiary,
             '--tw-prose-th-borders': brandColours["brand-text"].secondary,
             '--tw-prose-td-borders': brandColours["brand-text"].secondary,
+            a: {
+              '&:hover': {
+                color: brandColours.brand
+              }
+            }
           }
         }
       })

@@ -45,11 +45,11 @@ const ArticlePage = ({ data }) => {
               data={[
                 {
                   text: "Published " + data.publishedDate,
-                  icon: <CalendarIcon size="20" />
+                  icon: <CalendarIcon size="20" className="stroke-brand" />
                 },
                 {
                   text: data.fields.readingTime,
-                  icon: <ClockIcon size="20" />
+                  icon: <ClockIcon size="20" className="stroke-brand" />
                 }
               ]}
             />

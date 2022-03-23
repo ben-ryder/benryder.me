@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 const CTALink = (props) => {
   return (
       <LinkComponent
-        className={classNames("flex", props.className)}
+        className={classNames("flex hover:text-brand", props.className)}
         url={ props.url }
       >
         {props.direction === "left" &&

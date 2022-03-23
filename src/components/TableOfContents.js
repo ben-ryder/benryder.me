@@ -13,12 +13,12 @@ const TableOfContents = (props) => {
 
   return (
     <div className="mx-2">
-      <div className="max-w-2xl mx-auto border rounded text-gray-500 mb-6">
+      <div className="max-w-2xl mx-auto border border-brand-interface-primary rounded text-brand-text-secondary mb-6">
         <button
           onClick={() => {setIsExpanded(!isExpanded)}}
           className="w-full flex justify-between px-4 py-3"
         >
-          <p>Table of Contents</p>
+          <p className="font-bold">Table of Contents</p>
           <i>
             {isExpanded
               ? <CloseIcon />
@@ -27,7 +27,7 @@ const TableOfContents = (props) => {
           </i>
         </button>
         <ul className={classNames(
-          "border-t px-4 py-3",
+          "border-t border-brand-interface-primary px-4 py-3",
           {
             "hidden": !isExpanded
           }

@@ -19,22 +19,17 @@ const LinkComponent = (props) => {
     throw new Error("No content found to populate link");
   }
 
-  let filteredProps = {};
-  Object.keys(props).forEach((key) => {
-    if (!["url", "text", "to", "href"].includes(key)) {
-      filteredProps[key] = props[key];
-    }
-  });
+  let { url, text, to, href, ...otherProps } = props;
 
   if (props.url.startsWith("/") && !props.target) {
     return (
-      <Link to={props.url} {...filteredProps}>
+      <Link to={props.url} {...otherProps}>
         {content}
       </Link>
     );
   } else {
     return (
-      <a href={props.url} {...filteredProps}>
+      <a href={props.url} {...otherProps}>
         {content}
       </a>
     );
@@ -43,7 +38,7 @@ const LinkComponent = (props) => {
 
 LinkComponent.propTypes = {
   url: PropTypes.string.isRequired,
-  text: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default LinkComponent;

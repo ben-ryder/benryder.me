@@ -23,21 +23,21 @@ const ProjectPage = ({ data }) => {
   let projectMetadata = [
     {
       text: "Published " + data.publishedDate,
-      icon: <CalendarIcon size="20" />
+      icon: <CalendarIcon size="20" className="stroke-brand" />
     }
   ];
   if (data.repositoryUrl) {
     projectMetadata.push({
       text: "Source Code",
       link: data.repositoryUrl,
-      icon: <GithubIcon size="20" />
+      icon: <GithubIcon size="20" className="stroke-brand" />
     })
   }
   if (data.productUrl) {
     projectMetadata.push({
       text: "Live Project",
       link: data.productUrl,
-      icon: <GlobeIcon size="20" />
+      icon: <GlobeIcon size="20" className="stroke-brand" />
     })
   }
 
