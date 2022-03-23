@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const FormRow = (props) => {
   return (
-    <div {...props} className={classNames("mb-2", props.className)}>
+    <div {...props} className={classNames("mb-4", props.className)}>
       { props.children }
     </div>
   )

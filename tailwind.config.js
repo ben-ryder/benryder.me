@@ -1,7 +1,7 @@
 
 const brandColours = {
   "brand": "#0D9488",
-  "brand-accent": "#0F766E",
+  "brand-accent": "#115E59",
   "brand-background": {
     "primary": "#272b34",
     "secondary": "#20242b",
@@ -15,10 +15,10 @@ const brandColours = {
     "primary": "#ccc",
     "secondary": "#eee",
   },
-  "brand-red": "#DC2626",
+  "brand-red": "#EF4444",
   "brand-orange": "#F97316",
   "brand-yellow": "#FBBF24",
-  "brand-green": "#16A34A",
+  "brand-green": "#15803D",
 };
 
 

@@ -9,16 +9,31 @@ const FormInput = (props) => {
   return (
     <>
       {props.label && props.id &&
-        <label className={classNames({"hidden": props.type === "hidden"})} htmlFor={props.id}>{props.label}</label>
+        <label
+          className={
+            classNames(
+              "font-bold text-brand-text-secondary",
+              {
+                "hidden": props.type === "hidden"
+              }
+            )
+          }
+          htmlFor={props.id}
+        >
+          {props.label}
+        </label>
       }
       <Field
         {...props}
         className={classNames(
-          "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
-          props.className,
+          "mt-1 block w-full rounded-md outline-none",
+          "bg-brand-background-primary border-2  text-brand-text-secondary",
+          "focus:ring-0 focus:border-brand",
           {
-            "border-red-500": props.error
-          }
+            "border-brand-red": props.error,
+            "border-brand-interface-secondary hover:border-brand-interface-primary": !props.error
+          },
+          props.className,
         )}
       />
       {props.error &&
