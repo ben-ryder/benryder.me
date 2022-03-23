@@ -47,7 +47,7 @@ const Header = () => {
               hidden: !mainMenuIsOpen,
               flex: mainMenuIsOpen,
             },
-            "fixed top-0 py-20 w-full h-full bg-white left-0 items-center justify-center flex-col", // fullscreen mobile layout
+            "fixed top-0 py-20 w-full h-full bg-brand-background-secondary left-0 items-center justify-center flex-col", // fullscreen mobile layout
             "sm:relative sm:py-0 sm:w-auto sm:h-auto sm:bg-transparent sm:items-start  sm:justify-start sm:flex-row ", // reverting mobile layout for desktop
             "sm:flex sm:justify-between sm:items-center" // desktop layout
           )}
@@ -70,9 +70,9 @@ const Header = () => {
           }}
         >
           {mainMenuIsOpen ? (
-            <MenuCloseIcon size={40} color="#6B7280" />
+            <MenuCloseIcon size={40} className="fill-brand-text-secondary" />
           ) : (
-            <MenuIcon size={40} color="#6B7280" />
+            <MenuIcon size={40} className="fill-brand-text-secondary" />
           )}
         </button>
       </nav>
