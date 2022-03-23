@@ -8,6 +8,9 @@
     "gatsby"
   ],
   "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",

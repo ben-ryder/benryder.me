@@ -3,6 +3,10 @@
 publish = "public"
 command = "npm run build"
 
+# Environment Configuration
+[build.environment]
+NODE_VERSION = "16"
+
 # Gatsby build cache package to improve build times.
 # https://github.com/jlengstorf/netlify-plugin-gatsby-cache
 [[plugins]]
