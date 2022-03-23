@@ -61,7 +61,7 @@ const ArticlePage = ({ data }) => {
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}
-        <div className="max-w-2xl mx-auto mt-6 px-2">
+        <div className="max-w-2xl mx-auto mt-8 px-2">
           <TagList tagList={data.tags} tagUrl="/blog/tags/" />
         </div>
         {(data.relatedArticles || data.relatedProjects) &&
