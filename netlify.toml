@@ -18,3 +18,9 @@ package = "netlify-plugin-gatsby-cache"
 package = "netlify-plugin-contextual-env"
 [plugins.inputs]
 mode = 'prefix'
+
+# Adding GNU Terry Pratchett Header
+[[headers]]
+for = "/*"
+[headers.values]
+X-Clacks-Overhead = "GNU Terry Pratchett"
