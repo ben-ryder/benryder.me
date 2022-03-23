@@ -7,11 +7,6 @@ command = "npm run build"
 [build.environment]
 NODE_VERSION = "16"
 
-# Gatsby build cache package to improve build times.
-# https://github.com/jlengstorf/netlify-plugin-gatsby-cache
-[[plugins]]
-package = "netlify-plugin-gatsby-cache"
-
 # Environment plugin to allow for contextual env variables.
 # https://github.com/cball/netlify-plugin-contextual-env
 [[plugins]]
