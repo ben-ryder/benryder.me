@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <header
       id="main-header"
-      className="sticky top-0 w-full z-10 flex h-20 px-4 bg-white sm:mt-5"
+      className="sticky top-0 w-full z-10 flex h-20 px-4 bg-brand-background-secondary text-brand-text-secondary"
     >
       {mainMenuIsOpen && (
         <Helmet
@@ -38,8 +38,8 @@ const Header = () => {
       )}
       <nav className="w-full flex justify-between max-w-3xl mx-auto">
         <LinkComponent url="/" className="z-20 flex items-center">
-          <i className="w-9 h-9 rounded-full bg-blue-600" />
-          <p className="pl-2">Ben Ryder</p>
+          <i className="w-9 h-9 rounded-full bg-brand" />
+          <p className="pl-2 font-bold">Ben Ryder</p>
         </LinkComponent>
         <ul
           className={classNames(
@@ -47,7 +47,7 @@ const Header = () => {
               hidden: !mainMenuIsOpen,
               flex: mainMenuIsOpen,
             },
-            "fixed top-0 py-20 w-full h-full bg-white left-0 items-center justify-center flex-col", // fullscreen mobile layout
+            "fixed top-0 py-20 w-full h-full bg-brand-background-secondary left-0 items-center justify-center flex-col", // fullscreen mobile layout
             "sm:relative sm:py-0 sm:w-auto sm:h-auto sm:bg-transparent sm:items-start  sm:justify-start sm:flex-row ", // reverting mobile layout for desktop
             "sm:flex sm:justify-between sm:items-center" // desktop layout
           )}
@@ -57,7 +57,7 @@ const Header = () => {
               <LinkComponent
                 url={navLink.url}
                 text={navLink.text}
-                className="block py-5 sm:py-0"
+                className="block py-5 sm:py-0 hover:underline"
               />
             </li>
           ))}
@@ -70,9 +70,9 @@ const Header = () => {
           }}
         >
           {mainMenuIsOpen ? (
-            <MenuCloseIcon size={40} color="#6B7280" />
+            <MenuCloseIcon size={40} className="fill-brand-text-secondary" />
           ) : (
-            <MenuIcon size={40} color="#6B7280" />
+            <MenuIcon size={40} className="fill-brand-text-secondary" />
           )}
         </button>
       </nav>

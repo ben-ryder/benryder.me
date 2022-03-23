@@ -32,24 +32,24 @@ const ArticlePage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-5 mb-10 sm:mt-8 sm:mb-16">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <div className="font-bold text-gray-700">
+          <div className="font-bold text-brand-text-primary">
             <CTALink url="/blog" text="All Posts" direction="left" />
           </div>
           <div className="mt-5 sm:mt-8">
-            <h1 className="text-4xl font-extrabold text-gray-900">
+            <h1 className="text-4xl font-extrabold text-brand-text-primary">
               {data.title}
             </h1>
             <MetadataSection
               data={[
                 {
                   text: "Published " + data.publishedDate,
-                  icon: <CalendarIcon size="20" />
+                  icon: <CalendarIcon size="20" className="stroke-brand" />
                 },
                 {
                   text: data.fields.readingTime,
-                  icon: <ClockIcon size="20" />
+                  icon: <ClockIcon size="20" className="stroke-brand" />
                 }
               ]}
             />
@@ -61,7 +61,7 @@ const ArticlePage = ({ data }) => {
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html} />
         )}
-        <div className="max-w-2xl mx-auto mt-6 px-2">
+        <div className="max-w-2xl mx-auto mt-8 px-2">
           <TagList tagList={data.tags} tagUrl="/blog/tags/" />
         </div>
         {(data.relatedArticles || data.relatedProjects) &&

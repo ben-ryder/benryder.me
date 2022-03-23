@@ -5,12 +5,13 @@
  * https://draculatheme.com/
  *
  * Ported for PrismJS by Albert Vallverdu [@byverdu]
+ *
+ * CHANGES: I've removed background styles so they are inherited from @tailwind/typography instead.
  */
 
 code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
-  background: none;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
@@ -34,11 +35,6 @@ pre[class*="language-"] {
   margin: 0.5em 0;
   overflow: auto;
   border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #282a36;
 }
 
 /* Inline code */

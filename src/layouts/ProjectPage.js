@@ -23,21 +23,21 @@ const ProjectPage = ({ data }) => {
   let projectMetadata = [
     {
       text: "Published " + data.publishedDate,
-      icon: <CalendarIcon size="20" />
+      icon: <CalendarIcon size="20" className="stroke-brand" />
     }
   ];
   if (data.repositoryUrl) {
     projectMetadata.push({
       text: "Source Code",
       link: data.repositoryUrl,
-      icon: <GithubIcon size="20" />
+      icon: <GithubIcon size="20" className="stroke-brand" />
     })
   }
   if (data.productUrl) {
     projectMetadata.push({
       text: "Live Project",
       link: data.productUrl,
-      icon: <GlobeIcon size="20" />
+      icon: <GlobeIcon size="20" className="stroke-brand" />
     })
   }
 
@@ -48,20 +48,20 @@ const ProjectPage = ({ data }) => {
         description={data.metaData.description.description}
         keywords={data.metaData.keywords}
       />
-      <main className="mt-5 mb-10 sm:mt-8 sm:mb-16">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <div className="font-bold text-gray-700">
+          <div className="font-bold text-brand-text-primary">
             <CTALink url="/projects" text="All Projects" direction="left" />
           </div>
           <div className="mt-5 sm:mt-8">
-            <h1 className="text-4xl font-extrabold text-gray-900">{data.title}</h1>
+            <h1 className="text-4xl font-extrabold text-brand-text-primary">{data.title}</h1>
             <MetadataSection data={projectMetadata} />
           </div>
         </div>
         {data.body.childMarkdownRemark && (
           <ProseContent htmlString={data.body.childMarkdownRemark.html}/>
         )}
-        <div className="max-w-2xl mx-auto mt-6 px-2">
+        <div className="max-w-2xl mx-auto mt-8 px-2">
           <TagList tagList={data.tags} tagUrl="/projects/tags/" />
         </div>
         {(data.relatedArticles || data.relatedProjects) &&

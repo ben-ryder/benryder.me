@@ -6,10 +6,10 @@ import Teaser from "./Teaser";
 
 const RelatedContent = (props) => {
   return (
-    <div className="max-w-2xl mx-auto px-2 border-t mt-5">
+    <div className="max-w-2xl mx-auto px-2 border-t border-brand-interface-primary mt-5">
       {props.articles &&
         <div className="mt-5">
-          <h2 className="text-3xl font-extrabold text-gray-900">Related Articles</h2>
+          <h2 className="text-3xl font-extrabold text-brand-text-primary">Related Articles</h2>
           <div className={classNames("mt-2", {"sm:flex sm:justify-between": props.articles.length > 1})}>
             {props.articles.map((article) =>
               <Teaser
@@ -25,7 +25,7 @@ const RelatedContent = (props) => {
       }
       {props.projects &&
         <div className="mt-5">
-          <h2 className="text-3xl font-extrabold text-gray-900">Related Projects</h2>
+          <h2 className="text-3xl font-extrabold text-brand-text-primary">Related Projects</h2>
           <div className={classNames("mt-2", {"sm:flex sm:justify-between": props.projects.length > 1})}>
             {props.projects.map((project) =>
               <Teaser

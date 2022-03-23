@@ -13,10 +13,10 @@ const ContactPage = () => {
         title={ "Contact Me" }
         description={ "Contact Me" }
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <h1 className="text-3xl font-extrabold text-gray-900">Contact Me</h1>
-          <p className="text-gray-700">
+          <h1 className="text-3xl font-extrabold text-brand-text-secondary">Contact Me</h1>
+          <p className="text-brand-text-primary">
             Feel free to contact me by using the form below.
             I&apos;m always up for questions and feedback on any of
             my projects or even just a general chat.

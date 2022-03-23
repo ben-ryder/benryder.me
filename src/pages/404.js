@@ -13,7 +13,7 @@ const PageNotFound = () => {
         title={ "Page Not Found" }
         description={ "404 - Page not Found" }
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <ProseContent>
           <h1>404 - Page Not Found</h1>
           <p>

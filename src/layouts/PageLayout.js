@@ -19,7 +19,9 @@ const PageLayout = ({ children }) => {
         <link rel="icon" href={SiteIcon} />
       </Helmet>
       <Header />
-      <div>{children}</div>
+      <div className="bg-brand-background-primary">
+        {children}
+      </div>
       <Footer />
     </>
   );

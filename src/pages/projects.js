@@ -13,11 +13,11 @@ const ProjectsPage = ({data}) => {
       <PageMetadata
         title={"Projects"}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         {data.allContentfulProject.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">
-            <h1 className="text-3xl font-extrabold text-gray-900">My Projects</h1>
-            <p className="text-gray-700">Below you can find a list of all my projects including websites, python games and more. Why not check a few out!</p>
+            <h1 className="text-3xl font-extrabold text-brand-text-secondary">My Projects</h1>
+            <p className="text-brand-text-primary">Below you can find a list of all my projects including websites, python games and more. Why not check a few out!</p>
             <div className="mt-8">
               <TagFilterList
                 tagList={ data.allProjectTags.distinct }

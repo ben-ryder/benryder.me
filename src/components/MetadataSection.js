@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import LinkComponent from "./elements/LinkComponent";
 
 const MetadataSection = (props) => {
   return (
@@ -8,8 +9,8 @@ const MetadataSection = (props) => {
         <div key={dataItem.text} className="flex items-center mr-3 mb-2">
           { dataItem.icon }
           {dataItem.link
-            ? <a className="text-gray-600 underline ml-1" href={dataItem.link}>{dataItem.text}</a>
-            : <span className="ml-1">{ dataItem.text }</span>
+            ? <LinkComponent className="ml-1 text-brand-text-secondary underline hover:text-brand" url={dataItem.link}>{dataItem.text}</LinkComponent>
+            : <span className="ml-1 text-brand-text-secondary">{ dataItem.text }</span>
           }
         </div>
       )}

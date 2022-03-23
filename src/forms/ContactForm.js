@@ -13,14 +13,14 @@ import FormError from "../components/forms/FormError";
 const ContactForm = () => {
   const contactFormSchema = Yup.object().shape({
     name: Yup.string()
-      .required("It would be nice to know what to call you."),
+      .required("Please fill in this field so I know what to call you."),
     email: Yup.string()
-      .required("I may want to follow up on your message. I'll need an email address for that.")
+      .required("Please fill in this field. I may want to respond to you and I'll need an email address for that.")
       .email("That doesn't look like a valid email address."),
     subject: Yup.string()
-      .required("It's useful to know what you're contacting me about."),
+      .required("Please fill in this field. It's useful to know what you're contacting me about."),
     message: Yup.string()
-      .required("What actual message do you want to send to me?"),
+      .required("Please fill in this field. You want to actually send me a message right? :)"),
     honeypot: Yup.string(),
     "g-recaptcha-key": Yup.string()
       .required("Please prove you are human.")
@@ -111,7 +111,7 @@ const ContactForm = () => {
               name="message"
               label="Message"
               error={errors.message && touched.message ? errors.message : null}
-              rows={3}
+              rows={6}
             />
           </FormRow>
           <FormRow className="hidden">

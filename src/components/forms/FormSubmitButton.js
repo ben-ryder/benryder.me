@@ -13,10 +13,10 @@ const FormSubmitButton = (props) => {
   return (
     <button {...domProps} className={
       classNames(
-        "rounded-md py-2 px-5 text-white flex font-bold",
+        "rounded-md py-2 px-5 text-brand-text-secondary flex font-bold",
         {
           "bg-gray-400": props.isSubmitting,
-          "bg-blue-700": !props.isSubmitting,
+          "bg-brand hover:bg-brand-accent": !props.isSubmitting,
         },
         domProps.className
       )}

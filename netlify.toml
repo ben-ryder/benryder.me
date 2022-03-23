@@ -3,10 +3,9 @@
 publish = "public"
 command = "npm run build"
 
-# Gatsby build cache package to improve build times.
-# https://github.com/jlengstorf/netlify-plugin-gatsby-cache
-[[plugins]]
-package = "netlify-plugin-gatsby-cache"
+# Environment Configuration
+[build.environment]
+NODE_VERSION = "16"
 
 # Environment plugin to allow for contextual env variables.
 # https://github.com/cball/netlify-plugin-contextual-env
@@ -14,3 +13,9 @@ package = "netlify-plugin-gatsby-cache"
 package = "netlify-plugin-contextual-env"
 [plugins.inputs]
 mode = 'prefix'
+
+# Adding GNU Terry Pratchett Header
+[[headers]]
+for = "/*"
+[headers.values]
+X-Clacks-Overhead = "GNU Terry Pratchett"

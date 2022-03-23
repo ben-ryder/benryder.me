@@ -11,8 +11,8 @@ const TagFilterItem = (props) => {
         className={classNames(
           "block py-1 px-2 text-sm rounded",
           {
-            "bg-blue-700 text-white": props.active,
-            "bg-gray-200 text-gray-600 hover:bg-gray-300": !props.active
+            "bg-brand text-brand-text-secondary": props.active,
+            "bg-brand-interface-secondary hover:bg-brand-interface-primary text-brand-text-secondary": !props.active
           },
         )}
         url={ props.url }

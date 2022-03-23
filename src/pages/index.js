@@ -13,10 +13,10 @@ const IndexPage = ({data}) => {
       <PageMetadata
         title={"Home"}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         <div className="max-w-2xl mx-auto px-2 mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">Hello, I&apos;m Ben Ryder</h1>
-          <p className="text-2xl text-blue-600 font-bold">Junior Developer</p>
+          <h1 className="text-4xl font-extrabold text-brand-text-secondary sm:text-5xl">Hello, I&apos;m Ben Ryder</h1>
+          <p className="text-2xl text-brand font-bold">Junior Developer</p>
           <p className="mt-3 prose leading-normal">
             I&apos;m a Junior Developer and Degree Apprentice.
             My day to day work is with Drupal and other web technologies.
@@ -32,7 +32,7 @@ const IndexPage = ({data}) => {
         </div>
         {data.allContentfulProject.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">
-            <h2 className="text-3xl font-extrabold text-gray-900">Featured Projects</h2>
+            <h2 className="text-3xl font-extrabold text-brand-text-secondary">Featured Projects</h2>
             <div className="mt-2">
               {data.allContentfulProject.nodes.map((project) =>
                 <Teaser
@@ -43,14 +43,14 @@ const IndexPage = ({data}) => {
                 />
               )}
             </div>
-            <div className="mt-3 flex justify-end font-bold text-gray-700">
+            <div className="mt-3 flex justify-end font-bold text-brand-text-secondary">
               <CTALink url="/projects" text="View More" direction="right" />
             </div>
           </div>
         }
         {data.allContentfulArticle.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">
-            <h2 className="text-3xl font-extrabold text-gray-900">Featured Articles</h2>
+            <h2 className="text-3xl font-extrabold text-brand-text-secondary">Featured Articles</h2>
             <div className="mt-2">
               {data.allContentfulArticle.nodes.map((article) =>
                 <Teaser
@@ -61,7 +61,7 @@ const IndexPage = ({data}) => {
                 />
               )}
             </div>
-            <div className="mt-3 flex justify-end font-bold text-gray-700">
+            <div className="mt-3 flex justify-end font-bold text-brand-text-secondary">
               <CTALink url="/blog" text="View More" direction="right" />
             </div>
           </div>

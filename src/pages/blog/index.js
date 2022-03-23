@@ -13,11 +13,11 @@ const BlogPage = ({data}) => {
       <PageMetadata
         title={"Articles"}
       />
-      <main className="mt-7 mb-10 sm:mt-14 sm:mb-20">
+      <main className="pt-7 pb-10 sm:pt-14 sm:pb-20">
         {data.allContentfulArticle.nodes.length > 0 &&
           <div className="max-w-2xl mx-auto px-2 mb-8">
-            <h1 className="text-3xl font-extrabold text-gray-900">My Blog</h1>
-            <p className="text-gray-700">Everything from tutorials, project walkthroughs and random thoughts.</p>
+            <h1 className="text-3xl font-extrabold text-brand-text-secondary">My Blog</h1>
+            <p className="text-brand-text-primary">Everything from tutorials, project walkthroughs and random thoughts.</p>
             <div className="mt-8">
               <TagFilterList
                 tagList={ data.allArticleTags.distinct }
