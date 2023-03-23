@@ -1,0 +1,28 @@
+{
+  "name": "@ben-ryder/benryder-me-cms",
+  "version": "3.0.0",
+  "description": "My personal website.",
+  "main": "index.js",
+  "scripts": {
+    "start": "directus start",
+    "config:import": "directus schema apply ./config/snapshot.yaml",
+    "config:export": "directus schema snapshot ./config/snapshot.yaml",
+    "cim": "npm run config:import",
+    "cex": "npm run config:export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ben-Ryder/benryder.me.git"
+  },
+  "author": "Ben-Ryder",
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/Ben-Ryder/benryder.me/issues"
+  },
+  "homepage": "https://github.com/Ben-Ryder/benryder.me#readme",
+  "dependencies": {
+    "directus": "^9.23.3",
+    "directus-extension-tags-m2m-interface": "^0.8.0",
+    "pg": "^8.10.0"
+  }
+}
