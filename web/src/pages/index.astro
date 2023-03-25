@@ -1,0 +1,21 @@
+---
+import Page from '../layouts/Page.astro';
+import Example from '../components/Example.astro';
+import {JProse, JContentSection} from "@ben-ryder/jigsaw-react";
+---
+
+<Page>
+	<main>
+		<JContentSection>
+			<JProse>
+					<h1>This is a test</h1>
+					<p>This is a test of astro, Jigsaw and react</p>
+			</JProse>
+
+			<Example
+				title="test"
+				body="This is a custom component"
+			/>
+		</JContentSection>
+	</main>
+</Page>
