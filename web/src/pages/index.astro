@@ -1,7 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
-import Example from '../components/Example.astro';
-import {JProse, JContentSection} from "@ben-ryder/jigsaw-react";
+import {JProse, JContentSection, JCounter} from "@ben-ryder/jigsaw-react";
 ---
 
 <Page>
@@ -9,13 +8,24 @@ import {JProse, JContentSection} from "@ben-ryder/jigsaw-react";
 		<JContentSection>
 			<JProse>
 					<h1>This is a test</h1>
-					<p>This is a test of astro, Jigsaw and react</p>
+					<p>This is a React component being rendered at build time and being displayed to users with Jigsaw styles!</p>
 			</JProse>
 
-			<Example
-				title="test"
-				body="This is a custom component"
+			<JCounter
+				title="This is a test counter rendered only at build time"
+				body="No JS has been shipped for this... yay! but it's not interactive... shit"
 			/>
+			<JCounter
+				client:only="react"
+				title="This is a counter rendered only on the client using React"
+				body="This is interactive for users... yaay, but it won't appear unless JS is enabled... shit."
+			/>
+			<JCounter
+				client:idle
+				title="This is a counter rendered at build time, and then hydrated on the client"
+				body="This is interactive for users... yaay, and it is visible without JS enabled... fuck yeh."
+			/>
+
 		</JContentSection>
 	</main>
 </Page>
