@@ -21,8 +21,7 @@
   },
   "homepage": "https://github.com/Ben-Ryder/benryder.me#readme",
   "dependencies": {
-    "directus": "^9.23.3",
-    "directus-extension-tags-m2m-interface": "^0.8.0",
+    "directus": "^9.23.4",
     "pg": "^8.10.0"
   }
 }
