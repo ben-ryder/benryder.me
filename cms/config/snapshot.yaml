@@ -40,7 +40,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 11
+      sort: 10
       sort_field: null
       translations: null
       unarchive_value: null
@@ -62,7 +62,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 12
+      sort: 11
       sort_field: null
       translations: null
       unarchive_value: null
@@ -84,7 +84,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 13
+      sort: 12
       sort_field: null
       translations: null
       unarchive_value: null
@@ -100,13 +100,13 @@ collections:
       collection: footer
       color: null
       display_template: null
-      group: null
+      group: other_content
       hidden: false
       icon: format_list_bulleted
       item_duplication_fields: null
       note: null
       singleton: true
-      sort: 6
+      sort: 3
       sort_field: null
       translations: null
       unarchive_value: null
@@ -128,7 +128,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: null
+      sort: 15
       sort_field: null
       translations: null
       unarchive_value: null
@@ -150,7 +150,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: null
+      sort: 16
       sort_field: null
       translations: null
       unarchive_value: null
@@ -172,56 +172,12 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: null
+      sort: 17
       sort_field: null
       translations: null
       unarchive_value: null
     schema:
       name: footer_link_2
-  - collection: greeter
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: greeter
-      color: null
-      display_template: null
-      group: pages_components
-      hidden: false
-      icon: waving_hand
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: 1
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: greeter
-  - collection: greeter_link
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: greeter_link
-      color: null
-      display_template: null
-      group: pages_components
-      hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: 3
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: greeter_link
   - collection: header
     meta:
       accountability: all
@@ -232,13 +188,13 @@ collections:
       collection: header
       color: null
       display_template: null
-      group: null
+      group: other_content
       hidden: false
-      icon: home
+      icon: apps
       item_duplication_fields: null
       note: null
       singleton: true
-      sort: 5
+      sort: 2
       sort_field: null
       translations: null
       unarchive_value: null
@@ -260,12 +216,34 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 15
+      sort: 14
       sort_field: null
       translations: null
       unarchive_value: null
     schema:
       name: header_link
+  - collection: home
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: home
+      color: null
+      display_template: null
+      group: other_content
+      hidden: false
+      icon: home
+      item_duplication_fields: null
+      note: null
+      singleton: true
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: home
   - collection: link
     meta:
       accountability: all
@@ -276,18 +254,38 @@ collections:
       collection: link
       color: null
       display_template: '{{text}} ({{url}})'
-      group: partials
-      hidden: false
+      group: null
+      hidden: true
       icon: link
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 1
+      sort: 7
       sort_field: null
       translations: null
       unarchive_value: null
     schema:
       name: link
+  - collection: other_content
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: other_content
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: folder
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 5
+      sort_field: null
+      translations: null
+      unarchive_value: null
   - collection: pages
     meta:
       accountability: all
@@ -300,7 +298,7 @@ collections:
       display_template: '{{name}}'
       group: null
       hidden: false
-      icon: dashboard
+      icon: text_fields
       item_duplication_fields: null
       note: null
       singleton: false
@@ -310,48 +308,6 @@ collections:
       unarchive_value: draft
     schema:
       name: pages
-  - collection: pages_components
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: pages_components
-      color: null
-      display_template: null
-      group: null
-      hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: 7
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: pages_components
-  - collection: partials
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: partials
-      color: null
-      display_template: null
-      group: null
-      hidden: true
-      icon: folder
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: 8
-      sort_field: null
-      translations: null
-      unarchive_value: null
   - collection: projects
     meta:
       accountability: all
@@ -390,7 +346,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 14
+      sort: 13
       sort_field: null
       translations: null
       unarchive_value: null
@@ -412,7 +368,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 9
+      sort: 8
       sort_field: null
       translations: null
       unarchive_value: null
@@ -434,7 +390,7 @@ collections:
       item_duplication_fields: null
       note: null
       singleton: false
-      sort: 10
+      sort: 9
       sort_field: null
       translations: null
       unarchive_value: null
@@ -444,8 +400,8 @@ collections:
     meta:
       accountability: all
       archive_app_filter: true
-      archive_field: null
-      archive_value: null
+      archive_field: status
+      archive_value: archived
       collapse: open
       collection: tags
       color: null
@@ -459,32 +415,35 @@ collections:
       sort: 4
       sort_field: null
       translations: null
-      unarchive_value: null
+      unarchive_value: draft
     schema:
       name: tags
-  - collection: text_section
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: text_section
-      color: null
-      display_template: '{{id}}'
-      group: pages_components
-      hidden: false
-      icon: text_fields
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: 2
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: text_section
 fields:
+  - collection: blog_posts
+    field: basic_info
+    type: alias
+    meta:
+      collection: blog_posts
+      conditions: null
+      display: null
+      display_options: null
+      field: basic_info
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: blog_posts
     field: body
     type: text
@@ -501,7 +460,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 2
+      sort: 4
       special: null
       translations: null
       validation: null
@@ -539,7 +498,7 @@ fields:
       options: {}
       readonly: false
       required: false
-      sort: 5
+      sort: 3
       special:
         - alias
         - group
@@ -644,10 +603,10 @@ fields:
       interface: boolean
       note: null
       options:
-        label: Featured
+        label: Is Featured?
       readonly: false
       required: true
-      sort: 3
+      sort: 2
       special:
         - cast-boolean
       translations: null
@@ -662,7 +621,7 @@ fields:
       max_length: null
       numeric_precision: null
       numeric_scale: null
-      is_nullable: false
+      is_nullable: true
       is_unique: false
       is_primary_key: false
       is_generated: false
@@ -726,7 +685,7 @@ fields:
         start: closed
       readonly: false
       required: false
-      sort: 3
+      sort: 5
       special:
         - alias
         - group
@@ -767,45 +726,6 @@ fields:
       numeric_scale: null
       is_nullable: true
       is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: blog_posts
-    field: metadata_slug
-    type: string
-    meta:
-      collection: blog_posts
-      conditions: null
-      display: null
-      display_options: null
-      field: metadata_slug
-      group: metadata
-      hidden: false
-      interface: input
-      note: null
-      options:
-        slug: true
-      readonly: false
-      required: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: metadata_slug
-      table: blog_posts
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -860,14 +780,14 @@ fields:
       display: null
       display_options: null
       field: name
-      group: null
+      group: basic_info
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: 2
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -902,11 +822,10 @@ fields:
       hidden: false
       interface: group-detail
       note: null
-      options:
-        start: closed
+      options: {}
       readonly: false
       required: false
-      sort: 4
+      sort: 6
       special:
         - alias
         - group
@@ -954,7 +873,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 6
+      sort: 4
       special:
         - alias
         - group
@@ -987,6 +906,44 @@ fields:
       validation_message: null
       width: full
   - collection: blog_posts
+    field: slug
+    type: string
+    meta:
+      collection: blog_posts
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: basic_info
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: slug
+      table: blog_posts
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: blog_posts
     field: status
     type: string
     meta:
@@ -995,14 +952,14 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
             background: '#D3DAE4'
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: var(--primary)
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
@@ -1015,14 +972,14 @@ fields:
       note: null
       options:
         choices:
-          - text: $t:published
-            value: published
           - text: $t:draft
             value: draft
+          - text: $t:published
+            value: published
           - text: $t:archived
             value: archived
       readonly: false
-      required: false
+      required: true
       sort: 1
       special: null
       translations: null
@@ -1101,7 +1058,7 @@ fields:
         referencingField: name
       readonly: false
       required: false
-      sort: 4
+      sort: 3
       special:
         - m2m
       translations: null
@@ -1109,14 +1066,14 @@ fields:
       validation_message: null
       width: full
   - collection: blog_posts_related_blog_posts
-    field: blog_posts_id
+    field: blog_post
     type: uuid
     meta:
       collection: blog_posts_related_blog_posts
       conditions: null
       display: null
       display_options: null
-      field: blog_posts_id
+      field: blog_post
       group: null
       hidden: true
       interface: null
@@ -1124,14 +1081,14 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 2
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: blog_posts_id
+      name: blog_post
       table: blog_posts_related_blog_posts
       data_type: uuid
       default_value: null
@@ -1162,7 +1119,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -1185,14 +1142,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: blog_posts_related_blog_posts
-    field: related_blog_posts_id
+    field: related_blog_post
     type: uuid
     meta:
       collection: blog_posts_related_blog_posts
       conditions: null
       display: null
       display_options: null
-      field: related_blog_posts_id
+      field: related_blog_post
       group: null
       hidden: true
       interface: null
@@ -1200,14 +1157,14 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 3
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: related_blog_posts_id
+      name: related_blog_post
       table: blog_posts_related_blog_posts
       data_type: uuid
       default_value: null
@@ -1223,14 +1180,14 @@ fields:
       foreign_key_table: blog_posts
       foreign_key_column: id
   - collection: blog_posts_related_projects
-    field: blog_posts_id
+    field: blog_post
     type: uuid
     meta:
       collection: blog_posts_related_projects
       conditions: null
       display: null
       display_options: null
-      field: blog_posts_id
+      field: blog_post
       group: null
       hidden: true
       interface: null
@@ -1245,7 +1202,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: blog_posts_id
+      name: blog_post
       table: blog_posts_related_projects
       data_type: uuid
       default_value: null
@@ -1299,14 +1256,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: blog_posts_related_projects
-    field: projects_id
+    field: project
     type: uuid
     meta:
       collection: blog_posts_related_projects
       conditions: null
       display: null
       display_options: null
-      field: projects_id
+      field: project
       group: null
       hidden: true
       interface: null
@@ -1321,7 +1278,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: projects_id
+      name: project
       table: blog_posts_related_projects
       data_type: uuid
       default_value: null
@@ -1337,14 +1294,14 @@ fields:
       foreign_key_table: projects
       foreign_key_column: id
   - collection: blog_posts_tags
-    field: blog_posts_id
+    field: blog_post
     type: uuid
     meta:
       collection: blog_posts_tags
       conditions: null
       display: null
       display_options: null
-      field: blog_posts_id
+      field: blog_post
       group: null
       hidden: true
       interface: null
@@ -1352,14 +1309,14 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 2
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: blog_posts_id
+      name: blog_post
       table: blog_posts_tags
       data_type: uuid
       default_value: null
@@ -1390,7 +1347,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -1413,14 +1370,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: blog_posts_tags
-    field: tags_id
+    field: tag
     type: uuid
     meta:
       collection: blog_posts_tags
       conditions: null
       display: null
       display_options: null
-      field: tags_id
+      field: tag
       group: null
       hidden: true
       interface: null
@@ -1428,14 +1385,14 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 3
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: tags_id
+      name: tag
       table: blog_posts_tags
       data_type: uuid
       default_value: null
@@ -2260,452 +2217,6 @@ fields:
       has_auto_increment: false
       foreign_key_table: link
       foreign_key_column: id
-  - collection: greeter
-    field: body
-    type: text
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: body
-      group: null
-      hidden: false
-      interface: input-rich-text-md
-      note: null
-      options:
-        toolbar:
-          - blockquote
-          - bold
-          - bullist
-          - code
-          - empty
-          - heading
-          - image
-          - italic
-          - link
-          - numlist
-          - strikethrough
-          - table
-      readonly: false
-      required: false
-      sort: 6
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: body
-      table: greeter
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: date_created
-    type: timestamp
-    meta:
-      collection: greeter
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_created
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 2
-      special:
-        - date-created
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_created
-      table: greeter
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: date_updated
-    type: timestamp
-    meta:
-      collection: greeter
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_updated
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 3
-      special:
-        - date-updated
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_updated
-      table: greeter
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: id
-    type: uuid
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: greeter
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: links
-    type: alias
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: links
-      group: links_section
-      hidden: false
-      interface: list-m2m
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 2
-      special:
-        - m2m
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-  - collection: greeter
-    field: links_section
-    type: alias
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: links_section
-      group: null
-      hidden: false
-      interface: group-detail
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: 7
-      special:
-        - alias
-        - group
-        - no-data
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-  - collection: greeter
-    field: links_text
-    type: string
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: links_text
-      group: links_section
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: links_text
-      table: greeter
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: subtitle
-    type: string
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: subtitle
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 5
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: subtitle
-      table: greeter
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter
-    field: title
-    type: string
-    meta:
-      collection: greeter
-      conditions: null
-      display: null
-      display_options: null
-      field: title
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 4
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: title
-      table: greeter
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter_link
-    field: greeter_id
-    type: uuid
-    meta:
-      collection: greeter_link
-      conditions: null
-      display: null
-      display_options: null
-      field: greeter_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: greeter_id
-      table: greeter_link
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: greeter
-      foreign_key_column: id
-  - collection: greeter_link
-    field: id
-    type: integer
-    meta:
-      collection: greeter_link
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: greeter_link
-      data_type: integer
-      default_value: nextval('greeter_link_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: greeter_link
-    field: link_id
-    type: uuid
-    meta:
-      collection: greeter_link
-      conditions: null
-      display: null
-      display_options: null
-      field: link_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: link_id
-      table: greeter_link
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: link
-      foreign_key_column: id
   - collection: header
     field: Menu
     type: alias
@@ -3050,6 +2561,289 @@ fields:
       has_auto_increment: false
       foreign_key_table: link
       foreign_key_column: id
+  - collection: home
+    field: body
+    type: text
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: body
+      group: content
+      hidden: false
+      interface: input-rich-text-md
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: body
+      table: home
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: content
+    type: alias
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: content
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: home
+    field: date_created
+    type: timestamp
+    meta:
+      collection: home
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 2
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: home
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: date_updated
+    type: timestamp
+    meta:
+      collection: home
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 3
+      special:
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_updated
+      table: home
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: id
+    type: uuid
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: home
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: subtitle
+    type: string
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: subtitle
+      group: content
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: subtitle
+      table: home
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: title
+    type: string
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: content
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: home
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: link
+    field: content
+    type: alias
+    meta:
+      collection: link
+      conditions: null
+      display: null
+      display_options: null
+      field: content
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: link
     field: date_created
     type: timestamp
@@ -3170,6 +2964,90 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: link
+    field: publishing
+    type: alias
+    meta:
+      collection: link
+      conditions: null
+      display: null
+      display_options: null
+      field: publishing
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: link
+    field: status
+    type: string
+    meta:
+      collection: link
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Draft
+            value: draft
+            foreground: '#18222F'
+            background: '#D3DAE4'
+          - text: Published
+            value: published
+            foreground: '#FFFFFF'
+            background: '#8866FF'
+          - text: Archived
+            value: archived
+            foreground: '#FFFFFF'
+            background: '#FFA439'
+        showAsDot: true
+      field: status
+      group: publishing
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Draft
+            value: draft
+          - text: Published
+            value: published
+          - text: Archived
+            value: archived
+      readonly: false
+      required: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: link
+      data_type: character varying
+      default_value: published
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: link
     field: text
     type: string
     meta:
@@ -3178,14 +3056,14 @@ fields:
       display: null
       display_options: null
       field: text
-      group: null
+      group: content
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: 4
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -3216,14 +3094,14 @@ fields:
       display: null
       display_options: null
       field: url
-      group: null
+      group: content
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: 5
+      sort: 2
       special: null
       translations: null
       validation: null
@@ -3246,28 +3124,68 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pages
-    field: components
+    field: basic_info
     type: alias
     meta:
       collection: pages
       conditions: null
       display: null
       display_options: null
-      field: components
-      group: content
+      field: basic_info
+      group: null
       hidden: false
-      interface: list-m2a
+      interface: group-detail
       note: null
       options: null
       readonly: false
       required: false
-      sort: 1
+      sort: 2
       special:
-        - m2a
+        - alias
+        - group
+        - no-data
       translations: null
       validation: null
       validation_message: null
       width: full
+  - collection: pages
+    field: body
+    type: text
+    meta:
+      collection: pages
+      conditions: null
+      display: null
+      display_options: null
+      field: body
+      group: content
+      hidden: false
+      interface: input-rich-text-md
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: body
+      table: pages
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: pages
     field: content
     type: alias
@@ -3284,7 +3202,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 5
+      sort: 3
       special:
         - alias
         - group
@@ -3429,7 +3347,7 @@ fields:
         start: closed
       readonly: false
       required: false
-      sort: 3
+      sort: 4
       special:
         - alias
         - group
@@ -3470,45 +3388,6 @@ fields:
       numeric_scale: null
       is_nullable: true
       is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pages
-    field: metadata_slug
-    type: string
-    meta:
-      collection: pages
-      conditions: null
-      display: null
-      display_options: null
-      field: metadata_slug
-      group: metadata
-      hidden: false
-      interface: input
-      note: null
-      options:
-        metadata_slug: true
-      readonly: false
-      required: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: metadata_slug
-      table: pages
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -3564,14 +3443,14 @@ fields:
       display: null
       display_options: null
       field: name
-      group: null
+      group: basic_info
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: 2
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -3606,11 +3485,10 @@ fields:
       hidden: false
       interface: group-detail
       note: null
-      options:
-        start: closed
+      options: {}
       readonly: false
       required: false
-      sort: 4
+      sort: 5
       special:
         - alias
         - group
@@ -3620,6 +3498,45 @@ fields:
       validation_message: null
       width: full
   - collection: pages
+    field: slug
+    type: string
+    meta:
+      collection: pages
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: basic_info
+      hidden: false
+      interface: input
+      note: null
+      options:
+        slug: true
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: slug
+      table: pages
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pages
     field: status
     type: string
     meta:
@@ -3628,14 +3545,14 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
             background: '#D3DAE4'
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: var(--primary)
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
@@ -3648,14 +3565,14 @@ fields:
       note: null
       options:
         choices:
-          - text: $t:published
-            value: published
           - text: $t:draft
             value: draft
+          - text: $t:published
+            value: published
           - text: $t:archived
             value: archived
       readonly: false
-      required: false
+      required: true
       sort: 1
       special: null
       translations: null
@@ -3678,158 +3595,31 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: pages_components
-    field: collection
-    type: string
+  - collection: projects
+    field: basic_info
+    type: alias
     meta:
-      collection: pages_components
+      collection: projects
       conditions: null
       display: null
       display_options: null
-      field: collection
+      field: basic_info
       group: null
-      hidden: true
-      interface: null
+      hidden: false
+      interface: group-detail
       note: null
       options: null
       readonly: false
       required: false
-      sort: null
-      special: null
+      sort: 2
+      special:
+        - alias
+        - group
+        - no-data
       translations: null
       validation: null
       validation_message: null
       width: full
-    schema:
-      name: collection
-      table: pages_components
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pages_components
-    field: id
-    type: integer
-    meta:
-      collection: pages_components
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: pages_components
-      data_type: integer
-      default_value: nextval('pages_components_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pages_components
-    field: item
-    type: string
-    meta:
-      collection: pages_components
-      conditions: null
-      display: null
-      display_options: null
-      field: item
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: item
-      table: pages_components
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: pages_components
-    field: pages_id
-    type: uuid
-    meta:
-      collection: pages_components
-      conditions: null
-      display: null
-      display_options: null
-      field: pages_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: pages_id
-      table: pages_components
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: pages
-      foreign_key_column: id
   - collection: projects
     field: body
     type: text
@@ -3839,7 +3629,7 @@ fields:
       display: null
       display_options: null
       field: body
-      group: project_information
+      group: content
       hidden: false
       interface: input-rich-text-md
       note: null
@@ -3868,6 +3658,31 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: projects
+    field: content
+    type: alias
+    meta:
+      collection: projects
+      conditions: null
+      display: null
+      display_options: null
+      field: content
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: projects
     field: date_created
     type: timestamp
@@ -3957,7 +3772,7 @@ fields:
       display: null
       display_options: null
       field: description
-      group: project_information
+      group: content
       hidden: false
       interface: input-multiline
       note: null
@@ -3997,7 +3812,7 @@ fields:
         labelOff: 'No'
         labelOn: 'Yes'
       field: featured
-      group: project_information
+      group: content
       hidden: false
       interface: boolean
       note: null
@@ -4005,13 +3820,13 @@ fields:
         label: Is Featured?
       readonly: false
       required: true
-      sort: 5
+      sort: 4
       special:
         - cast-boolean
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: featured
       table: projects
@@ -4084,7 +3899,7 @@ fields:
         start: closed
       readonly: false
       required: false
-      sort: 3
+      sort: 6
       special:
         - alias
         - group
@@ -4125,45 +3940,6 @@ fields:
       numeric_scale: null
       is_nullable: true
       is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: projects
-    field: metadata_slug
-    type: string
-    meta:
-      collection: projects
-      conditions: null
-      display: null
-      display_options: null
-      field: metadata_slug
-      group: metadata
-      hidden: false
-      interface: input
-      note: null
-      options:
-        metadata_slug: true
-      readonly: false
-      required: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: metadata_slug
-      table: projects
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
@@ -4218,14 +3994,14 @@ fields:
       display: null
       display_options: null
       field: name
-      group: null
+      group: basic_info
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: 2
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -4256,7 +4032,7 @@ fields:
       display: null
       display_options: null
       field: product_url
-      group: project_information
+      group: content
       hidden: false
       interface: input
       note: null
@@ -4268,7 +4044,7 @@ fields:
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: product_url
       table: projects
@@ -4286,31 +4062,6 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects
-    field: project_information
-    type: alias
-    meta:
-      collection: projects
-      conditions: null
-      display: null
-      display_options: null
-      field: project_information
-      group: null
-      hidden: false
-      interface: group-detail
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: 5
-      special:
-        - alias
-        - group
-        - no-data
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-  - collection: projects
     field: published_date
     type: date
     meta:
@@ -4319,19 +4070,19 @@ fields:
       display: null
       display_options: null
       field: published_date
-      group: project_information
+      group: content
       hidden: false
       interface: datetime
       note: null
       options: null
       readonly: false
       required: false
-      sort: 6
+      sort: 5
       special: null
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: published_date
       table: projects
@@ -4361,11 +4112,10 @@ fields:
       hidden: false
       interface: group-detail
       note: null
-      options:
-        start: closed
+      options: {}
       readonly: false
       required: false
-      sort: 4
+      sort: 7
       special:
         - alias
         - group
@@ -4413,7 +4163,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 6
+      sort: 5
       special:
         - alias
         - group
@@ -4454,7 +4204,7 @@ fields:
       display: null
       display_options: null
       field: repository_url
-      group: project_information
+      group: content
       hidden: false
       interface: input
       note: null
@@ -4466,7 +4216,7 @@ fields:
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: repository_url
       table: projects
@@ -4484,6 +4234,44 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects
+    field: slug
+    type: string
+    meta:
+      collection: projects
+      conditions: null
+      display: null
+      display_options: null
+      field: slug
+      group: basic_info
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: slug
+      table: projects
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: projects
     field: status
     type: string
     meta:
@@ -4492,14 +4280,14 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
             background: '#D3DAE4'
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: var(--primary)
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
@@ -4512,14 +4300,14 @@ fields:
       note: null
       options:
         choices:
-          - text: $t:published
-            value: published
           - text: $t:draft
             value: draft
+          - text: $t:published
+            value: published
           - text: $t:archived
             value: archived
       readonly: false
-      required: false
+      required: true
       sort: 1
       special: null
       translations: null
@@ -4551,7 +4339,7 @@ fields:
       display: null
       display_options: null
       field: tags
-      group: project_information
+      group: content
       hidden: false
       interface: list-m2m
       note: null
@@ -4560,7 +4348,7 @@ fields:
         referencingField: name
       readonly: false
       required: false
-      sort: 4
+      sort: 6
       special:
         - m2m
       translations: null
@@ -4568,14 +4356,14 @@ fields:
       validation_message: null
       width: full
   - collection: projects_related_blog_posts
-    field: blog_posts_id
+    field: blog_post
     type: uuid
     meta:
       collection: projects_related_blog_posts
       conditions: null
       display: null
       display_options: null
-      field: blog_posts_id
+      field: blog_post
       group: null
       hidden: true
       interface: null
@@ -4590,7 +4378,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: blog_posts_id
+      name: blog_post
       table: projects_related_blog_posts
       data_type: uuid
       default_value: null
@@ -4644,14 +4432,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects_related_blog_posts
-    field: projects_id
+    field: project
     type: uuid
     meta:
       collection: projects_related_blog_posts
       conditions: null
       display: null
       display_options: null
-      field: projects_id
+      field: project
       group: null
       hidden: true
       interface: null
@@ -4666,7 +4454,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: projects_id
+      name: project
       table: projects_related_blog_posts
       data_type: uuid
       default_value: null
@@ -4720,14 +4508,14 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects_related_projects
-    field: projects_id
+    field: project
     type: uuid
     meta:
       collection: projects_related_projects
       conditions: null
       display: null
       display_options: null
-      field: projects_id
+      field: project
       group: null
       hidden: true
       interface: null
@@ -4742,7 +4530,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: projects_id
+      name: project
       table: projects_related_projects
       data_type: uuid
       default_value: null
@@ -4758,14 +4546,14 @@ fields:
       foreign_key_table: projects
       foreign_key_column: id
   - collection: projects_related_projects
-    field: related_projects_id
+    field: related_project
     type: uuid
     meta:
       collection: projects_related_projects
       conditions: null
       display: null
       display_options: null
-      field: related_projects_id
+      field: related_project
       group: null
       hidden: true
       interface: null
@@ -4780,7 +4568,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: related_projects_id
+      name: related_project
       table: projects_related_projects
       data_type: uuid
       default_value: null
@@ -4797,7 +4585,7 @@ fields:
       foreign_key_column: id
   - collection: projects_tags
     field: id
-    type: integer
+    type: uuid
     meta:
       collection: projects_tags
       conditions: null
@@ -4806,13 +4594,14 @@ fields:
       field: id
       group: null
       hidden: true
-      interface: null
+      interface: input
       note: null
       options: null
-      readonly: false
+      readonly: true
       required: false
-      sort: null
-      special: null
+      sort: 1
+      special:
+        - uuid
       translations: null
       validation: null
       validation_message: null
@@ -4820,28 +4609,28 @@ fields:
     schema:
       name: id
       table: projects_tags
-      data_type: integer
-      default_value: nextval('projects_tags_id_seq'::regclass)
+      data_type: uuid
+      default_value: null
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: false
       is_unique: true
       is_primary_key: true
       is_generated: false
       generation_expression: null
-      has_auto_increment: true
+      has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects_tags
-    field: projects_id
+    field: project
     type: uuid
     meta:
       collection: projects_tags
       conditions: null
       display: null
       display_options: null
-      field: projects_id
+      field: project
       group: null
       hidden: true
       interface: null
@@ -4856,7 +4645,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: projects_id
+      name: project
       table: projects_tags
       data_type: uuid
       default_value: null
@@ -4872,14 +4661,14 @@ fields:
       foreign_key_table: projects
       foreign_key_column: id
   - collection: projects_tags
-    field: tags_id
+    field: tag
     type: uuid
     meta:
       collection: projects_tags
       conditions: null
       display: null
       display_options: null
-      field: tags_id
+      field: tag
       group: null
       hidden: true
       interface: null
@@ -4894,7 +4683,7 @@ fields:
       validation_message: null
       width: full
     schema:
-      name: tags_id
+      name: tag
       table: projects_tags
       data_type: uuid
       default_value: null
@@ -4909,6 +4698,31 @@ fields:
       has_auto_increment: false
       foreign_key_table: tags
       foreign_key_column: id
+  - collection: tags
+    field: content
+    type: alias
+    meta:
+      collection: tags
+      conditions: null
+      display: null
+      display_options: null
+      field: content
+      group: null
+      hidden: false
+      interface: group-detail
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: tags
     field: date_created
     type: timestamp
@@ -4926,7 +4740,7 @@ fields:
       options: null
       readonly: true
       required: false
-      sort: null
+      sort: 1
       special:
         - date-created
       translations: null
@@ -4966,7 +4780,7 @@ fields:
       options: null
       readonly: true
       required: false
-      sort: null
+      sort: 2
       special:
         - date-updated
       translations: null
@@ -4998,14 +4812,14 @@ fields:
       display: null
       display_options: null
       field: description
-      group: null
+      group: content
       hidden: false
       interface: input-multiline
       note: null
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 2
       special: null
       translations: null
       validation: null
@@ -5043,7 +4857,7 @@ fields:
       options: null
       readonly: true
       required: false
-      sort: null
+      sort: 3
       special:
         - uuid
       translations: null
@@ -5075,14 +4889,14 @@ fields:
       display: null
       display_options: null
       field: name
-      group: null
+      group: content
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
       required: true
-      sort: null
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -5104,158 +4918,85 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: text_section
-    field: body
-    type: text
+  - collection: tags
+    field: publishing
+    type: alias
     meta:
-      collection: text_section
+      collection: tags
       conditions: null
       display: null
       display_options: null
-      field: body
+      field: publishing
       group: null
       hidden: false
-      interface: input-rich-text-md
+      interface: group-detail
       note: null
       options: null
       readonly: false
+      required: false
+      sort: 5
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: tags
+    field: status
+    type: string
+    meta:
+      collection: tags
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Draft
+            value: draft
+            foreground: '#18222F'
+            background: '#D3DAE4'
+          - text: Published
+            value: published
+            foreground: '#FFFFFF'
+            background: '#8866FF'
+          - text: Archived
+            value: archived
+            foreground: '#FFFFFF'
+            background: '#FFA439'
+        showAsDot: true
+      field: status
+      group: publishing
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Draft
+            value: draft
+          - text: Published
+            value: published
+          - text: Archived
+            value: archived
+      readonly: false
       required: true
-      sort: null
+      sort: 1
       special: null
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
-      name: body
-      table: text_section
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: text_section
-    field: date_created
-    type: timestamp
-    meta:
-      collection: text_section
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_created
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: null
-      special:
-        - date-created
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_created
-      table: text_section
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: text_section
-    field: date_updated
-    type: timestamp
-    meta:
-      collection: text_section
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_updated
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: null
-      special:
-        - date-updated
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_updated
-      table: text_section
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: text_section
-    field: id
-    type: uuid
-    meta:
-      collection: text_section
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: null
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: text_section
-      data_type: uuid
-      default_value: null
-      max_length: null
+      name: status
+      table: tags
+      data_type: character varying
+      default_value: published
+      max_length: 255
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
-      is_unique: true
-      is_primary_key: true
+      is_unique: false
+      is_primary_key: false
       is_generated: false
       generation_expression: null
       has_auto_increment: false
@@ -5263,12 +5004,12 @@ fields:
       foreign_key_column: null
 relations:
   - collection: blog_posts_related_blog_posts
-    field: blog_posts_id
+    field: blog_post
     related_collection: blog_posts
     meta:
-      junction_field: related_blog_posts_id
+      junction_field: related_blog_post
       many_collection: blog_posts_related_blog_posts
-      many_field: blog_posts_id
+      many_field: blog_post
       one_allowed_collections: null
       one_collection: blog_posts
       one_collection_field: null
@@ -5277,19 +5018,19 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_related_blog_posts
-      column: blog_posts_id
+      column: blog_post
       foreign_key_table: blog_posts
       foreign_key_column: id
-      constraint_name: blog_posts_related_blog_posts_blog_posts_id_foreign
+      constraint_name: blog_posts_related_blog_posts_blog_post_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: blog_posts_related_blog_posts
-    field: related_blog_posts_id
+    field: related_blog_post
     related_collection: blog_posts
     meta:
-      junction_field: blog_posts_id
+      junction_field: blog_post
       many_collection: blog_posts_related_blog_posts
-      many_field: related_blog_posts_id
+      many_field: related_blog_post
       one_allowed_collections: null
       one_collection: blog_posts
       one_collection_field: null
@@ -5298,19 +5039,19 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_related_blog_posts
-      column: related_blog_posts_id
+      column: related_blog_post
       foreign_key_table: blog_posts
       foreign_key_column: id
-      constraint_name: blog_posts_related_blog_posts_related_blog_posts_id_foreign
+      constraint_name: blog_posts_related_blog_posts_related_blog_post_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: blog_posts_related_projects
-    field: blog_posts_id
+    field: blog_post
     related_collection: blog_posts
     meta:
-      junction_field: projects_id
+      junction_field: project
       many_collection: blog_posts_related_projects
-      many_field: blog_posts_id
+      many_field: blog_post
       one_allowed_collections: null
       one_collection: blog_posts
       one_collection_field: null
@@ -5319,19 +5060,19 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_related_projects
-      column: blog_posts_id
+      column: blog_post
       foreign_key_table: blog_posts
       foreign_key_column: id
-      constraint_name: blog_posts_related_projects_blog_posts_id_foreign
+      constraint_name: blog_posts_related_projects_blog_post_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: blog_posts_related_projects
-    field: projects_id
+    field: project
     related_collection: projects
     meta:
-      junction_field: blog_posts_id
+      junction_field: blog_post
       many_collection: blog_posts_related_projects
-      many_field: projects_id
+      many_field: project
       one_allowed_collections: null
       one_collection: projects
       one_collection_field: null
@@ -5340,19 +5081,19 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_related_projects
-      column: projects_id
+      column: project
       foreign_key_table: projects
       foreign_key_column: id
-      constraint_name: blog_posts_related_projects_projects_id_foreign
+      constraint_name: blog_posts_related_projects_project_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: blog_posts_tags
-    field: blog_posts_id
+    field: blog_post
     related_collection: blog_posts
     meta:
-      junction_field: tags_id
+      junction_field: tag
       many_collection: blog_posts_tags
-      many_field: blog_posts_id
+      many_field: blog_post
       one_allowed_collections: null
       one_collection: blog_posts
       one_collection_field: null
@@ -5361,19 +5102,19 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_tags
-      column: blog_posts_id
+      column: blog_post
       foreign_key_table: blog_posts
       foreign_key_column: id
-      constraint_name: blog_posts_tags_blog_posts_id_foreign
+      constraint_name: blog_posts_tags_blog_post_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: blog_posts_tags
-    field: tags_id
+    field: tag
     related_collection: tags
     meta:
-      junction_field: blog_posts_id
+      junction_field: blog_post
       many_collection: blog_posts_tags
-      many_field: tags_id
+      many_field: tag
       one_allowed_collections: null
       one_collection: tags
       one_collection_field: null
@@ -5382,10 +5123,10 @@ relations:
       sort_field: null
     schema:
       table: blog_posts_tags
-      column: tags_id
+      column: tag
       foreign_key_table: tags
       foreign_key_column: id
-      constraint_name: blog_posts_tags_tags_id_foreign
+      constraint_name: blog_posts_tags_tag_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: footer_link
@@ -5514,48 +5255,6 @@ relations:
       constraint_name: footer_link_2_link_id_foreign
       on_update: NO ACTION
       on_delete: SET NULL
-  - collection: greeter_link
-    field: greeter_id
-    related_collection: greeter
-    meta:
-      junction_field: link_id
-      many_collection: greeter_link
-      many_field: greeter_id
-      one_allowed_collections: null
-      one_collection: greeter
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: links
-      sort_field: null
-    schema:
-      table: greeter_link
-      column: greeter_id
-      foreign_key_table: greeter
-      foreign_key_column: id
-      constraint_name: greeter_link_greeter_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: greeter_link
-    field: link_id
-    related_collection: link
-    meta:
-      junction_field: greeter_id
-      many_collection: greeter_link
-      many_field: link_id
-      one_allowed_collections: null
-      one_collection: link
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: greeter_link
-      column: link_id
-      foreign_key_table: link
-      foreign_key_column: id
-      constraint_name: greeter_link_link_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
   - collection: header_link
     field: header_id
     related_collection: header
@@ -5598,49 +5297,13 @@ relations:
       constraint_name: header_link_link_id_foreign
       on_update: NO ACTION
       on_delete: SET NULL
-  - collection: pages_components
-    field: item
-    related_collection: null
-    meta:
-      junction_field: pages_id
-      many_collection: pages_components
-      many_field: item
-      one_allowed_collections:
-        - greeter
-        - pages
-      one_collection: null
-      one_collection_field: collection
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-  - collection: pages_components
-    field: pages_id
-    related_collection: pages
-    meta:
-      junction_field: item
-      many_collection: pages_components
-      many_field: pages_id
-      one_allowed_collections: null
-      one_collection: pages
-      one_collection_field: null
-      one_deselect_action: delete
-      one_field: components
-      sort_field: null
-    schema:
-      table: pages_components
-      column: pages_id
-      foreign_key_table: pages
-      foreign_key_column: id
-      constraint_name: pages_components_pages_id_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
   - collection: projects_related_blog_posts
-    field: blog_posts_id
+    field: blog_post
     related_collection: blog_posts
     meta:
-      junction_field: projects_id
+      junction_field: project
       many_collection: projects_related_blog_posts
-      many_field: blog_posts_id
+      many_field: blog_post
       one_allowed_collections: null
       one_collection: blog_posts
       one_collection_field: null
@@ -5649,19 +5312,19 @@ relations:
       sort_field: null
     schema:
       table: projects_related_blog_posts
-      column: blog_posts_id
+      column: blog_post
       foreign_key_table: blog_posts
       foreign_key_column: id
-      constraint_name: projects_related_blog_posts_blog_posts_id_foreign
+      constraint_name: projects_related_blog_posts_blog_post_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_related_blog_posts
-    field: projects_id
+    field: project
     related_collection: projects
     meta:
-      junction_field: blog_posts_id
+      junction_field: blog_post
       many_collection: projects_related_blog_posts
-      many_field: projects_id
+      many_field: project
       one_allowed_collections: null
       one_collection: projects
       one_collection_field: null
@@ -5670,19 +5333,19 @@ relations:
       sort_field: null
     schema:
       table: projects_related_blog_posts
-      column: projects_id
+      column: project
       foreign_key_table: projects
       foreign_key_column: id
-      constraint_name: projects_related_blog_posts_projects_id_foreign
+      constraint_name: projects_related_blog_posts_project_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_related_projects
-    field: projects_id
+    field: project
     related_collection: projects
     meta:
-      junction_field: related_projects_id
+      junction_field: related_project
       many_collection: projects_related_projects
-      many_field: projects_id
+      many_field: project
       one_allowed_collections: null
       one_collection: projects
       one_collection_field: null
@@ -5691,19 +5354,19 @@ relations:
       sort_field: null
     schema:
       table: projects_related_projects
-      column: projects_id
+      column: project
       foreign_key_table: projects
       foreign_key_column: id
-      constraint_name: projects_related_projects_projects_id_foreign
+      constraint_name: projects_related_projects_project_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_related_projects
-    field: related_projects_id
+    field: related_project
     related_collection: projects
     meta:
-      junction_field: projects_id
+      junction_field: project
       many_collection: projects_related_projects
-      many_field: related_projects_id
+      many_field: related_project
       one_allowed_collections: null
       one_collection: projects
       one_collection_field: null
@@ -5712,19 +5375,19 @@ relations:
       sort_field: null
     schema:
       table: projects_related_projects
-      column: related_projects_id
+      column: related_project
       foreign_key_table: projects
       foreign_key_column: id
-      constraint_name: projects_related_projects_related_projects_id_foreign
+      constraint_name: projects_related_projects_related_project_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_tags
-    field: projects_id
+    field: project
     related_collection: projects
     meta:
-      junction_field: tags_id
+      junction_field: tag
       many_collection: projects_tags
-      many_field: projects_id
+      many_field: project
       one_allowed_collections: null
       one_collection: projects
       one_collection_field: null
@@ -5733,19 +5396,19 @@ relations:
       sort_field: null
     schema:
       table: projects_tags
-      column: projects_id
+      column: project
       foreign_key_table: projects
       foreign_key_column: id
-      constraint_name: projects_tags_projects_id_foreign
+      constraint_name: projects_tags_project_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_tags
-    field: tags_id
+    field: tag
     related_collection: tags
     meta:
-      junction_field: projects_id
+      junction_field: project
       many_collection: projects_tags
-      many_field: tags_id
+      many_field: tag
       one_allowed_collections: null
       one_collection: tags
       one_collection_field: null
@@ -5754,9 +5417,9 @@ relations:
       sort_field: null
     schema:
       table: projects_tags
-      column: tags_id
+      column: tag
       foreign_key_table: tags
       foreign_key_column: id
-      constraint_name: projects_tags_tags_id_foreign
+      constraint_name: projects_tags_tag_foreign
       on_update: NO ACTION
       on_delete: SET NULL
