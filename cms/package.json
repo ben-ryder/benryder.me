@@ -9,7 +9,8 @@
     "config:export": "directus schema snapshot ./config/snapshot.yaml",
     "cim": "npm run config:import",
     "cex": "npm run config:export",
-    "db:setup": "directus bootstrap"
+    "db:setup": "directus bootstrap",
+    "deploy": "fly deploy --remote-only"
   },
   "repository": {
     "type": "git",
