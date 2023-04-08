@@ -244,6 +244,50 @@ collections:
       unarchive_value: null
     schema:
       name: home
+  - collection: home_link
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: home_link
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: home_link
+  - collection: home_link_1
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: home_link_1
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: home_link_1
   - collection: link
     meta:
       accountability: all
@@ -952,18 +996,22 @@ fields:
       display: labels
       display_options:
         choices:
+          - text: Idea
+            value: idea
+            foreground: '#18222F'
+            background: '#E35169'
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#FFA439'
           - text: $t:published
             value: published
             foreground: '#FFFFFF'
-            background: var(--primary)
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: publishing
@@ -972,6 +1020,8 @@ fields:
       note: null
       options:
         choices:
+          - text: Idea
+            value: idea
           - text: $t:draft
             value: draft
           - text: $t:published
@@ -2744,6 +2794,29 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: home
+    field: social_links
+    type: alias
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: social_links
+      group: content
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: home
     field: subtitle
     type: string
     meta:
@@ -2819,6 +2892,234 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: home_link
+    field: home_id
+    type: uuid
+    meta:
+      collection: home_link
+      conditions: null
+      display: null
+      display_options: null
+      field: home_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: home_id
+      table: home_link
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: home
+      foreign_key_column: id
+  - collection: home_link
+    field: id
+    type: integer
+    meta:
+      collection: home_link
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: home_link
+      data_type: integer
+      default_value: nextval('home_link_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home_link
+    field: link_id
+    type: uuid
+    meta:
+      collection: home_link
+      conditions: null
+      display: null
+      display_options: null
+      field: link_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: link_id
+      table: home_link
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: link
+      foreign_key_column: id
+  - collection: home_link_1
+    field: home_id
+    type: uuid
+    meta:
+      collection: home_link_1
+      conditions: null
+      display: null
+      display_options: null
+      field: home_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: home_id
+      table: home_link_1
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: home
+      foreign_key_column: id
+  - collection: home_link_1
+    field: id
+    type: integer
+    meta:
+      collection: home_link_1
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: home_link_1
+      data_type: integer
+      default_value: nextval('home_link_1_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home_link_1
+    field: link_id
+    type: uuid
+    meta:
+      collection: home_link_1
+      conditions: null
+      display: null
+      display_options: null
+      field: link_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: link_id
+      table: home_link_1
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: link
+      foreign_key_column: id
   - collection: link
     field: content
     type: alias
@@ -3548,15 +3849,15 @@ fields:
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#E35169'
           - text: $t:published
             value: published
             foreground: '#FFFFFF'
-            background: var(--primary)
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: publishing
@@ -4283,15 +4584,15 @@ fields:
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#E35169'
           - text: $t:published
             value: published
             foreground: '#FFFFFF'
-            background: var(--primary)
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: publishing
@@ -4955,15 +5256,15 @@ fields:
           - text: Draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#E35169'
           - text: Published
             value: published
             foreground: '#FFFFFF'
-            background: '#8866FF'
+            background: '#2ECDA7'
           - text: Archived
             value: archived
             foreground: '#FFFFFF'
-            background: '#FFA439'
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: publishing
@@ -5295,6 +5596,90 @@ relations:
       foreign_key_table: link
       foreign_key_column: id
       constraint_name: header_link_link_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home_link
+    field: home_id
+    related_collection: home
+    meta:
+      junction_field: link_id
+      many_collection: home_link
+      many_field: home_id
+      one_allowed_collections: null
+      one_collection: home
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home_link
+      column: home_id
+      foreign_key_table: home
+      foreign_key_column: id
+      constraint_name: home_link_home_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home_link
+    field: link_id
+    related_collection: link
+    meta:
+      junction_field: home_id
+      many_collection: home_link
+      many_field: link_id
+      one_allowed_collections: null
+      one_collection: link
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home_link
+      column: link_id
+      foreign_key_table: link
+      foreign_key_column: id
+      constraint_name: home_link_link_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home_link_1
+    field: home_id
+    related_collection: home
+    meta:
+      junction_field: link_id
+      many_collection: home_link_1
+      many_field: home_id
+      one_allowed_collections: null
+      one_collection: home
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: social_links
+      sort_field: null
+    schema:
+      table: home_link_1
+      column: home_id
+      foreign_key_table: home
+      foreign_key_column: id
+      constraint_name: home_link_1_home_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home_link_1
+    field: link_id
+    related_collection: link
+    meta:
+      junction_field: home_id
+      many_collection: home_link_1
+      many_field: link_id
+      one_allowed_collections: null
+      one_collection: link
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home_link_1
+      column: link_id
+      foreign_key_table: link
+      foreign_key_column: id
+      constraint_name: home_link_1_link_id_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: projects_related_blog_posts
