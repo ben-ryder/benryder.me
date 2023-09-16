@@ -1,0 +1,20 @@
+---
+import {apiClient} from "../lib/api/api-client";
+
+const footer= await apiClient.getFooter()
+---
+
+<footer>
+		<div>
+				<div>
+            <nav>
+                <ul>
+									{footer.navigationLinks.map(link => (
+										<li><a href={link.url}>{link.text}</a></li>
+									))}
+                </ul>
+            </nav>
+				</div>
+        <div set:html={footer.signOffHtml} />
+		</div>
+</footer>

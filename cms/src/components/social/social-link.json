@@ -2,24 +2,25 @@
   "collectionName": "components_social_social_links",
   "info": {
     "displayName": "Social Link",
-    "icon": "user"
+    "icon": "user",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "url": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "icon": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }

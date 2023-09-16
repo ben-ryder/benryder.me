@@ -1,5 +1,5 @@
 {
-  "name": "cms-benryder-me",
+  "name": "web-benryder-me",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,6 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.1.0"
+    "astro": "^3.1.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^10.0.2",
+    "remark-rehype": "^10.1.0",
+    "unified": "^11.0.3"
   }
 }

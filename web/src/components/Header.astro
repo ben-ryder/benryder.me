@@ -1,0 +1,33 @@
+---
+import {apiClient} from "../lib/api/api-client";
+
+const header= await apiClient.getHeader()
+
+---
+
+<header>
+		{header.promoMessage &&
+			<div class="promo-banner">
+				{header.promoMessage}
+			</div>
+		}
+		<noscript>
+				<div class="no-script-banner">
+					{header.noScriptMessage}
+				</div>
+		</noscript>
+		<div class="top-bar">
+        <div class="top-bar__logo">
+            <p>Sounds</p>
+        </div>
+        <nav class="top-bar__navigation">
+            <ul class="top-bar__menu">
+							{header.navigationLinks.map(link => (
+									<li class="top-bar__menu-item">
+											<a class="top-bar__meni-link" href={link.url}>{link.text}</a>
+									</li>
+							))}
+            </ul>
+        </nav>
+		</div>
+</header>
