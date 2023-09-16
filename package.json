@@ -25,7 +25,7 @@
     "install:cms": "cd cms && npm install",
     "start": "concurrently npm:start:*",
     "start:web": "cd web && npm start",
-    "start:cms": "cd cma && npm start",
+    "start:cms": "cd cms && npm start",
     "prepare": "husky install"
   },
   "dependencies": {
