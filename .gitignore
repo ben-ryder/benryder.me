@@ -1,15 +1,5 @@
-# Custom
-notes
-
 # IDE
 .idea
 
-# Environment
-.env
-.env.development
-.env.production
-
-# JS
+# Node
 node_modules/
-.cache/
-public

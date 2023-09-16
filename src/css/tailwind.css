@@ -1,9 +1,0 @@
-/* Import tailwind styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-    min-height: 100%;
-    background-color: #20242b;
-}
