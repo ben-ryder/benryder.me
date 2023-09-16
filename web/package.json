@@ -1,31 +1,15 @@
 {
-  "name": "web-benryder-me",
-  "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "name": "cms-benryder-me",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "start": "strapi develop",
-    "start:prod": "strapi start",
-    "develop": "strapi develop",
-    "build": "strapi build",
-    "strapi": "strapi"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.13.6",
-    "@strapi/plugin-users-permissions": "4.13.6",
-    "@strapi/plugin-i18n": "4.13.6",
-    "better-sqlite3": "8.6.0"
-  },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "45466925-6bff-486e-907e-3721ec8dc26c"
-  },
-  "engines": {
-    "node": ">=16.0.0 <=20.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+    "astro": "^3.1.0"
+  }
 }
