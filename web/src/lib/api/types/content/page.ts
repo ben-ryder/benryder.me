@@ -1,6 +1,9 @@
-import {EntityWithWorkflow} from "@lib/api/types/content/entity";
 
-export interface Page extends EntityWithWorkflow {
+export interface Page {
+	id: string
+	createdAt: string
+	updatedAt: string
+	publishedAt: string
 	title: string
 	path: string
 	contentHtml: string

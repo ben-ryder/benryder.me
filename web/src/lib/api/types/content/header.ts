@@ -1,7 +1,6 @@
 import type {Link} from "@lib/api/types/content/link.ts";
-import {Entity} from "@lib/api/types/content/entity";
-
-export interface Header extends Entity {
+export interface Header {
+	id: string,
 	promoMessage?: string | null,
 	noScriptMessage: string
 	navigationLinks: Link[]

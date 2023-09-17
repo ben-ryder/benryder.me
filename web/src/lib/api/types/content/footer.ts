@@ -1,7 +1,7 @@
-import type {Link} from "@lib/api/types/content/link.ts";
-import {Entity} from "@lib/api/types/content/entity";
+import type {Link} from "@lib/api/types/content/link.ts";;
 
-export interface Footer extends Entity {
+export interface Footer {
+	id: string,
 	signOffHtml: string,
 	navigationLinks: Link[]
 }
