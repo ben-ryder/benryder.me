@@ -9,7 +9,9 @@
     "develop": "strapi develop",
     "build": "strapi build",
     "strapi": "strapi",
-    "strapi:type-gen": "t4s -o ../web/src/lib/api/types/strapi --prefix Strapi"
+    "strapi:type-gen": "t4s -o ../web/src/lib/api/types/strapi --prefix Strapi",
+    "strapi:cex": "strapi config:dump -f config-dump.json",
+    "strapi:cim": "strapi config:restore -f config-dump.json"
   },
   "devDependencies": {
     "@oak-digital/types-4-strapi-2": "^1.0.2"
