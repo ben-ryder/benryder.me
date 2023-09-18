@@ -6,7 +6,9 @@ import type {Header} from "@lib/api/types/content/header.ts";
 import type {StrapiHeader} from "@lib/api/types/strapi/content-types/header";
 import type {StrapiPage} from "@lib/api/types/strapi/content-types/page";
 import type {Homepage} from "@lib/api/types/content/homepage.ts";
-import type {StrapiHomepage} from "@lib/api/types/strapi";
+import type {StrapiBlogPost, StrapiHomepage, StrapiProject} from "@lib/api/types/strapi";
+import type {Project} from "@lib/api/types/content/project.ts";
+import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -73,6 +75,8 @@ export class APIClient {
       data = data[0];
     }
 
+    console.log(data)
+
     return data as T;
   }
 
@@ -120,6 +124,56 @@ export class APIClient {
     });
 
     return StrapiConverter.convertStrapiHomepage(strapiHomepage);
+  }
+
+  async getProjects(): Promise<Project[]> {
+    const strapiProjects = await this._request<StrapiProject[]>({
+      endpoint: 'projects',
+      wrappedByKey: 'data',
+      query: {
+        sort: 'publishedAt'
+      }
+    });
+
+    return StrapiConverter.convertStrapiProjects(strapiProjects);
+  }
+
+  async getFeaturedProjects(): Promise<Project[]> {
+    const strapiProjects = await this._request<StrapiProject[]>({
+      endpoint: 'projects',
+      wrappedByKey: 'data',
+      query: {
+        filters: '[featured][$eq]=true',
+        sort: 'publishedAt'
+      }
+    });
+
+    return StrapiConverter.convertStrapiProjects(strapiProjects);
+  }
+
+  async getBlogPosts(): Promise<BlogPost[]> {
+    const strapiBlogPosts = await this._request<StrapiBlogPost[]>({
+      endpoint: 'blog-posts',
+      wrappedByKey: 'data',
+      query: {
+        sort: 'publishedAt'
+      }
+    });
+
+    return StrapiConverter.convertStrapiBlogPosts(strapiBlogPosts);
+  }
+
+  async getFeaturedBlogPosts(): Promise<BlogPost[]> {
+    const strapiBlogPosts = await this._request<StrapiBlogPost[]>({
+      endpoint: 'blog-posts',
+      wrappedByKey: 'data',
+      query: {
+        filters: '[featured][$eq]=true',
+        sort: 'publishedAt'
+      }
+    });
+
+    return StrapiConverter.convertStrapiBlogPosts(strapiBlogPosts);
   }
 }
 

@@ -4,15 +4,19 @@ import type {Footer} from "@lib/api/types/content/footer.ts";
 import type {Link} from "@lib/api/types/content/link.ts";
 import type {Header} from "@lib/api/types/content/header.ts";
 import type {
+	StrapiBlogPost,
 	StrapiFooter,
 	StrapiHeader,
 	StrapiHomepage,
 	StrapiLinkLink,
-	StrapiPage,
-	StrapiSocialSocialLink
+	StrapiPage, StrapiProject,
+	StrapiSocialSocialLink, StrapiTag
 } from "@lib/api/types/strapi";
 import type {Homepage} from "@lib/api/types/content/homepage.ts";
 import type {SocialLink} from "@lib/api/types/content/social-link.ts";
+import type {Tag} from "@lib/api/types/content/tag.ts";
+import type {Project} from "@lib/api/types/content/project.ts";
+import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
 
 /**
  * A helper to convert between raw Strapi data and generalised typed content for the website.
@@ -140,5 +144,114 @@ export class StrapiConverter {
 			greeterContentHtml: greeterContentHtml,
 			socialLinks: StrapiConverter.convertSocialLinks(strapiHomepage.attributes.social_links),
 		}
+	}
+
+	static async convertStrapiTag(strapiTag: StrapiTag): Promise<Tag> {
+		if (
+			!strapiTag?.attributes.name ||
+			!strapiTag?.attributes.slug
+		) {
+			throw StrapiConverter.throwMissingDataError("Tag", strapiTag)
+		}
+
+		return {
+			id: strapiTag.id.toString(),
+			name: strapiTag.attributes.name,
+			slug: strapiTag.attributes.slug,
+		}
+	}
+
+	static async convertStrapiTags(strapiTags: StrapiTag[]): Promise<Tag[]> {
+		const tags: Tag[] = [];
+		for (const strapiTag of strapiTags) {
+			const tag = await StrapiConverter.convertStrapiTag(strapiTag);
+			tags.push(tag)
+		}
+
+		return tags;
+	}
+
+	static async convertStrapiProject(strapiProject: StrapiProject): Promise<Project> {
+		if (
+			!strapiProject?.attributes.name ||
+			!strapiProject?.attributes.slug ||
+			!strapiProject?.attributes.description ||
+			!strapiProject?.attributes.content
+		) {
+			throw StrapiConverter.throwMissingDataError("Project", strapiProject)
+		}
+
+		const contentHtml = await convertMarkdownToHTML(strapiProject.attributes.content);
+		const tags = await StrapiConverter.convertStrapiTags(strapiProject.attributes.tags.data);
+		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiProject.attributes.related_projects.data);
+		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiProject.attributes.related_blog_posts.data);
+
+		return {
+			id: strapiProject.id.toString(),
+			name: strapiProject.attributes.name,
+			slug: strapiProject.attributes.slug,
+			description: strapiProject.attributes.description,
+			contentHtml: contentHtml,
+			productUrl: strapiProject.attributes.product_url,
+			repositoryUrl: strapiProject.attributes.repository_url,
+			isFeatured: !!strapiProject.attributes.featured,
+			tags,
+			relatedProjects,
+			relatedBlogPosts,
+			createdAt: strapiProject.attributes.createdAt,
+			updatedAt: strapiProject.attributes.updatedAt,
+			publishedAt: strapiProject.attributes.publishedAt
+		}
+	}
+
+	static async convertStrapiProjects(strapiProjects: StrapiProject[]): Promise<Project[]> {
+		const projects: Project[] = [];
+		for (const strapiProject of strapiProjects) {
+			const project = await StrapiConverter.convertStrapiProject(strapiProject);
+			projects.push(project)
+		}
+
+		return projects;
+	}
+
+	static async convertStrapiBlogPost(strapiBlogPost: StrapiBlogPost): Promise<BlogPost> {
+		if (
+			!strapiBlogPost?.attributes.title ||
+			!strapiBlogPost?.attributes.slug ||
+			!strapiBlogPost?.attributes.description ||
+			!strapiBlogPost?.attributes.content
+		) {
+			throw StrapiConverter.throwMissingDataError("Blog Post", strapiBlogPost)
+		}
+
+		const contentHtml = await convertMarkdownToHTML(strapiBlogPost.attributes.content);
+		const tags = await StrapiConverter.convertStrapiTags(strapiBlogPost.attributes.tags.data);
+		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiBlogPost.attributes.related_projects.data);
+		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiBlogPost.attributes.related_blog_posts.data);
+
+		return {
+			id: strapiBlogPost.id.toString(),
+			title: strapiBlogPost.attributes.title,
+			slug: strapiBlogPost.attributes.slug,
+			description: strapiBlogPost.attributes.description,
+			contentHtml: contentHtml,
+			isFeatured: !!strapiBlogPost.attributes.featured,
+			tags,
+			relatedProjects,
+			relatedBlogPosts,
+			createdAt: strapiBlogPost.attributes.createdAt,
+			updatedAt: strapiBlogPost.attributes.updatedAt,
+			publishedAt: strapiBlogPost.attributes.publishedAt
+		}
+	}
+
+	static async convertStrapiBlogPosts(strapiBlogPosts: StrapiBlogPost[]): Promise<BlogPost[]> {
+		const blogPosts: BlogPost[] = [];
+		for (const strapiBlogPost of strapiBlogPosts) {
+			const blogPost = await StrapiConverter.convertStrapiBlogPost(strapiBlogPost);
+			blogPosts.push(blogPost)
+		}
+
+		return blogPosts;
 	}
 }
