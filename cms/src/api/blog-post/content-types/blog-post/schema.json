@@ -39,6 +39,16 @@
     "featured": {
       "type": "boolean",
       "required": true
+    },
+    "related_blog_posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-post.blog-post"
+    },
+    "related_projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
     }
   }
 }
