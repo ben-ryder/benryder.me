@@ -5,6 +5,8 @@ import type {Footer} from "@lib/api/types/content/footer.ts";
 import type {Header} from "@lib/api/types/content/header.ts";
 import type {StrapiHeader} from "@lib/api/types/strapi/content-types/header";
 import type {StrapiPage} from "@lib/api/types/strapi/content-types/page";
+import type {Homepage} from "@lib/api/types/content/homepage.ts";
+import type {StrapiHomepage} from "@lib/api/types/strapi";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -109,6 +111,15 @@ export class APIClient {
     });
 
     return StrapiConverter.convertStrapiHeader(strapiHeader);
+  }
+
+  async getHomepage(): Promise<Homepage> {
+    const strapiHomepage = await this._request<StrapiHomepage>({
+      endpoint: 'homepage',
+      wrappedByKey: 'data',
+    });
+
+    return StrapiConverter.convertStrapiHomepage(strapiHomepage);
   }
 }
 

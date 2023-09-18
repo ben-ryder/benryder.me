@@ -3,7 +3,16 @@ import {convertMarkdownToHTML} from "@lib/api/utils/convert-markdown.ts";
 import type {Footer} from "@lib/api/types/content/footer.ts";
 import type {Link} from "@lib/api/types/content/link.ts";
 import type {Header} from "@lib/api/types/content/header.ts";
-import type {StrapiFooter, StrapiHeader, StrapiLinkLink, StrapiPage} from "@lib/api/types/strapi";
+import type {
+	StrapiFooter,
+	StrapiHeader,
+	StrapiHomepage,
+	StrapiLinkLink,
+	StrapiPage,
+	StrapiSocialSocialLink
+} from "@lib/api/types/strapi";
+import type {Homepage} from "@lib/api/types/content/homepage.ts";
+import type {SocialLink} from "@lib/api/types/content/social-link.ts";
 
 /**
  * A helper to convert between raw Strapi data and generalised typed content for the website.
@@ -94,6 +103,42 @@ export class StrapiConverter {
 			promoMessage: strapiHeader.attributes.promo_message,
 			noScriptMessage: strapiHeader.attributes.noscript_message,
 			navigationLinks: StrapiConverter.convertLinks(strapiHeader.attributes.navigation_links),
+		}
+	}
+
+	static convertSocialLinks(strapiSocialLinks: StrapiSocialSocialLink[]): SocialLink[] {
+		return strapiSocialLinks.map(strapiSocialLink => {
+			if (
+				!strapiSocialLink?.url ||
+				!strapiSocialLink?.text ||
+				!strapiSocialLink?.icon
+			) {
+				throw StrapiConverter.throwMissingDataError("Social Link", strapiSocialLink)
+			}
+
+			return {
+				id: strapiSocialLink.id.toString(),
+				text: strapiSocialLink.text,
+				url: strapiSocialLink.url,
+				icon: strapiSocialLink.icon
+			}
+		})
+	}
+
+	static async convertStrapiHomepage(strapiHomepage: StrapiHomepage): Promise<Homepage> {
+		if (
+			!strapiHomepage?.attributes.greeter_title ||
+			!strapiHomepage?.attributes.greeter_content
+		) {
+			throw StrapiConverter.throwMissingDataError("Homepage", strapiHomepage)
+		}
+
+		const greeterContentHtml = await convertMarkdownToHTML(strapiHomepage.attributes.greeter_content);
+
+		return {
+			greeterTitle: strapiHomepage.attributes.greeter_title,
+			greeterContentHtml: greeterContentHtml,
+			socialLinks: StrapiConverter.convertSocialLinks(strapiHomepage.attributes.social_links),
 		}
 	}
 }

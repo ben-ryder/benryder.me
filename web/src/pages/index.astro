@@ -1,7 +1,20 @@
 ---
 import GlobalLayout from '@layouts/GlobalLayout.astro';
+import {apiClient} from "../lib/api/api-client";
+
+const homepage = await apiClient.getHomepage()
 ---
 
 <GlobalLayout title="Home">
-		<h1>This is the homepage!</h1>
+		<h1>{homepage.greeterTitle}</h1>
+    <div set:html={homepage.greeterContentHtml} />
+
+		<div>
+				<p>Find me online:</p>
+				<ul>
+					{homepage.socialLinks.map(socialLink =>
+						<li><a href={socialLink.url}>{socialLink.text}</a> - icon {socialLink.icon}</li>
+					)}
+				</ul>
+		</div>
 </GlobalLayout>
