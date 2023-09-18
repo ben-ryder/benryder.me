@@ -16,17 +16,23 @@ export class StrapiConverter {
 	 * Strapi's required fields are only required when content is published, so generated types
 	 * always have 'string | null' as the data may not exist when querying draft content.
 	 * This method can be used to defend against null values, and ensure types are as expected at runtime.
+	 *
+	 * @param contextName
 	 * @param context
 	 */
-	static throwMissingDataError(context: any) {
+	static throwMissingDataError(contextName: string, context?: any) {
+		console.log(`========= MISSING DATA - ${contextName} =========`);
 		console.log(context);
-		throw new Error("Encountered unexpected null value while querying Strapi data.")
+		throw new Error(`Encountered unexpected null value while querying Strapi data`)
 	}
 
 	static convertLinks(strapiLinks: StrapiLinkLink[]): Link[] {
 		return strapiLinks.map(strapiLink => {
-			if (!strapiLink.url || !strapiLink.text) {
-				throw StrapiConverter.throwMissingDataError(strapiLink)
+			if (
+				!strapiLink?.url ||
+				!strapiLink?.text
+			) {
+				throw StrapiConverter.throwMissingDataError("Link", strapiLink)
 			}
 
 			return {
@@ -39,11 +45,11 @@ export class StrapiConverter {
 
 	static async convertStrapiPage(strapiPage: StrapiPage): Promise<Page> {
 		if (
-			!strapiPage.attributes.title ||
-			!strapiPage.attributes.path ||
-			!strapiPage.attributes.content
+			!strapiPage?.attributes.title ||
+			!strapiPage?.attributes.path ||
+			!strapiPage?.attributes.content
 		) {
-			throw StrapiConverter.throwMissingDataError(strapiPage)
+			throw StrapiConverter.throwMissingDataError("Page", strapiPage)
 		}
 
 		const contentHtml = await convertMarkdownToHTML(strapiPage.attributes.content);
@@ -60,8 +66,10 @@ export class StrapiConverter {
 	}
 
 	static async convertStrapiFooter(strapiFooter: StrapiFooter): Promise<Footer> {
-		if (!strapiFooter.attributes.sign_off) {
-			throw StrapiConverter.throwMissingDataError(strapiFooter)
+		if (
+			!strapiFooter?.attributes.sign_off
+		) {
+			throw StrapiConverter.throwMissingDataError("Footer", strapiFooter)
 		}
 
 		const signOffHtml = await convertMarkdownToHTML(strapiFooter.attributes.sign_off);
@@ -75,10 +83,10 @@ export class StrapiConverter {
 
 	static async convertStrapiHeader(strapiHeader: StrapiHeader): Promise<Header> {
 		if (
-			!strapiHeader.attributes.promo_message ||
-			!strapiHeader.attributes.noscript_message
+			!strapiHeader?.attributes.promo_message ||
+			!strapiHeader?.attributes.noscript_message
 		) {
-			throw StrapiConverter.throwMissingDataError(strapiHeader)
+			throw StrapiConverter.throwMissingDataError("Header", strapiHeader)
 		}
 
 		return {
