@@ -9,6 +9,7 @@ import type {Homepage} from "@lib/api/types/content/homepage.ts";
 import type {StrapiBlogPost, StrapiHomepage, StrapiProject} from "@lib/api/types/strapi";
 import type {Project} from "@lib/api/types/content/project.ts";
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
+import {Logger} from "@lib/logger.ts";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -67,6 +68,12 @@ export class APIClient {
     );
     let data = await res.json();
 
+    Logger.log('------------------')
+    Logger.log(`Strapi Request - ${url.toString()}`)
+    Logger.log(`Response: ${res.status}`)
+    Logger.log(`Data:`)
+    Logger.log('------------------')
+
     if (request.wrappedByKey) {
       data = data[request.wrappedByKey];
     }
@@ -74,8 +81,6 @@ export class APIClient {
     if (request.wrappedByList) {
       data = data[0];
     }
-
-    console.log(data)
 
     return data as T;
   }
@@ -143,7 +148,7 @@ export class APIClient {
       endpoint: 'projects',
       wrappedByKey: 'data',
       query: {
-        filters: '[featured][$eq]=true',
+        'filters[featured][$eq]': 'true',
         sort: 'publishedAt'
       }
     });
@@ -168,7 +173,7 @@ export class APIClient {
       endpoint: 'blog-posts',
       wrappedByKey: 'data',
       query: {
-        filters: '[featured][$eq]=true',
+        'filters[featured][$eq]': 'true',
         sort: 'publishedAt'
       }
     });

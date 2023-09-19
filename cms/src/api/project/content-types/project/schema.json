@@ -18,7 +18,8 @@
       "unique": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "product_url": {
       "type": "string",

@@ -10,8 +10,10 @@
     "build": "strapi build",
     "strapi": "strapi",
     "strapi:type-gen": "t4s -o ../web/src/lib/api/types/strapi --prefix Strapi",
-    "strapi:cex": "strapi config:dump -f config-dump.json",
-    "strapi:cim": "strapi config:restore -f config-dump.json"
+    "strapi:cex": "strapi config:dump -f ./content/config.json",
+    "strapi:cim": "strapi config:restore -f ./content/config.json",
+    "strapi:dex": "strapi export -f ./content/data",
+    "strapi:dim": "strapi import -f ./content/data.tar.gz.enc"
   },
   "devDependencies": {
     "@oak-digital/types-4-strapi-2": "^1.0.2"
@@ -26,7 +28,8 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "45466925-6bff-486e-907e-3721ec8dc26c"
+    "uuid": "45466925-6bff-486e-907e-3721ec8dc26c",
+    "telemetryDisabled": true
   },
   "engines": {
     "node": ">=16.0.0 <=20.x.x",

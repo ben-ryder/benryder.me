@@ -161,13 +161,16 @@ export class StrapiConverter {
 		}
 	}
 
-	static async convertStrapiTags(strapiTags: StrapiTag[]): Promise<Tag[]> {
+	static async convertStrapiTags(strapiTags: StrapiTag[] | null): Promise<Tag[]> {
+		if (!strapiTags) {
+			return []
+		}
+
 		const tags: Tag[] = [];
 		for (const strapiTag of strapiTags) {
 			const tag = await StrapiConverter.convertStrapiTag(strapiTag);
 			tags.push(tag)
 		}
-
 		return tags;
 	}
 
@@ -182,9 +185,9 @@ export class StrapiConverter {
 		}
 
 		const contentHtml = await convertMarkdownToHTML(strapiProject.attributes.content);
-		const tags = await StrapiConverter.convertStrapiTags(strapiProject.attributes.tags.data);
-		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiProject.attributes.related_projects.data);
-		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiProject.attributes.related_blog_posts.data);
+		const tags = await StrapiConverter.convertStrapiTags(strapiProject.attributes.tags?.data);
+		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiProject.attributes.related_projects?.data);
+		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiProject.attributes.related_blog_posts?.data);
 
 		return {
 			id: strapiProject.id.toString(),
@@ -204,13 +207,16 @@ export class StrapiConverter {
 		}
 	}
 
-	static async convertStrapiProjects(strapiProjects: StrapiProject[]): Promise<Project[]> {
+	static async convertStrapiProjects(strapiProjects: StrapiProject[] | null): Promise<Project[]> {
+		if (!strapiProjects) {
+			return []
+		}
+
 		const projects: Project[] = [];
 		for (const strapiProject of strapiProjects) {
 			const project = await StrapiConverter.convertStrapiProject(strapiProject);
 			projects.push(project)
 		}
-
 		return projects;
 	}
 
@@ -225,9 +231,9 @@ export class StrapiConverter {
 		}
 
 		const contentHtml = await convertMarkdownToHTML(strapiBlogPost.attributes.content);
-		const tags = await StrapiConverter.convertStrapiTags(strapiBlogPost.attributes.tags.data);
-		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiBlogPost.attributes.related_projects.data);
-		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiBlogPost.attributes.related_blog_posts.data);
+		const tags = await StrapiConverter.convertStrapiTags(strapiBlogPost.attributes.tags?.data);
+		const relatedProjects = await StrapiConverter.convertStrapiProjects(strapiBlogPost.attributes.related_projects?.data);
+		const relatedBlogPosts = await StrapiConverter.convertStrapiBlogPosts(strapiBlogPost.attributes.related_blog_posts?.data);
 
 		return {
 			id: strapiBlogPost.id.toString(),
@@ -245,13 +251,16 @@ export class StrapiConverter {
 		}
 	}
 
-	static async convertStrapiBlogPosts(strapiBlogPosts: StrapiBlogPost[]): Promise<BlogPost[]> {
+	static async convertStrapiBlogPosts(strapiBlogPosts: StrapiBlogPost[] | null): Promise<BlogPost[]> {
+		if (!strapiBlogPosts) {
+			return []
+		}
+
 		const blogPosts: BlogPost[] = [];
 		for (const strapiBlogPost of strapiBlogPosts) {
 			const blogPost = await StrapiConverter.convertStrapiBlogPost(strapiBlogPost);
 			blogPosts.push(blogPost)
 		}
-
 		return blogPosts;
 	}
 }
