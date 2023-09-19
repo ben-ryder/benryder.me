@@ -1,0 +1,3 @@
+*.sql
+!example.setup.sql
+!example.setup-tests.sql

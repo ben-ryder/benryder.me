@@ -1,0 +1,13 @@
+/**
+Make field groups easier to notice by adding top margin and
+changing the divider colour when active
+**/
+.group-detail .v-divider.active hr {
+    border-color: var(--primary) !important;
+}
+.group-detail {
+    margin-top: 24px;
+}
+.group-detail .content {
+    padding: 0 12px;
+}
