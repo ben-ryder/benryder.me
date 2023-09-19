@@ -42,7 +42,6 @@ cp .env.example .env
 
 6. Set up the database and then start
 ```bash
-npm run db:setup
-npm run config:import -- -y
+npm run setup
 npm run start
 ```

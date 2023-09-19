@@ -21,12 +21,6 @@
       "type": "richtext",
       "required": true
     },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "blog_posts"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title",
@@ -49,6 +43,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog-post-tag.blog-post-tag",
+      "inversedBy": "blog_posts"
     }
   }
 }

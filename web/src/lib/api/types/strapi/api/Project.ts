@@ -1,5 +1,5 @@
-import { StrapiTag } from "./Tag";
 import { StrapiBlogPost } from "./BlogPost";
+import { StrapiProjectTag } from "./ProjectTag";
 import { ExtractNested } from "../builtins/ExtractNested";
 import { ExtractFlat } from "../builtins/ExtractFlat";
 import { RequiredBy } from "../builtins/RequiredBy";
@@ -11,7 +11,6 @@ export interface StrapiProject<Populate extends string | never = never> {
       description: string | null;
       product_url: string | null;
       repository_url: string | null;
-      tags?: { data: StrapiTag<ExtractNested<Populate, "tags">>[] };
       slug: string | null;
       featured: boolean | null;
       related_projects?: {
@@ -21,6 +20,8 @@ export interface StrapiProject<Populate extends string | never = never> {
         data: StrapiBlogPost<ExtractNested<Populate, "related_blog_posts">>[];
       };
       content: string | null;
+      release_date: string | null;
+      tags?: { data: StrapiProjectTag<ExtractNested<Populate, "tags">>[] };
       publishedAt: string;
       createdAt: string;
       updatedAt: string;

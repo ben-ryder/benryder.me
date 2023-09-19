@@ -29,12 +29,6 @@
       "type": "string",
       "unique": true
     },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "projects"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name",
@@ -58,6 +52,15 @@
     "content": {
       "type": "richtext",
       "required": true
+    },
+    "release_date": {
+      "type": "date"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project-tag.project-tag",
+      "inversedBy": "projects"
     }
   }
 }

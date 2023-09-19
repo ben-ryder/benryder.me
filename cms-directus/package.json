@@ -5,14 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "directus start",
-    "config:import": "directus schema apply ./config/snapshot.yaml",
-    "config:export": "directus schema snapshot ./config/snapshot.yaml",
-    "cim": "npm run config:import",
-    "cex": "npm run config:export",
-    "db:setup": "directus bootstrap",
-    "deploy": "fly deploy --remote-only",
     "d": "directus",
-    "dcli": "directusctl"
+    "cim": "directus schema apply ./config/snapshot.yaml -y",
+    "cex": "directus schema snapshot ./config/snapshot.yaml -y",
+    "setup": "directus bootstrap && npm run d:cim",
+    "deploy": "fly deploy --remote-only"
   },
   "repository": {
     "type": "git",

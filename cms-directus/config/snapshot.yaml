@@ -79,14 +79,14 @@ collections:
       collection: blog_posts_blog_post_tags
       color: null
       display_template: null
-      group: blog_posts_relations
+      group: null
       hidden: true
       icon: import_export
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 1
+      sort: null
       sort_field: null
       translations: null
       unarchive_value: null
@@ -587,6 +587,29 @@ collections:
     schema:
       name: social_link
 fields:
+  - collection: blog_post_tags
+    field: blog_posts
+    type: alias
+    meta:
+      collection: blog_post_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: blog_posts
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 8
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: blog_post_tags
     field: date_created
     type: timestamp
@@ -3490,6 +3513,29 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: project_tags
+    field: projects
+    type: alias
+    meta:
+      collection: project_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: projects
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 7
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: project_tags
     field: slug
     type: string
     meta:
@@ -4937,7 +4983,7 @@ relations:
       one_collection: blog_post_tags
       one_collection_field: null
       one_deselect_action: nullify
-      one_field: null
+      one_field: blog_posts
       sort_field: null
     schema:
       table: blog_posts_blog_post_tags
@@ -5189,7 +5235,7 @@ relations:
       one_collection: project_tags
       one_collection_field: null
       one_deselect_action: nullify
-      one_field: null
+      one_field: projects
       sort_field: null
     schema:
       table: projects_project_tags
