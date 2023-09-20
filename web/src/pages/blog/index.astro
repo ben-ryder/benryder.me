@@ -1,0 +1,21 @@
+---
+import {apiClient} from "@lib/api/api-client";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+
+const blogPosts = await apiClient.getBlogPosts()
+---
+
+<GlobalLayout title="Blog">
+		<h1>Blog</h1>
+
+    <div>
+			<ul>
+				{blogPosts.map(blogPost =>
+					<li>
+						<a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
+						<p>{blogPost.description}</p>
+					</li>
+				)}
+        </ul>
+    </div>
+</GlobalLayout>

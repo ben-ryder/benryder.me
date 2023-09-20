@@ -1,0 +1,21 @@
+---
+import {apiClient} from "@lib/api/api-client";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+
+const projects = await apiClient.getProjects()
+---
+
+<GlobalLayout title="Projects">
+		<h1>Projects</h1>
+
+    <div>
+			<ul>
+				{projects.map(project =>
+					<li>
+						<a href={`/projects/${project.slug}`}>{project.name}</a>
+						<p>{project.description}</p>
+					</li>
+				)}
+        </ul>
+    </div>
+</GlobalLayout>

@@ -1,5 +1,5 @@
-import type {Tag} from "@lib/api/types/content/tag.ts";
 import type {Project} from "@lib/api/types/content/project.ts";
+import type {Tag} from "@lib/api/types/content/tag.ts";
 
 export interface BlogPost {
 	id: string

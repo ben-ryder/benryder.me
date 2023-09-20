@@ -4,19 +4,20 @@ import type {Footer} from "@lib/api/types/content/footer.ts";
 import type {Link} from "@lib/api/types/content/link.ts";
 import type {Header} from "@lib/api/types/content/header.ts";
 import type {
-	StrapiBlogPost,
+	StrapiBlogPost, StrapiBlogPostTag,
 	StrapiFooter,
 	StrapiHeader,
 	StrapiHomepage,
 	StrapiLinkLink,
-	StrapiPage, StrapiProject,
+	StrapiPage, StrapiProject, StrapiProjectTag,
 	StrapiSocialSocialLink, StrapiTag
 } from "@lib/api/types/strapi";
 import type {Homepage} from "@lib/api/types/content/homepage.ts";
 import type {SocialLink} from "@lib/api/types/content/social-link.ts";
-import type {Tag} from "@lib/api/types/content/tag.ts";
+import type {BlogPostTag} from "@lib/api/types/content/blog-post-tag.ts";
 import type {Project} from "@lib/api/types/content/project.ts";
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
+import type {Tag} from "@lib/api/types/content/tag.ts";
 
 /**
  * A helper to convert between raw Strapi data and generalised typed content for the website.
@@ -96,16 +97,22 @@ export class StrapiConverter {
 
 	static async convertStrapiHeader(strapiHeader: StrapiHeader): Promise<Header> {
 		if (
-			!strapiHeader?.attributes.promo_message ||
 			!strapiHeader?.attributes.noscript_message
 		) {
 			throw StrapiConverter.throwMissingDataError("Header", strapiHeader)
 		}
 
+		const messageNoScriptHtml = await convertMarkdownToHTML(strapiHeader.attributes.noscript_message);
+
+		let messagePromoHtml = null;
+		if (strapiHeader.attributes.promo_message) {
+			messagePromoHtml = await convertMarkdownToHTML(strapiHeader.attributes.promo_message);
+		}
+
 		return {
 			id: strapiHeader.id.toString(),
-			promoMessage: strapiHeader.attributes.promo_message,
-			noScriptMessage: strapiHeader.attributes.noscript_message,
+			messagePromoHtml: messagePromoHtml,
+			messageNoScriptHtml: messageNoScriptHtml,
 			navigationLinks: StrapiConverter.convertLinks(strapiHeader.attributes.navigation_links),
 		}
 	}
@@ -146,9 +153,9 @@ export class StrapiConverter {
 		}
 	}
 
-	static async convertStrapiTag(strapiTag: StrapiTag): Promise<Tag> {
+	static async convertStrapiTag(strapiTag: StrapiProjectTag | StrapiBlogPostTag): Promise<Tag> {
 		if (
-			!strapiTag?.attributes.name ||
+			!strapiTag?.attributes.text ||
 			!strapiTag?.attributes.slug
 		) {
 			throw StrapiConverter.throwMissingDataError("Tag", strapiTag)
@@ -156,12 +163,12 @@ export class StrapiConverter {
 
 		return {
 			id: strapiTag.id.toString(),
-			name: strapiTag.attributes.name,
+			text: strapiTag.attributes.text,
 			slug: strapiTag.attributes.slug,
 		}
 	}
 
-	static async convertStrapiTags(strapiTags: StrapiTag[] | null): Promise<Tag[]> {
+	static async convertStrapiTags(strapiTags: (StrapiProjectTag | StrapiBlogPostTag)[] | null): Promise<Tag[]> {
 		if (!strapiTags) {
 			return []
 		}
@@ -195,6 +202,7 @@ export class StrapiConverter {
 			slug: strapiProject.attributes.slug,
 			description: strapiProject.attributes.description,
 			contentHtml: contentHtml,
+			releaseDate: strapiProject.attributes.release_date,
 			productUrl: strapiProject.attributes.product_url,
 			repositoryUrl: strapiProject.attributes.repository_url,
 			isFeatured: !!strapiProject.attributes.featured,

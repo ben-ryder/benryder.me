@@ -1,0 +1,65 @@
+---
+import {apiClient} from "@lib/api/api-client";
+import {Project} from "@lib/api/types/content/project";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+
+export async function getStaticPaths() {
+	const projects = await apiClient.getProjects()
+
+	return projects.map((project) => ({
+		params: { slug: project.slug },
+		props: project,
+	}));
+}
+
+const project: Project = Astro.props;
+---
+
+<GlobalLayout title={project.name}>
+		<h1>{project.name}</h1>
+
+    <h2>Metadata</h2>
+		<ul>
+			<li><strong>Publish Timestamp:</strong> {project.publishedAt}</li>
+			<li><strong>Update Timestamp:</strong> {project.updatedAt}</li>
+        <li><strong>Create Timestamp:</strong> {project.createdAt}</li>
+			{project.productUrl && <li><strong>Product:</strong> {project.productUrl}</li>}
+			{project.repositoryUrl && <li><strong>Source Code:</strong> {project.repositoryUrl}</li>}
+			{project.releaseDate && <li><strong>Release Date :</strong> {project.releaseDate}</li>}
+		</ul>
+
+    <h2>Tags</h2>
+		<ul>
+			{project.tags.map(tag =>
+				<li>
+					<a href={`/projects/tags/${tag.slug}`}>{tag.text}</a>
+				</li>
+			)}
+		</ul>
+
+    <h2>Content</h2>
+		<div set:html={project.contentHtml} />
+
+    <h2>Related</h2>
+		<div>
+			<h3>Projects</h3>
+			<ul>
+				{project.relatedProjects.map(relatedProject =>
+					<li>
+						<a href={`/projects/${relatedProject.slug}`}>{relatedProject.name}</a>
+						<p>{relatedProject.description}</p>
+					</li>
+				)}
+			</ul>
+
+			<h3>Blog Posts</h3>
+			<ul>
+				{project.relatedBlogPosts.map(relatedBlogPost =>
+					<li>
+						<a href={`/blog/${relatedBlogPost.slug}`}>{relatedBlogPost.title}</a>
+						<p>{relatedBlogPost.description}</p>
+					</li>
+				)}
+			</ul>
+		</div>
+</GlobalLayout>
