@@ -1345,7 +1345,7 @@ fields:
       max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
@@ -3842,7 +3842,7 @@ fields:
       interface: boolean
       note: null
       options:
-        label: Is featured on home page?
+        label: Featured on home page?
       readonly: false
       required: true
       sort: 8
@@ -3860,7 +3860,7 @@ fields:
       max_length: null
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
@@ -4303,7 +4303,7 @@ fields:
       max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
