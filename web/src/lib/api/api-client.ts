@@ -1,15 +1,17 @@
 import type {Page} from "@lib/api/types/content/page.ts";
-import {StrapiConverter} from "@lib/api/strapi-converter.ts";
-import type {StrapiFooter} from "@lib/api/types/strapi/content-types/footer";
 import type {Footer} from "@lib/api/types/content/footer.ts";
 import type {Header} from "@lib/api/types/content/header.ts";
-import type {StrapiHeader} from "@lib/api/types/strapi/content-types/header";
-import type {StrapiPage} from "@lib/api/types/strapi/content-types/page";
 import type {Homepage} from "@lib/api/types/content/homepage.ts";
-import type {StrapiBlogPost, StrapiHomepage, StrapiProject} from "@lib/api/types/strapi";
 import type {Project} from "@lib/api/types/content/project.ts";
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
+
+import type {
+  Pages as DirectusPage
+} from "@lib/api/types/directus/types.ts"
+
+import {ResponseConverter} from "@lib/api/response-converter.ts";
 import {Logger} from "@lib/logger.ts";
+import type {DirectusFooter} from "@lib/api/types/directus/types.ts";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -31,12 +33,12 @@ export class APIClient {
 
   constructor() {
     this.config = {
-      baseUrl: import.meta.env.STRAPI_URL,
-      token: import.meta.env.STRAPI_TOKEN,
+      baseUrl: import.meta.env.API_BASE_URL,
+      token: import.meta.env.API_TOKEN,
     }
 
     if (!this.config.baseUrl || !this.config.token) {
-      throw new Error('Strapi environment variables missing!')
+      throw new Error('API environment variables missing.')
     }
   }
 
@@ -48,9 +50,6 @@ export class APIClient {
    */
   async _request<T>(request: APIClientRequest): Promise<T> {
     const url = new URL(`${this.config.baseUrl}/api/${request.endpoint}`);
-
-    // Ensure relationships are always loaded
-    url.searchParams.append('populate', '*')
 
     if (request.query) {
       Object.entries(request.query).forEach(([key, value]) => {
@@ -69,70 +68,60 @@ export class APIClient {
     let data = await res.json();
 
     Logger.log('------------------')
-    Logger.log(`Strapi Request - ${url.toString()}`)
+    Logger.log(`API Request - ${url.toString()}`)
     Logger.log(`Response: ${res.status}`)
     Logger.log(`Data:`)
+    Logger.log(data)
     Logger.log('------------------')
-
-    if (request.wrappedByKey) {
-      data = data[request.wrappedByKey];
-    }
-
-    if (request.wrappedByList) {
-      data = data[0];
-    }
 
     return data as T;
   }
 
-  /**
-   * =======================================================================================
-   */
-
   async getPages(): Promise<Page[]> {
-    const strapiPages = await this._request<StrapiPage[]>({
-      endpoint: 'pages',
-      wrappedByKey: 'data',
+    const apiPages = await this._request<{data: DirectusPage[]}>({
+      endpoint: '/items/pages'
     });
 
     const pages: Page[] = [];
-    for (const strapiPage of strapiPages) {
-      const basicPage = await StrapiConverter.convertStrapiPage(strapiPage);
-      pages.push(basicPage)
+    for (const apiPage of apiPages) {
+      const page = await ResponseConverter.convertPage(apiPage);
+      pages.push(page)
     }
 
     return pages
   }
 
   async getFooter(): Promise<Footer> {
-    const strapiFooter = await this._request<StrapiFooter>({
-      endpoint: 'footer',
-      wrappedByKey: 'data',
+    const apiFooter = await this._request<{data: DirectusFooter}>({
+      endpoint: '/items/footer',
+      query: {
+        'fields': 'signoff_content,navigation_links.link_id.text,navigation_links.link_id.url'
+      },
     });
 
-    return StrapiConverter.convertStrapiFooter(strapiFooter);
+    return ResponseConverter.convertStrapiFooter(apiFooter);
   }
 
   async getHeader(): Promise<Header> {
-    const strapiHeader = await this._request<StrapiHeader>({
+    const apiHeader = await this._request<StrapiHeader>({
       endpoint: 'header',
       wrappedByKey: 'data',
     });
 
-    return StrapiConverter.convertStrapiHeader(strapiHeader);
+    return ResponseConverter.convertStrapiHeader(apiHeader);
   }
 
   async getHomepage(): Promise<Homepage> {
-    const strapiHomepage = await this._request<StrapiHomepage>({
+    const apiHomepage = await this._request<StrapiHomepage>({
       endpoint: 'homepage',
       wrappedByKey: 'data',
     });
 
-    return StrapiConverter.convertStrapiHomepage(strapiHomepage);
+    return ResponseConverter.convertStrapiHomepage(apiHomepage);
   }
 
   async getProjects(): Promise<Project[]> {
-    const strapiProjects = await this._request<StrapiProject[]>({
+    const apiProjects = await this._request<StrapiProject[]>({
       endpoint: 'projects',
       wrappedByKey: 'data',
       query: {
@@ -140,11 +129,11 @@ export class APIClient {
       }
     });
 
-    return StrapiConverter.convertStrapiProjects(strapiProjects);
+    return ResponseConverter.convertStrapiProjects(apiProjects);
   }
 
   async getFeaturedProjects(): Promise<Project[]> {
-    const strapiProjects = await this._request<StrapiProject[]>({
+    const apiProjects = await this._request<StrapiProject[]>({
       endpoint: 'projects',
       wrappedByKey: 'data',
       query: {
@@ -153,11 +142,11 @@ export class APIClient {
       }
     });
 
-    return StrapiConverter.convertStrapiProjects(strapiProjects);
+    return ResponseConverter.convertStrapiProjects(apiProjects);
   }
 
   async getBlogPosts(): Promise<BlogPost[]> {
-    const strapiBlogPosts = await this._request<StrapiBlogPost[]>({
+    const apiBlogPosts = await this._request<StrapiBlogPost[]>({
       endpoint: 'blog-posts',
       wrappedByKey: 'data',
       query: {
@@ -165,11 +154,11 @@ export class APIClient {
       }
     });
 
-    return StrapiConverter.convertStrapiBlogPosts(strapiBlogPosts);
+    return ResponseConverter.convertStrapiBlogPosts(apiBlogPosts);
   }
 
   async getFeaturedBlogPosts(): Promise<BlogPost[]> {
-    const strapiBlogPosts = await this._request<StrapiBlogPost[]>({
+    const apiBlogPosts = await this._request<StrapiBlogPost[]>({
       endpoint: 'blog-posts',
       wrappedByKey: 'data',
       query: {
@@ -178,7 +167,7 @@ export class APIClient {
       }
     });
 
-    return StrapiConverter.convertStrapiBlogPosts(strapiBlogPosts);
+    return ResponseConverter.convertStrapiBlogPosts(apiBlogPosts);
   }
 }
 

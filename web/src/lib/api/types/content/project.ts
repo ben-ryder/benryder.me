@@ -4,15 +4,14 @@ import type {Tag} from "@lib/api/types/content/tag.ts";
 export interface Project {
 	id: string
 	createdAt: string
-	updatedAt: string
-	publishedAt: string
+	updatedAt?: string | null
 
 	name: string
 	slug: string
 	description: string
 	contentHtml: string
 
-	releaseDate?: string
+	releaseDate?: string | null
 	productUrl?: string | null
 	repositoryUrl?: string | null
 
