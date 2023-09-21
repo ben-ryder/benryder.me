@@ -2,6 +2,48 @@ version: 1
 directus: 13.1.0
 vendor: postgres
 collections:
+  - collection: Other
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: Other
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: engineering
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 5
+      sort_field: null
+      translations: null
+      unarchive_value: null
+  - collection: Relations
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: Relations
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: compare_arrows
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 6
+      sort_field: null
+      translations: null
+      unarchive_value: null
   - collection: blog
     meta:
       accountability: all
@@ -86,7 +128,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: null
+      sort: 8
       sort_field: null
       translations: null
       unarchive_value: null
@@ -192,9 +234,9 @@ collections:
       collection: footer_link
       color: null
       display_template: null
-      group: global
-      hidden: true
-      icon: import_export
+      group: Relations
+      hidden: false
+      icon: link
       item_duplication_fields: null
       note: null
       preview_url: null
@@ -259,14 +301,14 @@ collections:
       collection: header_link
       color: null
       display_template: null
-      group: global
-      hidden: true
-      icon: import_export
+      group: Relations
+      hidden: false
+      icon: link
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 2
       sort_field: null
       translations: null
       unarchive_value: null
@@ -305,14 +347,14 @@ collections:
       collection: home_social_link
       color: null
       display_template: null
-      group: page
-      hidden: true
-      icon: import_export
+      group: Relations
+      hidden: false
+      icon: share
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 1
       sort_field: null
       translations: null
       unarchive_value: null
@@ -328,8 +370,8 @@ collections:
       collection: link
       color: null
       display_template: '{{text}} ({{url}})'
-      group: links
-      hidden: true
+      group: Other
+      hidden: false
       icon: link
       item_duplication_fields: null
       note: null
@@ -358,7 +400,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 5
+      sort: 7
       sort_field: null
       translations: null
       unarchive_value: null
@@ -573,9 +615,9 @@ collections:
       collection: social_link
       color: null
       display_template: '{{text}}'
-      group: links
-      hidden: true
-      icon: link
+      group: Other
+      hidden: false
+      icon: share
       item_duplication_fields: null
       note: null
       preview_url: null
@@ -776,18 +818,18 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#FFA439'
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: null
@@ -818,7 +860,7 @@ fields:
       max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
@@ -2057,6 +2099,45 @@ fields:
       has_auto_increment: false
       foreign_key_table: link
       foreign_key_column: id
+  - collection: footer_link
+    field: order
+    type: integer
+    meta:
+      collection: footer_link
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: footer_link
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: header
     field: date_created
     type: timestamp
@@ -2403,6 +2484,45 @@ fields:
       has_auto_increment: false
       foreign_key_table: link
       foreign_key_column: id
+  - collection: header_link
+    field: order
+    type: integer
+    meta:
+      collection: header_link
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: header_link
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: home
     field: date_created
     type: timestamp
@@ -2706,6 +2826,45 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: home_social_link
+    field: order
+    type: integer
+    meta:
+      collection: home_social_link
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: home_social_link
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home_social_link
     field: social_link_id
     type: uuid
     meta:
@@ -2874,15 +3033,15 @@ fields:
           - text: Draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#FFA439'
           - text: Published
             value: published
             foreground: '#FFFFFF'
-            background: '#8866FF'
+            background: '#2ECDA7'
           - text: Archived
             value: archived
             foreground: '#FFFFFF'
-            background: '#FFA439'
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: null
@@ -3308,7 +3467,7 @@ fields:
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#E35169'
+            background: '#FFA439'
           - text: $t:published
             value: published
             foreground: '#FFFFFF'
@@ -3582,18 +3741,18 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#FFA439'
+          - text: $t:published
+            value: published
+            foreground: '#18222F'
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: null
@@ -4262,7 +4421,7 @@ fields:
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#E35169'
+            background: '#FFA439'
           - text: $t:published
             value: published
             foreground: '#FFFFFF'
@@ -4758,7 +4917,7 @@ fields:
       foreign_key_column: null
   - collection: social_link
     field: icon
-    type: string
+    type: text
     meta:
       collection: social_link
       conditions: null
@@ -4784,12 +4943,12 @@ fields:
     schema:
       name: icon
       table: social_link
-      data_type: character varying
+      data_type: text
       default_value: null
-      max_length: 255
+      max_length: null
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
@@ -4845,18 +5004,18 @@ fields:
       display: labels
       display_options:
         choices:
-          - text: $t:published
-            value: published
-            foreground: '#FFFFFF'
-            background: var(--primary)
           - text: $t:draft
             value: draft
             foreground: '#18222F'
-            background: '#D3DAE4'
+            background: '#FFA439'
+          - text: $t:published
+            value: published
+            foreground: '#FFFFFF'
+            background: '#2ECDA7'
           - text: $t:archived
             value: archived
             foreground: '#FFFFFF'
-            background: var(--warning)
+            background: '#A2B5CD'
         showAsDot: true
       field: status
       group: null
@@ -4963,7 +5122,7 @@ fields:
       max_length: 255
       numeric_precision: null
       numeric_scale: null
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       is_generated: false
