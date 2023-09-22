@@ -20,7 +20,6 @@ const project: Project = Astro.props;
 
     <h2>Metadata</h2>
 		<ul>
-			<li><strong>Publish Timestamp:</strong> {project.publishedAt}</li>
 			<li><strong>Update Timestamp:</strong> {project.updatedAt}</li>
         <li><strong>Create Timestamp:</strong> {project.createdAt}</li>
 			{project.productUrl && <li><strong>Product:</strong> {project.productUrl}</li>}

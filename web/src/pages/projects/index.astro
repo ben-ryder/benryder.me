@@ -3,10 +3,22 @@ import {apiClient} from "@lib/api/api-client";
 import GlobalLayout from "@layouts/GlobalLayout.astro";
 
 const projects = await apiClient.getProjects()
+const projectTags = await apiClient.getProjectTags()
 ---
 
 <GlobalLayout title="Projects">
 		<h1>Projects</h1>
+
+    <p>Tags:</p>
+    <div>
+			<ul>
+				{projectTags.map(projectTag =>
+					<li>
+							<a href={`/projects/tags/${projectTag.slug}`}>{projectTag.text}</a>
+					</li>
+				)}
+			</ul>
+    </div>
 
     <div>
 			<ul>

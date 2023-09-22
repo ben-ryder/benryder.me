@@ -22,10 +22,10 @@
   "scripts": {
     "install": "concurrently npm:install:*",
     "install:web": "cd web && npm install",
-    "install:cms": "cd cms-strapi && npm install",
+    "install:cms": "cd cms && npm install",
     "start": "concurrently npm:start:*",
     "start:web": "cd web && npm start",
-    "start:cms": "cd cms-strapi && npm start",
+    "start:cms": "cd cms && npm start",
     "prepare": "husky install"
   },
   "dependencies": {

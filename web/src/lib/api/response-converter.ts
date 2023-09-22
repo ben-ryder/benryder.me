@@ -5,18 +5,21 @@ import type {Homepage} from "@lib/api/types/content/homepage.ts";
 import type {SocialLink} from "@lib/api/types/content/social-link.ts";
 import type {Project} from "@lib/api/types/content/project.ts";
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
-import type {Tag} from "@lib/api/types/content/tag.ts";
+import type {Tag, TagWithBlogPosts, TagWithProjects} from "@lib/api/types/content/tag.ts";
+import type {Link} from "@lib/api/types/content/link.ts";
 
 import {convertMarkdownToHTML} from "@lib/api/utils/convert-markdown.ts";
+
 import type {
-	DirectusBlogPostTag,
-	DirectusFooter,
-	DirectusHeader, DirectusHome,
-	DirectusLink,
-	DirectusPage, DirectusProject, DirectusProjectProjectTags, DirectusProjectTag, DirectusProjectTags,
-	DirectusSocialLink
-} from "@lib/api/types/directus/types.ts";
-import type {Link} from "@lib/api/types/content/link.ts";
+	BlogPosts as DirectusBlogPost,
+	Footer as DirectusFooter,
+	Header as DirectusHeader,
+	Home as DirectusHome,
+	Pages as DirectusPage,
+	Projects as DirectusProject,
+	ProjectTags as DirectusProjectTag,
+	BlogPostTags as DirectusBlogPostTag
+} from "@lib/api/types/directus/generated.ts";
 
 
 /**
@@ -41,15 +44,17 @@ export class ResponseConverter {
 
 	static async convertFooter(apiFooter: DirectusFooter): Promise<Footer> {
 		const signOffHtml = await convertMarkdownToHTML(apiFooter.signoff_content);
+		const navigationLinks = await ResponseConverter.convertLinks(apiFooter.navigation_links);
 
 		return {
 			signOffHtml,
-			navigationLinks: ResponseConverter.convertLinks(apiFooter.navigation_links)
+			navigationLinks
 		}
 	}
 
 	static async convertHeader(apiHeader: DirectusHeader): Promise<Header> {
 		const messageNoScriptHtml = await convertMarkdownToHTML(apiHeader.message_noscript);
+		const navigationLinks = await ResponseConverter.convertLinks(apiHeader.navigation_links);
 
 		let messagePromoHtml = null;
 		if (apiHeader.message_promo) {
@@ -59,60 +64,123 @@ export class ResponseConverter {
 		return {
 			messagePromoHtml: messagePromoHtml,
 			messageNoScriptHtml: messageNoScriptHtml,
-			navigationLinks: ResponseConverter.convertLinks(apiHeader.navigation_links),
+			navigationLinks: navigationLinks,
 		}
 	}
 
-	static convertSocialLinks(apiSocialLinks: { social_link_id: DirectusSocialLink }[]): SocialLink[] {
+	static async convertSocialLinks(apiSocialLinks: DirectusHome['social_links']): Promise<SocialLink[]> {
 		return apiSocialLinks.map(apiSocialLink => {
 			return {
-				text: apiSocialLink.social_link_id.text,
-				url: apiSocialLink.social_link_id.url,
-				iconSvg: apiSocialLink.social_link_id.icon
+				text: apiSocialLink.social_links_id.text,
+				url: apiSocialLink.social_links_id.url,
+				iconSvg: apiSocialLink.social_links_id.icon
 			}
 		})
 	}
 
-	static convertLinks(apiLinks: { link_id: DirectusLink }[]): Link[] {
+	static async convertLinks(apiLinks: DirectusHeader['navigation_links'] | DirectusFooter['navigation_links']): Promise<Link[]> {
 		return apiLinks.map(apiLink => {
 			return {
-				text: apiLink.link_id.text,
-				url: apiLink.link_id.url
+				text: apiLink.links_id.text,
+				url: apiLink.links_id.url
 			}
 		})
 	}
 
 	static async convertHomepage(apiHomepage: DirectusHome): Promise<Homepage> {
 		const greeterContentHtml = await convertMarkdownToHTML(apiHomepage.greeter_content);
+		const socialLinks = await ResponseConverter.convertSocialLinks(apiHomepage.social_links);
 
 		return {
 			greeterTitle: apiHomepage.greeter_title,
-			greeterContentHtml: greeterContentHtml,
-			socialLinks: ResponseConverter.convertSocialLinks(apiHomepage.social_links),
+			greeterContentHtml,
+			socialLinks,
 		}
 	}
 
-	static convertProjectTags(projectTags: { project_tags_id: DirectusProjectTag }[]): Tag[] {
-		return projectTags.map(projectTag => {
-			return {
-				text: projectTag.project_tags_id.text,
-				slug: projectTag.project_tags_id.slug,
+	static async convertProjectTag(apiProjectTag: DirectusProjectTag): Promise<TagWithProjects> {
+		const projects: Project[] = []
+
+		for (const tagProject of apiProjectTag.projects) {
+			if (tagProject.projects_id) {
+				const project = await ResponseConverter.convertProject(tagProject.projects_id)
+				projects.push(project)
 			}
-		})
+		}
+
+		return {
+			text: apiProjectTag.text,
+			slug: apiProjectTag.slug,
+			projects,
+		}
 	}
 
-	static convertBlogPostTags(projectTags: { blog_post_tags_id: DirectusBlogPostTag }[]): Tag[] {
-		return projectTags.map(projectTag => {
-			return {
-				text: projectTag.blog_post_tags_id.text,
-				slug: projectTag.blog_post_tags_id.slug,
+	static async convertProjectsProjectTags(apiProjectTags: DirectusProject['tags']): Promise<TagWithProjects[]> {
+		const tags: TagWithProjects[] = [];
+
+		for (const apiProjectTag of apiProjectTags) {
+			if (apiProjectTag?.project_tags_id) {
+				const tag = await ResponseConverter.convertProjectTag(apiProjectTag.project_tags_id)
+				tags.push(tag)
 			}
-		})
+		}
+		return tags;
+	}
+
+	static async convertBlogPostTag(apiBlogPostTag: DirectusBlogPostTag): Promise<TagWithBlogPosts> {
+		const blogPosts: BlogPost[] = []
+
+		for (const tagBlogPost of apiBlogPostTag.blog_posts) {
+			if (tagBlogPost.blog_posts_id) {
+				const blogPost = await ResponseConverter.convertBlogPost(tagBlogPost.blog_posts_id)
+				blogPosts.push(blogPost)
+			}
+		}
+
+		return {
+			text: apiBlogPostTag.text,
+			slug: apiBlogPostTag.slug,
+			blogPosts,
+		}
+	}
+
+	static async convertBlogPostsBlogPostTags(apiBlogPostTags: DirectusBlogPost['tags']): Promise<TagWithBlogPosts[]> {
+		const tags: TagWithBlogPosts[] = [];
+
+		for (const apiBlogPostTag of apiBlogPostTags) {
+			if (apiBlogPostTag?.blog_posts_id) {
+				const tag = await ResponseConverter.convertBlogPostTag(apiBlogPostTag.blog_post_tags_id)
+				tags.push(tag)
+			}
+		}
+		return tags;
+	}
+
+	static async convertBlogPostTags(apiBlogPostTags: DirectusBlogPostTag[]) {
+		const blogPostTags: TagWithBlogPosts[] = []
+		for (const blogPostTag of apiBlogPostTags) {
+			const tag = await ResponseConverter.convertBlogPostTag(blogPostTag)
+			blogPostTags.push(tag)
+		}
+
+		return blogPostTags;
+	}
+
+	static async convertProjectTags(apiProjectTags: DirectusProjectTag[]) {
+		const projectTags: TagWithProjects[] = []
+		for (const projectTag of apiProjectTags) {
+			const tag = await ResponseConverter.convertProjectTag(projectTag)
+			projectTags.push(tag)
+		}
+
+		return projectTags;
 	}
 
 	static async convertProject(apiProject: DirectusProject): Promise<Project> {
 		const contentHtml = await convertMarkdownToHTML(apiProject.content);
-		const tags = await ResponseConverter.convertProjectTags(apiProject.tags);
+		const tags = await ResponseConverter.convertProjectsProjectTags(apiProject.tags);
+		const relatedProjects = await ResponseConverter.convertRelatedProjects(apiProject.related_projects);
+		const relatedBlogPosts = await ResponseConverter.convertRelatedBlogPosts(apiProject.related_blog_posts);
 
 		return {
 			id: apiProject.id,
@@ -125,18 +193,14 @@ export class ResponseConverter {
 			repositoryUrl: apiProject.repository_url,
 			isFeatured: apiProject.featured,
 			tags,
-			relatedProjects: [],
-			relatedBlogPosts: [],
+			relatedProjects,
+			relatedBlogPosts,
 			createdAt: apiProject.date_created,
 			updatedAt: apiProject.date_updated,
 		}
 	}
 
-	static async convertProjects(apiProjects: Project[] | null): Promise<Project[]> {
-		if (!apiProjects) {
-			return []
-		}
-
+	static async convertProjects(apiProjects: DirectusProject[]): Promise<Project[]> {
 		const projects: Project[] = [];
 		for (const apiProject of apiProjects) {
 			const project = await ResponseConverter.convertProject(apiProject);
@@ -145,47 +209,65 @@ export class ResponseConverter {
 		return projects;
 	}
 
-	static async convertBlogPost(apiBlogPost: BlogPost): Promise<BlogPost> {
-		if (
-			!apiBlogPost?.attributes.title ||
-			!apiBlogPost?.attributes.slug ||
-			!apiBlogPost?.attributes.description ||
-			!apiBlogPost?.attributes.content
-		) {
-			throw ResponseConverter.throwMissingDataError("Blog Post", apiBlogPost)
+	static async convertRelatedProjects(
+		apiRelatedProjects: DirectusProject['related_projects'] | DirectusBlogPost['related_projects']
+	): Promise<Project[]> {
+		const relatedProjects: Project[] = [];
+
+		for (const apiRelatedProject of apiRelatedProjects) {
+			if (apiRelatedProject?.related_projects_id) {
+				const project = await ResponseConverter.convertProject(apiRelatedProject.related_projects_id);
+				relatedProjects.push(project)
+			}
 		}
 
-		const contentHtml = await convertMarkdownToHTML(apiBlogPost.attributes.content);
-		const tags = await ResponseConverter.convertTags(apiBlogPost.attributes.tags?.data);
-		const relatedProjects = await ResponseConverter.convertProjects(apiBlogPost.attributes.related_projects?.data);
-		const relatedBlogPosts = await ResponseConverter.convertBlogPosts(apiBlogPost.attributes.related_blog_posts?.data);
+		return relatedProjects;
+	}
+
+	static async convertBlogPost(apiBlogPost: DirectusBlogPost): Promise<BlogPost> {
+		const contentHtml = await convertMarkdownToHTML(apiBlogPost.content);
+		const tags = await ResponseConverter.convertBlogPostsBlogPostTags(apiBlogPost.tags);
+		const relatedBlogPosts = await ResponseConverter.convertRelatedBlogPosts(apiBlogPost.related_blog_posts);
+		const relatedProjects = await ResponseConverter.convertRelatedProjects(apiBlogPost.related_projects);
 
 		return {
-			id: apiBlogPost.id.toString(),
-			title: apiBlogPost.attributes.title,
-			slug: apiBlogPost.attributes.slug,
-			description: apiBlogPost.attributes.description,
+			id: apiBlogPost.id,
+			title: apiBlogPost.title,
+			slug: apiBlogPost.slug,
+			description: apiBlogPost.description,
 			contentHtml: contentHtml,
-			isFeatured: !!apiBlogPost.attributes.featured,
+			isFeatured: apiBlogPost.featured,
 			tags,
-			relatedProjects,
 			relatedBlogPosts,
-			createdAt: apiBlogPost.attributes.createdAt,
-			updatedAt: apiBlogPost.attributes.updatedAt,
-			publishedAt: apiBlogPost.attributes.publishedAt
+			relatedProjects,
+			createdAt: apiBlogPost.date_created,
+			updatedAt: apiBlogPost.date_updated
 		}
 	}
 
-	static async convertBlogPosts(apiBlogPosts: BlogPost[] | null): Promise<BlogPost[]> {
-		if (!apiBlogPosts) {
-			return []
-		}
-
+	static async convertBlogPosts(apiBlogPosts: DirectusBlogPost[]): Promise<BlogPost[]> {
 		const blogPosts: BlogPost[] = [];
+
 		for (const apiBlogPost of apiBlogPosts) {
 			const blogPost = await ResponseConverter.convertBlogPost(apiBlogPost);
 			blogPosts.push(blogPost)
 		}
+
 		return blogPosts;
+	}
+
+	static async convertRelatedBlogPosts(
+		apiRelatedBlogPosts: DirectusProject['related_blog_posts'] | DirectusBlogPost['related_blog_posts']
+	): Promise<BlogPost[]> {
+		const relatedBlogPosts: BlogPost[] = [];
+
+		for (const apiRelatedBlogPost of apiRelatedBlogPosts) {
+			if (apiRelatedBlogPost?.related_blog_posts_id) {
+				const blogPost = await ResponseConverter.convertBlogPost(apiRelatedBlogPost.related_blog_posts_id);
+				relatedBlogPosts.push(blogPost)
+			}
+		}
+
+		return relatedBlogPosts;
 	}
 }

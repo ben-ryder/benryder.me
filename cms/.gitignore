@@ -1,0 +1,14 @@
+# Node
+/node_modules
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Setup Scripts
+/scripts/*.sql
+!/cms/scripts/example.setup.sql
+
+# Content
+content/data

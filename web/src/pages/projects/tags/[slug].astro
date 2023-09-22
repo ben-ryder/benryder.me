@@ -1,0 +1,47 @@
+---
+import {apiClient} from "@lib/api/api-client";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+import {TagWithProjects} from "../../../lib/api/types/content/tag";
+
+export async function getStaticPaths() {
+	const projectTags = await apiClient.getProjectTags()
+
+	return projectTags.map((tag) => ({
+		params: { slug: tag.slug },
+		props: {
+			currentTag: tag,
+			projectTags
+		},
+	}));
+}
+
+const currentTag: TagWithProjects = Astro.props.currentTag;
+const projectTags: TagWithProjects[] = Astro.props.projectTags;
+---
+
+<GlobalLayout title={`${currentTag.text} | Projects`}>
+		<h1>{currentTag.text}</h1>
+
+    <p>Tags:</p>
+    <div>
+        <ul>
+            <li><a href={`/projects`}>All Projects</a></li>
+					{projectTags.map(projectTag =>
+						<li>
+								<a href={`/projects/tags/${projectTag.slug}`}>{projectTag.text}</a>
+						</li>
+					)}
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+					{currentTag.projects.map(project =>
+                  <li>
+                      <a href={`/projects/${project.slug}`}>{project.name}</a>
+                      <p>{project.description}</p>
+                  </li>
+					)}
+        </ul>
+    </div>
+</GlobalLayout>
