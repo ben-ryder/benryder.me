@@ -8,7 +8,7 @@ collections:
       archive_app_filter: true
       archive_field: null
       archive_value: null
-      collapse: open
+      collapse: closed
       collection: Other
       color: null
       display_template: null
@@ -19,7 +19,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 5
+      sort: 7
       sort_field: null
       translations: null
       unarchive_value: null
@@ -29,7 +29,7 @@ collections:
       archive_app_filter: true
       archive_field: null
       archive_value: null
-      collapse: open
+      collapse: closed
       collection: Relations
       color: null
       display_template: null
@@ -40,28 +40,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 6
-      sort_field: null
-      translations: null
-      unarchive_value: null
-  - collection: blog
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: blog
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: article
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: 2
+      sort: 8
       sort_field: null
       translations: null
       unarchive_value: null
@@ -75,14 +54,14 @@ collections:
       collection: blog_post_tags
       color: null
       display_template: '{{text}}'
-      group: blog
+      group: Other
       hidden: false
       icon: tag
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 2
+      sort: 1
       sort_field: null
       translations: null
       unarchive_value: draft
@@ -98,7 +77,7 @@ collections:
       collection: blog_posts
       color: null
       display_template: '{{title}}'
-      group: blog
+      group: null
       hidden: false
       icon: article
       item_duplication_fields: null
@@ -190,14 +169,14 @@ collections:
       collection: blog_posts_relations
       color: null
       display_template: null
-      group: blog
+      group: null
       hidden: true
       icon: folder
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 9
       sort_field: null
       translations: null
       unarchive_value: null
@@ -241,19 +220,63 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 2
       sort_field: null
       translations: null
       unarchive_value: null
     schema:
       name: footer_links
-  - collection: global
+  - collection: form_contact
     meta:
       accountability: all
       archive_app_filter: true
       archive_field: null
       archive_value: null
       collapse: open
+      collection: form_contact
+      color: null
+      display_template: '{{subject}}- From{{name}}({{email}})'
+      group: forms
+      hidden: false
+      icon: person
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: form_contact
+  - collection: forms
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: closed
+      collection: forms
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: mail
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 4
+      sort_field: null
+      translations: null
+      unarchive_value: null
+  - collection: global
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: closed
       collection: global
       color: null
       display_template: null
@@ -264,7 +287,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 4
+      sort: 6
       sort_field: null
       translations: null
       unarchive_value: null
@@ -308,58 +331,12 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 2
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: header_links
-  - collection: home
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: home
-      color: null
-      display_template: null
-      group: page
-      hidden: false
-      icon: home
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: true
-      sort: 2
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      name: home
-  - collection: home_social_links
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: home_social_links
-      color: null
-      display_template: null
-      group: Relations
-      hidden: false
-      icon: share
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
       sort: 1
       sort_field: null
       translations: null
       unarchive_value: null
     schema:
-      name: home_social_links
+      name: header_links
   - collection: links
     meta:
       accountability: all
@@ -377,25 +354,71 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 2
+      sort: 4
       sort_field: null
       translations: null
       unarchive_value: draft
     schema:
       name: links
-  - collection: page
+  - collection: page_contact
     meta:
       accountability: all
       archive_app_filter: true
       archive_field: null
       archive_value: null
       collapse: open
-      collection: page
+      collection: page_contact
       color: null
       display_template: null
-      group: null
+      group: single_pages
       hidden: false
-      icon: note
+      icon: mail
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: true
+      sort: 2
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: page_contact
+  - collection: page_home
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: page_home
+      color: null
+      display_template: null
+      group: single_pages
+      hidden: false
+      icon: home
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: true
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      name: page_home
+  - collection: page_home_social_links
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: page_home_social_links
+      color: null
+      display_template: null
+      group: Relations
+      hidden: false
+      icon: share
       item_duplication_fields: null
       note: null
       preview_url: null
@@ -404,6 +427,8 @@ collections:
       sort_field: null
       translations: null
       unarchive_value: null
+    schema:
+      name: page_home_social_links
   - collection: pages
     meta:
       accountability: all
@@ -414,40 +439,19 @@ collections:
       collection: pages
       color: null
       display_template: '{{title}}'
-      group: page
+      group: null
       hidden: false
       icon: text_fields
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 3
       sort_field: null
       translations: null
       unarchive_value: draft
     schema:
       name: pages
-  - collection: project
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: project
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: code_blocks
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: 1
-      sort_field: null
-      translations: null
-      unarchive_value: null
   - collection: project_relations
     meta:
       accountability: all
@@ -458,14 +462,14 @@ collections:
       collection: project_relations
       color: null
       display_template: null
-      group: project
+      group: null
       hidden: true
       icon: folder
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 3
+      sort: 10
       sort_field: null
       translations: null
       unarchive_value: null
@@ -479,7 +483,7 @@ collections:
       collection: project_tags
       color: null
       display_template: '{{text}}'
-      group: project
+      group: Other
       hidden: false
       icon: tag
       item_duplication_fields: null
@@ -502,14 +506,14 @@ collections:
       collection: projects
       color: null
       display_template: '{{name}}'
-      group: project
+      group: null
       hidden: false
       icon: code
       item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 2
       sort_field: null
       translations: null
       unarchive_value: draft
@@ -584,6 +588,27 @@ collections:
       unarchive_value: null
     schema:
       name: projects_related_projects
+  - collection: single_pages
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: closed
+      collection: single_pages
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: note
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 5
+      sort_field: null
+      translations: null
+      unarchive_value: null
   - collection: social_links
     meta:
       accountability: all
@@ -601,7 +626,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 3
       sort_field: null
       translations: null
       unarchive_value: draft
@@ -624,13 +649,70 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 8
+      sort: 9
       special:
         - m2m
       translations: null
       validation: null
       validation_message: null
       width: full
+  - collection: blog_post_tags
+    field: colour
+    type: string
+    meta:
+      collection: blog_post_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: colour
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Blue Grey
+            value: blueGrey
+          - text: Red
+            value: red
+          - text: Green
+            value: green
+          - text: Orange
+            value: orange
+          - text: Blue
+            value: blue
+          - text: Purple
+            value: purple
+          - text: Pink
+            value: pink
+          - text: White
+            value: white
+          - text: Yellow
+            value: yellow
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: colour
+      table: blog_post_tags
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: blog_post_tags
     field: date_created
     type: timestamp
@@ -751,6 +833,45 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: blog_post_tags
+    field: order
+    type: integer
+    meta:
+      collection: blog_post_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: blog_post_tags
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: blog_post_tags
     field: slug
     type: string
     meta:
@@ -766,7 +887,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 6
+      sort: 5
       special: null
       translations: null
       validation: null
@@ -825,7 +946,7 @@ fields:
             value: archived
       readonly: false
       required: true
-      sort: 7
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -2117,6 +2238,237 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: form_contact
+    field: date_created
+    type: timestamp
+    meta:
+      collection: form_contact
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: true
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 2
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: form_contact
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: form_contact
+    field: email
+    type: string
+    meta:
+      collection: form_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: email
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: email
+      table: form_contact
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: form_contact
+    field: id
+    type: uuid
+    meta:
+      collection: form_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: form_contact
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: form_contact
+    field: message
+    type: text
+    meta:
+      collection: form_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: message
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: true
+      required: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: message
+      table: form_contact
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: form_contact
+    field: name
+    type: string
+    meta:
+      collection: form_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: name
+      table: form_contact
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: form_contact
+    field: subject
+    type: string
+    meta:
+      collection: form_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: subject
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: subject
+      table: form_contact
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: header
     field: date_created
     type: timestamp
@@ -2502,385 +2854,6 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: home
-    field: date_created
-    type: timestamp
-    meta:
-      collection: home
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_created
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 2
-      special:
-        - date-created
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_created
-      table: home
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home
-    field: date_updated
-    type: timestamp
-    meta:
-      collection: home
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_updated
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 3
-      special:
-        - date-updated
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_updated
-      table: home
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home
-    field: greeter_content
-    type: text
-    meta:
-      collection: home
-      conditions: null
-      display: null
-      display_options: null
-      field: greeter_content
-      group: null
-      hidden: false
-      interface: input-rich-text-md
-      note: null
-      options:
-        toolbar:
-          - bold
-          - code
-          - empty
-          - heading
-          - italic
-          - link
-          - strikethrough
-      readonly: false
-      required: true
-      sort: 5
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: greeter_content
-      table: home
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home
-    field: greeter_title
-    type: string
-    meta:
-      collection: home
-      conditions: null
-      display: null
-      display_options: null
-      field: greeter_title
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 4
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: greeter_title
-      table: home
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home
-    field: id
-    type: uuid
-    meta:
-      collection: home
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: home
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home
-    field: social_links
-    type: alias
-    meta:
-      collection: home
-      conditions: null
-      display: null
-      display_options: null
-      field: social_links
-      group: null
-      hidden: false
-      interface: list-m2m
-      note: null
-      options: null
-      readonly: false
-      required: true
-      sort: 6
-      special:
-        - m2m
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-  - collection: home_social_links
-    field: home_id
-    type: uuid
-    meta:
-      collection: home_social_links
-      conditions: null
-      display: null
-      display_options: null
-      field: home_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: home_id
-      table: home_social_links
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: home
-      foreign_key_column: id
-  - collection: home_social_links
-    field: id
-    type: integer
-    meta:
-      collection: home_social_links
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: home_social_links
-      data_type: integer
-      default_value: nextval('home_social_links_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home_social_links
-    field: order
-    type: integer
-    meta:
-      collection: home_social_links
-      conditions: null
-      display: null
-      display_options: null
-      field: order
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options:
-        min: 1
-      readonly: false
-      required: true
-      sort: 4
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: order
-      table: home_social_links
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: home_social_links
-    field: social_links_id
-    type: uuid
-    meta:
-      collection: home_social_links
-      conditions: null
-      display: null
-      display_options: null
-      field: social_links_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: 3
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: social_links_id
-      table: home_social_links
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: social_links
-      foreign_key_column: id
   - collection: links
     field: date_created
     type: timestamp
@@ -3141,6 +3114,390 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: page_contact
+    field: content
+    type: text
+    meta:
+      collection: page_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: content
+      group: null
+      hidden: false
+      interface: input-rich-text-md
+      note: null
+      options:
+        toolbar:
+          - bold
+          - code
+          - empty
+          - heading
+          - italic
+          - link
+          - strikethrough
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: content
+      table: page_contact
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_contact
+    field: id
+    type: uuid
+    meta:
+      collection: page_contact
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: page_contact
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home
+    field: greeter_content
+    type: text
+    meta:
+      collection: page_home
+      conditions: null
+      display: null
+      display_options: null
+      field: greeter_content
+      group: null
+      hidden: false
+      interface: input-rich-text-md
+      note: null
+      options:
+        toolbar:
+          - blockquote
+          - bold
+          - code
+          - empty
+          - italic
+          - link
+          - strikethrough
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: greeter_content
+      table: page_home
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home
+    field: greeter_title
+    type: string
+    meta:
+      collection: page_home
+      conditions: null
+      display: null
+      display_options: null
+      field: greeter_title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: greeter_title
+      table: page_home
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home
+    field: id
+    type: uuid
+    meta:
+      collection: page_home
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: page_home
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home
+    field: social_links
+    type: alias
+    meta:
+      collection: page_home
+      conditions: null
+      display: null
+      display_options: null
+      field: social_links
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 4
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: page_home_social_links
+    field: id
+    type: integer
+    meta:
+      collection: page_home_social_links
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: page_home_social_links
+      data_type: integer
+      default_value: nextval('page_home_social_links_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home_social_links
+    field: order
+    type: integer
+    meta:
+      collection: page_home_social_links
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: page_home_social_links
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: page_home_social_links
+    field: page_home_id
+    type: uuid
+    meta:
+      collection: page_home_social_links
+      conditions: null
+      display: null
+      display_options: null
+      field: page_home_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: page_home_id
+      table: page_home_social_links
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: page_home
+      foreign_key_column: id
+  - collection: page_home_social_links
+    field: social_links_id
+    type: uuid
+    meta:
+      collection: page_home_social_links
+      conditions: null
+      display: null
+      display_options: null
+      field: social_links_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: social_links_id
+      table: page_home_social_links
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: social_links
+      foreign_key_column: id
   - collection: pages
     field: content
     type: text
@@ -3538,6 +3895,63 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: project_tags
+    field: colour
+    type: string
+    meta:
+      collection: project_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: colour
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Blue Grey
+            value: blueGrey
+          - text: Red
+            value: red
+          - text: Green
+            value: green
+          - text: Orange
+            value: orange
+          - text: Blue
+            value: blue
+          - text: Purple
+            value: purple
+          - text: Pink
+            value: pink
+          - text: White
+            value: white
+          - text: Yellow
+            value: yellow
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: colour
+      table: project_tags
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: project_tags
     field: date_created
     type: timestamp
     meta:
@@ -3657,6 +4071,45 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: project_tags
+    field: order
+    type: integer
+    meta:
+      collection: project_tags
+      conditions: null
+      display: null
+      display_options: null
+      field: order
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        min: 1
+      readonly: false
+      required: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: order
+      table: project_tags
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: project_tags
     field: projects
     type: alias
     meta:
@@ -3672,7 +4125,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 7
+      sort: 9
       special:
         - m2m
       translations: null
@@ -3754,7 +4207,7 @@ fields:
             value: archived
       readonly: false
       required: true
-      sort: 6
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -5332,33 +5785,33 @@ relations:
       constraint_name: header_links_links_id_foreign
       on_update: NO ACTION
       on_delete: CASCADE
-  - collection: home_social_links
-    field: home_id
-    related_collection: home
+  - collection: page_home_social_links
+    field: page_home_id
+    related_collection: page_home
     meta:
       junction_field: social_links_id
-      many_collection: home_social_links
-      many_field: home_id
+      many_collection: page_home_social_links
+      many_field: page_home_id
       one_allowed_collections: null
-      one_collection: home
+      one_collection: page_home
       one_collection_field: null
       one_deselect_action: delete
       one_field: social_links
       sort_field: null
     schema:
-      table: home_social_links
-      column: home_id
-      foreign_key_table: home
+      table: page_home_social_links
+      column: page_home_id
+      foreign_key_table: page_home
       foreign_key_column: id
-      constraint_name: home_social_links_home_id_foreign
+      constraint_name: page_home_social_links_page_home_id_foreign
       on_update: NO ACTION
       on_delete: CASCADE
-  - collection: home_social_links
+  - collection: page_home_social_links
     field: social_links_id
     related_collection: social_links
     meta:
-      junction_field: home_id
-      many_collection: home_social_links
+      junction_field: page_home_id
+      many_collection: page_home_social_links
       many_field: social_links_id
       one_allowed_collections: null
       one_collection: social_links
@@ -5367,11 +5820,11 @@ relations:
       one_field: null
       sort_field: null
     schema:
-      table: home_social_links
+      table: page_home_social_links
       column: social_links_id
       foreign_key_table: social_links
       foreign_key_column: id
-      constraint_name: home_social_links_social_links_id_foreign
+      constraint_name: page_home_social_links_social_links_id_foreign
       on_update: NO ACTION
       on_delete: CASCADE
   - collection: projects_project_tags
