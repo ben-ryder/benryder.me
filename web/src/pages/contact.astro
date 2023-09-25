@@ -1,0 +1,85 @@
+---
+import GlobalLayout from '@layouts/GlobalLayout.astro';
+import "./contact.scss"
+---
+
+<GlobalLayout title="Contact">
+		<h1>Contact Me</h1>
+
+		<noscript>
+			Javascript is currently disabled. You will not be able to use the contact form without Javascript enabled.
+		</noscript>
+
+		<form action="" id="contact-form js-required">
+				<div>
+					<label for="name">Name</label>
+					<input id="name" name="name" />
+				</div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" />
+        </div>
+        <div>
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" />
+        </div>
+        <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" />
+        </div>
+				<div>
+					<div class="h-captcha" data-sitekey={import.meta.env.PUBLIC_CAPTCHA_SITE_KEY} />
+					<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
+		</form>
+</GlobalLayout>
+
+<style>
+		/**
+	Hide content that requires Javascript. This class can then be removed from JS when loaded.
+	 */
+		.js-required {
+				display: none;
+		}
+</style>
+
+<script>
+	const contactForm = document.querySelector("#contact-form");
+	if (contactForm) {
+		contactForm.classList.remove("js-required");
+
+		contactForm.addEventListener('submit', async (e) => {
+			const data = new FormData(contactForm);
+
+			try {
+				const res = await fetch(import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT, {
+					method: 'POST',
+					headers:{
+						'Content-Type': 'application/json'
+					},
+					body: {
+						name: data.get('name'),
+						email: data.get('email'),
+						subject: data.get('subject'),
+						message: data.get('message'),
+						honeypot: data.get('honeypot'),
+						captcha: data.get('h-captcha-response')
+					}
+				});
+
+				if (!res.ok) {
+					alert("There was a problem submitting the form. Please try again later.")
+				}
+				else {
+					alert("There was a problem submitting the form. Please try again later.")
+				}
+			}
+			catch (e) {
+				alert("There was a problem submitting the form. Please try again later.")
+			}
+		})
+	}
+</script>
