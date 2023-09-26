@@ -5,7 +5,7 @@ import type {Homepage} from "@lib/api/types/content/homepage.ts";
 import type {SocialLink} from "@lib/api/types/content/social-link.ts";
 import type {Project} from "@lib/api/types/content/project.ts";
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
-import type {Tag, TagWithBlogPosts, TagWithProjects} from "@lib/api/types/content/tag.ts";
+import type {ProjectTag, BlogPostTag} from "@lib/api/types/content/tag.ts";
 import type {Link} from "@lib/api/types/content/link.ts";
 
 import {convertMarkdownToHTML} from "@lib/api/utils/convert-markdown.ts";
@@ -14,11 +14,11 @@ import type {
 	BlogPosts as DirectusBlogPost,
 	Footer as DirectusFooter,
 	Header as DirectusHeader,
-	Home as DirectusHome,
+	PageHome as DirectusHomePage,
 	Pages as DirectusPage,
 	Projects as DirectusProject,
 	ProjectTags as DirectusProjectTag,
-	BlogPostTags as DirectusBlogPostTag
+	BlogPostTags as DirectusBlogPostTag, ProjectTags
 } from "@lib/api/types/directus/generated.ts";
 
 
@@ -68,7 +68,7 @@ export class ResponseConverter {
 		}
 	}
 
-	static async convertSocialLinks(apiSocialLinks: DirectusHome['social_links']): Promise<SocialLink[]> {
+	static async convertSocialLinks(apiSocialLinks: DirectusHomePage['social_links']): Promise<SocialLink[]> {
 		return apiSocialLinks.map(apiSocialLink => {
 			return {
 				text: apiSocialLink.social_links_id.text,
@@ -87,7 +87,7 @@ export class ResponseConverter {
 		})
 	}
 
-	static async convertHomepage(apiHomepage: DirectusHome): Promise<Homepage> {
+	static async convertHomepage(apiHomepage: DirectusHomePage): Promise<Homepage> {
 		const greeterContentHtml = await convertMarkdownToHTML(apiHomepage.greeter_content);
 		const socialLinks = await ResponseConverter.convertSocialLinks(apiHomepage.social_links);
 
@@ -98,7 +98,7 @@ export class ResponseConverter {
 		}
 	}
 
-	static async convertProjectTag(apiProjectTag: DirectusProjectTag): Promise<TagWithProjects> {
+	static async convertProjectTag(apiProjectTag: DirectusProjectTag): Promise<ProjectTag> {
 		const projects: Project[] = []
 
 		for (const tagProject of apiProjectTag.projects) {
@@ -115,8 +115,8 @@ export class ResponseConverter {
 		}
 	}
 
-	static async convertProjectsProjectTags(apiProjectTags: DirectusProject['tags']): Promise<TagWithProjects[]> {
-		const tags: TagWithProjects[] = [];
+	static async convertProjectsProjectTags(apiProjectTags: DirectusProject['tags']): Promise<ProjectTag[]> {
+		const tags: ProjectTag[] = [];
 
 		for (const apiProjectTag of apiProjectTags) {
 			if (apiProjectTag?.project_tags_id) {
@@ -127,7 +127,7 @@ export class ResponseConverter {
 		return tags;
 	}
 
-	static async convertBlogPostTag(apiBlogPostTag: DirectusBlogPostTag): Promise<TagWithBlogPosts> {
+	static async convertBlogPostTag(apiBlogPostTag: DirectusBlogPostTag): Promise<BlogPostTag> {
 		const blogPosts: BlogPost[] = []
 
 		for (const tagBlogPost of apiBlogPostTag.blog_posts) {
@@ -144,8 +144,8 @@ export class ResponseConverter {
 		}
 	}
 
-	static async convertBlogPostsBlogPostTags(apiBlogPostTags: DirectusBlogPost['tags']): Promise<TagWithBlogPosts[]> {
-		const tags: TagWithBlogPosts[] = [];
+	static async convertBlogPostsBlogPostTags(apiBlogPostTags: DirectusBlogPost['tags']): Promise<BlogPostTag[]> {
+		const tags: BlogPostTag[] = [];
 
 		for (const apiBlogPostTag of apiBlogPostTags) {
 			if (apiBlogPostTag?.blog_posts_id) {
@@ -157,7 +157,7 @@ export class ResponseConverter {
 	}
 
 	static async convertBlogPostTags(apiBlogPostTags: DirectusBlogPostTag[]) {
-		const blogPostTags: TagWithBlogPosts[] = []
+		const blogPostTags: BlogPostTag[] = []
 		for (const blogPostTag of apiBlogPostTags) {
 			const tag = await ResponseConverter.convertBlogPostTag(blogPostTag)
 			blogPostTags.push(tag)
@@ -167,7 +167,7 @@ export class ResponseConverter {
 	}
 
 	static async convertProjectTags(apiProjectTags: DirectusProjectTag[]) {
-		const projectTags: TagWithProjects[] = []
+		const projectTags: ProjectTag[] = []
 		for (const projectTag of apiProjectTags) {
 			const tag = await ResponseConverter.convertProjectTag(projectTag)
 			projectTags.push(tag)

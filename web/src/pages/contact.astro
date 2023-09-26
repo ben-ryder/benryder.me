@@ -1,6 +1,5 @@
 ---
 import GlobalLayout from '@layouts/GlobalLayout.astro';
-import "./contact.scss"
 ---
 
 <GlobalLayout title="Contact">
@@ -10,7 +9,7 @@ import "./contact.scss"
 			Javascript is currently disabled. You will not be able to use the contact form without Javascript enabled.
 		</noscript>
 
-		<form action="" id="contact-form js-required">
+		<form action="" id="contact-form" class="js-required">
 				<div>
 					<label for="name">Name</label>
 					<input id="name" name="name" />
@@ -52,7 +51,17 @@ import "./contact.scss"
 		contactForm.classList.remove("js-required");
 
 		contactForm.addEventListener('submit', async (e) => {
+			e.preventDefault();
+
 			const data = new FormData(contactForm);
+			const body = JSON.stringify({
+				name: data.get('name'),
+				email: data.get('email'),
+				subject: data.get('subject'),
+				message: data.get('message'),
+				honeypot: data.get('honeypot'),
+				captcha: data.get('h-captcha-response')
+			})
 
 			try {
 				const res = await fetch(import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT, {
@@ -60,24 +69,22 @@ import "./contact.scss"
 					headers:{
 						'Content-Type': 'application/json'
 					},
-					body: {
-						name: data.get('name'),
-						email: data.get('email'),
-						subject: data.get('subject'),
-						message: data.get('message'),
-						honeypot: data.get('honeypot'),
-						captcha: data.get('h-captcha-response')
-					}
+					body: body
 				});
 
-				if (!res.ok) {
-					alert("There was a problem submitting the form. Please try again later.")
+				if (res.status === 204) {
+					alert("Thank you for submitting your request.")
+
+					// Clear the form and reset captcha
+					contactForm.reset()
+					hcaptcha.reset()
 				}
 				else {
 					alert("There was a problem submitting the form. Please try again later.")
 				}
 			}
 			catch (e) {
+				console.log(e)
 				alert("There was a problem submitting the form. Please try again later.")
 			}
 		})

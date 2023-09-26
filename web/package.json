@@ -16,5 +16,8 @@
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
     "unified": "^11.0.3"
+  },
+  "devDependencies": {
+    "@hcaptcha/types": "^1.0.3"
   }
 }

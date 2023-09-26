@@ -8,7 +8,7 @@ import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
 import type {
   BlogPosts as DirectusBlogPost,
   Header as DirectusHeader,
-  Home as DirectusHome,
+  PageHome as DirectusHomePage,
   Projects as DirectusProject,
   Pages as DirectusPage,
   Footer as DirectusFooter,
@@ -18,7 +18,7 @@ import type {
 
 import {ResponseConverter} from "@lib/api/response-converter.ts";
 import {Logger} from "@lib/logger.ts";
-import type {Tag, TagWithBlogPosts, TagWithProjects} from "@lib/api/types/content/tag.ts";
+import type {ProjectTag, BlogPostTag} from "@lib/api/types/content/tag.ts";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -128,8 +128,8 @@ export class APIClient {
   }
 
   async getHomepage(): Promise<Homepage> {
-    const res = await this._request<{ data: DirectusHome }>({
-      endpoint: '/items/home',
+    const res = await this._request<{ data: DirectusHomePage }>({
+      endpoint: '/items/page_home',
       query: {
         fields: "greeter_title,greeter_content,social_links.social_links_id.*"
       }
@@ -184,7 +184,7 @@ export class APIClient {
     return ResponseConverter.convertBlogPosts(res.data);
   }
 
-  async getProjectTags(): Promise<TagWithProjects[]> {
+  async getProjectTags(): Promise<ProjectTag[]> {
     const res = await this._request<{ data: DirectusProjectTag[] }>({
       endpoint: '/items/project_tags',
       query: {
@@ -195,7 +195,7 @@ export class APIClient {
     return ResponseConverter.convertProjectTags(res.data)
   }
 
-  async getBlogPostTags(): Promise<TagWithBlogPosts[]> {
+  async getBlogPostTags(): Promise<BlogPostTag[]> {
     const res = await this._request<{ data: DirectusBlogPostTag[] }>({
       endpoint: '/items/blog_post_tags',
       query: {

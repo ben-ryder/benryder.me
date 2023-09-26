@@ -16,11 +16,13 @@ export default async function verifyCaptcha(captchaEnv: CaptchaEnv, value: strin
                 'response': value
             }).toString()
         });
+        const data = await res.json()
 
-        return res.ok
+        return data?.success
     }
     catch (e) {
         // @todo: send some sort of error notification
+        console.log(e);
         return false;
     }
 }

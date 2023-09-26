@@ -1,8 +1,10 @@
 export type BlogPostTags = {
 	blog_posts: any[] | BlogPostsBlogPostTags[];
+	colour?: string | null;
 	date_created: string;
 	date_updated?: string | null;
 	id: string;
+	order?: number | null;
 	slug: string;
 	status: string;
 	text: string;
@@ -379,6 +381,15 @@ export type FooterLinks = {
 	order: number;
 };
 
+export type FormContact = {
+	date_created: string;
+	email: string;
+	id: string;
+	message: string;
+	name: string;
+	subject: string;
+};
+
 export type Header = {
 	date_created: string;
 	date_updated?: string | null;
@@ -395,22 +406,6 @@ export type HeaderLinks = {
 	order: number;
 };
 
-export type Home = {
-	date_created: string;
-	date_updated?: string | null;
-	greeter_content: string;
-	greeter_title: string;
-	id: string;
-	social_links: any[] | HomeSocialLinks[];
-};
-
-export type HomeSocialLinks = {
-	home_id: string | Home;
-	id: number;
-	order: number;
-	social_links_id: string | SocialLinks;
-};
-
 export type Links = {
 	date_created: string;
 	date_updated?: string | null;
@@ -418,6 +413,25 @@ export type Links = {
 	status: string;
 	text: string;
 	url: string;
+};
+
+export type PageContact = {
+	content: string;
+	id: string;
+};
+
+export type PageHome = {
+	greeter_content: string;
+	greeter_title: string;
+	id: string;
+	social_links: any[] | PageHomeSocialLinks[];
+};
+
+export type PageHomeSocialLinks = {
+	id: number;
+	order: number;
+	page_home_id: string | PageHome;
+	social_links_id: string | SocialLinks;
 };
 
 export type Pages = {
@@ -434,9 +448,11 @@ export type Pages = {
 };
 
 export type ProjectTags = {
+	colour?: string | null;
 	date_created: string;
 	date_updated?: string | null;
 	id: string;
+	order?: number | null;
 	projects: any[] | ProjectsProjectTags[];
 	slug: string;
 	status: string;
@@ -522,11 +538,13 @@ export type CustomDirectusTypes = {
 	directus_webhooks: DirectusWebhooks[];
 	footer: Footer;
 	footer_links: FooterLinks[];
+	form_contact: FormContact[];
 	header: Header;
 	header_links: HeaderLinks[];
-	home: Home;
-	home_social_links: HomeSocialLinks[];
 	links: Links[];
+	page_contact: PageContact;
+	page_home: PageHome;
+	page_home_social_links: PageHomeSocialLinks[];
 	pages: Pages[];
 	project_tags: ProjectTags[];
 	projects: Projects[];

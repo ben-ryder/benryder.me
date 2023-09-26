@@ -4,32 +4,57 @@ import verifyCaptcha from "./verify-captcha";
 
 const InvalidRequestError = createError('INVALID_REQUEST_ERROR', 'The request appears invalid or not genuine.', 400);
 
-export default defineHook(({ filter }, {env, exceptions }) => {
+const InvalidCaptchaConfig = createError('INVALID_REQUEST_ERROR', 'The captcha service is not set up correctly.', 500);
+const IncludedHoneypotError = createError('INVALID_REQUEST_ERROR', 'The request includes a honeypot value.', 400);
+const MissingCaptchaError = createError('INVALID_REQUEST_ERROR', 'The request is missing a captcha value.', 400);
+const FailedCaptchaError = createError('INVALID_REQUEST_ERROR', 'The captcha value supplied is not valid.', 400);
+
+interface RequestData {
+	name: string
+	email: string
+	message: string
+	honeypot?: string | null
+	captcha?: string | null
+}
+
+function getSafeError(environment: string, error: any) {
+	if (environment == 'dev') {
+		return new error()
+	}
+	else {
+		return new InvalidRequestError()
+	}
+}
+
+/**
+ * Define a Directus hook which intercepts adding a new contact form
+ * submission to check for a honeypot value or missing/failed captcha.
+ */
+export default defineHook(({ filter }, {env }) => {
 	filter('form_contact.items.create', async (input) => {
-		if (input.honeypot) {
-			throw new InvalidRequestError()
+		const requestData = input as RequestData;
+		const environment = env.ENVIRONMENT || 'live';
+
+		if (requestData.honeypot) {
+			throw getSafeError(environment, IncludedHoneypotError)
 		}
 
-		if (!input.captcha) {
-			throw new InvalidRequestError()
+		if (!requestData.captcha) {
+			throw getSafeError(environment, MissingCaptchaError)
 		}
 
-		// Verify captcha value with service
-		// https://docs.hcaptcha.com/#verify-the-user-response-server-side
-		const captchaSecret = env.CAPTCHA_SECRET;
-		const captchaUrl = env.CAPTCHA_VERIFICATION_URL;
-		if (!captchaUrl || !captchaSecret) {
+		if (!env.CAPTCHA_VERIFICATION_URL || !env.CAPTCHA_SECRET) {
 			// @todo - trigger some sort of error notification
-			throw new InvalidRequestError()
+			throw getSafeError(environment, InvalidCaptchaConfig)
 		}
 
 		const isValidCaptcha = await verifyCaptcha({
-			url: captchaUrl,
-			secret: captchaSecret
-		}, input.captcha);
+			url: env.CAPTCHA_VERIFICATION_URL,
+			secret: env.CAPTCHA_SECRET
+		}, requestData.captcha);
 
 		if (!isValidCaptcha) {
-			throw new InvalidRequestError()
+			throw getSafeError(environment, FailedCaptchaError)
 		}
 
 		return input;
