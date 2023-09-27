@@ -1,6 +1,7 @@
 ---
-import GlobalLayout from '@layouts/GlobalLayout.astro';
+import GlobalLayout from '../layouts/GlobalLayout/GlobalLayout.astro';
 import {apiClient} from "../lib/api/api-client";
+import Greeter from "../components/Greeter/Greeter.astro";
 
 const homepage = await apiClient.getHomepage()
 const featuredProjects = await apiClient.getFeaturedProjects()
@@ -8,42 +9,34 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 ---
 
 <GlobalLayout title="Home">
-		<div>
-			<h1>{homepage.greeterTitle}</h1>
-			<div set:html={homepage.greeterContentHtml} />
-		</div>
+	<Greeter
+		heading={homepage.greeterTitle}
+		contentHtml={homepage.greeterContentHtml}
+		socialLinks={homepage.socialLinks}
+	/>
 
-		<div>
-			<h2>Find me online:</h2>
-			<ul>
-				{homepage.socialLinks.map(socialLink =>
-					<li><a href={socialLink.url} aria-label={socialLink.text}><span set:html={socialLink.iconSvg}/></a></li>
-				)}
-			</ul>
-		</div>
+	<div class="container">
+		<h2>Projects</h2>
+		<ul>
+			{featuredProjects.map(project =>
+				<li>
+					<a href={`/projects/${project.slug}`}>{project.name}</a>
+					<p>{project.description}</p>
+				</li>
+			)}
+		</ul>
+	</div>
 
-		<div>
-			<h2>Projects</h2>
-			<ul>
-				{featuredProjects.map(project =>
-					<li>
-						<a href={`/projects/${project.slug}`}>{project.name}</a>
-						<p>{project.description}</p>
-					</li>
-				)}
-			</ul>
-		</div>
-
-    <div>
-			<h2>Blog Posts</h2>
-			<ul>
-				{featuredBlogPosts.map(blogPost =>
-					<li>
-						<a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
-						<p>{blogPost.description}</p>
-					</li>
-				)}
-			</ul>
-    </div>
+	<div class="container">
+		<h2>Blog Posts</h2>
+		<ul>
+			{featuredBlogPosts.map(blogPost =>
+				<li>
+					<a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
+					<p>{blogPost.description}</p>
+				</li>
+			)}
+		</ul>
+	</div>
 
 </GlobalLayout>

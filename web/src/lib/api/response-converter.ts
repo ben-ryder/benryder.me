@@ -75,7 +75,7 @@ export class ResponseConverter {
 				return {
 					text: apiSocialLink.social_links_id.text,
 					url: apiSocialLink.social_links_id.url,
-					iconSvg: apiSocialLink.social_links_id.icon
+					iconCode: apiSocialLink.social_links_id.icon_code
 				}
 			})
 	}

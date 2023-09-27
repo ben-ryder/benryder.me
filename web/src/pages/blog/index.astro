@@ -1,6 +1,6 @@
 ---
 import {apiClient} from "@lib/api/api-client";
-import GlobalLayout from "@layouts/GlobalLayout.astro";
+import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 
 const blogPosts = await apiClient.getBlogPosts()
 const blogPostTags = await apiClient.getBlogPostTags()

@@ -501,7 +501,7 @@ export type ProjectsRelatedProjects = {
 export type SocialLinks = {
 	date_created: string;
 	date_updated?: string | null;
-	icon: string;
+	icon_code: string;
 	id: string;
 	status: string;
 	text?: string | null;

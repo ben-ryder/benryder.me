@@ -1,5 +1,6 @@
 ---
 import {apiClient} from "../lib/api/api-client";
+import TopBarMessage from "./TopBarMessage/TopBarMessage.astro";
 
 const header= await apiClient.getHeader()
 
@@ -7,10 +8,10 @@ const header= await apiClient.getHeader()
 
 <header>
 		{header.messagePromoHtml &&
-			<div class="promo-banner" set:html={header.messagePromoHtml} />
+			<TopBarMessage messageHtml={header.messagePromoHtml} />
 		}
 		<noscript>
-				<div class="no-script-banner" set:html={header.messageNoScriptHtml} />
+				<TopBarMessage type="warning" messageHtml={header.messageNoScriptHtml} />
 		</noscript>
 		<div class="top-bar">
         <div class="top-bar__logo">
@@ -26,5 +27,4 @@ const header= await apiClient.getHeader()
             </ul>
         </nav>
 		</div>
-    <hr />
 </header>

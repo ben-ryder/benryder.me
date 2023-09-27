@@ -1,0 +1,22 @@
+.top-bar-message {
+	background: var(--j-c-primary);
+	color: var(--j-c-primary-text);
+	padding: var(--j-space-4) var(--j-space-12);
+
+	&--warning {
+		background: var(--j-c-warning);
+	}
+
+	a {
+		color: inherit;
+
+		&:hover {
+			color: var(--j-c-primary-interaction-text);
+		}
+	}
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}

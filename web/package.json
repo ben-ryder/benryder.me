@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@ben-ryder/jigsaw": "^0.16.0-rc.5",
-    "@hcaptcha/types": "^1.0.3"
+    "@hcaptcha/types": "^1.0.3",
+    "sass": "^1.68.0"
   }
 }
