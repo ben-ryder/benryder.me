@@ -394,7 +394,6 @@ export type Header = {
 	date_created: string;
 	date_updated?: string | null;
 	id: string;
-	message_noscript: string;
 	message_promo?: string | null;
 	navigation_links: any[] | HeaderLinks[];
 };
@@ -422,7 +421,6 @@ export type PageContact = {
 
 export type PageHome = {
 	greeter_content: string;
-	greeter_title: string;
 	id: string;
 	social_links: any[] | PageHomeSocialLinks[];
 };

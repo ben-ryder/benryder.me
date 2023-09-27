@@ -1,6 +1,6 @@
 ---
 import {apiClient} from "../lib/api/api-client";
-import TopBarMessage from "./TopBarMessage/TopBarMessage.astro";
+import PromoMessage from "./PromoMessage/PromoMessage.astro";
 
 const header= await apiClient.getHeader()
 
@@ -8,11 +8,8 @@ const header= await apiClient.getHeader()
 
 <header>
 		{header.messagePromoHtml &&
-			<TopBarMessage messageHtml={header.messagePromoHtml} />
+			<PromoMessage messageHtml={header.messagePromoHtml} />
 		}
-		<noscript>
-				<TopBarMessage type="warning" messageHtml={header.messageNoScriptHtml} />
-		</noscript>
 		<div class="top-bar">
         <div class="top-bar__logo">
             <p><a href="/">Ben Ryder</a></p>

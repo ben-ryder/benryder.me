@@ -53,7 +53,6 @@ export class ResponseConverter {
 	}
 
 	static async convertHeader(apiHeader: DirectusHeader): Promise<Header> {
-		const messageNoScriptHtml = await convertMarkdownToHTML(apiHeader.message_noscript);
 		const navigationLinks = await ResponseConverter.convertLinks(apiHeader.navigation_links);
 
 		let messagePromoHtml = null;
@@ -63,7 +62,6 @@ export class ResponseConverter {
 
 		return {
 			messagePromoHtml: messagePromoHtml,
-			messageNoScriptHtml: messageNoScriptHtml,
 			navigationLinks: navigationLinks,
 		}
 	}
@@ -96,7 +94,6 @@ export class ResponseConverter {
 		const socialLinks = await ResponseConverter.convertSocialLinks(apiHomepage.social_links);
 
 		return {
-			greeterTitle: apiHomepage.greeter_title,
 			greeterContentHtml,
 			socialLinks,
 		}
