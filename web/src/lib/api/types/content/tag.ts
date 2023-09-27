@@ -6,10 +6,12 @@ export interface ProjectTag {
 	text: string
 	slug: string
 	projects: Project[]
+	order?: number | null
 }
 
 export interface BlogPostTag {
 	text: string
 	slug: string
 	blogPosts: BlogPost[]
+	order?: number | null
 }

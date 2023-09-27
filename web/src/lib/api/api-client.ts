@@ -109,7 +109,7 @@ export class APIClient {
     const res = await this._request<{data: DirectusFooter}>({
       endpoint: '/items/footer',
       query: {
-        'fields': 'signoff_content,navigation_links.links_id.text,navigation_links.links_id.url'
+        'fields': 'signoff_content,navigation_links.links_id.*,navigation_links.order'
       },
     });
 
@@ -120,7 +120,7 @@ export class APIClient {
     const res = await this._request<{ data: DirectusHeader }>({
       endpoint: '/items/header',
       query: {
-        'fields': 'message_noscript,message_promo,navigation_links.links_id.text,navigation_links.links_id.url'
+        'fields': 'message_noscript,message_promo,navigation_links.links_id.*,navigation_links.order'
       }
     });
 
@@ -131,7 +131,7 @@ export class APIClient {
     const res = await this._request<{ data: DirectusHomePage }>({
       endpoint: '/items/page_home',
       query: {
-        fields: "greeter_title,greeter_content,social_links.social_links_id.*"
+        fields: "greeter_title,greeter_content,social_links.social_links_id.*,social_links.order"
       }
     });
 

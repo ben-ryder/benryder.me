@@ -17,7 +17,7 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 			<h2>Find me online:</h2>
 			<ul>
 				{homepage.socialLinks.map(socialLink =>
-					<li><a href={socialLink.url}>{socialLink.text}</a> - icon {socialLink.icon}</li>
+					<li><a href={socialLink.url} aria-label={socialLink.text}><span set:html={socialLink.iconSvg}/></a></li>
 				)}
 			</ul>
 		</div>

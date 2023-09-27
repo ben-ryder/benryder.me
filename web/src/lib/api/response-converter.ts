@@ -18,7 +18,7 @@ import type {
 	Pages as DirectusPage,
 	Projects as DirectusProject,
 	ProjectTags as DirectusProjectTag,
-	BlogPostTags as DirectusBlogPostTag, ProjectTags
+	BlogPostTags as DirectusBlogPostTag, ProjectTags, PageHomeSocialLinks
 } from "@lib/api/types/directus/generated.ts";
 
 
@@ -69,22 +69,26 @@ export class ResponseConverter {
 	}
 
 	static async convertSocialLinks(apiSocialLinks: DirectusHomePage['social_links']): Promise<SocialLink[]> {
-		return apiSocialLinks.map(apiSocialLink => {
-			return {
-				text: apiSocialLink.social_links_id.text,
-				url: apiSocialLink.social_links_id.url,
-				iconSvg: apiSocialLink.social_links_id.icon
-			}
-		})
+		return apiSocialLinks
+			.sort((a, b) => a.order - b.order)
+			.map(apiSocialLink => {
+				return {
+					text: apiSocialLink.social_links_id.text,
+					url: apiSocialLink.social_links_id.url,
+					iconSvg: apiSocialLink.social_links_id.icon
+				}
+			})
 	}
 
 	static async convertLinks(apiLinks: DirectusHeader['navigation_links'] | DirectusFooter['navigation_links']): Promise<Link[]> {
-		return apiLinks.map(apiLink => {
-			return {
-				text: apiLink.links_id.text,
-				url: apiLink.links_id.url
-			}
-		})
+		return apiLinks
+			.sort((a, b) => a.order - b.order)
+			.map(apiLink => {
+				return {
+					text: apiLink.links_id.text,
+					url: apiLink.links_id.url
+				}
+			})
 	}
 
 	static async convertHomepage(apiHomepage: DirectusHomePage): Promise<Homepage> {
@@ -112,11 +116,12 @@ export class ResponseConverter {
 			text: apiProjectTag.text,
 			slug: apiProjectTag.slug,
 			projects,
+			order: apiProjectTag.order
 		}
 	}
 
 	static async convertProjectsProjectTags(apiProjectTags: DirectusProject['tags']): Promise<ProjectTag[]> {
-		const tags: ProjectTag[] = [];
+		let tags: ProjectTag[] = [];
 
 		for (const apiProjectTag of apiProjectTags) {
 			if (apiProjectTag?.project_tags_id) {
@@ -124,6 +129,10 @@ export class ResponseConverter {
 				tags.push(tag)
 			}
 		}
+
+		// Ensure tags are sorted by the order
+		tags = tags.sort((a, b) => a.order - b.order)
+
 		return tags;
 	}
 
@@ -141,11 +150,12 @@ export class ResponseConverter {
 			text: apiBlogPostTag.text,
 			slug: apiBlogPostTag.slug,
 			blogPosts,
+			order: apiBlogPostTag.order
 		}
 	}
 
 	static async convertBlogPostsBlogPostTags(apiBlogPostTags: DirectusBlogPost['tags']): Promise<BlogPostTag[]> {
-		const tags: BlogPostTag[] = [];
+		let tags: BlogPostTag[] = [];
 
 		for (const apiBlogPostTag of apiBlogPostTags) {
 			if (apiBlogPostTag?.blog_posts_id) {
@@ -153,27 +163,39 @@ export class ResponseConverter {
 				tags.push(tag)
 			}
 		}
+
+		// Ensure tags are sorted by the order
+		tags = tags.sort((a, b) => a.order - b.order)
+
 		return tags;
 	}
 
 	static async convertBlogPostTags(apiBlogPostTags: DirectusBlogPostTag[]) {
-		const blogPostTags: BlogPostTag[] = []
+		let tags: BlogPostTag[] = []
+
 		for (const blogPostTag of apiBlogPostTags) {
 			const tag = await ResponseConverter.convertBlogPostTag(blogPostTag)
-			blogPostTags.push(tag)
+			tags.push(tag)
 		}
 
-		return blogPostTags;
+		// Ensure tags are sorted by the order
+		tags = tags.sort((a, b) => a.order - b.order)
+
+		return tags;
 	}
 
 	static async convertProjectTags(apiProjectTags: DirectusProjectTag[]) {
-		const projectTags: ProjectTag[] = []
+		let tags: ProjectTag[] = []
+
 		for (const projectTag of apiProjectTags) {
 			const tag = await ResponseConverter.convertProjectTag(projectTag)
-			projectTags.push(tag)
+			tags.push(tag)
 		}
 
-		return projectTags;
+		// Ensure tags are sorted by the order
+		tags = tags.sort((a, b) => a.order - b.order)
+
+		return tags;
 	}
 
 	static async convertProject(apiProject: DirectusProject): Promise<Project> {
