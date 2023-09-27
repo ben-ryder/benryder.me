@@ -7,8 +7,10 @@
 !.env.example
 
 # Setup Scripts
-/scripts/*.sql
-!/cms/scripts/example.setup.sql
+scripts/*.sql
+!scripts/setup.sql
+!scripts/setup_test.sql
 
 # Content
 content/data
+content/cms_benryder_me.sql

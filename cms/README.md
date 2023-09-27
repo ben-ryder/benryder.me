@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Ensure postgres is installed and set up locally
+1. Ensure postgres is installed and set up locally.
 ```bash
 # Install postgres
 sudo apt install postgresql postgresql-contrib
@@ -12,36 +12,33 @@ sudo systemctl start postgresql.service
 sudo -u postgres createuser --interactive
 ```
 
-2. Create the database that Directus will use
+2. Add `local.benryder.me` to the `/etc/hosts` file so captcha can work locally:
 ```bash
-# Copy the example setup
-cp ./scripts/example.setup.sql ./scripts/setup.sql
-
-# Edit the setup.sql file as required
-
-# Run the setup to create the user & database
-psql postgres -f ./scripts/setup.sql
+127.0.0.1       local.benryder.me
 ```
 
-3. Copy the example setup script
+3. Create the database & user that Directus will use.
 ```bash
-cp ./scripts/example.setup.sql ./scripts/setup.sql
+# This will create a cms_benryder_me db & user.
+npm run db:init
 ```
 
-4. Edit the setup script as required
-
-5. Run the setup to create the user & database
-```bash
-psql postgres -f ./scripts/setup.sql
-```
-
-6. Copy the `.env.example` file and edit as required
+4. Copy the `.env.example` file and edit as required.
 ```bash
 cp .env.example .env
 ```
 
-6. Set up the database and then start
+5. Set up the database and then start.
 ```bash
+# This will bootstrap Directus and import the latest config snapshot.
 npm run setup
+
+# This will start the project... obviously.
 npm run start
+```
+
+6. Rather than setting up a fresh database, you could also restore an existing local backup:
+```bash
+# This will restore an existing backup done with `npm run db:dump`.
+npm run db:restore
 ```

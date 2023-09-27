@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "directus start",
-    "d": "directus",
+    "directus": "directus",
     "cim": "directus schema apply ./config/snapshot.yaml -y",
     "cex": "directus schema snapshot ./config/snapshot.yaml -y",
     "setup": "directus bootstrap && npm run cim",
-    "deploy": "fly deploy --remote-only"
+    "deploy": "fly deploy --remote-only",
+    "db:init": "psql postgres -f ./scripts/setup.sql",
+    "db:dump": "pg_dump cms_benryder_me > ./content/cms_benryder_me.sql",
+    "db:restore": "psql cms_benryder_me < ./content/cms_benryder_me.sql"
   },
   "repository": {
     "type": "git",
@@ -22,7 +25,7 @@
   },
   "homepage": "https://github.com/Ben-Ryder/benryder.me#readme",
   "dependencies": {
-    "directus": "^10.6.2",
+    "directus": "^10.6.3",
     "pg": "^8.11.3"
   }
 }
