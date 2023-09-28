@@ -1,27 +1,15 @@
 ---
 import {apiClient} from "../lib/api/api-client";
 import PromoMessage from "./PromoMessage/PromoMessage.astro";
+import Header from "./Header/Header.astro";
 
 const header= await apiClient.getHeader()
 
 ---
 
-<header>
+<header class="brm-layout__header">
 		{header.messagePromoHtml &&
 			<PromoMessage messageHtml={header.messagePromoHtml} />
 		}
-		<div class="top-bar">
-        <div class="top-bar__logo">
-            <p><a href="/">Ben Ryder</a></p>
-        </div>
-        <nav class="top-bar__navigation">
-            <ul class="top-bar__menu">
-							{header.navigationLinks.map(link => (
-									<li class="top-bar__menu-item">
-											<a class="top-bar__meni-link" href={link.url}>{link.text}</a>
-									</li>
-							))}
-            </ul>
-        </nav>
-		</div>
+		<Header links={header.navigationLinks} />
 </header>

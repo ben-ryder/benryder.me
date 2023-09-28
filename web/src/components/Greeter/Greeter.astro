@@ -10,26 +10,27 @@ interface Props {
 
 const { heading, contentHtml, socialLinks }: Props = Astro.props;
 ---
+<div class="max-width-container">
+	<div class="greeter">
+		<h1 class="greeter__heading">
+			<span class="greeter__heading-hello">👋 Hello</span>
+			<span class="greeter__heading-comma">,&nbsp;</span>
+			<span class="greeter__heading-me">I'm <span class="greeter__heading-name">Ben Ryder</span></span>
+		</h1>
 
-<div class="greeter max-width-container">
-	<h1 class="greeter__heading">
-		<span class="greeter__heading-hello">👋 Hello</span>
-		<span class="greeter__heading-comma">,&nbsp;</span>
-		<span class="greeter__heading-me">I'm <span class="greeter__heading-name">Ben Ryder</span></span>
-	</h1>
+		<div class="greeter__content j-prose" set:html={contentHtml} />
 
-	<div class="greeter__content j-prose" set:html={contentHtml} />
-
-	<div class="social-links">
-		<h2 class="social-links__label">Find me online:</h2>
-		<ul class="social-links__list">
-			{socialLinks.map(socialLink =>
-				<li class="social-links__item">
-					<a class="social-links__link" href={socialLink.url} aria-label={socialLink.text}>
-						<span class={`social-links__icon icon-${socialLink.iconCode}`} />
-					</a>
-				</li>
-			)}
-		</ul>
+		<div class="social-links">
+			<h2 class="social-links__label">Find me online:</h2>
+			<ul class="social-links__list">
+				{socialLinks.map(socialLink =>
+					<li class="social-links__item">
+						<a class="social-links__link" href={socialLink.url} aria-label={socialLink.text}>
+							<span class={`social-links__icon icon-${socialLink.iconCode}`} />
+						</a>
+					</li>
+				)}
+			</ul>
+		</div>
 	</div>
 </div>
