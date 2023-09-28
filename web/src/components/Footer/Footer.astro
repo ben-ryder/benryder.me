@@ -1,0 +1,21 @@
+---
+import "./Footer.scss"
+
+import {apiClient} from "@lib/api/api-client";
+const footer= await apiClient.getFooter()
+---
+
+<div class="max-width-container">
+	<div class="footer">
+		<nav class="footer__navigation">
+			<ul class="footer__navigation-menu">
+				{footer.navigationLinks.map(link => (
+						<li class="footer__navigation-item">
+							<a class="footer__navigation-link" href={link.url}>{link.text}</a>
+						</li>
+				))}
+			</ul>
+		</nav>
+		<div class="footer__sign-off" set:html={footer.signOffHtml} />
+	</div>
+</div>

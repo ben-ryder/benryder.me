@@ -127,6 +127,12 @@
       "css": "x",
       "code": 61465,
       "src": "entypo"
+    },
+    {
+      "uid": "130380e481a7defc690dfb24123a1f0c",
+      "css": "circle",
+      "code": 61472,
+      "src": "fontawesome"
     }
   ]
 }

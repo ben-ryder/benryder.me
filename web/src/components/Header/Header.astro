@@ -11,9 +11,9 @@ const { links }: Props = Astro.props;
 
 <div class="max-width-container">
 	<div class="header">
-		<!-- div class="header__logo">
-			<p><a href="/">Ben Ryder</a></p>
-		</div-->
+		<div class="header__logo">
+			<a href="/" aria-label="Home" class="header__logo-link"><span class="header__logo-icon icon-circle" /></a>
+		</div>
 		<nav class="header__navigation">
 			<ul class="header__navigation-menu">
 				{links.map(link => (

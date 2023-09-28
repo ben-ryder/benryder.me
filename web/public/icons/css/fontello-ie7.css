@@ -29,3 +29,4 @@
 .icon-info { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf017;&nbsp;'); }
 .icon-menu { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf018;&nbsp;'); }
 .icon-x { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf019;&nbsp;'); }
+.icon-circle { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf020;&nbsp;'); }

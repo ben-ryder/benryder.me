@@ -16,5 +16,9 @@ const page: Page = Astro.props;
 ---
 
 <GlobalLayout title={page.title}>
-		<div set:html={page.contentHtml} />
+	<div class="max-width-container">
+		<div class="j-prose">
+			<div set:html={page.contentHtml} />
+		</div>
+	</div>
 </GlobalLayout>
