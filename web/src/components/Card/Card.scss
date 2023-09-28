@@ -1,0 +1,27 @@
+.card {
+	padding: var(--j-space-6) 0;
+
+	&__link-wrapper {
+		color: var(--j-c-text);
+		text-decoration: none;
+		display: block;
+		transition: all var(--j-motion-duration-medium) var(--j-motion-ease-in-out);
+		padding-right: var(--j-space-8);
+
+		&:hover,
+		&:focus-visible {
+			padding-left: var(--j-space-8);
+			padding-right: 0;
+		}
+	}
+
+	&__title {
+		font-size: var(--j-text-size-md);
+		font-weight: bold;
+		color: var(--j-c-text-heading);
+	}
+
+	&__description {
+		margin-top: var(--j-space-4);
+	}
+}

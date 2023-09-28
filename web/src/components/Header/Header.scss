@@ -7,9 +7,13 @@
   flex-direction: column;
 
   &__logo {
-    font-size: var(--j-text-size-4xl);
-    margin-left: -12px;
-    margin-right: var(--j-space-2);
+    margin-right: var(--j-space-8);
+    max-width: 60px;
+
+    &-image {
+      max-width: 100%;
+      clip-path: circle();
+    }
 
     &-link {
       color: var(--j-c-primary);

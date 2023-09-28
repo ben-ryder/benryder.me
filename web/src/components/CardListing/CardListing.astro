@@ -1,0 +1,24 @@
+---
+import "./CardListing.scss"
+import {CardProps} from "../Card/Card";
+import Card from "../Card/Card.astro";
+
+interface Props {
+	viewAllLink: string
+	title: string
+	cards: CardProps[]
+}
+
+const { link, title, cards }: Props = Astro.props;
+---
+
+<div class="max-width-container">
+	<div class="card-listing">
+		<h2 class="card-listing__title">{title}</h2>
+		<div class="card-listing__cards">
+			{cards.map(card =>
+				<Card {...card} />
+			)}
+		</div>
+	</div>
+</div>

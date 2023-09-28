@@ -2,6 +2,7 @@
 import GlobalLayout from '../layouts/GlobalLayout/GlobalLayout.astro';
 import {apiClient} from "../lib/api/api-client";
 import Greeter from "../components/Greeter/Greeter.astro";
+import CardListing from "../components/CardListing/CardListing.astro";
 
 const homepage = await apiClient.getHomepage()
 const featuredProjects = await apiClient.getFeaturedProjects()
@@ -10,33 +11,32 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 
 <GlobalLayout title="Home">
 	<Greeter
-		heading={homepage.greeterTitle}
 		contentHtml={homepage.greeterContentHtml}
 		socialLinks={homepage.socialLinks}
 	/>
 
-	<div class="container">
-		<h2>Projects</h2>
-		<ul>
-			{featuredProjects.map(project =>
-				<li>
-					<a href={`/projects/${project.slug}`}>{project.name}</a>
-					<p>{project.description}</p>
-				</li>
-			)}
-		</ul>
-	</div>
+	<CardListing
+		title="Projects"
+		viewMoreLink="/projects"
+		cards={featuredProjects.map(project => {
+			return {
+				title: project.name,
+				description: project.description,
+				link: `/projects/${project.slug}`
+			}
+		})}
+	/>
 
-	<div class="container">
-		<h2>Blog Posts</h2>
-		<ul>
-			{featuredBlogPosts.map(blogPost =>
-				<li>
-					<a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
-					<p>{blogPost.description}</p>
-				</li>
-			)}
-		</ul>
-	</div>
+	<CardListing
+		title="Blog Posts"
+		viewMoreLink="/blog"
+		cards={featuredBlogPosts.map(blogPost => {
+			return {
+				title: blogPost.title,
+				description: blogPost.description,
+				link: `/blog/${blogPost.slug}`
+			}
+		})}
+	/>
 
 </GlobalLayout>
