@@ -30,3 +30,10 @@ const { title } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<script>
+	const jsFeatures = Array.from(document.querySelectorAll('.js-required'));
+	jsFeatures.map(feature => {
+		feature.classList.remove('js-required')
+	})
+</script>

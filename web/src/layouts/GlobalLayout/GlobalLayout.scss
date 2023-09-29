@@ -4,3 +4,22 @@
 	margin: auto;
 	padding: 0 var(--j-space-6);
 }
+
+.noscript {
+	background-color: var(--j-c-background-b2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--j-space-8);
+	text-align: center;
+	font-family: var(--j-text-font-monospace);
+	font-size: var(--j-text-size-sm);
+	line-height: 1.5;
+}
+
+/**
+Hide content that requires Javascript. This class can then be removed from JS when loaded.
+*/
+.js-required {
+	display: none;
+}
