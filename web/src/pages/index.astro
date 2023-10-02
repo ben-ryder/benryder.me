@@ -17,7 +17,8 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 
 	<CardListing
 		title="Projects"
-		viewMoreLink="/projects"
+		viewAllText="All Projects"
+		viewAllLink="/projects"
 		cards={featuredProjects.map(project => {
 			return {
 				title: project.name,
@@ -29,7 +30,8 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 
 	<CardListing
 		title="Blog Posts"
-		viewMoreLink="/blog"
+		viewAllText="All Blog Posts"
+		viewAllLink="/blog"
 		cards={featuredBlogPosts.map(blogPost => {
 			return {
 				title: blogPost.title,

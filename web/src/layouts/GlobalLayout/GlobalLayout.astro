@@ -23,11 +23,15 @@ const { title } = Astro.props;
 		<title>{title} | Ben Ryder</title>
 	</head>
 	<body class="brm-layout">
-		<Header />
+		<div class="brm-layout__header">
+			<Header />
+		</div>
 		<main class="brm-layout__main">
 				<slot />
 		</main>
-		<Footer />
+		<div class="brm-layout__footer">
+			<Footer />
+		</div>
 	</body>
 </html>
 

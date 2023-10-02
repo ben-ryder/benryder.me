@@ -1,33 +1,39 @@
 ---
+import {JBadge} from "@ben-ryder/jigsaw-react";
+
 import {apiClient} from "@lib/api/api-client";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
+import CardListing from "../../components/CardListing/CardListing.astro";
 
 const projects = await apiClient.getProjects()
 const projectTags = await apiClient.getProjectTags()
 ---
 
 <GlobalLayout title="Projects">
-		<h1>Projects</h1>
 
-    <p>Tags:</p>
-    <div>
-			<ul>
-				{projectTags.map(projectTag =>
-					<li>
-							<a href={`/projects/tags/${projectTag.slug}`}>{projectTag.text}</a>
-					</li>
-				)}
-			</ul>
-    </div>
+	<p>Tags:</p>
+	<div>
+		<ul>
+			{projectTags.map(projectTag =>
+				<li>
+					<JBadge
+						text={projectTag.text}
+						variant={projectTag.colour}
+						href={`/projects/tags/${projectTag.slug}`}
+					/>
+				</li>
+			)}
+		</ul>
+	</div>
 
-    <div>
-			<ul>
-				{projects.map(project =>
-					<li>
-						<a href={`/projects/${project.slug}`}>{project.name}</a>
-						<p>{project.description}</p>
-					</li>
-				)}
-        </ul>
-    </div>
+		<CardListing
+			title="My Projects"
+			cards={projects.map(project => {
+				return {
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
+				}
+			})}
+		/>
 </GlobalLayout>

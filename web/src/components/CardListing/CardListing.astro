@@ -1,15 +1,18 @@
 ---
+import {JArrowLink} from "@ben-ryder/jigsaw-react"
+
 import "./CardListing.scss"
 import {CardProps} from "../Card/Card";
 import Card from "../Card/Card.astro";
 
 interface Props {
-	viewAllLink: string
+	viewAllLink?: string
+	viewAllText?: string
 	title: string
 	cards: CardProps[]
 }
 
-const { link, title, cards }: Props = Astro.props;
+const { link, title, cards, viewAllLink, viewAllText }: Props = Astro.props;
 ---
 
 <div class="max-width-container">
@@ -20,5 +23,12 @@ const { link, title, cards }: Props = Astro.props;
 				<Card {...card} />
 			)}
 		</div>
+		{viewAllLink && viewAllText &&
+			<div class="card-listing__cta">
+				<JArrowLink href={viewAllLink}>
+					{viewAllText}
+				</JArrowLink>
+			</div>
+		}
 	</div>
 </div>

@@ -23,3 +23,13 @@ Hide content that requires Javascript. This class can then be removed from JS wh
 .js-required {
 	display: none;
 }
+
+.brm-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	&__footer {
+		margin-top: auto;
+	}
+}
