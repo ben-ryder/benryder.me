@@ -1,5 +1,6 @@
 ---
 import GlobalLayout from '../layouts/GlobalLayout/GlobalLayout.astro';
+import type hcaptcha from '@hcaptcha/types';
 
 import {apiClient} from "../lib/api/api-client";
 const projects = await apiClient.getProjects()
@@ -86,7 +87,7 @@ const projects = await apiClient.getProjects()
 </style>
 
 <script>
-	const contactForm = document.querySelector("#contact-form");
+	const contactForm: HTMLFormElement = document.querySelector("#contact-form");
 	if (contactForm) {
 		contactForm.addEventListener('submit', async (e) => {
 			e.preventDefault();
