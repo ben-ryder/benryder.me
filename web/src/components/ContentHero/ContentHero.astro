@@ -1,0 +1,15 @@
+---
+import "./ContentHero.scss"
+
+type Props = {
+	title: string
+}
+
+const { title }: Props = Astro.props;
+---
+
+<div class="content-hero">
+	<div class="content-hero__inner">
+		<h1 class="content-hero__title">{title}</h1>
+	</div>
+</div>

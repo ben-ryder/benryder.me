@@ -3,6 +3,7 @@ import {apiClient} from "@lib/api/api-client";
 import {Project} from "@lib/api/types/content/project";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import {BlogPost} from "../../lib/api/types/content/blog-post";
+import ContentHero from "../../components/ContentHero/ContentHero.astro";
 
 export async function getStaticPaths() {
 	const blogPosts = await apiClient.getBlogPosts()
@@ -17,11 +18,12 @@ const blogPost: BlogPost = Astro.props;
 ---
 
 <GlobalLayout title={blogPost.title}>
-		<h1>{blogPost.title}</h1>
+		<ContentHero
+			title={blogPost.title}
+		/>
 
     <h2>Metadata</h2>
 		<ul>
-			<li><strong>Publish Timestamp:</strong> {blogPost.publishedAt}</li>
 			<li><strong>Update Timestamp:</strong> {blogPost.updatedAt}</li>
 			<li><strong>Create Timestamp:</strong> {blogPost.createdAt}</li>
 		</ul>
@@ -35,8 +37,9 @@ const blogPost: BlogPost = Astro.props;
 			)}
 		</ul>
 
-    <h2>Content</h2>
-		<div set:html={blogPost.contentHtml} />
+	<div class="max-width-container">
+		<div class="j-prose" set:html={blogPost.contentHtml} />
+	</div>
 
     <h2>Related</h2>
 		<div>
