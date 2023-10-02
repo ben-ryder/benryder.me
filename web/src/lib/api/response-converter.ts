@@ -20,6 +20,7 @@ import type {
 	ProjectTags as DirectusProjectTag,
 	BlogPostTags as DirectusBlogPostTag, ProjectTags, PageHomeSocialLinks
 } from "@lib/api/types/directus/generated.ts";
+import type {JColourVariants} from "@ben-ryder/jigsaw-react";
 
 
 /**
@@ -113,7 +114,8 @@ export class ResponseConverter {
 			text: apiProjectTag.text,
 			slug: apiProjectTag.slug,
 			projects,
-			order: apiProjectTag.order
+			order: apiProjectTag.order,
+			colour: apiProjectTag.colour as unknown as JColourVariants
 		}
 	}
 
@@ -147,7 +149,8 @@ export class ResponseConverter {
 			text: apiBlogPostTag.text,
 			slug: apiBlogPostTag.slug,
 			blogPosts,
-			order: apiBlogPostTag.order
+			order: apiBlogPostTag.order,
+			colour: apiBlogPostTag.colour as unknown as JColourVariants
 		}
 	}
 
