@@ -5,13 +5,15 @@
 		color: var(--j-c-text);
 		text-decoration: none;
 		display: block;
-		transition: all var(--j-motion-duration-medium) var(--j-motion-ease-in-out);
-		padding-right: var(--j-space-8);
+		transition: all var(--j-motion-duration-fast) var(--j-motion-ease-in-out);
 
 		&:hover,
 		&:focus-visible {
-			padding-left: var(--j-space-8);
-			padding-right: 0;
+			color: var(--j-c-teal-700);
+
+			.card__title {
+				color: inherit;
+			}
 		}
 	}
 
