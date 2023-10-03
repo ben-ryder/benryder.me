@@ -3,6 +3,8 @@ import {apiClient} from "@lib/api/api-client";
 import {Project} from "@lib/api/types/content/project";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../components/ContentHero/ContentHero.astro";
+import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
+import CardListing from "../../components/CardListing/CardListing.astro";
 
 export async function getStaticPaths() {
 	const projects = await apiClient.getProjects()
@@ -21,20 +23,26 @@ const project: Project = Astro.props;
 		title={project.name}
 	/>
 
-	<h2>Metadata</h2>
+	<div class="max-width-container">
+		<JArrowLink href="/projects" direction="left">All Projects</JArrowLink>
+	</div>
+
 	<ul>
-		<li><strong>Update Timestamp:</strong> {project.updatedAt}</li>
-		<li><strong>Create Timestamp:</strong> {project.createdAt}</li>
-		{project.productUrl && <li><strong>Product:</strong> {project.productUrl}</li>}
-		{project.repositoryUrl && <li><strong>Source Code:</strong> {project.repositoryUrl}</li>}
-		{project.releaseDate && <li><strong>Release Date :</strong> {project.releaseDate}</li>}
+		<li><strong>Created At</strong>{project.createdAt}</li>
+		{project.updatedAt && <li><span>Updated At</span> {project.updatedAt}</li>}
+		{project.productUrl && <li><span>Link</span>{project.productUrl}</li>}
+		{project.repositoryUrl && <li><span>Source Code</span>{project.repositoryUrl}</li>}
+		{project.releaseDate && <li><span>Release Date</span>{project.releaseDate}</li>}
 	</ul>
 
-	<h2>Tags</h2>
 	<ul>
 		{project.tags.map(tag =>
 			<li>
-				<a href={`/projects/tags/${tag.slug}`}>{tag.text}</a>
+				<JBadge
+					href={`/projects/?tags=${tag.slug}`}
+					variant={tag.colour}
+					text={tag.text}
+				/>
 			</li>
 		)}
 	</ul>
@@ -43,26 +51,35 @@ const project: Project = Astro.props;
 		<div class="j-prose" set:html={project.contentHtml} />
 	</div>
 
-	<h2>Related</h2>
-	<div>
-		<h3>Projects</h3>
-		<ul>
-			{project.relatedProjects.map(relatedProject =>
-				<li>
-					<a href={`/projects/${relatedProject.slug}`}>{relatedProject.name}</a>
-					<p>{relatedProject.description}</p>
-				</li>
-			)}
-		</ul>
+	{(project.relatedProjects.length > 0 || project.relatedBlogPosts.length > 0) &&
+		<div class="max-width-container j-prose">
+			<hr />
+		</div>
+	}
 
-		<h3>Blog Posts</h3>
-		<ul>
-			{project.relatedBlogPosts.map(relatedBlogPost =>
-				<li>
-					<a href={`/blog/${relatedBlogPost.slug}`}>{relatedBlogPost.title}</a>
-					<p>{relatedBlogPost.description}</p>
-				</li>
-			)}
-		</ul>
-	</div>
+	{project.relatedProjects.length > 0 &&
+		<CardListing
+			title="Related Projects"
+			cards={project.relatedProjects.map(project => {
+				return {
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
+				}
+			})}
+		/>
+	}
+
+	{project.relatedBlogPosts.length > 0 &&
+		<CardListing
+			title="Related Blog Posts"
+			cards={project.relatedBlogPosts.map(blogPost => {
+				return {
+					title: blogPost.title,
+					description: blogPost.description,
+					link: `/blog/${blogPost.slug}`
+				}
+			})}
+		/>
+	}
 </GlobalLayout>

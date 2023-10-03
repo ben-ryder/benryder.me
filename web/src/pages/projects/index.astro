@@ -10,30 +10,28 @@ const projectTags = await apiClient.getProjectTags()
 ---
 
 <GlobalLayout title="Projects">
-
-	<p>Tags:</p>
 	<div>
 		<ul>
-			{projectTags.map(projectTag =>
+			{projectTags.map(tag =>
 				<li>
 					<JBadge
-						text={projectTag.text}
-						variant={projectTag.colour}
-						href={`/projects/tags/${projectTag.slug}`}
+						text={tag.text}
+						variant={tag.colour}
+						href={`/projects?tags=${tag.slug}`}
 					/>
 				</li>
 			)}
 		</ul>
 	</div>
 
-		<CardListing
-			title="My Projects"
-			cards={projects.map(project => {
-				return {
-					title: project.name,
-					description: project.description,
-					link: `/projects/${project.slug}`
-				}
-			})}
-		/>
+	<CardListing
+		title="My Projects"
+		cards={projects.map(project => {
+			return {
+				title: project.name,
+				description: project.description,
+				link: `/projects/${project.slug}`
+			}
+		})}
+	/>
 </GlobalLayout>

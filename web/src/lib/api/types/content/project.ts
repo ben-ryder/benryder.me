@@ -1,5 +1,5 @@
 import type {BlogPost} from "@lib/api/types/content/blog-post.ts";
-import type {Tag} from "@lib/api/types/content/tag.ts";
+import type {ProjectTag} from "@lib/api/types/content/tag.ts";
 
 export interface Project {
 	id: string
@@ -16,7 +16,7 @@ export interface Project {
 	repositoryUrl?: string | null
 
 	isFeatured?: boolean
-	tags: Tag[]
+	tags: ProjectTag[]
 
 	relatedProjects: Project[]
 	relatedBlogPosts: BlogPost[]

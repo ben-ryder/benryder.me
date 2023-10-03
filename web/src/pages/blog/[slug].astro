@@ -4,6 +4,8 @@ import {Project} from "@lib/api/types/content/project";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import {BlogPost} from "../../lib/api/types/content/blog-post";
 import ContentHero from "../../components/ContentHero/ContentHero.astro";
+import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
+import CardListing from "../../components/CardListing/CardListing.astro";
 
 export async function getStaticPaths() {
 	const blogPosts = await apiClient.getBlogPosts()
@@ -18,49 +20,64 @@ const blogPost: BlogPost = Astro.props;
 ---
 
 <GlobalLayout title={blogPost.title}>
-		<ContentHero
-			title={blogPost.title}
-		/>
+	<ContentHero
+		title={blogPost.title}
+	/>
 
-    <h2>Metadata</h2>
-		<ul>
-			<li><strong>Update Timestamp:</strong> {blogPost.updatedAt}</li>
-			<li><strong>Create Timestamp:</strong> {blogPost.createdAt}</li>
-		</ul>
+	<div class="max-width-container">
+		<JArrowLink href="/projects" direction="left">All Projects</JArrowLink>
+	</div>
 
-    <h2>Tags</h2>
-		<ul>
-			{blogPost.tags.map(tag =>
-				<li>
-					<a href={`/blog/tags/${tag.slug}`}>{tag.text}</a>
-				</li>
-			)}
-		</ul>
+	<ul>
+		<li><strong>Created At</strong>{blogPost.createdAt}</li>
+		{blogPost.updatedAt && <li><span>Updated At</span> {blogPost.updatedAt}</li>}
+	</ul>
+
+	<ul>
+		{blogPost.tags.map(tag =>
+			<li>
+				<JBadge
+					href={`/blog/?tags=${tag.slug}`}
+					variant={tag.colour}
+					text={tag.text}
+				/>
+			</li>
+		)}
+	</ul>
 
 	<div class="max-width-container">
 		<div class="j-prose" set:html={blogPost.contentHtml} />
 	</div>
 
-    <h2>Related</h2>
-		<div>
-        <h3>Blog Posts</h3>
-			<ul>
-				{blogPost.relatedBlogPosts.map(relatedBlogPost =>
-					<li>
-						<a href={`/blog/${relatedBlogPost.slug}`}>{relatedBlogPost.title}</a>
-						<p>{relatedBlogPost.description}</p>
-					</li>
-				)}
-			</ul>
-
-			<h3>Projects</h3>
-			<ul>
-				{blogPost.relatedProjects.map(relatedProject =>
-					<li>
-						<a href={`/projects/${relatedProject.slug}`}>{relatedProject.name}</a>
-						<p>{relatedProject.description}</p>
-					</li>
-				)}
-			</ul>
+	{(blogPost.relatedProjects.length > 0 || blogPost.relatedBlogPosts.length > 0) &&
+		<div class="max-width-container j-prose">
+			<hr />
 		</div>
+	}
+
+	{blogPost.relatedProjects.length > 0 &&
+		<CardListing
+			title="Related Projects"
+			cards={blogPost.relatedProjects.map(project => {
+				return {
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
+				}
+			})}
+		/>
+	}
+
+	{blogPost.relatedBlogPosts.length > 0 &&
+		<CardListing
+			title="Related Blog Posts"
+			cards={blogPost.relatedBlogPosts.map(blogPost => {
+				return {
+					title: blogPost.title,
+					description: blogPost.description,
+					link: `/blog/${blogPost.slug}`
+				}
+			})}
+		/>
+	}
 </GlobalLayout>

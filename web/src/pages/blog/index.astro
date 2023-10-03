@@ -1,33 +1,36 @@
 ---
 import {apiClient} from "@lib/api/api-client";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
+import CardListing from "../../components/CardListing/CardListing.astro";
+import {JBadge} from "@ben-ryder/jigsaw-react";
 
 const blogPosts = await apiClient.getBlogPosts()
 const blogPostTags = await apiClient.getBlogPostTags()
 ---
 
 <GlobalLayout title="Blog">
-		<h1>Blog</h1>
+	<div>
+		<ul>
+			{blogPostTags.map(tag =>
+				<li>
+					<JBadge
+						text={tag.text}
+						variant={tag.colour}
+						href={`/blog?tag=${tag.slug}`}
+					/>
+				</li>
+			)}
+		</ul>
+	</div>
 
-		<p>Tags:</p>
-		<div>
-			<ul>
-				{blogPostTags.map(blogPostTag =>
-					<li>
-							<a href={`/blog/tags/${blogPostTag.slug}`}>{blogPostTag.text}</a>
-					</li>
-				)}
-			</ul>
-		</div>
-
-    <div>
-			<ul>
-				{blogPosts.map(blogPost =>
-					<li>
-						<a href={`/blog/${blogPost.slug}`}>{blogPost.title}</a>
-						<p>{blogPost.description}</p>
-					</li>
-				)}
-        </ul>
-    </div>
+	<CardListing
+		title="My Blog Posts"
+		cards={blogPosts.map(blogPost => {
+			return {
+				title: blogPost.title,
+				description: blogPost.description,
+				link: `/blog/${blogPost.slug}`
+			}
+		})}
+	/>
 </GlobalLayout>

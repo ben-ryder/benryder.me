@@ -21,6 +21,7 @@
 		font-size: var(--j-text-size-md);
 		font-weight: bold;
 		color: var(--j-c-text-heading);
+		transition: all var(--j-motion-duration-fast) var(--j-motion-ease-in-out);
 	}
 
 	&__description {
