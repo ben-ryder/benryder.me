@@ -1,30 +1,30 @@
 ---
 import {JArrowLink} from "@ben-ryder/jigsaw-react"
 
-import "./CardListing.scss"
-import {CardProps} from "../Card/Card";
-import Card from "../Card/Card.astro";
+import "./CardSimpleListing.scss"
+import type {CardSimpleProps} from "../CardSimple/CardSimple";
+import CardSimple from "../CardSimple/CardSimple.astro";
 
 interface Props {
 	viewAllLink?: string
 	viewAllText?: string
 	title: string
-	cards: CardProps[]
+	cards: CardSimpleProps[]
 }
 
 const { link, title, cards, viewAllLink, viewAllText }: Props = Astro.props;
 ---
 
 <div class="max-width-container">
-	<div class="card-listing">
-		<h2 class="card-listing__title">{title}</h2>
-		<div class="card-listing__cards">
+	<div class="card-simple-listing">
+		<h2 class="card-simple-listing__title">{title}</h2>
+		<div class="card-simple-listing__cards">
 			{cards.map(card =>
-				<Card {...card} />
+				<CardSimple {...card} />
 			)}
 		</div>
 		{viewAllLink && viewAllText &&
-			<div class="card-listing__cta">
+			<div class="card-simple-listing__cta">
 				<JArrowLink href={viewAllLink}>
 					{viewAllText}
 				</JArrowLink>

@@ -1,0 +1,15 @@
+---
+import "./CardSimple.scss"
+
+import type {CardSimpleProps} from "./CardSimple";
+type Props = CardSimpleProps
+
+const { link, title, description }: Props = Astro.props;
+---
+
+<div class="card-simple">
+	<a href={link} class="card-simple__link-wrapper">
+		<h3 class="card-simple__title">{title}</h3>
+	</a>
+	<p class="card-simple__description">{description}</p>
+</div>

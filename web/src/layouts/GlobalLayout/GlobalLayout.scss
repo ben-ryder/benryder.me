@@ -8,6 +8,7 @@
 .noscript {
 	background-color: var(--j-c-background-b2);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	padding: var(--j-space-8);
@@ -21,7 +22,7 @@
 Hide content that requires Javascript. This class can then be removed from JS when loaded.
 */
 .js-required {
-	display: none;
+	display: none !important;
 }
 
 .brm-layout {

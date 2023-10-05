@@ -1,4 +1,4 @@
-.card-listing {
+.card-simple-listing {
 	margin-top: var(--j-space-24);
 
 	&__title {
@@ -18,7 +18,6 @@
 
 	&__cards {
 		margin-top: var(--j-space-4);
-		padding: 0 var(--j-space-8);
 	}
 
 	&__cta {
@@ -28,6 +27,12 @@
 		// todo: provide option via Jigsaw?
 		.j-arrow-link {
 			text-decoration: none;
+		}
+	}
+
+	@media (min-width: 768px) {
+		&__cards {
+			padding: 0 var(--j-space-8);
 		}
 	}
 }

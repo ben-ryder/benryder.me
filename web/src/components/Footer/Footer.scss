@@ -18,6 +18,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--j-space-4);
+    flex-direction: column;
   }
 
   &__navigation-link {
@@ -31,8 +32,9 @@
   }
 
   &__navigation-item {
+    margin-bottom: var(--j-space-2);
+
     &:after {
-      content: "|";
       color: var(--j-c-primary);
       padding-left: var(--j-space-6);
     }
@@ -48,6 +50,15 @@
 
     &__navigation-menu {
       justify-content: flex-start;
+      flex-direction: row;
+    }
+
+    &__navigation-item {
+      margin-bottom: 0;
+
+      &:after {
+        content: "|";
+      }
     }
 
     &__sign-off {

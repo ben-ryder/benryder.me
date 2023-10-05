@@ -1,11 +1,10 @@
 ---
 import {apiClient} from "@lib/api/api-client";
-import {Project} from "@lib/api/types/content/project";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import {BlogPost} from "../../lib/api/types/content/blog-post";
 import ContentHero from "../../components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
-import CardListing from "../../components/CardListing/CardListing.astro";
+import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
 
 export async function getStaticPaths() {
 	const blogPosts = await apiClient.getBlogPosts()
@@ -56,7 +55,7 @@ const blogPost: BlogPost = Astro.props;
 	}
 
 	{blogPost.relatedProjects.length > 0 &&
-		<CardListing
+		<CardSimpleListing
 			title="Related Projects"
 			cards={blogPost.relatedProjects.map(project => {
 				return {
@@ -69,7 +68,7 @@ const blogPost: BlogPost = Astro.props;
 	}
 
 	{blogPost.relatedBlogPosts.length > 0 &&
-		<CardListing
+		<CardSimpleListing
 			title="Related Blog Posts"
 			cards={blogPost.relatedBlogPosts.map(blogPost => {
 				return {

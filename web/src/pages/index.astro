@@ -2,7 +2,7 @@
 import GlobalLayout from '../layouts/GlobalLayout/GlobalLayout.astro';
 import {apiClient} from "../lib/api/api-client";
 import Greeter from "../components/Greeter/Greeter.astro";
-import CardListing from "../components/CardListing/CardListing.astro";
+import CardSimpleListing from "../components/CardSimpleListing/CardSimpleListing.astro";
 
 const homepage = await apiClient.getHomepage()
 const featuredProjects = await apiClient.getFeaturedProjects()
@@ -15,7 +15,7 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 		socialLinks={homepage.socialLinks}
 	/>
 
-	<CardListing
+	<CardSimpleListing
 		title="Projects"
 		viewAllText="All Projects"
 		viewAllLink="/projects"
@@ -28,7 +28,7 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 		})}
 	/>
 
-	<CardListing
+	<CardSimpleListing
 		title="Blog Posts"
 		viewAllText="All Blog Posts"
 		viewAllLink="/blog"

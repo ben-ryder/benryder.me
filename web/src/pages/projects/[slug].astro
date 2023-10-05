@@ -4,7 +4,7 @@ import {Project} from "@lib/api/types/content/project";
 import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
-import CardListing from "../../components/CardListing/CardListing.astro";
+import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
 
 export async function getStaticPaths() {
 	const projects = await apiClient.getProjects()
@@ -58,7 +58,7 @@ const project: Project = Astro.props;
 	}
 
 	{project.relatedProjects.length > 0 &&
-		<CardListing
+		<CardSimpleListing
 			title="Related Projects"
 			cards={project.relatedProjects.map(project => {
 				return {
@@ -71,7 +71,7 @@ const project: Project = Astro.props;
 	}
 
 	{project.relatedBlogPosts.length > 0 &&
-		<CardListing
+		<CardSimpleListing
 			title="Related Blog Posts"
 			cards={project.relatedBlogPosts.map(blogPost => {
 				return {
