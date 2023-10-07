@@ -27,4 +27,4 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV PATH /usr/local/node/bin:$PATH
 
-CMD npm run db:setup && npm run config:import -- -y && npm run start
+CMD npm run setup && npm run start
