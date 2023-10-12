@@ -2,7 +2,6 @@ import {unified} from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import rehypeSanitize from "rehype-sanitize";
 
 /**
  * Generate HTML for the given markdown
@@ -12,9 +11,8 @@ import rehypeSanitize from "rehype-sanitize";
 export async function convertMarkdownToHTML(markdownText: string) {
 	const file = await unified()
 		.use(remarkParse)
-		.use(remarkRehype)
-		.use(rehypeSanitize)
-		.use(rehypeStringify)
+		.use(remarkRehype, {allowDangerousHtml: true})
+		.use(rehypeStringify, {allowDangerousHtml: true})
 		.process(markdownText)
 
 	return String(file)
