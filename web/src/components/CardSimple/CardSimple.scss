@@ -1,18 +1,14 @@
 .card-simple {
-	padding: var(--j-space-6) 0;
-
 	&__link-wrapper {
+		display: block;
+		padding: var(--j-space-6) 0;
 		color: var(--j-c-text-emphasis);
 		text-decoration: none;
-		display: block;
 		transition: all var(--j-motion-duration-fast) var(--j-motion-ease-in-out);
-		border-bottom: var(--j-border-width-md) solid transparent;
-		width: fit-content;
 
 		&:hover,
 		&:focus-visible {
-			color: var(--j-c-teal-700);
-			border-bottom-color: var(--j-c-teal-700);
+			background: var(--j-c-background-f1);
 		}
 	}
 
@@ -26,5 +22,12 @@
 	&__description {
 		margin-top: var(--j-space-4);
 		line-height: 1.25;
+	}
+
+	@media (min-width: 768px) {
+		&__link-wrapper {
+			padding-left: var(--j-space-8);
+			padding-right: var(--j-space-8);
+		}
 	}
 }

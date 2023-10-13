@@ -21,8 +21,10 @@
 	}
 
 	&__cta {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 		margin-top: var(--j-space-6);
-		padding: 0 var(--j-space-8);
 
 		// todo: provide option via Jigsaw?
 		.j-arrow-link {
@@ -31,8 +33,9 @@
 	}
 
 	@media (min-width: 768px) {
-		&__cards {
-			padding: 0 var(--j-space-8);
+		&__cta {
+			justify-content: flex-start;
+			padding-left: var(--j-space-8);
 		}
 	}
 }
