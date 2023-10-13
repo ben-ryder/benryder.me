@@ -30,6 +30,12 @@
 		border-top-left-radius: var(--j-border-radius-md);
 		border-top-right-radius: var(--j-border-radius-md);
 
+		.j-form__row {
+			display: flex;
+			gap: var(--j-space-4);
+			align-items: flex-end;
+		}
+
 		.j-multiselect-control {
 			flex-grow: 1;
 			margin-bottom: var(--j-space-4);

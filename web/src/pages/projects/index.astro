@@ -16,7 +16,10 @@ const projectTags = await apiClient.getProjectTags()
 				title: project.name,
 				description: project.description,
 				link: `/projects/${project.slug}`,
-				tags: project.tags
+				tags: project.tags,
+				releasedAt: project.releaseDate,
+				publishedAt: project.createdAt,
+				updatedAt: project.updatedAt
 			}
 		})}
 		tags={projectTags}

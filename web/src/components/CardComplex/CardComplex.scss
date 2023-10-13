@@ -1,19 +1,17 @@
 .card-complex {
-	padding: var(--j-space-8) 0;
 	border-bottom: var(--j-border-width-sm) solid var(--j-c-blueGrey-900);
 
-	&__link {
+	&__link-wrapper {
+		display: block;
+		padding: var(--j-space-8) 0;
+
 		color: var(--j-c-text-heading);
 		text-decoration: none;
-		display: block;
 		transition: all var(--j-motion-duration-fast) var(--j-motion-ease-in-out);
-		border-bottom: var(--j-border-width-md) solid transparent;
-		width: fit-content;
 
 		&:hover,
 		&:focus-visible {
-			color: var(--j-c-teal-700);
-			border-bottom-color: var(--j-c-teal-700);
+			background: var(--j-c-background-f1);
 		}
 	}
 
@@ -35,8 +33,19 @@
 		gap: var(--j-space-4)
 	}
 
+	&__timestamps {
+		margin-top: var(--j-space-6);
+		display: flex;
+		gap: var(--j-space-4);
+		font-size: var(--j-text-size-sm);
+		color: var(--j-c-blueGrey-400);
+		font-style: italic;
+	}
+
 	@media (min-width: 768px) {
-		padding-left: var(--j-space-8);
-		padding-right: var(--j-space-8);
+		&__link-wrapper {
+			padding-left: var(--j-space-8);
+			padding-right: var(--j-space-8);
+		}
 	}
 }
