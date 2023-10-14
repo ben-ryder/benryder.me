@@ -31,28 +31,6 @@ const projects = await apiClient.getProjects()
 					</div>
 				</div>
 				<div class="j-form__row">
-					<div class="j-select-control">
-						<label class="j-label" for="reason">Contact Reason</label>
-						<select id="reason" class="j-select" required="">
-							<option class="j-select__option" value="">-- Select an Option --</option>
-							<option class="j-select__option" value="feedback">Project Feedback</option>
-							<option class="j-select__option" value="security">Reporting a Security Vulnerability</option>
-							<option class="j-select__option" value="other">Other</option>
-						</select>
-					</div>
-				</div>
-				<div class="j-form__row">
-					<div class="j-select-control">
-						<label class="j-label" for="related-projects">Related Project (if applicable)</label>
-						<select id="related-projects" class="j-select">
-							<option class="j-select__option" value="">-- Select an Option --</option>
-							{projects.map(project => (
-									<option class="j-select__option" value={project.slug}>{project.name}</option>
-							))}
-						</select>
-					</div>
-				</div>
-				<div class="j-form__row">
 					<div class="j-input-control">
 						<label class="j-label" for="subject">Subject</label>
 						<input class="j-input" id="subject" name="subject" required="" placeholder="I'm contacting you about..." />
@@ -61,7 +39,7 @@ const projects = await apiClient.getProjects()
 				<div class="j-form__row">
 					<div class="j-text-area-control">
 						<label class="j-label" for="message">Message</label>
-						<textarea id="message" name="message" class="j-textarea" rows="8" required="" placeholder="Your message here... " />
+						<textarea id="message" name="message" class="j-textarea" rows="10" required="" placeholder="Your message here... " />
 					</div>
 				</div>
 				<div class="j-form__row">
@@ -102,6 +80,8 @@ const projects = await apiClient.getProjects()
 				honeypot: data.get('honeypot'),
 				captcha: data.get('h-captcha-response')
 			})
+
+			console.log(body)
 
 			try {
 				const res = await fetch(import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT, {
