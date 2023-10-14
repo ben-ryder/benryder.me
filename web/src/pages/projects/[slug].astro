@@ -5,6 +5,7 @@ import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
+import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
 
 export async function getStaticPaths() {
 	const projects = await apiClient.getProjects()
@@ -16,36 +17,50 @@ export async function getStaticPaths() {
 }
 
 const project: Project = Astro.props;
+
+const metadata = []
+if (project.productUrl) {
+	metadata.push({
+		icon: "globe",
+		text: `Live Project`,
+		link: project.productUrl
+	})
+}
+if (project.repositoryUrl) {
+	metadata.push({
+		icon: "github",
+		text: `Source Code`,
+		link: project.repositoryUrl
+	})
+}
+metadata.push({
+	icon: "calendar",
+	text: `Published ${formatTimestamp(project.datePublished || project.dateCreated)}`,
+})
+if (project.dateUpdated) {
+	metadata.push({
+		icon: "pencil",
+		text: `Updated ${formatTimestamp(project.dateUpdated)}`,
+	})
+}
+metadata.push({
+	icon: "clock",
+	text: `X min read`
+})
+
+
 ---
 
 <GlobalLayout title={project.name}>
 	<ContentHero
 		title={project.name}
+		metadata={metadata}
+		tags={project.tags}
 	/>
 
 	<div class="max-width-container">
 		<JArrowLink href="/projects" direction="left">All Projects</JArrowLink>
 	</div>
-
-	<ul>
-		<li><strong>Created At</strong>{project.createdAt}</li>
-		{project.updatedAt && <li><span>Updated At</span> {project.updatedAt}</li>}
-		{project.productUrl && <li><span>Link</span>{project.productUrl}</li>}
-		{project.repositoryUrl && <li><span>Source Code</span>{project.repositoryUrl}</li>}
-		{project.releaseDate && <li><span>Release Date</span>{project.releaseDate}</li>}
-	</ul>
-
-	<ul>
-		{project.tags.map(tag =>
-			<li>
-				<JBadge
-					href={`/projects/?tags=${tag.slug}`}
-					variant={tag.colour}
-					text={tag.text}
-				/>
-			</li>
-		)}
-	</ul>
 
 	<div class="max-width-container">
 		<div class="j-prose" set:html={project.contentHtml} />
@@ -59,7 +74,7 @@ const project: Project = Astro.props;
 
 	{project.relatedProjects.length > 0 &&
 		<CardSimpleListing
-			title="Related Projects"
+			title="👨‍💻 Related Projects"
 			cards={project.relatedProjects.map(project => {
 				return {
 					title: project.name,
@@ -72,7 +87,7 @@ const project: Project = Astro.props;
 
 	{project.relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
-			title="Related Blog Posts"
+			title="🗒️ Related Blog Posts"
 			cards={project.relatedBlogPosts.map(blogPost => {
 				return {
 					title: blogPost.title,

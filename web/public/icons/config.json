@@ -139,6 +139,12 @@
       "css": "clock",
       "code": 61473,
       "src": "entypo"
+    },
+    {
+      "uid": "d35a1d35efeb784d1dc9ac18b9b6c2b6",
+      "css": "pencil",
+      "code": 61474,
+      "src": "fontawesome"
     }
   ]
 }

@@ -1,15 +1,44 @@
 ---
 import "./ContentHero.scss"
+import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
+import {JBadge} from "@ben-ryder/jigsaw-react";
+import {BlogPostTag, ProjectTag} from "../../lib/api/types/content/tag";
 
-type Props = {
-	title: string
+export interface ContentMetadata {
+	icon: string,
+	text: string,
+	link?: string
 }
 
-const { title }: Props = Astro.props;
+type Props = {
+	title: string,
+	metadata: ContentMetadata[],
+	tags: ProjectTag[] | BlogPostTag[]
+}
+
+const { title, metadata, tags }: Props = Astro.props;
 ---
 
 <div class="content-hero">
 	<div class="content-hero__inner">
 		<h1 class="content-hero__title">{title}</h1>
 	</div>
+
+	<ul>
+		{metadata.map(data =>
+			<li><span class=`icon-${data.icon}`></span>{data.text}</li>
+		)}
+	</ul>
+
+	<ul>
+		{tags.map(tag =>
+			<li>
+				<JBadge
+					href={`/projects/?tags=${tag.slug}`}
+					variant={tag.colour}
+					text={tag.text}
+				/>
+			</li>
+		)}
+	</ul>
 </div>
