@@ -13,6 +13,7 @@ export type BlogPostTags = {
 export type BlogPosts = {
 	content: string;
 	date_created: string;
+	date_published?: string | null;
 	date_updated?: string | null;
 	description: string;
 	featured: boolean;
@@ -136,6 +137,7 @@ export type DirectusFiles = {
 	type?: string | null;
 	uploaded_by?: string | DirectusUsers | null;
 	uploaded_on: string;
+	visibility?: string | null;
 	width?: number | null;
 };
 
@@ -435,6 +437,7 @@ export type PageHomeSocialLinks = {
 export type Pages = {
 	content: string;
 	date_created: string;
+	date_published?: string | null;
 	date_updated?: string | null;
 	id: string;
 	metadata: string;
@@ -460,6 +463,7 @@ export type ProjectTags = {
 export type Projects = {
 	content: string;
 	date_created: string;
+	date_published?: string | null;
 	date_updated?: string | null;
 	description: string;
 	featured: boolean;

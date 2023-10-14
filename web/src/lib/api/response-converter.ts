@@ -38,8 +38,9 @@ export class ResponseConverter {
 			title: apiPage.title,
 			path: apiPage.path,
 			contentHtml,
-			createdAt: apiPage.date_created,
-			updatedAt: apiPage.date_updated
+			dateCreated: new Date(apiPage.date_created),
+			datePublished: apiPage.date_published ? new Date(apiPage.date_published): undefined,
+			dateUpdated: apiPage.date_updated ? new Date(apiPage.date_updated): undefined
 		}
 	}
 
@@ -217,8 +218,9 @@ export class ResponseConverter {
 			tags,
 			relatedProjects,
 			relatedBlogPosts,
-			createdAt: apiProject.date_created,
-			updatedAt: apiProject.date_updated,
+			dateCreated: new Date(apiProject.date_created),
+			datePublished: apiProject.date_published ? new Date(apiProject.date_published): undefined,
+			dateUpdated: apiProject.date_updated ? new Date(apiProject.date_updated): undefined
 		}
 	}
 
@@ -262,8 +264,9 @@ export class ResponseConverter {
 			tags,
 			relatedBlogPosts,
 			relatedProjects,
-			createdAt: apiBlogPost.date_created,
-			updatedAt: apiBlogPost.date_updated
+			dateCreated: new Date(apiBlogPost.date_created),
+			datePublished: apiBlogPost.date_published ? new Date(apiBlogPost.date_published): undefined,
+			dateUpdated: apiBlogPost.date_updated ? new Date(apiBlogPost.date_updated): undefined
 		}
 	}
 

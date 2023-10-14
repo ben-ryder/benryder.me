@@ -9,7 +9,7 @@ const projectTags = await apiClient.getProjectTags()
 
 <GlobalLayout title="Projects">
 	<CardComplexListing
-		title="My Projects"
+		title="👨‍💻 Projects"
 		description="All my projects"
 		cards={projects.map(project => {
 			return {
@@ -17,9 +17,9 @@ const projectTags = await apiClient.getProjectTags()
 				description: project.description,
 				link: `/projects/${project.slug}`,
 				tags: project.tags,
-				releasedAt: project.releaseDate,
-				publishedAt: project.createdAt,
-				updatedAt: project.updatedAt
+				dateCreated: project.dateCreated,
+				datePublished: project.datePublished,
+				dateUpdated: project.dateUpdated
 			}
 		})}
 		tags={projectTags}

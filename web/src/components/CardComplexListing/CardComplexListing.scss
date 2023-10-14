@@ -10,7 +10,7 @@
 			display: block;
 			background-color: var(--j-c-primary);
 			height: var(--j-border-width-lg);
-			width: 80px;
+			width: 100px;
 			margin-top: var(--j-space-4);
 		}
 	}
@@ -30,19 +30,13 @@
 		border-top-left-radius: var(--j-border-radius-md);
 		border-top-right-radius: var(--j-border-radius-md);
 
-		.j-form__row {
-			display: flex;
-			gap: var(--j-space-4);
-			align-items: flex-end;
-		}
-
 		.j-multiselect-control {
 			flex-grow: 1;
 			margin-bottom: var(--j-space-4);
 		}
 
-		.j-select {
-			width: min-content;
+		.j-button-group {
+			margin-top: var(--j-space-4);
 		}
 	}
 
@@ -53,9 +47,14 @@
 	@media (min-width: 768px) {
 		&__filters {
 			flex-direction: row;
+			align-items: flex-end;
 
 			.j-multiselect-control {
 				margin-bottom: 0;
+			}
+
+			.j-select {
+				width: min-content;
 			}
 		}
 	}

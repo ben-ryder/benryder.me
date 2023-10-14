@@ -2,15 +2,16 @@ import {JBadge} from "@ben-ryder/jigsaw-react";
 import type {BlogPostTag, ProjectTag} from "@lib/api/types/content/tag.ts";
 
 import "./CardComplex.scss"
+import {formatTimestamp} from "@lib/api/utils/format-timestamp.ts";
 
 export interface CardComplexProps {
 	link: string
 	title: string
 	description: string
 	tags: ProjectTag[] | BlogPostTag[]
-	releasedAt?: string
-	publishedAt: string
-	updatedAt?: string
+	dateCreated: string
+	dateUpdated?: string
+	datePublished?: string
 }
 
 
@@ -30,14 +31,12 @@ export function CardComplex(props: CardComplexProps) {
 					</ul>
 				}
 				<div className="card-complex__timestamps">
-					{!props.releasedAt &&
-							<p className="card-complex__timestamp-published">{`Published ${props.publishedAt}`}</p>
+					{props.datePublished
+						? <p className="card-complex__timestamp-published">{`Published ${formatTimestamp(props.datePublished)}`}</p>
+						: <p className="card-complex__timestamp-created">{`Created ${formatTimestamp(props.dateCreated)}`}</p>
 					}
-					{props.releasedAt &&
-							<p className="card-complex__timestamp-released">{`Released ${props.releasedAt}`}</p>
-					}
-					{props.updatedAt &&
-							<p className="card-complex__timestamp-updated">{`Updated ${props.updatedAt}`}</p>
+					{props.dateUpdated &&
+							<p className="card-complex__timestamp-updated">{`Updated ${formatTimestamp(props.dateUpdated)}`}</p>
 					}
 				</div>
 			</a>

@@ -3,8 +3,9 @@ import type {ProjectTag} from "@lib/api/types/content/tag.ts";
 
 export interface Project {
 	id: string
-	createdAt: string
-	updatedAt?: string | null
+	dateCreated: Date
+	datePublished?: Date | null
+	dateUpdated?: Date | null
 
 	name: string
 	slug: string

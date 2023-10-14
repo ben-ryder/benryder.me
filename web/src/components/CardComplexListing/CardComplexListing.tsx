@@ -22,8 +22,14 @@ interface CardComplexListingProps {
 	tags: ProjectTag[] | BlogPostTag[]
 }
 
+function sortCards(cards: CardComplexProps[]) {
+	return cards.sort((a, b) => {
+		return (b.datePublished || b.dateCreated) - (a.datePublished || a.dateCreated)
+	})
+}
+
 export function CardComplexListing(props: CardComplexListingProps) {
-	const [visibleCards, setVisibleCards] = useState<CardComplexProps[]>(props.cards)
+	const [visibleCards, setVisibleCards] = useState<CardComplexProps[]>(sortCards(props.cards))
 	const tagOptions: JMultiSelectOptionData[] = props.tags.map(tag => {
 		return {
 			text: tag.text,
@@ -41,12 +47,12 @@ export function CardComplexListing(props: CardComplexListingProps) {
 		else {
 			const selectedTagSlugs = selectedTags.map(selectedTag => selectedTag.value);
 
-			filteredCards = props.cards
+			filteredCards = sortCards(props.cards
 				.filter(card => {
 					const cardTagSlugs = card.tags.map(tag => tag.slug)
 					return selectedTagSlugs.every(tag => cardTagSlugs.includes(tag))
 				})
-				.sort((a, b) => a.releasedAt > b.releasedAt ? 1: 0)
+			)
 		}
 
 		setVisibleCards(filteredCards)
@@ -69,7 +75,7 @@ export function CardComplexListing(props: CardComplexListingProps) {
 					is not currently available. Consider enabling Javascript to
 						improve your experience.</p>
 				</noscript>
-				<JForm
+				<form
 					className="card-complex-listing__filters js-required"
 					onSubmit={(e: FormEvent) => {
 						e.preventDefault()
@@ -80,46 +86,44 @@ export function CardComplexListing(props: CardComplexListingProps) {
 						resetFilters()
 					}}
 				>
-					<JFormContent style={{width: '100%'}}>
-						<JFormRow>
-							<JMultiSelectControl
-								id="tags"
-								label="Filter By Tags"
-								searchText="Search or select tags..."
-								options={
-									tagOptions.filter(tag => {
-										for (const selectedTag of selectedTags) {
-											if (tag.value === selectedTag.value) {
-												return false;
-											}
-										}
-										return true
-									})
+					<JMultiSelectControl
+						className="card-complex-listing__filter-tag"
+						id="tags"
+						label="Filter By Tags"
+						searchText="Search or select tags..."
+						options={
+							tagOptions.filter(tag => {
+								for (const selectedTag of selectedTags) {
+									if (tag.value === selectedTag.value) {
+										return false;
+									}
 								}
-								selectedOptions={selectedTags}
-								setSelectedOptions={setSelectedTags}
-							/>
-							<JSelectControl
-								label="Sort By"
-								id='sortBy'
-								options={[
-									{
-										text: "Release Date",
-										value: "releaseDate"
-									},
-									{
-										text: "Name",
-										value: "name"
-									},
-								]}
-							/>
-							<JButtonGroup>
-								<JButton type="reset" variant="secondary">Reset</JButton>
-								<JButton type="submit" variant="primary">Filter</JButton>
-							</JButtonGroup>
-						</JFormRow>
-					</JFormContent>
-				</JForm>
+								return true
+							})
+						}
+						selectedOptions={selectedTags}
+						setSelectedOptions={setSelectedTags}
+					/>
+					{/*<JSelectControl*/}
+					{/*	className="card-complex-listing__filter-sort"*/}
+					{/*	label="Sort By"*/}
+					{/*	id='sortBy'*/}
+					{/*	options={[*/}
+					{/*		{*/}
+					{/*			text: "Release Date",*/}
+					{/*			value: "releaseDate"*/}
+					{/*		},*/}
+					{/*		{*/}
+					{/*			text: "Name",*/}
+					{/*			value: "name"*/}
+					{/*		},*/}
+					{/*	]}*/}
+					{/*/>*/}
+					<JButtonGroup className="card-complex-listing__filter-buttons">
+						<JButton type="reset" variant="secondary">Reset</JButton>
+						<JButton type="submit" variant="primary">Filter</JButton>
+					</JButtonGroup>
+				</form>
 				<div className="card-complex-listing__cards">
 					{visibleCards.map(card =>
 						<CardComplex key={card.link} {...card} />

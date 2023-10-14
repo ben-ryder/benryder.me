@@ -34,3 +34,16 @@ Hide content that requires Javascript. This class can then be removed from JS wh
 		margin-top: auto;
 	}
 }
+
+.j-prose {
+	h1 {
+		&:after {
+		content: "";
+		display: block;
+		background-color: var(--j-c-primary);
+		height: var(--j-border-width-lg);
+		width: 80px;
+		margin-top: var(--j-space-4);
+	}
+	}
+}
