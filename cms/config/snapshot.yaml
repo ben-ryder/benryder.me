@@ -53,7 +53,7 @@ collections:
       collapse: open
       collection: blog_post_tags
       color: null
-      display_template: '{{text}}'
+      display_template: "{{text}}"
       group: Other
       hidden: false
       icon: tag
@@ -76,7 +76,7 @@ collections:
       collapse: open
       collection: blog_posts
       color: null
-      display_template: '{{title}}'
+      display_template: "{{title}}"
       group: null
       hidden: false
       icon: article
@@ -235,7 +235,7 @@ collections:
       collapse: open
       collection: form_contact
       color: null
-      display_template: '{{subject}}- From{{name}}({{email}})'
+      display_template: "{{subject}}- From{{name}}({{email}})"
       group: forms
       hidden: false
       icon: person
@@ -346,7 +346,7 @@ collections:
       collapse: open
       collection: links
       color: null
-      display_template: '{{text}}'
+      display_template: "{{text}}"
       group: Other
       hidden: false
       icon: link
@@ -438,7 +438,7 @@ collections:
       collapse: open
       collection: pages
       color: null
-      display_template: '{{title}}'
+      display_template: "{{title}}"
       group: null
       hidden: false
       icon: text_fields
@@ -482,7 +482,7 @@ collections:
       collapse: open
       collection: project_tags
       color: null
-      display_template: '{{text}}'
+      display_template: "{{text}}"
       group: Other
       hidden: false
       icon: tag
@@ -505,7 +505,7 @@ collections:
       collapse: open
       collection: projects
       color: null
-      display_template: '{{name}}'
+      display_template: "{{name}}"
       group: null
       hidden: false
       icon: code
@@ -618,7 +618,7 @@ collections:
       collapse: open
       collection: social_links
       color: null
-      display_template: '{{text}}'
+      display_template: "{{text}}"
       group: Other
       hidden: false
       icon: share
@@ -920,16 +920,16 @@ fields:
         choices:
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -1019,10 +1019,11 @@ fields:
       hidden: false
       interface: input-rich-text-md
       note: null
-      options: null
+      options:
+        folder: null
       readonly: false
       required: true
-      sort: 10
+      sort: 11
       special: null
       translations: null
       validation: null
@@ -1055,13 +1056,13 @@ fields:
         relative: true
       field: date_created
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 2
+      sort: 4
       special:
         - date-created
       translations: null
@@ -1085,6 +1086,44 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: blog_posts
+    field: date_published
+    type: timestamp
+    meta:
+      collection: blog_posts
+      conditions: null
+      display: null
+      display_options: null
+      field: date_published
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_published
+      table: blog_posts
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: blog_posts
     field: date_updated
     type: timestamp
     meta:
@@ -1095,13 +1134,13 @@ fields:
         relative: true
       field: date_updated
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 3
+      sort: 5
       special:
         - date-updated
       translations: null
@@ -1140,7 +1179,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 6
+      sort: 7
       special: null
       translations: null
       validation: null
@@ -1170,8 +1209,8 @@ fields:
       conditions: null
       display: boolean
       display_options:
-        labelOff: 'No'
-        labelOn: 'Yes'
+        labelOff: "No"
+        labelOn: "Yes"
       field: featured
       group: null
       hidden: false
@@ -1181,7 +1220,7 @@ fields:
         label: Featured on home page?
       readonly: false
       required: true
-      sort: 8
+      sort: 9
       special:
         - cast-boolean
       translations: null
@@ -1214,13 +1253,13 @@ fields:
       display_options: null
       field: id
       group: null
-      hidden: true
+      hidden: false
       interface: input
       note: null
       options: null
       readonly: true
       required: false
-      sort: 1
+      sort: 3
       special:
         - uuid
       translations: null
@@ -1260,7 +1299,7 @@ fields:
         start: closed
       readonly: false
       required: false
-      sort: 13
+      sort: 14
       special:
         - alias
         - group
@@ -1362,7 +1401,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 11
+      sort: 12
       special:
         - m2m
       translations: null
@@ -1385,7 +1424,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 12
+      sort: 13
       special:
         - m2m
       translations: null
@@ -1408,7 +1447,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 5
+      sort: 2
       special: null
       translations: null
       validation: null
@@ -1441,20 +1480,20 @@ fields:
         choices:
           - text: Idea
             value: idea
-            foreground: '#18222F'
-            background: '#E35169'
+            foreground: "#18222F"
+            background: "#E35169"
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -1473,7 +1512,7 @@ fields:
             value: archived
       readonly: false
       required: true
-      sort: 9
+      sort: 10
       special: null
       translations: null
       validation: null
@@ -1511,7 +1550,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 7
+      sort: 8
       special:
         - m2m
       translations: null
@@ -1534,7 +1573,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 4
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -1898,6 +1937,49 @@ fields:
       has_auto_increment: false
       foreign_key_table: projects
       foreign_key_column: id
+  - collection: directus_files
+    field: visibility
+    type: string
+    meta:
+      collection: directus_files
+      conditions: null
+      display: null
+      display_options: null
+      field: visibility
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Public
+            value: public
+          - text: Private
+            value: private
+      readonly: false
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: visibility
+      table: directus_files
+      data_type: character varying
+      default_value: private
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: footer
     field: date_created
     type: timestamp
@@ -2939,20 +3021,20 @@ fields:
         choices:
           - text: Idea
             value: idea
-            foreground: '#18222F'
-            background: '#E35169'
+            foreground: "#18222F"
+            background: "#E35169"
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -3428,10 +3510,11 @@ fields:
       hidden: false
       interface: input-rich-text-md
       note: null
-      options: null
+      options:
+        folder: null
       readonly: false
       required: true
-      sort: 7
+      sort: 4
       special: null
       translations: null
       validation: null
@@ -3464,13 +3547,13 @@ fields:
         relative: true
       field: date_created
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 2
+      sort: 6
       special:
         - date-created
       translations: null
@@ -3494,6 +3577,44 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: pages
+    field: date_published
+    type: timestamp
+    meta:
+      collection: pages
+      conditions: null
+      display: null
+      display_options: null
+      field: date_published
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_published
+      table: pages
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: pages
     field: date_updated
     type: timestamp
     meta:
@@ -3504,13 +3625,13 @@ fields:
         relative: true
       field: date_updated
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 3
+      sort: 7
       special:
         - date-updated
       translations: null
@@ -3692,7 +3813,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 5
+      sort: 3
       special: null
       translations: null
       validation: null
@@ -3725,16 +3846,16 @@ fields:
         choices:
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -3751,7 +3872,7 @@ fields:
             value: archived
       readonly: false
       required: true
-      sort: 8
+      sort: 5
       special: null
       translations: null
       validation: null
@@ -3789,7 +3910,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 4
+      sort: 2
       special: null
       translations: null
       validation: null
@@ -4098,16 +4219,16 @@ fields:
         choices:
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#18222F'
-            background: '#2ECDA7'
+            foreground: "#18222F"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -4197,10 +4318,11 @@ fields:
       hidden: false
       interface: input-rich-text-md
       note: null
-      options: null
+      options:
+        folder: null
       readonly: false
       required: true
-      sort: 13
+      sort: 14
       special: null
       translations: null
       validation: null
@@ -4233,13 +4355,13 @@ fields:
         relative: true
       field: date_created
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 2
+      sort: 4
       special:
         - date-created
       translations: null
@@ -4263,6 +4385,44 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: projects
+    field: date_published
+    type: timestamp
+    meta:
+      collection: projects
+      conditions: null
+      display: null
+      display_options: null
+      field: date_published
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_published
+      table: projects
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: projects
     field: date_updated
     type: timestamp
     meta:
@@ -4273,13 +4433,13 @@ fields:
         relative: true
       field: date_updated
       group: null
-      hidden: true
+      hidden: false
       interface: datetime
       note: null
       options: null
       readonly: true
       required: false
-      sort: 3
+      sort: 5
       special:
         - date-updated
       translations: null
@@ -4318,7 +4478,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 6
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -4348,8 +4508,8 @@ fields:
       conditions: null
       display: boolean
       display_options:
-        labelOff: 'No'
-        labelOn: 'Yes'
+        labelOff: "No"
+        labelOn: "Yes"
       field: featured
       group: null
       hidden: false
@@ -4359,7 +4519,7 @@ fields:
         label: Featured on home page?
       readonly: false
       required: true
-      sort: 8
+      sort: 10
       special:
         - cast-boolean
       translations: null
@@ -4392,13 +4552,13 @@ fields:
       display_options: null
       field: id
       group: null
-      hidden: true
+      hidden: false
       interface: input
       note: null
       options: null
       readonly: true
       required: false
-      sort: 1
+      sort: 3
       special:
         - uuid
       translations: null
@@ -4438,7 +4598,7 @@ fields:
         start: closed
       readonly: false
       required: false
-      sort: 16
+      sort: 17
       special:
         - alias
         - group
@@ -4540,7 +4700,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 4
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -4578,7 +4738,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 10
+      sort: 12
       special: null
       translations: null
       validation: null
@@ -4616,7 +4776,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 15
+      sort: 16
       special:
         - m2m
       translations: null
@@ -4639,7 +4799,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 14
+      sort: 15
       special:
         - m2m
       translations: null
@@ -4662,12 +4822,12 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 12
+      sort: 7
       special: null
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: release_date
       table: projects
@@ -4700,7 +4860,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 11
+      sort: 13
       special: null
       translations: null
       validation: null
@@ -4738,7 +4898,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 5
+      sort: 2
       special: null
       translations: null
       validation: null
@@ -4771,20 +4931,20 @@ fields:
         choices:
           - text: Idea
             value: idea
-            foreground: '#18222F'
-            background: '#E35169'
+            foreground: "#18222F"
+            background: "#E35169"
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null
@@ -4803,7 +4963,7 @@ fields:
             value: archived
       readonly: false
       required: true
-      sort: 9
+      sort: 11
       special: null
       translations: null
       validation: null
@@ -4841,7 +5001,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: 7
+      sort: 9
       special:
         - m2m
       translations: null
@@ -5358,20 +5518,20 @@ fields:
         choices:
           - text: Idea
             value: idea
-            foreground: '#18222F'
-            background: '#E35169'
+            foreground: "#18222F"
+            background: "#E35169"
           - text: $t:draft
             value: draft
-            foreground: '#18222F'
-            background: '#FFA439'
+            foreground: "#18222F"
+            background: "#FFA439"
           - text: $t:published
             value: published
-            foreground: '#FFFFFF'
-            background: '#2ECDA7'
+            foreground: "#FFFFFF"
+            background: "#2ECDA7"
           - text: $t:archived
             value: archived
-            foreground: '#FFFFFF'
-            background: '#A2B5CD'
+            foreground: "#FFFFFF"
+            background: "#A2B5CD"
         showAsDot: true
       field: status
       group: null

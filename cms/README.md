@@ -1,16 +1,25 @@
 # CMS
 
 ## Setup
+This setup assumes an Ubuntu/Debian/PopOS system.
 
-1. Ensure postgres is installed and set up locally.
+1. Ensure postgres 15 is installed and set up locally.
+
+**IMPORTANT:** Fly.io uses Postgres 15. To ensure compatibility will tools like `pg_dump` you must have the
+same version locally. The default Postgres version from `sudo apt install postgresql postgresql-contrib` is v14 so won't work!
+
 ```bash
-# Install postgres
-sudo apt install postgresql postgresql-contrib
+# Install postgres 15
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+sudo apt update
+sudo apt install postgresql-15 postgresql-client-15 -y
 sudo systemctl start postgresql.service
 
 # Create a new user (use your username)
 sudo -u postgres createuser --interactive
 ```
+
 
 2. Add `local.benryder.me` to the `/etc/hosts` file so captcha can work locally:
 ```bash
