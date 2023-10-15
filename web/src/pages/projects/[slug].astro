@@ -1,12 +1,13 @@
 ---
 import {apiClient} from "@lib/api/api-client";
 import {Project} from "@lib/api/types/content/project";
-import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
-import ContentHero from "../../components/ContentHero/ContentHero.astro";
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
-import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
+import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
 import {getReadingTime} from "../../lib/api/utils/get-reading-time";
+import LoadCodeHighlighting from "../../patterns/components/LoadCodeHighlighting.astro";
 
 export async function getStaticPaths() {
 	const projects = await apiClient.getProjects()
@@ -108,3 +109,5 @@ metadata.push(generalMetadata)
 		/>
 	}
 </GlobalLayout>
+
+<LoadCodeHighlighting />

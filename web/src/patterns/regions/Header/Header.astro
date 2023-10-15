@@ -1,0 +1,32 @@
+---
+import "./Header.scss"
+
+import PromoMessage from "../../components/PromoMessage/PromoMessage.astro";
+import {apiClient} from "../../../lib/api/api-client";
+
+const header= await apiClient.getHeader()
+---
+
+<header class="brm-layout__header">
+	{header.messagePromoHtml &&
+		<PromoMessage messageHtml={header.messagePromoHtml} />
+	}
+	<div class="max-width-container">
+		<div class="header">
+			<div class="header__logo">
+				<a href="/" aria-label="Home" class="header__logo-link">
+					<img class="header__logo-image" alt="" src="/images/me.jpeg" />
+				</a>
+			</div>
+			<nav class="header__navigation">
+				<ul class="header__navigation-menu">
+					{header.navigationLinks.map(link => (
+						<li class="header__navigation-item">
+							<a class="header__navigation-link" href={link.url}>{link.text}</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>

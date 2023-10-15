@@ -1,8 +1,8 @@
 ---
-import GlobalLayout from '../layouts/GlobalLayout/GlobalLayout.astro';
+import GlobalLayout from '../patterns/layouts/GlobalLayout/GlobalLayout.astro';
 import {apiClient} from "../lib/api/api-client";
-import Greeter from "../components/Greeter/Greeter.astro";
-import CardSimpleListing from "../components/CardSimpleListing/CardSimpleListing.astro";
+import Greeter from "../patterns/components/Greeter/Greeter.astro";
+import CardSimpleListing from "../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 
 const homepage = await apiClient.getHomepage()
 const featuredProjects = await apiClient.getFeaturedProjects()

@@ -1,12 +1,13 @@
 ---
 import {apiClient} from "@lib/api/api-client";
-import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import {BlogPost} from "../../lib/api/types/content/blog-post";
-import ContentHero from "../../components/ContentHero/ContentHero.astro";
+import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
-import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
+import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
 import {getReadingTime} from "../../lib/api/utils/get-reading-time";
+import LoadCodeHighlighting from "../../patterns/components/LoadCodeHighlighting.astro";
 
 export async function getStaticPaths() {
 	const blogPosts = await apiClient.getBlogPosts()
@@ -88,3 +89,5 @@ if (blogPost.dateUpdated) {
 		/>
 	}
 </GlobalLayout>
+
+<LoadCodeHighlighting />

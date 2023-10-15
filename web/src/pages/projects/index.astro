@@ -1,7 +1,7 @@
 ---
 import {apiClient} from "@lib/api/api-client";
-import GlobalLayout from "../../layouts/GlobalLayout/GlobalLayout.astro";
-import {CardComplexListing} from "../../components/CardComplexListing/CardComplexListing";
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import {CardComplexListing} from "../../patterns/components/CardComplexListing/CardComplexListing";
 
 const projects = await apiClient.getProjects()
 const projectTags = await apiClient.getProjectTags()

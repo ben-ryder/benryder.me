@@ -1,5 +1,5 @@
-import type {CardComplexProps} from "../CardComplex/CardComplex";
-import {CardComplex} from "../CardComplex/CardComplex";
+import type {CardComplexProps} from "../CardComplex/CardComplex.tsx";
+import {CardComplex} from "../CardComplex/CardComplex.tsx";
 
 import "./CardComplexListing.scss"
 import type {BlogPostTag, ProjectTag} from "@lib/api/types/content/tag.ts";
