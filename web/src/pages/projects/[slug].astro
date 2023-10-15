@@ -6,6 +6,7 @@ import ContentHero from "../../components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
 import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
+import {getReadingTime} from "../../lib/api/utils/get-reading-time";
 
 export async function getStaticPaths() {
 	const projects = await apiClient.getProjects()
@@ -19,34 +20,43 @@ export async function getStaticPaths() {
 const project: Project = Astro.props;
 
 const metadata = []
+
+const projectMetadata = []
 if (project.productUrl) {
-	metadata.push({
+	projectMetadata.push({
 		icon: "globe",
 		text: `Live Project`,
 		link: project.productUrl
 	})
 }
 if (project.repositoryUrl) {
-	metadata.push({
+	projectMetadata.push({
 		icon: "github",
 		text: `Source Code`,
 		link: project.repositoryUrl
 	})
 }
-metadata.push({
-	icon: "calendar",
-	text: `Published ${formatTimestamp(project.datePublished || project.dateCreated)}`,
-})
+if (projectMetadata.length > 0) {
+	metadata.push(projectMetadata)
+}
+
+const generalMetadata = [
+	{
+		icon: "calendar",
+		text: `Published ${formatTimestamp(project.datePublished || project.dateCreated)}`,
+	}
+]
 if (project.dateUpdated) {
-	metadata.push({
+	generalMetadata.push({
 		icon: "pencil",
 		text: `Updated ${formatTimestamp(project.dateUpdated)}`,
 	})
 }
-metadata.push({
+generalMetadata.push({
 	icon: "clock",
-	text: `X min read`
+	text: getReadingTime(project.contentHtml)
 })
+metadata.push(generalMetadata)
 
 
 ---
@@ -58,7 +68,7 @@ metadata.push({
 		tags={project.tags}
 	/>
 
-	<div class="max-width-container">
+	<div class="max-width-container container-spacing">
 		<JArrowLink href="/projects" direction="left">All Projects</JArrowLink>
 	</div>
 

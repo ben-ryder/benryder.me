@@ -6,6 +6,7 @@ import ContentHero from "../../components/ContentHero/ContentHero.astro";
 import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../components/CardSimpleListing/CardSimpleListing.astro";
 import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
+import {getReadingTime} from "../../lib/api/utils/get-reading-time";
 
 export async function getStaticPaths() {
 	const blogPosts = await apiClient.getBlogPosts()
@@ -19,17 +20,21 @@ export async function getStaticPaths() {
 const blogPost: BlogPost = Astro.props;
 
 const metadata = [
-	{
-		icon: "clock",
-		text: `X min read`
-	},
-	{
-		icon: "calendar",
-		text: `Published ${formatTimestamp(blogPost.datePublished || blogPost.dateCreated)}`,
-	}
+	[
+		{
+			icon: "clock",
+			text: getReadingTime(blogPost.contentHtml)
+		},
+	],
+	[
+		{
+			icon: "calendar",
+			text: `Published ${formatTimestamp(blogPost.datePublished || blogPost.dateCreated)}`,
+		}
+	]
 ]
 if (blogPost.dateUpdated) {
-	metadata.push({
+	metadata[1].push({
 		icon: "pencil",
 		text: `Updated ${formatTimestamp(blogPost.dateUpdated)}`,
 	})
@@ -43,7 +48,7 @@ if (blogPost.dateUpdated) {
 		tags={blogPost.tags}
 	/>
 
-	<div class="max-width-container">
+	<div class="max-width-container container-spacing">
 		<JArrowLink href="/blog" direction="left">All Blog Posts</JArrowLink>
 	</div>
 

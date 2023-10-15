@@ -1,0 +1,15 @@
+#Sitemap
+Sitemap: https://www.benryder.me/sitemap-index.xml
+
+#Block AI crawlers
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /

@@ -12,7 +12,7 @@ export interface ContentMetadata {
 
 type Props = {
 	title: string,
-	metadata: ContentMetadata[],
+	metadata: ContentMetadata[][],
 	tags: ProjectTag[] | BlogPostTag[]
 }
 
@@ -20,25 +20,40 @@ const { title, metadata, tags }: Props = Astro.props;
 ---
 
 <div class="content-hero">
-	<div class="content-hero__inner">
+	<div class="content-hero__basic">
 		<h1 class="content-hero__title">{title}</h1>
 	</div>
 
-	<ul>
-		{metadata.map(data =>
-			<li><span class=`icon-${data.icon}`></span>{data.text}</li>
-		)}
-	</ul>
+	<div class="content-hero__metadata">
+		<div>
+			{metadata.map(metadataList =>
+				<ul>
+					{
+						metadataList.map(data =>
+							<>
+								{data.link
+									? <li><span class=`icon icon-${data.icon}`></span><a href={data.link}>{data.text}</a></li>
+									: <li><span class=`icon icon-${data.icon}`></span>{data.text}</li>
+								}
+							</>
+						)
+					}
+				</ul>
+			)}
+		</div>
+	</div>
 
-	<ul>
-		{tags.map(tag =>
-			<li>
-				<JBadge
-					href={`/projects/?tags=${tag.slug}`}
-					variant={tag.colour}
-					text={tag.text}
-				/>
-			</li>
-		)}
-	</ul>
+	<div class="content-hero__tags">
+		<ul>
+			{tags.map(tag =>
+				<li>
+					<JBadge
+						href={`/projects/?tags=${tag.slug}`}
+						variant={tag.colour}
+						text={tag.text}
+					/>
+				</li>
+			)}
+		</ul>
+	</div>
 </div>
