@@ -1,7 +1,17 @@
 ---
 import GlobalLayout from '../patterns/layouts/GlobalLayout/GlobalLayout.astro';
+import { JProse } from "@ben-ryder/jigsaw-react"
 ---
 
 <GlobalLayout title="Page Not Found">
-		<h1>Page Not Found!</h1>
+	<div class="max-width-container">
+		<JProse>
+			<h1>Page Not Found</h1>
+
+			<p>The page you requested could not be found. It's possible you've typed an incorrect URL or followed a dead link.
+				If you think the page you tried to visit should exist then feel free to <a href="/contact">contact me</a> or <a href="https://github.com/ben-ryder/jigsaw/issues/new?assignees=Ben-Ryder&labels=bug&projects=&template=bug-report.md">raise an issue</a>.
+			</p>
+			<p>Alternatively, why not check out my <a href="/projects">projects</a> or some <a href="/blog">blog posts</a> I've written.</p>
+		</JProse>
+	</div>
 </GlobalLayout>

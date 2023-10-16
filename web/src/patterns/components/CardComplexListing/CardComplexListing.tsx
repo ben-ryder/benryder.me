@@ -10,7 +10,8 @@ import {
 	JFormRow,
 	JMultiSelectControl,
 	JSelect,
-	JSelectControl
+	JSelectControl,
+	JProse
 } from "@ben-ryder/jigsaw-react";
 import type {JMultiSelectOptionData} from "@ben-ryder/jigsaw-react"
 import {FormEvent, useState} from "react";
@@ -68,7 +69,11 @@ export function CardComplexListing(props: CardComplexListingProps) {
 			<div className="card-complex-listing">
 				<div className="card-complex-listing__content">
 					<h2 className="card-complex-listing__title">{props.title}</h2>
-					<p className="card-complex-listing__description">{props.description}</p>
+					<div className="card-complex-listing__description">
+						<JProse>
+							<div dangerouslySetInnerHTML={{__html: props.description}} />
+						</JProse>
+					</div>
 				</div>
 				<noscript className="noscript card-complex-listing__filters-noscript">
 					<p>Javascript is disabled so the filter and sort functionality

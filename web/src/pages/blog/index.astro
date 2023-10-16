@@ -10,7 +10,7 @@ const blogPostTags = await apiClient.getBlogPostTags()
 <GlobalLayout title="Blog">
 	<CardComplexListing
 		title="🗒️ Blog Posts"
-		description="All my blog posts"
+		description="<p>Here you can find a list of all my blog posts, which includes how-to guides, quick tips, opinon pieces and more.</p>"
 		cards={blogPosts.map(blogPost => {
 			return {
 				title: blogPost.title,
