@@ -416,8 +416,13 @@ export type Links = {
 	url: string;
 };
 
+export type PageBlogPosts = {
+	id: string;
+	listing_description: string;
+};
+
 export type PageContact = {
-	content: string;
+	form_description: string;
 	id: string;
 };
 
@@ -432,6 +437,11 @@ export type PageHomeSocialLinks = {
 	order: number;
 	page_home_id: string | PageHome;
 	social_links_id: string | SocialLinks;
+};
+
+export type PageProjects = {
+	id: string;
+	listing_description: string;
 };
 
 export type Pages = {
@@ -544,9 +554,11 @@ export type CustomDirectusTypes = {
 	header: Header;
 	header_links: HeaderLinks[];
 	links: Links[];
+	page_blog_posts: PageBlogPosts;
 	page_contact: PageContact;
 	page_home: PageHome;
 	page_home_social_links: PageHomeSocialLinks[];
+	page_projects: PageProjects;
 	pages: Pages[];
 	project_tags: ProjectTags[];
 	projects: Projects[];
