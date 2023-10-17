@@ -5,24 +5,11 @@
       "role": null,
       "collection": "form_contact",
       "action": "create",
-      "permissions": null,
-      "validation": {
-        "_and": [
-          {
-            "email": {
-              "_eq": "test@example.com"
-            }
-          }
-        ]
-      },
+      "permissions": {},
+      "validation": {},
       "presets": null,
       "fields": [
-        "id",
-        "date_created",
-        "name",
-        "message",
-        "subject",
-        "email"
+        "*"
       ]
     },
     {
@@ -30,7 +17,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "blog_posts",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -42,7 +37,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "blog_posts_blog_post_tags",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "blog_posts_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "blog_post_tags_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -54,7 +66,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "blog_posts_related_blog_posts",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "blog_posts_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "related_blog_posts_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -66,7 +95,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "blog_posts_related_projects",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "blog_posts_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "related_projects_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -78,7 +124,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "blog_post_tags",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -102,7 +156,17 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "footer_links",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "links_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -138,7 +202,17 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "header_links",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "links_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -150,7 +224,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "links",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -186,7 +268,17 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "page_home_social_links",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "social_links_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -198,7 +290,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "pages",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -210,7 +310,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "projects",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -222,7 +330,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "projects_project_tags",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "projects_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "project_tags_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -234,7 +359,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "projects_related_blog_posts",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "projects_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "related_blog_posts_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -246,7 +388,24 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "projects_related_projects",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "projects_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          },
+          {
+            "related_projects_id": {
+              "status": {
+                "_eq": "published"
+              }
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -258,7 +417,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "project_tags",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
@@ -270,7 +437,15 @@
       "role": "19967eda-300f-4a3b-926c-458fb79650a1",
       "collection": "social_links",
       "action": "read",
-      "permissions": {},
+      "permissions": {
+        "_and": [
+          {
+            "status": {
+              "_eq": "published"
+            }
+          }
+        ]
+      },
       "validation": {},
       "presets": null,
       "fields": [
