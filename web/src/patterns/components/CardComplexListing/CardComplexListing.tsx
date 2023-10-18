@@ -14,7 +14,7 @@ import {
 	JProse
 } from "@ben-ryder/jigsaw-react";
 import type {JMultiSelectOptionData} from "@ben-ryder/jigsaw-react"
-import {FormEvent, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 
 interface CardComplexListingProps {
 	title: string
@@ -41,13 +41,32 @@ export function CardComplexListing(props: CardComplexListingProps) {
 	})
 	const [selectedTags, setSelectedTags] = useState<JMultiSelectOptionData[]>([])
 
-	function updateFilters() {
+	// Check for tags already set via query params
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search)
+		const tagSlugs  = params.getAll('tags')
+		const initialSelectedTags: JMultiSelectOptionData[] = tagSlugs.reduce((accumulator, currentValue, currentIndex, array) => {
+			for (const tagOption of tagOptions) {
+				if (tagOption.value === currentValue) {
+					accumulator.push(tagOption)
+				}
+			}
+			return accumulator
+		}, [])
+
+		setSelectedTags(initialSelectedTags)
+		updateFilters(initialSelectedTags);
+	}, [])
+
+	function updateFilters(tagOverride?: JMultiSelectOptionData[]) {
+		const filterTags = tagOverride || selectedTags;
+
 		let filteredCards = [];
-		if (selectedTags.length === 0) {
+		if (filterTags.length === 0) {
 			filteredCards = props.cards
 		}
 		else {
-			const selectedTagSlugs = selectedTags.map(selectedTag => selectedTag.value);
+			const selectedTagSlugs = filterTags.map(selectedTag => selectedTag.value);
 
 			filteredCards = sortCards(props.cards
 				.filter(card => {
@@ -57,12 +76,27 @@ export function CardComplexListing(props: CardComplexListingProps) {
 			)
 		}
 
+		// Update search params to match selected tags
+		if (filterTags.length) {
+			const tagParams = new URLSearchParams()
+			for (const tag of filterTags) {
+				tagParams.append('tags', tag.value)
+			}
+			const newPath = `${window.location.pathname}?${tagParams.toString()}`
+
+			window.history.pushState({}, "", newPath)
+		}
+		else {
+			window.history.pushState({}, "", `${window.location.pathname}`)
+		}
+
 		setVisibleCards(filteredCards)
 	}
 
 	function resetFilters() {
 		setVisibleCards(props.cards)
 		setSelectedTags([])
+		window.history.pushState({}, "", `${window.location.pathname}`)
 	}
 
 	return (
@@ -110,21 +144,6 @@ export function CardComplexListing(props: CardComplexListingProps) {
 						selectedOptions={selectedTags}
 						setSelectedOptions={setSelectedTags}
 					/>
-					{/*<JSelectControl*/}
-					{/*	className="card-complex-listing__filter-sort"*/}
-					{/*	label="Sort By"*/}
-					{/*	id='sortBy'*/}
-					{/*	options={[*/}
-					{/*		{*/}
-					{/*			text: "Release Date",*/}
-					{/*			value: "releaseDate"*/}
-					{/*		},*/}
-					{/*		{*/}
-					{/*			text: "Name",*/}
-					{/*			value: "name"*/}
-					{/*		},*/}
-					{/*	]}*/}
-					{/*/>*/}
 					<JButtonGroup className="card-complex-listing__filter-buttons">
 						<JButton type="reset" variant="secondary">Reset</JButton>
 						<JButton type="submit" variant="primary">Filter</JButton>
