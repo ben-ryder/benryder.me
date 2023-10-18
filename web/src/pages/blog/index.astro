@@ -11,6 +11,7 @@ const blogPostTags = await apiClient.getBlogPostTags()
 	<CardComplexListing
 		title="🗒️ Blog Posts"
 		description="<p>Here you can find a list of all my blog posts, which includes how-to guides, quick tips, opinon pieces and more.</p>"
+		notFoundText="No Blog Posts Found"
 		cards={blogPosts.map(blogPost => {
 			return {
 				title: blogPost.title,

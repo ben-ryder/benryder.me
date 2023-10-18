@@ -11,6 +11,7 @@ const projectTags = await apiClient.getProjectTags()
 	<CardComplexListing
 		title="👨‍💻 Projects"
 		description="<p>Here you can find a list of all my projects, most of them are also avaliable on <a href='https://github.com/ben-ryder'>my GitHub</a>.</p>"
+		notFoundText="No Projects Found"
 		cards={projects.map(project => {
 			return {
 				title: project.name,

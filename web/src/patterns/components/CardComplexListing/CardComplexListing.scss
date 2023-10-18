@@ -44,6 +44,22 @@
 		margin: var(--j-space-12) 0 var(--j-space-8);
 	}
 
+	&__no-cards {
+		&-inner {
+			margin: var(--j-space-12) 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&-text {
+			margin-bottom: var(--j-space-12);
+			font-size: var(--j-text-size-rg);
+			font-weight: bold;
+		}
+	}
+
 	@media (min-width: 768px) {
 		&__filters {
 			flex-direction: row;

@@ -159,7 +159,7 @@ export class ResponseConverter {
 		let tags: BlogPostTag[] = [];
 
 		for (const apiBlogPostTag of apiBlogPostTags) {
-			if (apiBlogPostTag?.blog_posts_id) {
+			if (apiBlogPostTag?.blog_post_tags_id) {
 				const tag = await ResponseConverter.convertBlogPostTag(apiBlogPostTag.blog_post_tags_id)
 				tags.push(tag)
 			}

@@ -21,6 +21,7 @@ interface CardComplexListingProps {
 	description: string
 	cards: CardComplexProps[]
 	tags: ProjectTag[] | BlogPostTag[]
+	notFoundText: string
 }
 
 function sortCards(cards: CardComplexProps[]) {
@@ -136,8 +137,10 @@ export function CardComplexListing(props: CardComplexListingProps) {
 				</div>
 				{visibleCards.length === 0 &&
             <div className="card-complex-listing__no-cards">
-                <p>No Projects Found</p>
-                <button onClick={resetFilters}>Reset Filters</button>
+							<div className="card-complex-listing__no-cards-inner">
+								<p className="card-complex-listing__no-cards-text">{props.notFoundText}</p>
+								<JButton variant="secondary" onClick={resetFilters}>Reset Filters</JButton>
+							</div>
             </div>
 				}
 			</div>

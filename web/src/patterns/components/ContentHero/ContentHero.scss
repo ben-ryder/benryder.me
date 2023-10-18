@@ -42,6 +42,10 @@
 
 		a {
 			color: inherit;
+
+			&:hover {
+				color: var(--j-c-primary);
+			}
 		}
 	}
 
