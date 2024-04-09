@@ -14,3 +14,6 @@ scripts/*.sql
 # Content
 content/data
 content/cms_benryder_me.sql
+
+# Asset Uploads
+/uploads
