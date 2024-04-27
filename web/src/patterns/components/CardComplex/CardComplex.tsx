@@ -1,4 +1,4 @@
-import {JBadge} from "@ben-ryder/jigsaw-react";
+import {JPill} from "@ben-ryder/jigsaw-react";
 import type {BlogPostTag, ProjectTag} from "@lib/api/types/content/tag.ts";
 
 import "./CardComplex.scss"
@@ -25,7 +25,7 @@ export function CardComplex(props: CardComplexProps) {
 					<ul className="card-complex__tags">
 						{props.tags.map(tag =>
 							<li key={tag.slug}>
-								<JBadge text={tag.text} variant={tag.colour} />
+								<JPill variant={tag.colour}>{tag.text}</JPill>
 							</li>
 						)}
 					</ul>

@@ -1,0 +1,10 @@
+---
+import GlobalLayout from '../../patterns/layouts/GlobalLayout/GlobalLayout.astro';
+import {ContactForm} from "../../patterns/forms/ContactForm/ContactForm";
+---
+
+<GlobalLayout title="Contact">
+	<div class="j-content-section">
+		<ContactForm client:load />
+	</div>
+</GlobalLayout>

@@ -1,7 +1,7 @@
 ---
 import "./ContentHero.scss"
 import {formatTimestamp} from "../../../lib/api/utils/format-timestamp";
-import {JBadge} from "@ben-ryder/jigsaw-react";
+import {JPillLink} from "@ben-ryder/jigsaw-react";
 import {BlogPostTag, ProjectTag} from "../../../lib/api/types/content/tag";
 
 export interface ContentMetadata {
@@ -48,11 +48,10 @@ const { title, metadata, tags, tagsBaseUrl }: Props = Astro.props;
 		<ul>
 			{tags.map(tag =>
 				<li>
-					<JBadge
+					<JPillLink
 						href={`${tagsBaseUrl}${tag.slug}`}
 						variant={tag.colour}
-						text={tag.text}
-					/>
+					>{tag.text}</JPillLink>
 				</li>
 			)}
 		</ul>

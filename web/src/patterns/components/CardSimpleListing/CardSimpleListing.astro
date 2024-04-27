@@ -25,7 +25,7 @@ const { link, title, cards, viewAllLink, viewAllText }: Props = Astro.props;
 		</div>
 		{viewAllLink && viewAllText &&
 			<div class="card-simple-listing__cta">
-				<JArrowLink href={viewAllLink}>
+				<JArrowLink href={viewAllLink} variant="minimal">
 					{viewAllText}
 				</JArrowLink>
 			</div>

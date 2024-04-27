@@ -60,6 +60,10 @@
 		}
 	}
 
+	&__cards {
+		margin-top: var(--j-space-8);
+	}
+
 	@media (min-width: 768px) {
 		&__filters {
 			flex-direction: row;

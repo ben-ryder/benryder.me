@@ -17,7 +17,7 @@
 	}
 
 	&__cards {
-		margin-top: var(--j-space-4);
+		margin-top: var(--j-space-8);
 	}
 
 	&__cta {
@@ -26,16 +26,9 @@
 		align-items: center;
 		margin-top: var(--j-space-6);
 
-		// todo: provide option via Jigsaw?
+		// todo: remove once jigsaw updated
 		.j-arrow-link {
 			text-decoration: none;
-		}
-	}
-
-	@media (min-width: 768px) {
-		&__cta {
-			justify-content: flex-start;
-			padding-left: var(--j-space-8);
 		}
 	}
 }

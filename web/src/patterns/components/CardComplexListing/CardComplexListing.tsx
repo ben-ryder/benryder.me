@@ -6,12 +6,7 @@ import type {BlogPostTag, ProjectTag} from "@lib/api/types/content/tag.ts";
 import {
 	JButton,
 	JButtonGroup,
-	JForm, JFormContent,
-	JFormRow,
-	JMultiSelectControl,
-	JSelect,
-	JSelectControl,
-	JProse
+	JProse, JMultiSelect
 } from "@ben-ryder/jigsaw-react";
 import type {JMultiSelectOptionData} from "@ben-ryder/jigsaw-react"
 import {FormEvent, useEffect, useState} from "react";
@@ -57,6 +52,11 @@ export function CardComplexListing(props: CardComplexListingProps) {
 		setSelectedTags(initialSelectedTags)
 		updateFilters(initialSelectedTags);
 	}, [])
+
+	const [isClient, setIsClient] = useState<boolean>(false)
+	useEffect(() => {
+		setIsClient(true)
+	}, []);
 
 	function updateFilters(tagOverride?: JMultiSelectOptionData[]) {
 		const filterTags = tagOverride || selectedTags;
@@ -111,12 +111,10 @@ export function CardComplexListing(props: CardComplexListingProps) {
 					</div>
 				</div>
 				<noscript className="noscript card-complex-listing__filters-noscript">
-					<p>Javascript is disabled so the filter and sort functionality
-					is not currently available. Consider enabling Javascript to
-						improve your experience.</p>
+					<p>It looks like Javascript is disabled. That's not a problem, it just means you're currently unable to filter and sort this listing as that feature relies on Javascript.</p>
 				</noscript>
 				<form
-					className="card-complex-listing__filters js-required"
+					className="card-complex-listing__filters"
 					onSubmit={(e: FormEvent) => {
 						e.preventDefault()
 						updateFilters()
@@ -125,8 +123,9 @@ export function CardComplexListing(props: CardComplexListingProps) {
 						e.preventDefault()
 						resetFilters()
 					}}
+					style={isClient ? {} : {display: 'none'}}
 				>
-					<JMultiSelectControl
+					<JMultiSelect
 						className="card-complex-listing__filter-tag"
 						id="tags"
 						label="Filter By Tags"
