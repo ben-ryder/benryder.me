@@ -18,9 +18,11 @@ import type {
 	Pages as DirectusPage,
 	Projects as DirectusProject,
 	ProjectTags as DirectusProjectTag,
-	BlogPostTags as DirectusBlogPostTag, ProjectTags, PageHomeSocialLinks
+	BlogPostTags as DirectusBlogPostTag,
+	PageContact as DirectusContactPage
 } from "@lib/api/types/directus/generated.ts";
 import type {JColourVariants} from "@ben-ryder/jigsaw-react";
+import type {ContactPage} from "@lib/api/types/content/contact-page.ts";
 
 
 /**
@@ -98,6 +100,14 @@ export class ResponseConverter {
 		return {
 			greeterContentHtml,
 			socialLinks,
+		}
+	}
+
+	static async convertContactPage(apiContactPage: DirectusContactPage): Promise<ContactPage> {
+		const descriptionHtml = await convertMarkdownToHTML(apiContactPage.form_description);
+
+		return {
+			descriptionHtml
 		}
 	}
 

@@ -11,7 +11,8 @@ import {
     JFormHeader,
     JFormRow,
     JInput, JLabel,
-    JTextArea
+    JTextArea,
+    JProse
 } from "@ben-ryder/jigsaw-react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 
@@ -36,7 +37,11 @@ type ContactFormData = z.infer<typeof ContactFormData>;
 
 import "./ContactForm.scss"
 
-export function ContactForm() {
+export interface ContactFormProps {
+    description: string
+}
+
+export function ContactForm(props: ContactFormProps) {
     const {
         control,
         handleSubmit,
@@ -109,8 +114,7 @@ export function ContactForm() {
         <JForm onSubmit={handleSubmit(onSubmit)}>
             <JFormHeader>
                 <h2>✉️ Contact Me</h2>
-                <p>You can use this form to contact me. I will never share your details with anyone, for more info see
-                    my <a href="#">privacy policy</a>.<br/></p>
+                <JProse html={props.description} />
             </JFormHeader>
             <noscript className="noscript">
                 <p>It looks like Javascript is disabled, and because this contact form relies on Javascript to function

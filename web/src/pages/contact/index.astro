@@ -1,10 +1,13 @@
 ---
-import GlobalLayout from '../../patterns/layouts/GlobalLayout/GlobalLayout.astro';
+import {apiClient} from "../../lib/api/api-client";
 import {ContactForm} from "../../patterns/forms/ContactForm/ContactForm";
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+
+const contactPage = await apiClient.getContactPage()
 ---
 
 <GlobalLayout title="Contact">
 	<div class="j-content-section">
-		<ContactForm client:load />
+		<ContactForm client:load description={contactPage.descriptionHtml} />
 	</div>
 </GlobalLayout>

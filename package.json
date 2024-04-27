@@ -6,7 +6,7 @@
   "author": "Ben Ryder",
   "license": "AGPL-3.0-only",
   "engines": {
-    "node": "18.x"
+    "node": "^20.x"
   },
   "repository": {
     "type": "git",

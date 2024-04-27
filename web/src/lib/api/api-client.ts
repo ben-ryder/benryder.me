@@ -13,12 +13,13 @@ import type {
   Pages as DirectusPage,
   Footer as DirectusFooter,
   ProjectTags as DirectusProjectTag,
-  BlogPostTags as DirectusBlogPostTag
+  BlogPostTags as DirectusBlogPostTag, PageContact
 } from "@lib/api/types/directus/generated.ts"
 
 import {ResponseConverter} from "@lib/api/response-converter.ts";
 import {Logger} from "@lib/logger.ts";
 import type {ProjectTag, BlogPostTag} from "@lib/api/types/content/tag.ts";
+import type {ContactPage} from "@lib/api/types/content/contact-page.ts";
 
 export interface APIClientRequest {
   endpoint: string;
@@ -136,6 +137,17 @@ export class APIClient {
     });
 
     return ResponseConverter.convertHomepage(res.data);
+  }
+
+  async getContactPage(): Promise<ContactPage> {
+    const res = await this._request<{ data: PageContact }>({
+      endpoint: '/items/page_contact',
+      query: {
+        fields: "form_description"
+      }
+    });
+
+    return ResponseConverter.convertContactPage(res.data);
   }
 
   async getProjects(): Promise<Project[]> {
