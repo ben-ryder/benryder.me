@@ -49,7 +49,7 @@
 	}
 
 	&__social {
-		margin-top: var(--j-space-12);
+		margin-top: var(--j-space-16);
 	}
 }
 
@@ -69,8 +69,8 @@
 	}
 
 	&__link {
-		font-size: var(--j-text-size-3xl);
-		color: var(--j-c-mono-50);
+		font-size: var(--j-text-size-4xl);
+		color: var(--j-c-mono-100);
 
 		&:hover {
 			color: var(--j-c-primary)

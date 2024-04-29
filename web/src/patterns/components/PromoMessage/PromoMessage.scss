@@ -3,6 +3,10 @@
 	color: var(--j-c-primary-text);
 	padding: var(--j-space-4) var(--j-space-12);
 
+	&__inner {
+		line-height: 1.5;
+	}
+
 	&--warning {
 		background: var(--j-c-warning);
 	}

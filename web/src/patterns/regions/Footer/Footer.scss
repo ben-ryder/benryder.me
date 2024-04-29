@@ -1,7 +1,6 @@
 .footer {
-  margin-top: var(--j-space-32);
+  margin-top: var(--j-space-64);
   margin-bottom: var(--j-space-24);
-  font-size: var(--j-text-size-sm);
   color: var(--j-c-mono-50);
 
   display: flex;
@@ -10,7 +9,7 @@
   flex-direction: column;
 
   &__sign-off {
-    margin-top: var(--j-space-12);
+    margin-top: var(--j-space-24);
   }
 
   &__navigation-menu {
@@ -22,6 +21,8 @@
   }
 
   &__navigation-link {
+    display: inline-block;
+    padding: var(--j-space-2);
     color: var(--j-c-mono-50);
     text-decoration: none;
     border-bottom: var(--j-border-width-md) solid transparent;
@@ -51,6 +52,10 @@
     &__navigation-menu {
       justify-content: flex-start;
       flex-direction: row;
+    }
+
+    &__navigation-link {
+      padding: 0;
     }
 
     &__navigation-item {
