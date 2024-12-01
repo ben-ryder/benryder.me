@@ -1,0 +1,19 @@
+---
+import "../../styles/index.css"
+
+import Header from "../components/header.astro"
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Layout | Ben Ryder</title>
+	</head>
+	<body class="bg-background text-text">
+		<Header />
+		<slot />
+	</body>
+</html>
