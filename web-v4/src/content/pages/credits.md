@@ -1,4 +1,6 @@
 ---
+# Metadata
+path: '/credits'
 # Basic data
 slug: 'credits'
 title: 'Credits'
@@ -6,7 +8,6 @@ description: 'Thanks to the many things that benryder.me is built upon.'
 # Timestamps
 createdAt: 2023-10-07T11:19:49.874Z
 updatedAt: 2024-04-09T18:06:39.317Z
-publishedAt: 2023-10-07T11:19:49.874Z
 ---
 
 # ❤️ Credits

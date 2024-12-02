@@ -1,4 +1,45 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
 
-<div class="p-2 bg-background-f1">
-    header
-</div>
+function isActive(url: string) {
+    return pathname.includes(url)
+}
+
+const links = [
+    {
+        title: 'projects',
+        url: '/projects',
+    },
+    {
+        title: 'blog',
+        url: '/blog',
+    },
+    {
+        title: 'guides',
+        url: '/guides',
+    },
+    {
+        title: 'sounds',
+        url: '/sounds',
+    },
+    {
+        title: 'contact',
+        url: '/contact',
+    }
+]
+---
+
+<header>
+    <nav class="font-mono max-w-5xl m-auto py-14 flex justify-between items-center text-rg">
+        <a class="font-bold flex" href="/">
+            <span class="text-teal-300 pr-2">$</span>
+            <span>Ben Ryder</span>
+            <span class="motion-safe:animate-pulse">_</span>
+        </a>
+        <ul class="flex">
+            {links.map(link => (
+              <li class="after:content-['/'] after:text-blueGrey-700 after:m-2"><a class={isActive(link.url) ? "text-teal-200" : "text-mono-200" } href={link.url}>{link.title}</a></li>
+            ))}
+        </ul>
+    </nav>
+</header>

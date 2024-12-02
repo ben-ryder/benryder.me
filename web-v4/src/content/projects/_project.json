@@ -1,0 +1,304 @@
+{
+  "data": [
+    {
+      "content": "A proof of concept game where the player flies through a cave trying to collect the coins and not crash. \n\n![](https://cms.benryder.me/assets/b349424b-95f3-4e71-8c1c-bd2ee4f3ff7f)",
+      "date_created": "2023-10-07T11:19:43.780Z",
+      "date_updated": "2023-10-14T21:56:25.618Z",
+      "description": "A proof of concept game where the player flies through a cave trying to collect the coins and not crash. ",
+      "featured": false,
+      "id": "3c8a442d-0556-475b-a264-03f8a42c9b52",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Soar",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/soar",
+      "slug": "soar",
+      "status": "idea",
+      "date_published": "2020-03-15T12:00:00.000Z",
+      "tags": [
+        21,
+        22
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "A collection of writing tools including a random prompt generator. \nYou can try out the tools yourself at https://writing-tools.benryder.dev.",
+      "date_created": "2023-10-07T11:19:43.851Z",
+      "date_updated": "2023-10-14T21:59:06.365Z",
+      "description": "A collection of writing tools including a random prompt generator.",
+      "featured": false,
+      "id": "59e739e0-0b0f-4b05-870d-cc781cdc0315",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Writing Tools",
+      "product_url": "https://writing-tools.benryder.dev",
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/writing-tools",
+      "slug": "writing-tools",
+      "status": "archived",
+      "date_published": null,
+      "tags": [
+        1
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "The way each person wants to organise their content like notes, tasks etc is unique, personal and often use-case specific. Headbase gives you the building blocks to create your own content databases, in your own way. It is not just a \"notes app\" or a \"task management app\", it is what you decide to build.\n\nThis project is early in development and is not in a complete or stable MVP release state yet.\n\nTo learn more and see where I'm up to you can visit https://github.com/Ben-Ryder/headbase.",
+      "date_created": "2023-10-07T11:19:43.558Z",
+      "date_updated": "2024-10-22T06:44:45.700Z",
+      "description": "The customizable database for your brain, suitable for note-taking, task-management, personal knowledge bases and more. ",
+      "featured": true,
+      "id": "93c68e14-a8a3-4de8-9a55-2cb0bcf7cdfe",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Headbase",
+      "product_url": "https://headbase.app",
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/headbase",
+      "slug": "headbase",
+      "status": "published",
+      "date_published": "2024-04-09T11:00:00.000Z",
+      "tags": [
+        7,
+        8,
+        9
+      ],
+      "related_projects": [
+        6,
+        7
+      ],
+      "related_blog_posts": [
+        4
+      ]
+    },
+    {
+      "content": "Escape is a dungeon crawler style game where the player has to try and escape. This is achieved by collecting all the keys and making it to the exit while avoiding all enemies.\n\nThis was the first game where I tried to implement some more advanced game mechanics and algorithms. Enemy patrols follow a set path which they traverse using an implementation of the [A\\* shortest path algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm).\nThere is also an enemy seeker which will seek out the player by continually working out the shortest path to them.\nIf you're interested in the algorithm you can check it out [here](https://github.com/Ben-Ryder/Escape/blob/master/project/game/search.py).\n\n## Gallery\n![](https://cms.benryder.me/assets/d93c1e8a-f4bc-4de5-a8ff-019484a2a1d7)\n\n![](https://cms.benryder.me/assets/76a2eb6b-678e-47ee-81f6-8fd813b20b81)\n\n![](https://cms.benryder.me/assets/9003173e-2332-46b8-874a-dc11968a9a69)\n\n![](https://cms.benryder.me/assets/39e06560-b3a1-48fa-8818-0b9f1d8dc982)",
+      "date_created": "2023-10-07T11:19:43.597Z",
+      "date_updated": "2023-10-14T17:29:37.460Z",
+      "description": "You are trapped. To escape you must collect all the keys and get to the exit while avoiding all enemy patrols. If they touch you, you're dead. ",
+      "featured": false,
+      "id": "97152bdd-6cce-47b7-a6d2-423eaf57c81b",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Escape",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/Escape",
+      "slug": "escape",
+      "status": "published",
+      "date_published": "2019-05-26T11:00:00.000Z",
+      "tags": [
+        4,
+        5
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "`rcl` is a simple command line wrapper for rclone focused on easy folder syncing. It is loosely based on git's interface and therefore uses the concepts of \"local\" and \"remote\" along with having commands such as pull, push and diff.\n\nI created rcl as I found rclone commands to be quite cumbersome. This offers an easier way to interact with cloud storage from the command line and is especially suited to archival storage where you only need to update files occasionally.\n\nIt is published on PyPi here: https://pypi.org/project/rcl/.\n\n## Example Usage\n\nThis project is designed to be used as a wrapper around rclone, so initial setup of remotes still has to be done through rclone.\nOnce you have setup a remote (for example called `gdrive`) you can do things like...\n\n```bash\n# Add a new local/remote pair called \"music\"\nrcl add music /home/user/Music gdrive:Music\n\n# View the difference between the local and remote folder\nrcl diff music\n\n# Push local changes to the remote. (Sync remote with local).\nrcl push music\n\n# Pull remote changes to your local. (Sync local with remote).\nrcl pull music\n\n```",
+      "date_created": "2023-10-07T11:19:43.713Z",
+      "date_updated": "2023-10-14T17:30:43.249Z",
+      "description": "rcl is a simple command line wrapper for rclone focused on easy folder syncing. It is loosely based on git's interface and therefore uses the concepts of \"local\" and \"remote\" along with having commands such as pull, push and diff.",
+      "featured": false,
+      "id": "998dfb28-dc08-4b1f-811e-761b8eb83009",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "rcl",
+      "product_url": "https://pypi.org/project/rcl/",
+      "release_date": null,
+      "repository_url": "https://github.com/Ben-Ryder/rcl",
+      "slug": "rcl",
+      "status": "published",
+      "date_published": "2020-09-07T11:00:00.000Z",
+      "tags": [
+        6
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "KangoJS is a custom typescript Express framework which I built to learn more about decorators, Javascript prototypes, dependency injection, NPM package publishing and more.\n\nWhile the code is now archived as I learnt what I could from it, you can still check it out here: https://github.com/kangojs/kangojs.",
+      "date_created": "2023-10-07T11:19:43.631Z",
+      "date_updated": "2023-10-14T21:56:04.105Z",
+      "description": "A typescript Express framework to jump start express app development. ",
+      "featured": false,
+      "id": "9fbc93f3-6518-4706-afc0-6f39cafde712",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "KangoJS",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/kangojs",
+      "slug": "kangojs",
+      "status": "draft",
+      "date_published": "2022-03-02T12:00:00.000Z",
+      "tags": [
+        10,
+        11
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "Conqueror of Empires is a turn-based strategy game where up to 4 local players battle to be victorious, by expanding their empires, and controlling units to conquer cities and attack the enemy.\n\nThe game was inspired by [Polytopia](http://midjiwan.com/polytopia.html) and [Civilisation](https://civilization.com/) and was made using python and pygame.\n\nYou can find the source code on my [GitHub](https://github.com/Ben-Ryder/Conqueror-of-Empires) or you can download it from the [GitHub Releases](https://github.com/Ben-Ryder/Conqueror-of-Empires/releases).\n\n## Gallery\n![](https://cms.benryder.me/assets/93bac293-a726-4363-853d-eff7bcdc44bb)\n\n![](https://cms.benryder.me/assets/18be8471-a459-43bc-b180-508f7e362d92)\n\n![](https://cms.benryder.me/assets/160f9473-a9b9-4c28-bc0c-aa7f84495a11)\n\n![](https://cms.benryder.me/assets/bfbdcace-f860-46f8-8316-9d719bbb713f)\n\n![](https://cms.benryder.me/assets/d050549b-c4c2-46fb-b737-8cf8339b5073)\n\n![](https://cms.benryder.me/assets/72122d17-c8e1-4893-a2ae-8c29fd80966e)\n\n![](https://cms.benryder.me/assets/96371dbc-8925-4fa4-9ac0-62818ed8807c)",
+      "date_created": "2023-10-07T11:19:43.572Z",
+      "date_updated": "2023-10-14T17:29:52.067Z",
+      "description": "A turn-based strategy game where up to 4 local players battle to be victorious, by expanding their empires, and controlling units to conquer cities and attack the enemy.",
+      "featured": true,
+      "id": "c1beb418-5851-4acd-ac55-122c5e477261",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Conqueror of Empires",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": "https://github.com/Ben-Ryder/Conqueror-of-Empires",
+      "slug": "conqueror-of-empires",
+      "status": "published",
+      "date_published": "2020-04-30T11:00:00.000Z",
+      "tags": [
+        2,
+        3
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "Localful is a project that offers full-stack tooling for building local-first web apps with a focus on simplicity, interoperability and longevity.  \n\nI'm currently developing Localful alongside my local-first web app [Athena](/projects/athena) and key features will include:\n- Local-first storage using IndexDB.\n- Client-side encryption, including locally in IndexDB.\n- Schema definitions using [Zod](https://zod.dev/).\n- Migration support for schemas and data.\n- Basic local queries with support with filtering, ordering, grouping etc.\n- Built-in reactivity for local data fetching via [RxJS Observables](https://rxjs.dev/).\n- Self-hostable Node.js server for account creation, data storage and cross-device synchronisation.",
+      "date_created": "2023-10-07T11:19:43.657Z",
+      "date_updated": "2024-04-27T21:41:42.304Z",
+      "description": "Full-stack tooling for building local-first web apps with a focus on simplicity, interoperability and longevity. ",
+      "featured": true,
+      "id": "ce366ecf-5631-424a-8462-cc27f3f53301",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Localful",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/localful",
+      "slug": "localful",
+      "status": "published",
+      "date_published": "2024-04-09T11:00:00.000Z",
+      "tags": [
+        17,
+        18
+      ],
+      "related_projects": [
+        4,
+        5
+      ],
+      "related_blog_posts": [
+        3,
+        5
+      ]
+    },
+    {
+      "content": "You're already familiar with this one!\n\nThis site has been created with Astro, React and my design system Jigsaw with content being pulled in from a Directus CMS instance at build time.\n\nI may write up an article on certain aspects of this sites creation, however in the meantime you can find the source code [on my GitHub](https://github.com/Ben-Ryder/benryder.me).",
+      "date_created": "2023-10-07T11:19:43.699Z",
+      "date_updated": "2024-04-27T21:49:17.976Z",
+      "description": "You're already looking at it! My personal website where I share my projects & post blogs. Built using Directus, Astro and my design system, Jigsaw.",
+      "featured": false,
+      "id": "cf8539c6-1168-46b5-a033-691eef85102f",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Personal Website",
+      "product_url": "https://www.benryder.me",
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/benryder.me",
+      "slug": "personal-website",
+      "status": "published",
+      "date_published": null,
+      "tags": [
+        12,
+        13
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    },
+    {
+      "content": "Two Pence is a project that I am currently working on. It will be a basic comments system allowing users to create comments sections and embed them on their sites for users to 'give their two pence'.\nIt will be built using ExpressJS, MongoDB, Gatsby (React) & Tailwind.\n\nThis project is still in early development so there is no public respository or live site right now. While I continue work on it, here's a sneak peak of where I'm up to so far...\n\n**March 2022 Update**: I've stopped working on this project for now. I'm focusing on my KangoJS and Athena projects at the moment.\n\n## Gallery\n![](https://cms.benryder.me/assets/f7c04f30-2b99-490a-b86b-d3c54b217bf4)\n\n![](https://cms.benryder.me/assets/87fe146b-fb19-4ab3-8ea9-506c573d662c)\n\n![](https://cms.benryder.me/assets/098e6f13-b2fc-4dbb-be48-5aef00e0a130)\n\n![](https://cms.benryder.me/assets/1a714ade-2e5d-4ced-b302-89052950529f)\n\n![](https://cms.benryder.me/assets/2e573039-5859-4b55-a74c-11e392828876)\n\n![](https://cms.benryder.me/assets/3be9ce6d-b7ee-4c84-b9dc-278ecd3300f1)\n\n![](https://cms.benryder.me/assets/f306ae68-255e-4762-8176-4892b924ac92)\n\n![](https://cms.benryder.me/assets/55871dfd-934d-4d52-982e-aeb935ec9744)",
+      "date_created": "2023-10-13T23:17:37.118Z",
+      "date_updated": "2024-02-16T14:05:02.256Z",
+      "description": "A comments system and chat app allowing users to create comments sections and embed them on their sites for users to 'give their two pence'.",
+      "featured": false,
+      "id": "e6163fc6-74a6-488b-9470-4004dcd1c6c0",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Two Pence",
+      "product_url": null,
+      "release_date": null,
+      "repository_url": null,
+      "slug": "two-pence",
+      "status": "published",
+      "date_published": "2021-04-03T11:00:00.000Z",
+      "tags": [
+        25,
+        26,
+        27
+      ],
+      "related_projects": [
+        1,
+        2,
+        3
+      ],
+      "related_blog_posts": [
+        1,
+        2
+      ]
+    },
+    {
+      "content": "Jigsaw aims to provide universal styling and reusable components that I can use to speed up developing my websites and applications.\nWhile I could use existing component libraries, developing my own gives me the opportunity to customise everything while also giving me the space to practise writing CSS, using Storybook, applying atomic design, using accessible component patterns etc.\n\nYou can explore the design system and all the components using the live Storybook instance: https://jigsaw.benryder.dev/.",
+      "date_created": "2023-10-07T11:19:43.611Z",
+      "date_updated": "2024-04-27T21:48:31.644Z",
+      "description": "A design system and component library for use in my personal projects. ",
+      "featured": true,
+      "id": "ee74c481-6a7c-469c-87fe-a57eea79f697",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Jigsaw",
+      "product_url": "https://jigsaw.benryder.dev/",
+      "release_date": null,
+      "repository_url": "https://github.com/ben-ryder/jigsaw",
+      "slug": "jigsaw",
+      "status": "published",
+      "date_published": "2024-02-06T12:00:00.000Z",
+      "tags": [
+        19,
+        20
+      ],
+      "related_projects": [
+        8,
+        9
+      ],
+      "related_blog_posts": [
+        6,
+        7
+      ]
+    },
+    {
+      "content": "sounds",
+      "date_created": "2023-10-07T11:19:43.839Z",
+      "date_updated": "2023-10-14T21:56:35.553Z",
+      "description": "A place for music, soundscapes etc",
+      "featured": true,
+      "id": "fa7ce474-5355-4f4a-b1c6-2cf4d2e71a26",
+      "metadata_description": null,
+      "metadata_tags": null,
+      "name": "Sounds",
+      "product_url": "https://sounds.benryder.dev",
+      "release_date": null,
+      "repository_url": null,
+      "slug": "sounds",
+      "status": "draft",
+      "date_published": null,
+      "tags": [
+        23,
+        24
+      ],
+      "related_projects": [],
+      "related_blog_posts": []
+    }
+  ]
+}

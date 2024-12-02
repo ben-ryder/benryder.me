@@ -4,8 +4,10 @@ import Layout from "../patterns/layouts/layout.astro";
 
 export async function getStaticPaths() {
 	const pages = await getCollection('pages');
+
 	return pages.map(page => ({
-		params: { slug: page.slug }, props: { page },
+		params: { path: page.data.path },
+    props: { page },
 	}));
 }
 
@@ -15,5 +17,7 @@ const { Content } = await page.render();
 
 <Layout>
     <h1>{page.data.title}</h1>
-    <Content />
+    <div class="prose max-w-5xl m-auto">
+        <Content />
+    </div>
 </Layout>

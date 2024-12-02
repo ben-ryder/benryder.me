@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss'
+import typography from '@tailwindcss/typography'
+import defaultTheme from "tailwindcss/defaultTheme";
 
 
 export default {
@@ -210,7 +212,91 @@ export default {
       4: 'var(--j-layer-4)',
       5: 'var(--j-layer-5)',
     },
-    extend: {},
+    fontFamily: {
+      sans: defaultTheme.fontFamily.sans,
+      serif: defaultTheme.fontFamily.serif,
+      mono: ['DepartureMono', ...defaultTheme.fontFamily.mono],
+    },
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'auto',
+            '--tw-prose-body': 'var(--j-c-text)',
+            '--tw-prose-headings': 'var(--j-c-text-emphasis)',
+            '--tw-prose-lead': 'var(--j-c-text-emphasis)',
+            '--tw-prose-links': 'var(--j-c-text-emphasis)',
+            '--tw-prose-bold': 'var(--j-c-text-emphasis)',
+            '--tw-prose-counters': 'var(--j-c-teal-300)',
+            '--tw-prose-bullets': 'var(--j-c-teal-300)',
+            '--tw-prose-quotes': 'var(--j-c-text-emphasis)',
+            '--tw-prose-quote-borders': 'var(--j-c-teal-500)',
+            '--tw-prose-captions': 'var(--j-c-text-emphasis)',
+            '--tw-prose-code': 'var(--j-c-text-emphasis)',
+            '--tw-prose-pre-code': 'var(--j-c-text)',
+            a: {
+              '&:hover': {
+                color: 'var(--j-c-teal-300)',
+              }
+            },
+            hr: {
+              borderWidth: 'var(--j-border-width-lg)',
+              borderColor: 'var(--j-c-blueGrey-900)',
+              borderRadius: 'var(--j-border-radius-md)',
+            },
+            pre: {
+              backgroundColor: 'var(--j-c-background-b1) !important',
+              borderRadius: 'var(--j-border-radius-md)',
+            },
+            blockquote: {
+              backgroundColor: 'var(--j-c-background-f1)',
+              borderTopRightRadius: 'var(--j-border-radius-md)',
+              borderBottomRightRadius: 'var(--j-border-radius-md)',
+              padding: 'var(--j-space-8)',
+              p: {
+                margin: 'unset'
+              }
+            },
+            figure: {
+              img: {
+                width: '100%',
+                borderTopRightRadius: 'var(--j-border-radius-md)',
+                borderTopLeftRadius: 'var(--j-border-radius-md)',
+              }
+            },
+            figcaption: {
+              backgroundColor: 'var(--j-c-background-f1)',
+              marginTop: 0,
+              padding: 'var(--j-space-6)',
+              borderTop: 'var(--j-border-width-lg) solid var(--j-c-primary)',
+              borderBottomRightRadius: 'var(--j-border-radius-md)',
+              borderBottomLeftRadius: 'var(--j-border-radius-md)',
+            },
+            table: {
+              backgroundColor: 'var(--j-c-background-f1)',
+              borderRadius: 'var(--j-border-radius-md)',
+              thead: {
+                borderBottomColor: 'var(--j-c-primary)',
+                borderBottomWidth: 'var(--j-border-width-lg)',
+                th: {
+                  padding: 'var(--j-space-6)',
+                }
+              },
+              tbody: {
+                tr: {
+                  borderBottomColor: 'var(--j-c-blueGrey-700)',
+                },
+                td: {
+                  padding: 'var(--j-space-6)',
+                }
+              }
+            }
+          }
+        }
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    typography
+  ],
 } satisfies Config

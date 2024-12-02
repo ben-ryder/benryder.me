@@ -1,5 +1,6 @@
 ---
 # Basic data
+slug: 'example'
 title: 'This is a blog post'
 description: 'This is a description.'
 tags:
@@ -7,9 +8,8 @@ tags:
 # Blog post data
 isFeatured: false
 # Timestamps
-createdAt: 2024-12-01T21:12:47.000Z
-updatedAt: 2024-12-01T21:12:47.000Z
-publishedAt: 2024-12-01T21:12:47.000Z
+createdAt: 0000-00-00T00:00:00.000Z
+updatedAt: 0000-00-00T00:00:00.000Z
 # Related content
 relatedBlogPosts: []
 relatedProjects: []

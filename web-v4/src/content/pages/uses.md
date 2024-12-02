@@ -1,4 +1,6 @@
 ---
+# Metadata
+path: '/uses'
 # Basic data
 slug: 'uses'
 title: 'Uses'
@@ -6,7 +8,6 @@ description: 'Learn about the hardware and software I use.'
 # Timestamps
 createdAt: 2023-10-07T11:20:25.044Z
 updatedAt: 2024-04-02T12:27:35.158Z
-publishedAt: 2023-10-07T11:20:25.044Z
 ---
 
 # 🛠️ Uses
