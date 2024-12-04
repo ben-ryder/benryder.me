@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: 'https://www.benryder.me',
   server: {
-    port: 4321,
+    port: 42101,
     host: "local.benryder.me"
   },
   integrations: [react(), sitemap()],

@@ -30,7 +30,6 @@
     "zod": "^3.23.4"
   },
   "devDependencies": {
-    "@ben-ryder/jigsaw": "^0.21.0",
-    "sass": "^1.68.0"
+    "@ben-ryder/jigsaw": "^0.21.0"
   }
 }

@@ -1,8 +1,6 @@
 ---
-import "./ContentHero.scss"
-import {formatTimestamp} from "../../../lib/api/utils/format-timestamp";
-import {JPillLink} from "@ben-ryder/jigsaw-react";
-import {BlogPostTag, ProjectTag} from "../../../lib/api/types/content/tag";
+import "./ContentHero.css"
+import type {CollectionEntry} from "astro:content"
 
 export interface ContentMetadata {
 	icon: string,
@@ -13,7 +11,7 @@ export interface ContentMetadata {
 type Props = {
 	title: string,
 	metadata: ContentMetadata[][],
-	tags: ProjectTag[] | BlogPostTag[],
+	tags: CollectionEntry<'tags'>,
 	tagsBaseUrl: string,
 }
 
@@ -48,10 +46,7 @@ const { title, metadata, tags, tagsBaseUrl }: Props = Astro.props;
 		<ul>
 			{tags.map(tag =>
 				<li>
-					<JPillLink
-						href={`${tagsBaseUrl}${tag.slug}`}
-						variant={tag.colour}
-					>{tag.text}</JPillLink>
+						<a href={`${tagsBaseUrl}${tag.id}`} class={`j-pill-link j-pill j-pill--interactive j-pill--${tag.data.colour}`}>{tag.data.title}</a>
 				</li>
 			)}
 		</ul>

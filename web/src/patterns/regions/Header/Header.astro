@@ -1,16 +1,33 @@
 ---
-import "./Header.scss"
+import "./Header.css"
 
 import PromoMessage from "../../components/PromoMessage/PromoMessage.astro";
-import {apiClient} from "../../../lib/api/api-client";
 
-const header= await apiClient.getHeader()
+import { compiledContent as getPromoMessageHtml } from "../../../content-static/global-promo.md"
+
+const navigationLinks = [
+	{
+		text: 'Projects',
+		url: '/projects'
+	},
+	{
+		text: 'Blog',
+		url: '/blog'
+	},
+	// {
+	// 	text: 'Guides',
+	// 	url: '/guides'
+	// },
+	{
+		text: 'Contact',
+		url: '/contact'
+	}
+]
+
 ---
 
 <header class="brm-layout__header">
-	{header.messagePromoHtml &&
-		<PromoMessage messageHtml={header.messagePromoHtml} />
-	}
+	<PromoMessage messageHtml={getPromoMessageHtml()} />
 	<div class="max-width-container">
 		<div class="header">
 			<div class="header__logo">
@@ -20,7 +37,7 @@ const header= await apiClient.getHeader()
 			</div>
 			<nav class="header__navigation">
 				<ul class="header__navigation-menu">
-					{header.navigationLinks.map(link => (
+					{navigationLinks.map(link => (
 						<li class="header__navigation-item">
 							<a class="header__navigation-link" href={link.url}>{link.text}</a>
 						</li>

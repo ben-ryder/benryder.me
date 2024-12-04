@@ -1,52 +1,54 @@
 ---
-import {apiClient} from "@lib/api/api-client";
+import { getCollection, getEntries } from 'astro:content';
+
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
-import {BlogPost} from "../../lib/api/types/content/blog-post";
 import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
 import {JArrowLink} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
-import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
-import {getReadingTime} from "../../lib/api/utils/get-reading-time";
-import LoadCodeHighlighting from "../../patterns/components/LoadCodeHighlighting.astro";
+import {formatTimestamp} from "../../utils/format-timestamp";
+import {getReadingTime} from "../../utils/get-reading-time";
 
 export async function getStaticPaths() {
-	const blogPosts = await apiClient.getBlogPosts()
-
-	return blogPosts.map((blogPost) => ({
-		params: { slug: blogPost.slug },
-		props: blogPost,
+	const blogPosts = await getCollection('blog-posts');
+	return blogPosts.map(blogPost => ({
+		params: { slug: blogPost.slug }, props: { blogPost },
 	}));
 }
 
-const blogPost: BlogPost = Astro.props;
+const { blogPost } = Astro.props;
+const { Content } = await blogPost.render();
+
+const tags = await getEntries(blogPost.data.tags)
+const relatedProjects = await getEntries(blogPost.data.relatedProjects)
+const relatedBlogPosts = await getEntries(blogPost.data.relatedBlogPosts)
 
 const metadata = [
 	[
 		{
 			icon: "clock",
-			text: getReadingTime(blogPost.contentHtml)
+			text: getReadingTime(blogPost.body)
 		},
 	],
 	[
 		{
 			icon: "calendar",
-			text: `Published ${formatTimestamp(blogPost.datePublished || blogPost.dateCreated)}`,
+			text: `Published ${formatTimestamp(blogPost.data.createdAt)}`,
 		}
 	]
 ]
-if (blogPost.dateUpdated) {
+if (blogPost.data.updatedAt) {
 	metadata[1].push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(blogPost.dateUpdated)}`,
+		text: `Updated ${formatTimestamp(blogPost.data.updatedAt)}`,
 	})
 }
 ---
 
-<GlobalLayout title={blogPost.title}>
+<GlobalLayout title={blogPost.data.title}>
 	<ContentHero
-		title={blogPost.title}
+		title={blogPost.data.title}
 		metadata={metadata}
-		tags={blogPost.tags}
+		tags={tags}
 		tagsBaseUrl="/blog?tags="
 	/>
 
@@ -55,40 +57,40 @@ if (blogPost.dateUpdated) {
 	</div>
 
 	<div class="max-width-container">
-		<div class="j-prose" set:html={blogPost.contentHtml} />
+		<div class="j-prose">
+			<Content />
+		</div>
 	</div>
 
-	{(blogPost.relatedProjects.length > 0 || blogPost.relatedBlogPosts.length > 0) &&
+	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0) &&
 		<div class="max-width-container j-prose">
 			<hr />
 		</div>
 	}
 
-	{blogPost.relatedProjects.length > 0 &&
+	{relatedProjects.length > 0 &&
 		<CardSimpleListing
 			title="👨‍💻 Related Projects"
-			cards={blogPost.relatedProjects.map(project => {
+			cards={relatedProjects.map(project => {
 				return {
-					title: project.name,
-					description: project.description,
+					title: project.data.title,
+					description: project.data.description,
 					link: `/projects/${project.slug}`
 				}
 			})}
 		/>
 	}
 
-	{blogPost.relatedBlogPosts.length > 0 &&
+	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
 			title="🗒️ Related Blog Posts"
 			cards={blogPost.relatedBlogPosts.map(blogPost => {
 				return {
-					title: blogPost.title,
-					description: blogPost.description,
+					title: blogPost.data.title,
+					description: blogPost.data.description,
 					link: `/blog/${blogPost.slug}`
 				}
 			})}
 		/>
 	}
 </GlobalLayout>
-
-<LoadCodeHighlighting />

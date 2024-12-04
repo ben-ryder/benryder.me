@@ -1,0 +1,106 @@
+---
+import "./ContactForm.css"
+
+import { JFormRow, JForm, JFormHeader, JProse, JFormContent, JCallout, JInput, JTextArea, JLabel, JButtonGroup, JButton } from "@ben-ryder/jigsaw-react"
+
+const { description } = Astro.props
+---
+
+<JForm id="contact-form">
+    <JFormHeader>
+        <h2>✉️ Contact Me</h2>
+        <JProse html={description} />
+    </JFormHeader>
+    <noscript class="noscript">
+        <p>It looks like Javascript is disabled, and because this contact form relies on Javascript to function
+            it is currently hidden.</p>
+        <p>If you wish to use this form, you must allow Javascript execution for this website and
+            hcaptcha.com.</p>
+    </noscript>
+    <JFormContent>
+        <!--<JFormRow>-->
+        <!--    {success && (-->
+        <!--        <JCallout variant="success">-->
+        <!--            <p>Your submission has been submitted!</p>-->
+        <!--        </JCallout>-->
+        <!--    )}-->
+        <!--    {errors.root && (-->
+        <!--        <JCallout variant="critical"><p>{errors.root.message}</p></JCallout>-->
+        <!--    )}-->
+        <!--</JFormRow>-->
+        <JFormRow>
+            <JInput
+              name="name"
+              label="Name"
+              placeholder="John Smith / johnsmith12"
+              required={true}
+            />
+        </JFormRow>
+        <JFormRow>
+            <JInput
+              name="email"
+              label="Email"
+              placeholder="johnsmith12@example.com"
+              required={true}
+            />
+        </JFormRow>
+        <JFormRow>
+            <JInput
+              name="subject"
+              label="Subject"
+              placeholder="I'm contacting you about..."
+              required={true}
+            />
+        </JFormRow>
+        <JFormRow>
+            <JTextArea
+              name="message"
+              label="Message"
+              placeholder="Your message here..."
+              rows={4}
+              required={true}
+            />
+        </JFormRow>
+        <JFormRow>
+            <input
+              name="honeypot"
+              class="j-hidden"
+            />
+            <div class='captcha'>
+                <JLabel htmlFor="captcha__label">Captcha</JLabel>
+                <div class='captcha__element'>
+                    <script is:inline src="https://js.hcaptcha.com/1/api.js" async defer/>
+                    <div class="h-captcha" data-sitekey={import.meta.env.PUBLIC_CAPTCHA_SITE_KEY}></div>
+                </div>
+            </div>
+            <!--{captchaError && <JErrorText>{captchaError}</JErrorText>}-->
+        </JFormRow>
+        <JFormRow>
+            <JButtonGroup>
+                <JButton type="submit">
+                    Send
+                </JButton>
+            </JButtonGroup>
+        </JFormRow>
+    </JFormContent>
+</JForm>
+
+<script>
+    const form = document.querySelector("#contact-form");
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target)
+
+            const response = await fetch('/contact/submit', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                body: formData,
+            })
+            const reponseData = await response.json()
+            console.debug(reponseData)
+        })
+    }
+</script>

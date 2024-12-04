@@ -1,14 +1,10 @@
 ---
-import "./Greeter.scss"
-import {SocialLink} from "../../../lib/api/types/content/social-link";
+import "./greeter.css"
+import "./social-links.css"
 
-interface Props {
-	heading: string
-	contentHtml: string;
-	socialLinks: SocialLink[]
-}
+import {GreeterProps} from "./Greeter";
 
-const { heading, contentHtml, socialLinks }: Props = Astro.props;
+const { heading, contentHtml, socialLinks }: GreeterProps = Astro.props;
 ---
 <div class="max-width-container">
 	<div class="greeter">
