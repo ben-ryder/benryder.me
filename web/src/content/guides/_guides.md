@@ -1,7 +1,7 @@
 ---
 # Basic data
 slug: 'example'
-title: 'This is a blog post'
+title: 'This is guide'
 description: 'This is a description.'
 tags:
   - example

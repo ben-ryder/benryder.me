@@ -19,6 +19,11 @@ const unsortedFeaturedBlogPosts = await getCollection('blog-posts', (p) => {
 })
 const featuredBlogPosts = unsortedFeaturedBlogPosts.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
+const unsortedFeaturedGuides = await getCollection('guides', (p) => {
+	return p.data.isFeatured
+})
+const featuredGuides = unsortedFeaturedGuides.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
 const socialLinks = [
 	{
 		text: "GitHub",
@@ -53,7 +58,7 @@ const socialLinks = [
 	/>
 
 	<CardSimpleListing
-		title="🗒️ Blog Posts"
+		title="📝 Blog Posts"
 		viewAllText="All Blog Posts"
 		viewAllLink="/blog"
 		cards={featuredBlogPosts.map(blogPost => {
@@ -64,5 +69,18 @@ const socialLinks = [
 			}
 		})}
 	/>
+
+    <CardSimpleListing
+			title="🤔 Guides"
+			viewAllText="All Guides"
+			viewAllLink="/guides"
+			cards={featuredGuides.map(guide => {
+				return {
+					title: guide.data.title,
+					description: guide.data.description,
+					link: `/guides/${guide.slug}`
+				}
+			})}
+    />
 
 </GlobalLayout>

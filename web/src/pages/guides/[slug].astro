@@ -9,52 +9,52 @@ import {formatTimestamp} from "../../utils/format-timestamp";
 import {getReadingTime} from "../../utils/get-reading-time";
 
 export async function getStaticPaths() {
-	const blogPosts = await getCollection('blog-posts');
-	return blogPosts.map(blogPost => ({
-		params: { slug: blogPost.slug }, props: { blogPost },
+	const guides = await getCollection('guides');
+	return guides.map(guide => ({
+		params: { slug: guide.slug }, props: { guide },
 	}));
 }
 
-const { blogPost } = Astro.props;
-const { Content } = await blogPost.render();
+const { guide } = Astro.props;
+const { Content } = await guide.render();
 
-const tags = await getEntries(blogPost.data.tags)
-const relatedProjects = await getEntries(blogPost.data.relatedProjects ?? [])
-const relatedBlogPosts = await getEntries(blogPost.data.relatedBlogPosts ?? [])
-const relatedGuides = await getEntries(blogPost.data.relatedGuides ?? [])
+const tags = await getEntries(guide.data.tags)
+const relatedProjects = await getEntries(guide.data.relatedProjects ?? [])
+const relatedBlogPosts = await getEntries(guide.data.relatedBlogPosts ?? [])
+const relatedGuides = await getEntries(guide.data.relatedGuides ?? [])
 
 const metadata = [
 	[
 		{
 			icon: "clock",
-			text: getReadingTime(blogPost.body)
+			text: getReadingTime(guide.body)
 		},
 	],
 	[
 		{
 			icon: "calendar",
-			text: `Published ${formatTimestamp(blogPost.data.createdAt)}`,
+			text: `Published ${formatTimestamp(guide.data.createdAt)}`,
 		}
 	]
 ]
-if (blogPost.data.updatedAt) {
+if (guide.data.updatedAt) {
 	metadata[1].push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(blogPost.data.updatedAt)}`,
+		text: `Updated ${formatTimestamp(guide.data.updatedAt)}`,
 	})
 }
 ---
 
-<GlobalLayout title={blogPost.data.title}>
+<GlobalLayout title={guide.data.title}>
 	<ContentHero
-		title={blogPost.data.title}
+		title={guide.data.title}
 		metadata={metadata}
 		tags={tags}
 		tagsBaseUrl="/blog?tags="
 	/>
 
 	<div class="max-width-container container-spacing">
-		<JArrowLink href="/blog" direction="left">All Blog Posts</JArrowLink>
+		<JArrowLink href="/guides" direction="left">All Guides</JArrowLink>
 	</div>
 
 	<div class="max-width-container">
@@ -65,7 +65,7 @@ if (blogPost.data.updatedAt) {
 
 	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedGuides.length > 0) &&
 		<div class="max-width-container j-prose">
-				<hr />
+			<hr />
 		</div>
 	}
 
@@ -85,7 +85,7 @@ if (blogPost.data.updatedAt) {
 	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
 			title="📝 Related Blog Posts"
-			cards={blogPost.relatedBlogPosts.map(blogPost => {
+			cards={relatedBlogPosts.map(blogPost => {
 				return {
 					title: blogPost.data.title,
 					description: blogPost.data.description,
@@ -95,7 +95,7 @@ if (blogPost.data.updatedAt) {
 		/>
 	}
 
-	{relatedGuides.length > 0 &&
+	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
 			title="🤔 Related Guides"
 			cards={relatedGuides.map(guide => {

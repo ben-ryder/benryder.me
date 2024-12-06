@@ -20,9 +20,10 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await project.render();
 
-const tags = await getEntries(project.data.tags)
-const relatedProjects = await getEntries(project.data.relatedProjects)
-const relatedBlogPosts = await getEntries(project.data.relatedBlogPosts)
+const tags = await getEntries(project.data.tags ?? [])
+const relatedProjects = await getEntries(project.data.relatedProjects ?? [])
+const relatedBlogPosts = await getEntries(project.data.relatedBlogPosts ?? [])
+const relatedGuides = await getEntries(project.data.relatedGuides ?? [])
 
 const metadata = []
 
@@ -87,9 +88,9 @@ metadata.push(generalMetadata)
 		</div>
 	</div>
 
-	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0) &&
+	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedGuides.length > 0) &&
 		<div class="max-width-container j-prose">
-			<hr />
+				<hr />
 		</div>
 	}
 
@@ -108,12 +109,25 @@ metadata.push(generalMetadata)
 
 	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
-			title="🗒️ Related Blog Posts"
+			title="📝 Related Blog Posts"
 			cards={relatedBlogPosts.map(blogPost => {
 				return {
 					title: blogPost.data.title,
 					description: blogPost.data.description,
 					link: `/blog/${blogPost.slug}`
+				}
+			})}
+		/>
+	}
+
+	{relatedBlogPosts.length > 0 &&
+		<CardSimpleListing
+			title="🤔 Related Guides"
+			cards={relatedGuides.map(guide => {
+				return {
+					title: guide.data.title,
+					description: guide.data.description,
+					link: `/guides/${guide.slug}`
 				}
 			})}
 		/>

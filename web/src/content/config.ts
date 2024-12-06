@@ -27,24 +27,6 @@ const pagesCollection = defineCollection({
 	}),
 });
 
-const blogPostsCollection = defineCollection({
-	type: 'content',
-	schema: z.object({
-		// Basic Data
-		title: z.string(),
-		description: z.string(),
-		tags: z.array(reference('tags')),
-		// Blog post data
-		isFeatured: z.boolean().optional(),
-		// Timestamps
-		createdAt: z.date(),
-		updatedAt: z.date(),
-		// Related content
-		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
-		relatedProjects: z.array(reference('projects')).optional(),
-	}),
-});
-
 const projectsCollection = defineCollection({
 	type: 'content',
 	schema: z.object({
@@ -62,6 +44,45 @@ const projectsCollection = defineCollection({
 		// Related content
 		relatedProjects: z.array(reference('projects')).optional(),
 		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
+		relatedGuides: z.array(reference('guides')).optional(),
+	}),
+});
+
+const blogPostsCollection = defineCollection({
+	type: 'content',
+	schema: z.object({
+		// Basic Data
+		title: z.string(),
+		description: z.string(),
+		tags: z.array(reference('tags')),
+		// Blog post data
+		isFeatured: z.boolean().optional(),
+		// Timestamps
+		createdAt: z.date(),
+		updatedAt: z.date(),
+		// Related content
+		relatedProjects: z.array(reference('projects')).optional(),
+		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
+		relatedGuides: z.array(reference('guides')).optional(),
+	}),
+});
+
+const guidesCollection = defineCollection({
+	type: 'content',
+	schema: z.object({
+		// Basic Data
+		title: z.string(),
+		description: z.string(),
+		tags: z.array(reference('tags')),
+		// Blog post data
+		isFeatured: z.boolean().optional(),
+		// Timestamps
+		createdAt: z.date(),
+		updatedAt: z.date(),
+		// Related content
+		relatedProjects: z.array(reference('projects')).optional(),
+		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
+		relatedGuides: z.array(reference('guides')).optional(),
 	}),
 });
 
@@ -70,4 +91,5 @@ export const collections = {
 	'pages': pagesCollection,
 	'projects': projectsCollection,
 	'blog-posts': blogPostsCollection,
+	'guides': guidesCollection,
 };

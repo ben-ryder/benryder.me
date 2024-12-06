@@ -13,8 +13,9 @@ repositoryUrl: "https://github.com/ben-ryder/example"
 createdAt: 0000-00-00T00:00:00.000Z
 updatedAt: 0000-00-00T00:00:00.000Z
 # Related content
-relatedBlogPosts: []
 relatedProjects: []
+relatedBlogPosts: []
+relatedGuides: []
 ---
 
 Ullamco laboris nisi ut aliquid ex ea commodi consequat.

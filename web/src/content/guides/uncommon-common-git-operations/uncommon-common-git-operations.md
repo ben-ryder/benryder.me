@@ -7,7 +7,7 @@ tags:
   - command-line
   - quick-tips
 # Blog post data
-isFeatured: false
+isFeatured: true
 # Timestamps
 createdAt: 2022-10-02T00:00:00.000Z
 updatedAt: 2023-08-15T00:00:00.000Z

@@ -24,7 +24,7 @@
 	}
 
 	.greeter__heading-name {
-		color: var(--j-c-teal-500);
+		color: var(--j-c-teal-400);
 	}
 
 	@media (min-width: 768px) {
