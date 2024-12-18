@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.0.1",
     "@astrojs/react": "^4.1.1",
     "@astrojs/sitemap": "^3.2.1",
     "@ben-ryder/jigsaw-react": "^0.21.0",
@@ -27,7 +28,7 @@
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
     "unified": "^11.0.3",
-    "zod": "^3.23.4"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@ben-ryder/jigsaw": "^0.21.0"

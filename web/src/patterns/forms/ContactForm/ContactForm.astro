@@ -62,10 +62,6 @@ const { description } = Astro.props
             />
         </JFormRow>
         <JFormRow>
-            <input
-              name="honeypot"
-              class="j-hidden"
-            />
             <div class='captcha'>
                 <JLabel htmlFor="captcha__label">Captcha</JLabel>
                 <div class='captcha__element'>
@@ -73,7 +69,6 @@ const { description } = Astro.props
                     <div class="h-captcha" data-sitekey={import.meta.env.PUBLIC_CAPTCHA_SITE_KEY}></div>
                 </div>
             </div>
-            <!--{captchaError && <JErrorText>{captchaError}</JErrorText>}-->
         </JFormRow>
         <JFormRow>
             <JButtonGroup>
@@ -90,14 +85,22 @@ const { description } = Astro.props
     if (form) {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const formData = new FormData(e.target)
+            const formData = Object.fromEntries(new FormData(e.target).entries())
+            console.log(formData)
+            const submissionData = {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message,
+                captcha: formData['h-captcha-response'],
+            }
 
             const response = await fetch('/contact/submit', {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 },
-                body: formData,
+                body: JSON.stringify(submissionData),
             })
             const reponseData = await response.json()
             console.debug(reponseData)
