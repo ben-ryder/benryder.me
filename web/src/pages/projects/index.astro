@@ -1,10 +1,24 @@
 ---
-import {apiClient} from "@lib/api/api-client";
-import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
-import {CardComplexListing} from "../../patterns/components/CardComplexListing/CardComplexListing";
+import {getCollection, getEntries} from "astro:content";
 
-const projects = await apiClient.getProjects()
-const projectTags = await apiClient.getProjectTags()
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
+
+const unsortedProjects = await getCollection('projects')
+const sortedProjects = unsortedProjects
+	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const projects = []
+for (const project of sortedProjects) {
+	const relatedTags = await getEntries(project.data.tags)
+
+	projects.push({
+		...project,
+		referenced: {
+			tags: relatedTags
+		}
+	})
+}
 ---
 
 <GlobalLayout title="Projects">
@@ -14,16 +28,13 @@ const projectTags = await apiClient.getProjectTags()
 		notFoundText="No Projects Found"
 		cards={projects.map(project => {
 			return {
-				title: project.name,
-				description: project.description,
+				title: project.data.title,
+				description: project.data.description,
 				link: `/projects/${project.slug}`,
-				tags: project.tags,
-				dateCreated: project.dateCreated,
-				datePublished: project.datePublished,
-				dateUpdated: project.dateUpdated
+				tags: project.referenced.tags,
+				createdAt: project.data.createdAt,
+				updatedAt: project.data.updatedAt
 			}
 		})}
-		tags={projectTags}
-		client:load
 	/>
 </GlobalLayout>

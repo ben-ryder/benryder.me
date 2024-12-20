@@ -1,0 +1,31 @@
+---
+import type { CardComplexProps } from '../CardComplex/CardComplex'
+import CardComplex from '../CardComplex/CardComplex.astro'
+
+import "./CardComplexListing.css"
+
+export interface Props {
+	title: string
+	description: string
+	cards: CardComplexProps[]
+	notFoundText: string
+}
+
+const { title, description, cards } = Astro.props;
+---
+
+<div class="max-width-container">
+	<div class="card-complex-listing">
+		<div class="card-complex-listing__content">
+			<h2 class="card-complex-listing__title">{title}</h2>
+			<div class="card-complex-listing__description">
+				<div class="j-prose" set:html={description} />
+			</div>
+		</div>
+		<div class="card-complex-listing__cards">
+			{cards.map(card =>
+				<CardComplex {...card} />
+			)}
+		</div>
+	</div>
+</div>
