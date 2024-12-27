@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import {getEntries} from "astro:content";
+import {getEntries, render} from "astro:content";
 
 import {JArrowLink} from "@ben-ryder/jigsaw-react"
 
@@ -13,12 +13,12 @@ import {getReadingTime} from "../../utils/get-reading-time";
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
 	return projects.map(project => ({
-		params: { slug: project.slug }, props: { project },
+		params: { slug: project.id }, props: { project },
 	}));
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 
 const tags = await getEntries(project.data.tags ?? [])
 const relatedProjects = await getEntries(project.data.relatedProjects ?? [])
@@ -60,7 +60,7 @@ if (project.data.updatedAt) {
 }
 generalMetadata.push({
 	icon: "clock",
-	text: getReadingTime(project.body)
+	text: getReadingTime(project.body ?? "")
 })
 metadata.push(generalMetadata)
 
@@ -101,7 +101,7 @@ metadata.push(generalMetadata)
 				return {
 					title: project.data.title,
 					description: project.data.description,
-					link: `/projects/${project.slug}`
+					link: `/projects/${project.id}`
 				}
 			})}
 		/>
@@ -114,7 +114,7 @@ metadata.push(generalMetadata)
 				return {
 					title: blogPost.data.title,
 					description: blogPost.data.description,
-					link: `/blog/${blogPost.slug}`
+					link: `/blog/${blogPost.id}`
 				}
 			})}
 		/>
@@ -127,7 +127,7 @@ metadata.push(generalMetadata)
 				return {
 					title: guide.data.title,
 					description: guide.data.description,
-					link: `/guides/${guide.slug}`
+					link: `/guides/${guide.id}`
 				}
 			})}
 		/>

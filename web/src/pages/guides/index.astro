@@ -30,7 +30,7 @@ for (const guide of sortedGuides) {
 			return {
 				title: guide.data.title,
 				description: guide.data.description,
-				link: `/guides/${guide.slug}`,
+				link: `/guides/${guide.id}`,
 				tags: guide.referenced.tags,
 				createdAt: guide.data.createdAt,
 				updatedAt: guide.data.updatedAt,

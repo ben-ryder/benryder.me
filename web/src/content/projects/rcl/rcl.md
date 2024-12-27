@@ -4,7 +4,6 @@ slug: 'rcl'
 title: 'rcl'
 description: "A simple command line wrapper for rclone focused on easy folder syncing. It is loosely based on git's interface and uses concepts such as 'local' and 'remote' along with having commands such as pull, push and diff."
 tags:
-- python
 - tools
 # Project data
 isFeatured: false

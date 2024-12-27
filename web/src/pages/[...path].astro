@@ -1,5 +1,5 @@
 ---
-import {getCollection} from "astro:content";
+import {getCollection, render} from "astro:content";
 import GlobalLayout from "../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 
 export async function getStaticPaths() {
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 
-const { Content } = await page.render();
+const {Content} = await render(page);
 ---
 
 <GlobalLayout title={page.data.title}>

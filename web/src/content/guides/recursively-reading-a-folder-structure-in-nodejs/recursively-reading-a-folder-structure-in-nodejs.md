@@ -4,7 +4,6 @@ slug: 'recursively-reading-a-folder-structure-in-nodejs'
 title: 'Recursively reading a folder structure in Node.js'
 description: 'An explanation and code example of how you can recursively read a folders structure with Node.js.'
 tags:
-  - javascript
   - quick-tips
 # Blog post data
 isFeatured: false
@@ -27,19 +26,20 @@ const fs = require("fs")
 const path = require("path")
 
 const getAllFiles = function(dirPath, arrayOfFiles) {
-  files = fs.readdirSync(dirPath)
+    const files = fs.readdirSync(dirPath)
 
-  arrayOfFiles = arrayOfFiles || []
+    arrayOfFiles = arrayOfFiles || []
 
-  files.forEach(function(file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
-    } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
-    }
-  })
+    files.forEach(function (file) {
+        if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+            arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+        } else {
+            arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+        }
+    })
 
-  return arrayOfFiles
+    return arrayOfFiles
+}
 ```
 
 Their solution ends up returning an array of files. While this is good, for my use case I wanted to retain the folder structure data so I can use it later in the sidebar for functionality such as expand and collapse folders.
@@ -71,32 +71,30 @@ const path = require("path")
 
 const allowedFileExtensions = [".md"]
 
-function loadDirectoryStructure(directoryPath, parentFolder){
-        let files = fs.readdirSync(directoryPath)
-        parentFolder = parentFolder || {
-            name: path.basename(directoryPath),
-            path: directoryPath,
-            files: [],
-            children: [],
-        }
-
-        files.forEach(file => {
-            let filePath = directoryPath + path.sep + file
-            if (fs.statSync(filePath).isDirectory()) {
-                parentFolder.children.push(this.loadDirectoryStructure(filePath))
-            }
-            else {
-                if(allowedFileExtensions.includes(path.extname(filePath))){
-                    parentFolder.files.push({
-                        name: path.basename(filePath),
-                        path: filePath
-                    })
-                }
-            }
-        })
-
-        return parentFolder
-    }
+function loadDirectoryStructure(directoryPath, parentFolder) {
+	let files = fs.readdirSync(directoryPath)
+	parentFolder = parentFolder || {
+		name: path.basename(directoryPath),
+		path: directoryPath,
+		files: [],
+		children: [],
+	}
+	
+	files.forEach(file => {
+		let filePath = directoryPath + path.sep + file
+		if (fs.statSync(filePath).isDirectory()) {
+			parentFolder.children.push(this.loadDirectoryStructure(filePath))
+		}
+		else if (allowedFileExtensions.includes(path.extname(filePath))) {
+			parentFolder.files.push({
+				name: path.basename(filePath),
+				path: filePath
+			})
+		}
+	})
+	
+	return parentFolder
+}
 ```
 
 This function can now take a folder path, and will output a folder object that retains the folder structure while you are still able to access all the file and folder paths

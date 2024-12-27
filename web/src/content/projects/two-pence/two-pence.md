@@ -4,7 +4,6 @@ slug: 'two-pence'
 title: 'Two Pence'
 description: "A comments system and chat app allowing users to create comments sections and embed them on their sites for users to 'give their two pence'."
 tags:
-  - javascript
   - apps
 # Project data
 isFeatured: false

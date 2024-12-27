@@ -4,7 +4,6 @@ slug: 'network-monitor'
 title: 'Network Monitor'
 description: 'A dashboard for measuring and visualising your internet speeds.'
 tags:
-  - javascript
   - apps
   - home-lab
 # Project data

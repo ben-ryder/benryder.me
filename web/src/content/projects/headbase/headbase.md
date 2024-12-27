@@ -6,7 +6,6 @@ description: 'The customizable database for your brain. Note-taking, task-manage
 tags:
 - local-first
 - apps
-- javascript
 # Project data
 isFeatured: true
 productUrl: "https://headbase.app"

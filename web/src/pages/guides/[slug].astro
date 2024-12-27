@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntries } from 'astro:content';
+import {getCollection, getEntries, render} from 'astro:content';
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
@@ -11,12 +11,12 @@ import {getReadingTime} from "../../utils/get-reading-time";
 export async function getStaticPaths() {
 	const guides = await getCollection('guides');
 	return guides.map(guide => ({
-		params: { slug: guide.slug }, props: { guide },
+		params: { slug: guide.id }, props: { guide },
 	}));
 }
 
 const { guide } = Astro.props;
-const { Content } = await guide.render();
+const { Content } = await render(guide);
 
 const tags = await getEntries(guide.data.tags)
 const relatedProjects = await getEntries(guide.data.relatedProjects ?? [])
@@ -27,7 +27,7 @@ const metadata = [
 	[
 		{
 			icon: "clock",
-			text: getReadingTime(guide.body)
+			text: getReadingTime(guide.body ?? "")
 		},
 	],
 	[
@@ -76,7 +76,7 @@ if (guide.data.updatedAt) {
 				return {
 					title: project.data.title,
 					description: project.data.description,
-					link: `/projects/${project.slug}`
+					link: `/projects/${project.id}`
 				}
 			})}
 		/>
@@ -89,7 +89,7 @@ if (guide.data.updatedAt) {
 				return {
 					title: blogPost.data.title,
 					description: blogPost.data.description,
-					link: `/blog/${blogPost.slug}`
+					link: `/blog/${blogPost.id}`
 				}
 			})}
 		/>
@@ -102,7 +102,7 @@ if (guide.data.updatedAt) {
 				return {
 					title: guide.data.title,
 					description: guide.data.description,
-					link: `/guides/${guide.slug}`
+					link: `/guides/${guide.id}`
 				}
 			})}
 		/>

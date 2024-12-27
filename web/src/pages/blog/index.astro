@@ -30,7 +30,7 @@ for (const blogPost of sortedBlogPosts) {
 			return {
 				title: blogPost.data.title,
 				description: blogPost.data.description,
-				link: `/blog/${blogPost.slug}`,
+				link: `/blog/${blogPost.id}`,
 				tags: blogPost.referenced.tags,
 				createdAt: blogPost.data.createdAt,
 				updatedAt: blogPost.data.updatedAt,

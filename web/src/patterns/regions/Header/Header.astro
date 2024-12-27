@@ -3,7 +3,8 @@ import "./Header.css"
 
 import PromoMessage from "../../components/PromoMessage/PromoMessage.astro";
 
-import { compiledContent as getPromoMessageHtml } from "../../../content-static/global-promo.md"
+import { compiledContent as getPromoMessageHtml } from "../../../content/static/global-promo.md"
+const promoMessageHtml = await getPromoMessageHtml()
 
 const navigationLinks = [
 	{
@@ -31,7 +32,7 @@ const navigationLinks = [
 ---
 
 <header class="brm-layout__header">
-	<PromoMessage messageHtml={getPromoMessageHtml()} />
+	<PromoMessage messageHtml={promoMessageHtml} />
 	<div class="max-width-container">
 		<div class="header">
 			<div class="header__logo">

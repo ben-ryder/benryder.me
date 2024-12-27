@@ -5,7 +5,6 @@ title: 'Jigsaw'
 description: 'A design system and component library for use in my personal projects. '
 tags:
 - design
-- javascript
 # Project data
 isFeatured: true
 productUrl: "https://jigsaw.benryder.dev"

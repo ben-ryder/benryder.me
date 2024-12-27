@@ -1,11 +1,12 @@
 import { JColourVariantsList } from '@ben-ryder/jigsaw-react';
 import { z, defineCollection, reference } from 'astro:content';
+import { glob, file } from 'astro/loaders';
 
 const tagColours = z.enum(JColourVariantsList)
 type tagColours = z.infer<typeof tagColours>
 
 const tagsCollection = defineCollection({
-	type: 'data',
+	loader: file("./src/content/tags.json"),
 	schema: z.object({
 		title: z.string(),
 		description: z.string().optional(),
@@ -13,8 +14,11 @@ const tagsCollection = defineCollection({
 	}),
 });
 
+// Ignore all markdown files that start with "_".
+const markdownFilePattern = "**/[^_]*.md"
+
 const pagesCollection = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: markdownFilePattern, base: "./src/content/pages/" }),
 	schema: z.object({
 		// Metadata
 		path: z.string(), // todo: ensure valid relative path
@@ -28,7 +32,7 @@ const pagesCollection = defineCollection({
 });
 
 const projectsCollection = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: markdownFilePattern, base: "./src/content/projects/" }),
 	schema: z.object({
 		// Basic data
 		title: z.string(),
@@ -49,7 +53,7 @@ const projectsCollection = defineCollection({
 });
 
 const blogPostsCollection = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: markdownFilePattern, base: "./src/content/blog-posts/" }),
 	schema: z.object({
 		// Basic Data
 		title: z.string(),
@@ -68,7 +72,7 @@ const blogPostsCollection = defineCollection({
 });
 
 const guidesCollection = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: markdownFilePattern, base: "./src/content/guides/" }),
 	schema: z.object({
 		// Basic Data
 		title: z.string(),

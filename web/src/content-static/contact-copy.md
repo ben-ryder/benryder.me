@@ -1,1 +1,0 @@
-You can use this form to contact me. I will never share submissions to this form with anyone else and I store them securely, for more information see my [privacy policy](/privacy-policy).

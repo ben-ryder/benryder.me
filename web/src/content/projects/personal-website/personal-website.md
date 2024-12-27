@@ -4,7 +4,6 @@ slug: 'personal-website'
 title: 'Personal Website'
 description: "My personal website where I share my projects & post blogs. Built using Astro and my design system Jigsaw."
 tags:
-  - javascript
   - websites
 # Project data
 isFeatured: false

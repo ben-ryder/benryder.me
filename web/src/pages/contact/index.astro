@@ -2,11 +2,12 @@
 import ContactForm from "../../patterns/forms/ContactForm/ContactForm.astro";
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 
-import { compiledContent as getContactDescriptionHtml } from "../../content-static/contact-copy.md"
+import { compiledContent as getContactDescriptionHtml } from "../../content/static/contact-copy.md"
+const contactDescriptionHtml = await getContactDescriptionHtml()
 ---
 
 <GlobalLayout title="Contact">
 	<div class="j-content-section">
-		<ContactForm description={getContactDescriptionHtml()} />
+		<ContactForm description={contactDescriptionHtml} />
 	</div>
 </GlobalLayout>
