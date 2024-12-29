@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import {z, ZodError} from "zod";
+import Mailgun, {type MailgunClientOptions} from "mailgun.js";
 
 // Signal that this route is an API endpoint which should be handled on demand.
 export const prerender = false
@@ -35,13 +36,13 @@ export const POST: APIRoute = async ({ request }) => {
 	}
 
 	try {
-		const res = await fetch(process.env.CAPTCHA_VERIFICATION_URL as string, {
+		const res = await fetch(import.meta.env.CAPTCHA_VERIFICATION_URL, {
 			method: 'POST',
 			headers:{
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			body: new URLSearchParams({
-				'secret': process.env.CAPTCHA_SECRET as string,
+				'secret': import.meta.env.CAPTCHA_SECRET!,
 				'response': body.captcha
 			}).toString()
 		});
@@ -66,7 +67,33 @@ export const POST: APIRoute = async ({ request }) => {
 		}), { status: 500 });
 	}
 
-	// todo: send submission via mailgun
+	const mailgun = new Mailgun.default(FormData);
+	const options: MailgunClientOptions = {
+		username: "api",
+		key: import.meta.env.EMAIL_MAILGUN_API_KEY!,
+	}
+	if (import.meta.env.EMAIL_MAILGUN_IS_EU) {
+		options.url = "https://api.eu.mailgun.net";
+	}
+	const mailgunClient = mailgun.client(options);
+	const senderString = `benryder.me contact form <${import.meta.env.EMAIL_MAILGUN_SENDER_ADDRESS}@${import.meta.env.EMAIL_MAILGUN_DOMAIN}>`;
+
+	const result = await mailgunClient.messages.create(
+		import.meta.env.EMAIL_MAILGUN_DOMAIN!,
+		{
+			from: senderString,
+			to: [import.meta.env.EMAIL_TO!],
+			subject: `[benryder.me] ${body.subject}`,
+			text: `Name: ${body.name}\nEmail: ${body.email}\nSubject: ${body.subject}\nMessage:\n${body.message}`
+		}
+	)
+	if (result.status !== 200) {
+		return new Response(JSON.stringify({
+			statusCode: 500,
+			message: "A server error occurred",
+			context: "failed to submit",
+		}), { status: 500 });
+	}
 
 	return new Response(
 		JSON.stringify({
