@@ -1,0 +1,52 @@
+[
+  {
+    "id": "apps",
+    "title": "apps",
+    "colour": "blue"
+  },
+  {
+    "id": "command-line",
+    "title": "command-line",
+    "colour": "pink"
+  },
+  {
+    "id": "design",
+    "title": "design",
+    "colour": "teal"
+  },
+  {
+    "id": "games",
+    "title": "games",
+    "colour": "pink"
+  },
+  {
+    "id": "home-lab",
+    "title": "home-lab",
+    "colour": "purple"
+  },
+  {
+    "id": "local-first",
+    "title": "local-first",
+    "colour": "green"
+  },
+  {
+    "id": "opinions",
+    "title": "opinions",
+    "colour": "teal"
+  },
+  {
+    "id": "quick-tips",
+    "title": "quick-tips",
+    "colour": "teal"
+  },
+  {
+    "id": "tools",
+    "title": "tools",
+    "colour": "purple"
+  },
+  {
+    "id": "websites",
+    "title": "websites",
+    "colour": "teal"
+  }
+]

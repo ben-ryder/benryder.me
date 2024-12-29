@@ -1,0 +1,35 @@
+
+.social-links {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+}
+
+.social-links__label {
+	font-weight: bold;
+}
+
+.social-links__list {
+	display: flex;
+	margin-top: var(--j-space-4);
+
+	@media (min-width: 768px) {
+		margin-top: 0;
+		margin-left: var(--j-space-4);
+	}
+}
+
+.social-links__link {
+	font-size: var(--j-text-size-4xl);
+	color: var(--j-c-mono-100);
+
+	&:hover {
+		color: var(--j-c-primary)
+	}
+}

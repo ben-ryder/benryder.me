@@ -1,24 +1,24 @@
 ---
-import {apiClient} from "../lib/api/api-client";
-import {Page} from "../lib/api/types/content/page";
+import {getCollection, render} from "astro:content";
 import GlobalLayout from "../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 
 export async function getStaticPaths() {
-	const pages = await apiClient.getPages()
+	const pages = await getCollection('pages');
 
-	return pages.map((page) => ({
-		params: { path: page.path },
-		props: page,
+	return pages.map(page => ({
+		params: { path: page.data.path }, props: { page },
 	}));
 }
 
-const page: Page = Astro.props;
+const { page } = Astro.props;
+
+const {Content} = await render(page);
 ---
 
-<GlobalLayout title={page.title}>
+<GlobalLayout title={page.data.title}>
 	<div class="max-width-container">
 		<div class="j-prose">
-			<div set:html={page.contentHtml} />
+			<Content />
 		</div>
 	</div>
 </GlobalLayout>
