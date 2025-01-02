@@ -11,8 +11,6 @@ const sortedProjects = unsortedProjects
 const projects = []
 for (const project of sortedProjects) {
 	const relatedTags = await getEntries(project.data.tags)
-	console.debug(project.data.title)
-	console.debug(relatedTags)
 
 	projects.push({
 		...project,
