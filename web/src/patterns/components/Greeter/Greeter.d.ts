@@ -5,7 +5,6 @@ export interface SocialLink {
 }
 
 export interface GreeterProps {
-	heading: string
 	contentHtml: string;
 	socialLinks: SocialLink[]
 }

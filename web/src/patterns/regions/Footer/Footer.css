@@ -37,7 +37,7 @@
 
     &:after {
       color: var(--j-c-primary);
-      padding-left: var(--j-space-6);
+      padding-left: var(--j-space-3);
     }
 
     &:last-child:after {

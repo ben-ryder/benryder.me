@@ -24,6 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--j-space-4);
     font-size: var(--j-text-size-md);
   }
@@ -42,7 +43,7 @@
     &:after {
       content: "|";
       color: var(--j-c-primary);
-      padding-left: var(--j-space-6);
+      padding-left: var(--j-space-3);
     }
 
     &:last-child:after {

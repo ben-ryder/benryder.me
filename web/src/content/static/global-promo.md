@@ -1,1 +1,0 @@
-Welcome to the new version of my website! Interested in how it was made? [Learn more](/projects/personal-website)

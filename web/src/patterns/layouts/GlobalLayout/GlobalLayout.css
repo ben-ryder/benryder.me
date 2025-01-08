@@ -28,6 +28,8 @@
 	display: flex;
 	flex-direction: column;
 
+	border-top: 12px solid var(--j-c-primary);
+
 	.brm-layout__footer {
 		margin-top: auto;
 	}

@@ -1,11 +1,6 @@
 ---
 import "./Header.css"
 
-import PromoMessage from "../../components/PromoMessage/PromoMessage.astro";
-
-import { compiledContent as getPromoMessageHtml } from "../../../content/static/global-promo.md"
-const promoMessageHtml = await getPromoMessageHtml()
-
 const navigationLinks = [
 	{
 		text: 'Projects',
@@ -19,10 +14,6 @@ const navigationLinks = [
 		text: 'Guides',
 		url: '/guides'
 	},
-	// {
-	// 	text: 'Sounds',
-	// 	url: '/sounds'
-	// },
 	{
 		text: 'Contact',
 		url: '/contact'
@@ -31,24 +22,21 @@ const navigationLinks = [
 
 ---
 
-<header class="brm-layout__header">
-	<PromoMessage messageHtml={promoMessageHtml} />
-	<div class="max-width-container">
-		<div class="header">
-			<div class="header__logo">
-				<a href="/" aria-label="Home" class="header__logo-link">
-					<img class="header__logo-image" alt="" src="/images/me.jpeg" />
-				</a>
-			</div>
-			<nav class="header__navigation">
-				<ul class="header__navigation-menu">
-					{navigationLinks.map(link => (
-						<li class="header__navigation-item">
-							<a class="header__navigation-link" href={link.url}>{link.text}</a>
-						</li>
-					))}
-				</ul>
-			</nav>
+<header class="header max-width-container">
+	<div class="header">
+		<div class="header__logo">
+			<a href="/" aria-label="Home" class="header__logo-link">
+				<img class="header__logo-image" alt="" src="/images/me.jpeg" />
+			</a>
 		</div>
+		<nav class="header__navigation">
+			<ul class="header__navigation-menu">
+				{navigationLinks.map(link => (
+					<li class="header__navigation-item">
+						<a class="header__navigation-link" href={link.url}>{link.text}</a>
+					</li>
+				))}
+			</ul>
+		</nav>
 	</div>
 </header>
