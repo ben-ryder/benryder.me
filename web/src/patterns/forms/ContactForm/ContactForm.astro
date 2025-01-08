@@ -1,58 +1,71 @@
 ---
 import "./ContactForm.css"
 
-import { JFormRow, JForm, JFormHeader, JProse, JFormContent, JCallout, JInput, JTextArea, JLabel, JButtonGroup, JButton } from "@ben-ryder/jigsaw-react"
+import { JProse, JInput, JTextArea, JLabel, JButton } from "@ben-ryder/jigsaw-react"
 
 const { description } = Astro.props
 ---
 
-<JForm id="contact-form">
-    <JFormHeader>
-        <h2>✉️ Contact Me</h2>
-        <JProse html={description} />
-    </JFormHeader>
+<div class="j-prose">
+    <h2>✉️ Contact Me</h2>
+    <JProse html={description} />
+
     <noscript class="noscript">
-        <p>It looks like Javascript is disabled, and because this contact form relies on Javascript to function
-            it is currently hidden.</p>
-        <p>If you wish to use this form, you must allow Javascript execution for this website and
-            hcaptcha.com.</p>
+        <p>It looks like Javascript is disabled, and because this contact form relies on Javascript to function it is currently hidden.</p>
+        <p>If you wish to use this form, you must allow Javascript execution for this website and hcaptcha.com.</p>
+
+        <style>
+            #contact-form {
+                display: none;
+            }
+        </style>
     </noscript>
-    <JFormContent>
-        <!--<JFormRow>-->
-        <!--    {success && (-->
-        <!--        <JCallout variant="success">-->
-        <!--            <p>Your submission has been submitted!</p>-->
-        <!--        </JCallout>-->
-        <!--    )}-->
-        <!--    {errors.root && (-->
-        <!--        <JCallout variant="critical"><p>{errors.root.message}</p></JCallout>-->
-        <!--    )}-->
-        <!--</JFormRow>-->
-        <JFormRow>
+</div>
+
+<form class="j-form" id="contact-form">
+    <div class="j-form__content">
+        <div class="j-callout j-callout--success" id="contact-form-success-message">
+            <div class="j-callout__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big j-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+            </div>
+            <div class="j-callout__content">
+                <p>Your submission has been received, thanks for getting in touch.</p>
+            </div>
+        </div>
+        <div class="j-callout j-callout--critical" id="contact-form-error-message">
+            <div class="j-callout__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-octagon-x j-icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+            </div>
+            <div class="j-callout__content">
+                <p>Sorry there was an unexpected problem, please try again later.</p>
+            </div>
+        </div>
+        <div class="j-form__row">
             <JInput
               name="name"
               label="Name"
               placeholder="John Smith / johnsmith12"
               required={true}
             />
-        </JFormRow>
-        <JFormRow>
+        </div>
+        <div class="j-form__row">
             <JInput
               name="email"
               label="Email"
               placeholder="johnsmith12@example.com"
+              type="email"
               required={true}
             />
-        </JFormRow>
-        <JFormRow>
+        </div>
+        <div class="j-form__row">
             <JInput
               name="subject"
               label="Subject"
               placeholder="I'm contacting you about..."
               required={true}
             />
-        </JFormRow>
-        <JFormRow>
+        </div>
+        <div class="j-form__row">
             <JTextArea
               name="message"
               label="Message"
@@ -60,32 +73,62 @@ const { description } = Astro.props
               rows={4}
               required={true}
             />
-        </JFormRow>
-        <JFormRow>
+        </div>
+        <div class="j-form__row">
             <div class='captcha'>
                 <JLabel htmlFor="captcha__label">Captcha</JLabel>
-                <div class='captcha__element'>
+                <div class='j-form__element'>
                     <script is:inline src="https://js.hcaptcha.com/1/api.js" async defer/>
                     <div class="h-captcha" data-sitekey={import.meta.env.PUBLIC_CAPTCHA_SITE_KEY}></div>
                 </div>
             </div>
-        </JFormRow>
-        <JFormRow>
-            <JButtonGroup>
+        </div>
+        <div class="j-form__row">
+            <div class="j-button-group">
                 <JButton type="submit">
                     Send
                 </JButton>
-            </JButtonGroup>
-        </JFormRow>
-    </JFormContent>
-</JForm>
+            </div>
+        </div>
+    </div>
+</form>
+
+<style>
+    #contact-form-success-message,
+    #contact-form-error-message {
+        display: none;
+    }
+</style>
 
 <script>
     const form = document.querySelector("#contact-form");
+    const errorMessage = document.querySelector("#contact-form-error-message");
+    const successMessage = document.querySelector("#contact-form-success-message");
+
+    function setErrorMessage(message) {
+        errorMessage.style.display = "flex";
+        const content = errorMessage.querySelector(".j-callout__content p")
+        content.innerHTML = message
+    }
+
+    function displaySuccessMessage() {
+        successMessage.style.display = "flex";
+    }
+
+    function resetMessages() {
+        document.querySelector("#contact-form-error-message").style.display = "none";
+        document.querySelector("#contact-form-success-message").style.display = "none";
+    }
+
     if (form) {
+
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             const formData = Object.fromEntries(new FormData(e.target).entries())
+
+            if (!formData['h-captcha-response']) {
+                return setErrorMessage("You must complete the captcha to prove your a human!")
+            }
 
             const submissionData = {
                 name: formData.name,
@@ -95,15 +138,31 @@ const { description } = Astro.props
                 captcha: formData['h-captcha-response'],
             }
 
-            const response = await fetch('/contact/submit', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(submissionData),
-            })
-            const reponseData = await response.json()
-            console.debug(reponseData)
+            resetMessages()
+
+            try {
+                const response = await fetch('/contact/submit', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submissionData),
+                })
+                if (response.ok) {
+                    displaySuccessMessage()
+                    form.reset()
+                    hcaptcha.reset()
+                }
+                else {
+                    // todo: handle specific errors?
+                    setErrorMessage("Sorry there was an unexpected problem, please try again later.")
+                }
+            }
+            catch(e) {
+            }
         })
+    }
+    else {
+        console.error("Couldn't find required elements to load form correctly.")
     }
 </script>

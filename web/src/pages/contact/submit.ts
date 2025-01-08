@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import {z, ZodError} from "zod";
+import {z} from "zod";
 import Mailgun, {type MailgunClientOptions} from "mailgun.js";
 
 // Signal that this route is an API endpoint which should be handled on demand.
@@ -23,15 +23,10 @@ export const POST: APIRoute = async ({ request }) => {
 		body = ContactSubmission.parse(rawBody);
 	}
 	catch (error) {
-		let context: any
-		if (error instanceof ZodError) {
-			context = error.format()
-		}
-
 		return new Response(JSON.stringify({
 			statusCode: 400,
 			message: "Data failed validation",
-			context: context
+			context: "data was invalid"
 		}), { status: 400 });
 	}
 
@@ -57,9 +52,6 @@ export const POST: APIRoute = async ({ request }) => {
 		}
 	}
 	catch (e) {
-		// todo: send some sort of error notification?
-		console.log(e);
-
 		return new Response(JSON.stringify({
 			statusCode: 500,
 			message: "A server error occurred",
