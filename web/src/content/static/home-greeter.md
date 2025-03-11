@@ -1,6 +1,7 @@
 
-I'm a web developer interested in all things Javascript, and I'm currently experimenting with Local-first technologies in my project [Headbase](/projects/headbase) and design systems in [Jigsaw](/projects/jigsaw).
+I'm a full-stack developer from Manchester (UK) with 5+ years experience in web development. This includes working with CMS's like Drupal & Wordpress, front-end tooling like React, Next.js & Storybook, 
+and testing tools like Cypress & Jest.
 
-I play the piano, attempt the cello and enjoy writing, hiking and cycling. I've recently been getting into field recording too. I'm thinking about publishing field recordings, ambiences and maybe even original music at some point in the future, so keep an eye on this website for that!
+I'm currently experimenting with local-first web apps in my [Headbase](/projects/headbase) project and building my own design system in [Jigsaw](/projects/jigsaw).
 
-If you're curious about the tools and software I use and recommend, I have a [/uses](/uses) page that might interest you.
+I get up to all sorts of other things too. I play the piano & cello and enjoy writing, hiking, camping and cycling. I've recently been getting into field recording too, so I may publish those recordings somewhere in the future.
