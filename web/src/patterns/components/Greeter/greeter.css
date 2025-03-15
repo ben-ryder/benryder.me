@@ -1,10 +1,10 @@
 
 .greeter {
-	padding: var(--j-space-16) 0;
+	padding: var(--j-space-18) 0;
 }
 
 .greeter__heading {
-	font-size: var(--j-text-size-3xl);
+	font-size: var(--j-text-size-2xl);
 	font-weight: bold;
 	text-align: center;
 	line-height: 1.2;

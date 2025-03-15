@@ -9,8 +9,15 @@ const sortedProjects = unsortedProjects
 	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
 const projects = []
+const relatedTagsMap = new Map()
+
 for (const project of sortedProjects) {
 	const relatedTags = await getEntries(project.data.tags)
+	for (const tag of relatedTags) {
+		if (!relatedTagsMap.has(tag.id)) {
+			relatedTagsMap.set(tag.id, tag)
+		}
+	}
 
 	projects.push({
 		...project,
@@ -19,6 +26,9 @@ for (const project of sortedProjects) {
 		}
 	})
 }
+
+const allTags = Array.from(relatedTagsMap.values())
+	.sort((a, b) => a.data.title > b.data.title ? 1 : -1)
 ---
 
 <GlobalLayout title="Projects">
@@ -26,6 +36,7 @@ for (const project of sortedProjects) {
 		title="👨‍💻 Projects"
 		description="<p>Here you can find a list of all my projects, most of them are also avaliable on <a href='https://github.com/ben-ryder'>my GitHub</a>.</p>"
 		notFoundText="No Projects Found"
+		tags={allTags}
 		cards={projects.map(project => {
 			return {
 				title: project.data.title,

@@ -7,3 +7,10 @@ Content found on the website itself is under its own license, you can find out m
 
 ## Acknowledgments
 My website styling was inspired by [astro-theme-cactus](https://github.com/chrismwilliams/astro-theme-cactus) which was inspired by [hexo-theme-cactus](https://github.com/probberechts/hexo-theme-cactus).  
+
+inspiration:
+- https://astro-nano-demo.vercel.app/
+- https://astro-theme-cactus.netlify.app/
+- https://astro-paper.pages.dev/
+- https://vinitshahdeo.com/
+- https://nordlys.fjelloverflow.dev/
