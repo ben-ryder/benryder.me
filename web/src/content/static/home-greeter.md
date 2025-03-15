@@ -1,6 +1,8 @@
 
-I'm a web developer interested in all things Javascript, and I'm currently experimenting with Local-first technologies in my project [Headbase](/projects/headbase) and design systems in [Jigsaw](/projects/jigsaw).
+I'm a full-stack web developer from Manchester (UK) currently working at [Access](https://www.weareaccess.co.uk/) building with Drupal, Next.js and Storybook.
+I'm also experimenting with local-first web app development in my [Headbase](/projects/headbase) project and building my own design system [Jigsaw](/projects/jigsaw).
 
-I play the piano, attempt the cello and enjoy writing, hiking and cycling. I've recently been getting into field recording too. I'm thinking about publishing field recordings, ambiences and maybe even original music at some point in the future, so keep an eye on this website for that!
+I get up to all sorts of other things too, such as playing the piano & cello, writing, hiking, camping & cycling. I've also been getting into field recording recently.
 
-If you're curious about the tools and software I use and recommend, I have a [/uses](/uses) page that might interest you.
+If you want to learn more about me, I have some details about [my skills and experience](/skills-and-experience) and an ['uses' page](/uses) which might interest you.
+I'm also starting to write [blog posts](/blog) where I reflect on random thoughts, and [guides](/guides) where I focus on technical content and useful tips, so keep an eye out for those!

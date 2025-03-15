@@ -3,11 +3,12 @@
 slug: 'headbase'
 title: 'Headbase'
 description: 'The customizable database for your brain. Note-taking, task-management, personal knowledge bases and more.'
+isFeatured: true
+isPublished: true
 tags:
 - local-first
 - apps
 # Project data
-isFeatured: true
 productUrl: "https://headbase.app"
 repositoryUrl: "https://github.com/headbase-app/headbase"
 # Timestamps

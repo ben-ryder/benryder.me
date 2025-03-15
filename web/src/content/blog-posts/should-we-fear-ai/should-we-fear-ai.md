@@ -3,10 +3,10 @@
 slug: 'should-we-fear-ai'
 title: 'Should we fear AI?'
 description: 'In a world where computers continue to surpass human ability in more and more areas, are fears towards the rise of AI justified?'
+isFeatured: false
+isPublished: true
 tags:
   - opinions
-# Blog post data
-isFeatured: true
 # Timestamps
 createdAt: 2022-07-23T00:00:00.000Z
 updatedAt: 2023-10-15T00:00:00.000Z

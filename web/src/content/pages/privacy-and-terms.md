@@ -1,10 +1,10 @@
 ---
-# Metadata
-path: '/privacy-and-terms'
 # Basic data
+path: '/privacy-and-terms'
 slug: 'privacy-and-terms'
 title: 'Privacy & Terms'
 description: 'The cookie policy, privacy privacy and terms of benryder.me'
+isPublished: true
 # Timestamps
 createdAt: 2023-10-07T11:19:49.907Z
 updatedAt: 2024-04-27T21:29:51.160Z

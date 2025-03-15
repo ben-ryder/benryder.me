@@ -3,11 +3,11 @@
 slug: 'uncommon-common-git-operations'
 title: 'Uncommon Common Git Operations'
 description: 'A collection of git operations I find myself searching for surprisingly often.'
+isFeatured: false
+isPublished: true
 tags:
   - command-line
   - quick-tips
-# Blog post data
-isFeatured: true
 # Timestamps
 createdAt: 2022-10-02T00:00:00.000Z
 updatedAt: 2023-08-15T00:00:00.000Z

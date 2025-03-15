@@ -2,11 +2,12 @@
 # Basic data
 slug: 'jigsaw'
 title: 'Jigsaw'
-description: 'A design system and component library for use in my personal projects. '
+description: 'A design system and component library for use in my personal projects.'
+isFeatured: true
+isPublished: true
 tags:
 - design
 # Project data
-isFeatured: true
 productUrl: "https://jigsaw.benryder.dev"
 repositoryUrl: "https://github.com/ben-ryder/jigsaw"
 # Timestamps

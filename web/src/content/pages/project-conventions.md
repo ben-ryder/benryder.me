@@ -1,10 +1,10 @@
 ---
-# Metadata
-path: '/project-conventions'
 # Basic data
+path: '/project-conventions'
 slug: 'project-conventions'
 title: 'Project Conventions'
 description: 'A general list of process and coding conventions I use across projects.'
+isPublished: true
 # Timestamps
 createdAt: 2024-01-25T14:31:52.183Z
 updatedAt: 2024-05-08T21:53:21.855Z

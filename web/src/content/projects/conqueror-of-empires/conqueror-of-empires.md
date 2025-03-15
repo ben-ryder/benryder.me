@@ -3,10 +3,11 @@
 slug: 'conqueror-of-empires'
 title: 'Conqueror of Empires'
 description: 'A turn-based strategy game where up to 4 local players battle to be victorious, by expanding their empires, and controlling units to conquer cities and attack the enemy.'
+isFeatured: true
+isPublished: true
 tags:
   - games
 # Project data
-isFeatured: true
 releasedAt: 2020-04-30T00:00:00.000Z
 repositoryUrl: "https://github.com/Ben-Ryder/Conqueror-of-Empires"
 # Timestamps
