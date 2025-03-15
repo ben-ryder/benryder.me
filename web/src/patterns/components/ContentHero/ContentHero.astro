@@ -42,13 +42,13 @@ const { title, metadata, tags, tagsBaseUrl }: Props = Astro.props;
 		</div>
 	</div>
 
-	<div class="content-hero__tags">
-		<ul>
-			{tags.map(tag =>
-				<li>
-						<a href={`${tagsBaseUrl}${tag.id}`} class={`j-pill-link j-pill j-pill--interactive j-pill--${tag.data.colour}`}>{tag.data.title}</a>
-				</li>
-			)}
-		</ul>
-	</div>
+	<!--<div class="content-hero__tags">-->
+	<!--	<ul>-->
+	<!--		{tags.map(tag =>-->
+	<!--			<li>-->
+	<!--					<a href={`${tagsBaseUrl}${tag.id}`} class={`j-pill-link j-pill j-pill&#45;&#45;interactive j-pill&#45;&#45;${tag.data.colour}`}>{tag.data.title}</a>-->
+	<!--			</li>-->
+	<!--		)}-->
+	<!--	</ul>-->
+	<!--</div>-->
 </div>

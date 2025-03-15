@@ -5,4 +5,4 @@ I'm also experimenting with local-first web app development in my [Headbase](/pr
 I get up to all sorts of other things too, such as playing the piano & cello, writing, hiking, camping & cycling. I've also been getting into field recording recently.
 
 If you want to learn more about me, I have some details about [my skills and experience](/skills-and-experience) and an ['uses' page](/uses) which might interest you.
-I'm also starting to write [blog posts](/blog) where I reflect on random thoughts, and [guides](/guides) where I focus on technical content and useful tips, so keep an eye out for those!
+I'm also planning to start writing [blog posts](/blog) where I reflect on random thoughts, and [guides](/guides) where I focus on technical content and useful tips, so keep an eye out for those!

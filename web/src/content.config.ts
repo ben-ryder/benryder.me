@@ -22,7 +22,7 @@ const pagesCollection = defineCollection({
 	schema: z.object({
 		// Metadata
 		path: z.string(), // todo: ensure valid relative path
-		// Basic Data
+		isPublished: z.boolean(),
 		title: z.string(),
 		description: z.string(),
 		// Timestamps
@@ -37,9 +37,9 @@ const projectsCollection = defineCollection({
 		// Basic data
 		title: z.string(),
 		description: z.string(),
-		tags: z.array(reference('tags')),
-		// Project data
 		isFeatured: z.boolean().optional(),
+		isPublished: z.boolean(),
+		tags: z.array(reference('tags')),
 		productUrl: z.string().url().optional(),
 		repositoryUrl: z.string().url().optional(),
 		// Timestamps
@@ -58,9 +58,9 @@ const blogPostsCollection = defineCollection({
 		// Basic Data
 		title: z.string(),
 		description: z.string(),
-		tags: z.array(reference('tags')),
-		// Blog post data
 		isFeatured: z.boolean().optional(),
+		isPublished: z.boolean(),
+		tags: z.array(reference('tags')),
 		// Timestamps
 		createdAt: z.date(),
 		updatedAt: z.date(),
@@ -77,9 +77,9 @@ const guidesCollection = defineCollection({
 		// Basic Data
 		title: z.string(),
 		description: z.string(),
-		tags: z.array(reference('tags')),
-		// Blog post data
 		isFeatured: z.boolean().optional(),
+		isPublished: z.boolean(),
+		tags: z.array(reference('tags')),
 		// Timestamps
 		createdAt: z.date(),
 		updatedAt: z.date(),

@@ -3,7 +3,7 @@
 slug: 'uncommon-common-git-operations'
 title: 'Uncommon Common Git Operations'
 description: 'A collection of git operations I find myself searching for surprisingly often.'
-isFeatured: false
+isFeatured: true
 isPublished: true
 tags:
   - command-line

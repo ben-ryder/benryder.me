@@ -4,7 +4,9 @@ import {getCollection, getEntries} from "astro:content";
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
 
-const unsortedProjects = await getCollection('projects')
+const unsortedProjects = await getCollection('projects', ({data}) => {
+	return data.isPublished
+})
 const sortedProjects = unsortedProjects
 	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 

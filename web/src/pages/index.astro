@@ -10,18 +10,18 @@ const greeterHtml = await getGreeterHtml()
 
 // todo: add sorting based on a specific order/rank property rather than createdAt timestamp?
 
-const unsortedFeaturedProjects = await getCollection('projects', (p) => {
-	return p.data.isFeatured
+const unsortedFeaturedProjects = await getCollection('projects', ({data}) => {
+	return data.isPublished && data.isFeatured
 })
 const featuredProjects = unsortedFeaturedProjects.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
-const unsortedFeaturedBlogPosts = await getCollection('blog-posts', (p) => {
-	return p.data.isFeatured
+const unsortedFeaturedBlogPosts = await getCollection('blog-posts', ({data}) => {
+	return data.isPublished && data.isFeatured
 })
 const featuredBlogPosts = unsortedFeaturedBlogPosts.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
-const unsortedFeaturedGuides = await getCollection('guides', (p) => {
-	return p.data.isFeatured
+const unsortedFeaturedGuides = await getCollection('guides', ({data}) => {
+	return data.isPublished && data.isFeatured
 })
 const featuredGuides = unsortedFeaturedGuides.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 

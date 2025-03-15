@@ -31,11 +31,11 @@ const { title, description, cards, tags } = Astro.props;
 				<div class="j-prose" set:html={description} />
 			</div>
 		</div>
-		<div>
-			{tags.map(tag =>
-				<JPillLink href={`/projects/tags/${tag.id}`} variant={tag.data.colour}>{tag.data.title}</JPillLink>
-			)}
-		</div>
+		<!--<div>-->
+		<!--	{tags.map(tag =>-->
+		<!--		<JPillLink href={`/projects/tags/${tag.id}`} variant={tag.data.colour}>{tag.data.title}</JPillLink>-->
+		<!--	)}-->
+		<!--</div>-->
 		<div class="card-complex-listing__cards">
 			{cards.map(card =>
 				<CardComplex {...card} />

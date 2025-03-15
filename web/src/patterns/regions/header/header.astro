@@ -23,7 +23,9 @@ const navigationLinks = [
 ---
 
 <header class="header">
-	<a class="header__logo" href="/">Ben Ryder</a>
+	<a href="/" aria-label="Home" class="header__logo">
+			<img class="header__logo-image" alt="" src="/images/me.jpeg" />
+	</a>
 	<nav class="header__navigation">
 		<ul class="header__navigation-menu">
 			{navigationLinks.map(link => (
