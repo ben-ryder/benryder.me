@@ -3,11 +3,12 @@
 slug: 'network-monitor'
 title: 'Network Monitor'
 description: 'A dashboard for measuring and visualising your internet speeds.'
+isFeatured: false
+isPublished: true
 tags:
   - apps
   - home-lab
 # Project data
-isFeatured: false
 releasedAt: 2020-07-22T11:00:00.000Z
 repositoryUrl: "https://github.com/ben-ryder/network-monitor"
 # Timestamps

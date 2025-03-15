@@ -3,10 +3,11 @@
 slug: 'escape'
 title: 'Escape'
 description: "You are trapped. To escape you must collect all the keys and get to the exit while avoiding all enemy patrols. If they touch you, you're dead."
+isFeatured: false
+isPublished: true
 tags:
   - games
 # Project data
-isFeatured: false
 releasedAt: 2020-05-26T00:00:00.000Z
 repositoryUrl: "https://github.com/ben-ryder/escape"
 # Timestamps

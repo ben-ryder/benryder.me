@@ -3,10 +3,10 @@
 slug: 'recursively-reading-a-folder-structure-in-nodejs'
 title: 'Recursively reading a folder structure in Node.js'
 description: 'An explanation and code example of how you can recursively read a folders structure with Node.js.'
+isFeatured: false
+isPublished: true
 tags:
   - quick-tips
-# Blog post data
-isFeatured: false
 # Timestamps
 createdAt: 2021-02-16T00:00:00.000Z
 updatedAt: 2021-05-23T00:00:00.000Z

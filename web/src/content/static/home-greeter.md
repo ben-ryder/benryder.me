@@ -1,7 +1,8 @@
 
-I'm a full-stack developer from Manchester (UK) with 5+ years experience in web development. This includes working with CMS's like Drupal & Wordpress, front-end tooling like React, Next.js & Storybook, 
-and testing tools like Cypress & Jest.
+I'm a full-stack web developer from Manchester (UK) currently working at [Access](https://www.weareaccess.co.uk/) building with Drupal, Next.js and Storybook.
+I'm also experimenting with local-first web app development in my [Headbase](/projects/headbase) project and building my own design system [Jigsaw](/projects/jigsaw).
 
-I'm currently experimenting with local-first web apps in my [Headbase](/projects/headbase) project and building my own design system in [Jigsaw](/projects/jigsaw).
+I get up to all sorts of other things too, such as playing the piano & cello, writing, hiking, camping & cycling. I've also been getting into field recording recently.
 
-I get up to all sorts of other things too. I play the piano & cello and enjoy writing, hiking, camping and cycling. I've recently been getting into field recording too, so I may publish those recordings somewhere in the future.
+If you want to learn more about me, I have some details about [my skills and experience](/skills-and-experience) and an ['uses' page](/uses) which might interest you.
+I'm also starting to write [blog posts](/blog) where I reflect on random thoughts, and [guides](/guides) where I focus on technical content and useful tips, so keep an eye out for those!

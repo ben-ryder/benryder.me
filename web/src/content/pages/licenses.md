@@ -1,10 +1,10 @@
 ---
-# Metadata
-path: '/licenses'
 # Basic data
+path: '/licenses'
 slug: 'licenses'
 title: 'Licenses'
 description: 'License information about my website and projects.'
+isPublished: true
 # Timestamps
 createdAt: 2022-12-12T00:00:00.000Z
 updatedAt: 2022-12-12T00:00:00.000Z

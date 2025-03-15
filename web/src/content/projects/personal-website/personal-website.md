@@ -3,10 +3,11 @@
 slug: 'personal-website'
 title: 'Personal Website'
 description: "My personal website where I share my projects & post blogs. Built using Astro and my design system Jigsaw."
+isFeatured: false
+isPublished: true
 tags:
   - websites
 # Project data
-isFeatured: false
 productUrl: "https://www.benryder.me"
 repositoryUrl: "https://github.com/ben-ryder/benryder.me"
 # Timestamps
