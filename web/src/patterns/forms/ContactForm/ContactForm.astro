@@ -85,7 +85,7 @@ const { description } = Astro.props
         </div>
         <div class="j-form__row">
             <div class="j-button-group">
-                <JButton type="submit">
+                <JButton type="submit" loading={true} id="contact-form-submit">
                     Send
                 </JButton>
             </div>
@@ -93,21 +93,15 @@ const { description } = Astro.props
     </div>
 </form>
 
-<style>
-    #contact-form-success-message,
-    #contact-form-error-message {
-        display: none;
-    }
-</style>
-
 <script>
-    const form = document.querySelector("#contact-form");
-    const errorMessage = document.querySelector("#contact-form-error-message");
-    const successMessage = document.querySelector("#contact-form-success-message");
+    const form = document.querySelector("#contact-form") as HTMLFormElement;
+    const errorMessage = document.querySelector("#contact-form-error-message") as HTMLDivElement;
+    const successMessage = document.querySelector("#contact-form-success-message") as HTMLDivElement;
+    const submitButton = document.querySelector("#contact-form-submit") as HTMLButtonElement;
 
-    function setErrorMessage(message) {
+    function setErrorMessage(message: string) {
         errorMessage.style.display = "flex";
-        const content = errorMessage.querySelector(".j-callout__content p")
+        const content = errorMessage.querySelector(".j-callout__content p") as HTMLParagraphElement;
         content.innerHTML = message
     }
 
@@ -116,53 +110,58 @@ const { description } = Astro.props
     }
 
     function resetMessages() {
-        document.querySelector("#contact-form-error-message").style.display = "none";
-        document.querySelector("#contact-form-success-message").style.display = "none";
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
     }
 
-    if (form) {
+    async function onSubmit(e: SubmitEvent) {
+        e.preventDefault();
+        submitButton.classList.add("j-button--loading")
+        submitButton.disabled = true
 
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const formData = Object.fromEntries(new FormData(e.target).entries())
+        const formData = Object.fromEntries(new FormData(e.target as HTMLFormElement).entries())
 
-            if (!formData['h-captcha-response']) {
-                return setErrorMessage("You must complete the captcha to prove you're human!")
+        if (!formData['h-captcha-response']) {
+            submitButton.classList.remove("j-button--loading")
+            submitButton.disabled = false
+            return setErrorMessage("You must complete the captcha to prove you're human!")
+        }
+
+        const submissionData = {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            captcha: formData['h-captcha-response'],
+        }
+
+        resetMessages()
+        try {
+            const response = await fetch('/contact/submit', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submissionData),
+            })
+            if (response.ok) {
+                displaySuccessMessage()
+                form.reset()
+                hcaptcha.reset()
             }
-
-            const submissionData = {
-                name: formData.name,
-                email: formData.email,
-                subject: formData.subject,
-                message: formData.message,
-                captcha: formData['h-captcha-response'],
+            else {
+                // todo: handle specific errors?
+                setErrorMessage("Sorry there was an unexpected problem saving your submission, please try again later.")
             }
+        }
+        catch(e) {
+            setErrorMessage("Sorry there was an unexpected problem saving your submission, please try again later.")
+        }
 
-            resetMessages()
-
-            try {
-                const response = await fetch('/contact/submit', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(submissionData),
-                })
-                if (response.ok) {
-                    displaySuccessMessage()
-                    form.reset()
-                    hcaptcha.reset()
-                }
-                else {
-                    // todo: handle specific errors?
-                    setErrorMessage("Sorry there was an unexpected problem saving your submission, please try again later.")
-                }
-            }
-            catch(e) {
-            }
-        })
+        submitButton.classList.remove("j-button--loading")
+        submitButton.disabled = false
     }
-    else {
-        console.error("Couldn't find required elements to load form correctly.")
-    }
+
+    submitButton.classList.remove("j-button--loading")
+    form.addEventListener("submit", onSubmit);
 </script>
