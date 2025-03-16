@@ -1,0 +1,35 @@
+---
+import "./footer.css"
+
+const navigationLinks = [
+	{
+		text: 'source code',
+		url: '/projects/personal-website'
+	},
+	{
+		text: 'privacy & terms',
+		url: '/privacy-and-terms'
+	},
+	{
+		text: 'credits',
+		url: '/credits'
+	}
+]
+---
+
+<div class="max-width-container">
+	<div class="footer">
+		<nav class="footer__navigation">
+			<ul class="footer__navigation-menu">
+				{navigationLinks.map(link => (
+						<li class="footer__navigation-item">
+							<a class="footer__navigation-link" href={link.url}>{link.text}</a>
+						</li>
+				))}
+			</ul>
+		</nav>
+		<div class="footer__sign-off">
+			<p>© Ben Ryder 2025</p>
+		</div>
+	</div>
+</div>

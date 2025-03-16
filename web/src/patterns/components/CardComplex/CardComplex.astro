@@ -1,0 +1,30 @@
+---
+import type { CardComplexProps } from "./CardComplex";
+
+import {formatTimestamp} from "../../../utils/format-timestamp";
+
+import "./CardComplex.css"
+
+export type Props = CardComplexProps
+const { link, title, description, tags, createdAt, updatedAt  } = Astro.props;
+---
+
+<div class="card-complex">
+    <a href={link} class="card-complex__link-wrapper">
+        <h3 class="card-complex__title">{title}</h3>
+        <p class="card-complex__description">{description}</p>
+			<!--{tags.length > 0 &&-->
+      <!--    <ul class="card-complex__tags">-->
+      <!--      {tags.map(tag =>-->
+      <!--          <li class={`j-pill j-pill&#45;&#45;${tag.data.colour}`}>{tag.data.title}</li>-->
+      <!--      )}-->
+      <!--    </ul>-->
+			<!--}-->
+        <div class="card-complex__timestamps">
+            <p class="card-complex__timestamp-created">{`Created ${formatTimestamp(createdAt)}`}</p>
+            {updatedAt && (
+                <p class="card-complex__timestamp-updated">{`Updated ${formatTimestamp(updatedAt)}`}</p>        
+            )}
+        </div>
+    </a>
+</div>

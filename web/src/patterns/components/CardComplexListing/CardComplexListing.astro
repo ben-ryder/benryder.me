@@ -1,0 +1,45 @@
+---
+import type { CardComplexProps } from '../CardComplex/CardComplex'
+import CardComplex from '../CardComplex/CardComplex.astro'
+
+import {JPillLink} from "@ben-ryder/jigsaw-react"
+
+import "./CardComplexListing.css"
+
+export interface Tag {
+	id: string
+	title: string
+	colour?: string
+}
+
+export interface Props {
+	title: string
+	description: string
+	cards: CardComplexProps[]
+	tags: Tag[]
+	notFoundText: string
+}
+
+const { title, description, cards, tags } = Astro.props;
+---
+
+<div class="max-width-container">
+	<div class="card-complex-listing">
+		<div class="card-complex-listing__content">
+			<h2 class="card-complex-listing__title">{title}</h2>
+			<div class="card-complex-listing__description">
+				<div class="j-prose" set:html={description} />
+			</div>
+		</div>
+		<!--<div>-->
+		<!--	{tags.map(tag =>-->
+		<!--		<JPillLink href={`/projects/tags/${tag.id}`} variant={tag.data.colour}>{tag.data.title}</JPillLink>-->
+		<!--	)}-->
+		<!--</div>-->
+		<div class="card-complex-listing__cards">
+			{cards.map(card =>
+				<CardComplex {...card} />
+			)}
+		</div>
+	</div>
+</div>

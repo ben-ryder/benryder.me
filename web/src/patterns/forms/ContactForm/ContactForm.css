@@ -1,0 +1,37 @@
+.j-form {
+  .captcha {
+
+    .j-form__element {
+      padding-top: var(--j-space-4);
+    }
+
+    .j-label {
+      &:after {
+        content: "*";
+        color: var(--j-c-teal-200);
+        font-weight: bold;
+        font-size: var(--j-text-size-xs);
+        margin-left: var(--j-space-1);
+      }
+    }
+  }
+}
+
+#contact-form-success-message,
+#contact-form-error-message {
+  display: none;
+}
+
+/** todo: fix in Jigsaw. */
+.j-button {
+  color: red;
+
+  .j-icon {
+    display: none;
+  }
+}
+.j-button--loading {
+  .j-icon {
+    display: block;
+  }
+}

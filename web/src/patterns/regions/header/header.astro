@@ -1,0 +1,38 @@
+---
+import "./header.css"
+
+const navigationLinks = [
+	{
+		text: 'projects',
+		url: '/projects'
+	},
+	{
+		text: 'blog',
+		url: '/blog'
+	},
+	{
+		text: 'guides',
+		url: '/guides'
+	},
+	{
+		text: 'contact',
+		url: '/contact'
+	}
+]
+
+---
+
+<header class="header">
+	<a href="/" aria-label="Home" class="header__logo">
+			<img class="header__logo-image" alt="" src="/images/me.jpeg" />
+	</a>
+	<nav class="header__navigation">
+		<ul class="header__navigation-menu">
+			{navigationLinks.map(link => (
+				<li class="header__navigation-item">
+					<a class="header__navigation-link" href={link.url}>{link.text}</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+</header>

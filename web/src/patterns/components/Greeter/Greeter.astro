@@ -1,22 +1,14 @@
 ---
-import "./Greeter.scss"
-import {SocialLink} from "../../../lib/api/types/content/social-link";
+import "./greeter.css"
+import "./social-links.css"
 
-interface Props {
-	heading: string
-	contentHtml: string;
-	socialLinks: SocialLink[]
-}
+import {GreeterProps} from "./Greeter";
 
-const { heading, contentHtml, socialLinks }: Props = Astro.props;
+const { contentHtml, socialLinks }: GreeterProps = Astro.props;
 ---
 <div class="max-width-container">
 	<div class="greeter">
-		<h1 class="greeter__heading">
-			<span class="greeter__heading-hello">👋 Hello</span>
-			<span class="greeter__heading-comma">,&nbsp;</span>
-			<span class="greeter__heading-me">I'm <span class="greeter__heading-name">Ben Ryder</span></span>
-		</h1>
+		<h1 class="greeter__heading">👋 Hello, I'm <span class="greeter__heading-name">Ben Ryder</span></h1>
 
 		<div class="greeter__content j-prose" set:html={contentHtml} />
 

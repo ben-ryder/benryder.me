@@ -1,18 +1,48 @@
 ---
+import {getCollection} from "astro:content";
+
 import GlobalLayout from '../patterns/layouts/GlobalLayout/GlobalLayout.astro';
-import {apiClient} from "../lib/api/api-client";
 import Greeter from "../patterns/components/Greeter/Greeter.astro";
 import CardSimpleListing from "../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 
-const homepage = await apiClient.getHomepage()
-const featuredProjects = await apiClient.getFeaturedProjects()
-const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
+import { compiledContent as getGreeterHtml } from "../content/static/home-greeter.md"
+const greeterHtml = await getGreeterHtml()
+
+// todo: add sorting based on a specific order/rank property rather than createdAt timestamp?
+
+const unsortedFeaturedProjects = await getCollection('projects', ({data}) => {
+	return data.isPublished && data.isFeatured
+})
+const featuredProjects = unsortedFeaturedProjects.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const unsortedFeaturedBlogPosts = await getCollection('blog-posts', ({data}) => {
+	return data.isPublished && data.isFeatured
+})
+const featuredBlogPosts = unsortedFeaturedBlogPosts.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const unsortedFeaturedGuides = await getCollection('guides', ({data}) => {
+	return data.isPublished && data.isFeatured
+})
+const featuredGuides = unsortedFeaturedGuides.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const socialLinks = [
+	{
+		text: "GitHub",
+		url: "https://github.com/ben-ryder",
+		iconCode: "github"
+	},
+	{
+		text: "LinkedIn",
+		url: "https://www.linkedin.com/in/benryderdev",
+		iconCode: "linkedin"
+	}
+]
 ---
 
 <GlobalLayout title="Home">
 	<Greeter
-		contentHtml={homepage.greeterContentHtml}
-		socialLinks={homepage.socialLinks}
+		contentHtml={greeterHtml}
+		socialLinks={socialLinks}
 	/>
 
 	<CardSimpleListing
@@ -21,24 +51,37 @@ const featuredBlogPosts = await apiClient.getFeaturedBlogPosts()
 		viewAllLink="/projects"
 		cards={featuredProjects.map(project => {
 			return {
-				title: project.name,
-				description: project.description,
-				link: `/projects/${project.slug}`
+				title: project.data.title,
+				description: project.data.description,
+				link: `/projects/${project.id}`
 			}
 		})}
 	/>
 
 	<CardSimpleListing
-		title="🗒️ Blog Posts"
+		title="📝 Blog Posts"
 		viewAllText="All Blog Posts"
 		viewAllLink="/blog"
 		cards={featuredBlogPosts.map(blogPost => {
 			return {
-				title: blogPost.title,
-				description: blogPost.description,
-				link: `/blog/${blogPost.slug}`
+				title: blogPost.data.title,
+				description: blogPost.data.description,
+				link: `/blog/${blogPost.id}`
 			}
 		})}
 	/>
+
+    <CardSimpleListing
+			title="🤔 Guides"
+			viewAllText="All Guides"
+			viewAllLink="/guides"
+			cards={featuredGuides.map(guide => {
+				return {
+					title: guide.data.title,
+					description: guide.data.description,
+					link: `/guides/${guide.id}`
+				}
+			})}
+    />
 
 </GlobalLayout>

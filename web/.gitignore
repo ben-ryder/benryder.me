@@ -1,5 +1,8 @@
 # build output
 dist/
+.netlify/build
+.netlify/v1/edge-functions
+.netlify/v1/functions
 
 # generated types
 .astro/

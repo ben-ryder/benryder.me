@@ -1,40 +1,45 @@
 ---
-import {apiClient} from "@lib/api/api-client";
-import {Project} from "@lib/api/types/content/project";
+import { getCollection } from 'astro:content';
+import {getEntries, render} from "astro:content";
+
+import {JArrowLink} from "@ben-ryder/jigsaw-react"
+
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
-import {JArrowLink, JBadge} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
-import {formatTimestamp} from "../../lib/api/utils/format-timestamp";
-import {getReadingTime} from "../../lib/api/utils/get-reading-time";
-import LoadCodeHighlighting from "../../patterns/components/LoadCodeHighlighting.astro";
+import {formatTimestamp} from "../../utils/format-timestamp";
+import {getReadingTime} from "../../utils/get-reading-time";
 
 export async function getStaticPaths() {
-	const projects = await apiClient.getProjects()
-
-	return projects.map((project) => ({
-		params: { slug: project.slug },
-		props: project,
+	const projects = await getCollection('projects');
+	return projects.map(project => ({
+		params: { slug: project.id }, props: { project },
 	}));
 }
 
-const project: Project = Astro.props;
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const tags = await getEntries(project.data.tags ?? [])
+const relatedProjects = await getEntries(project.data.relatedProjects ?? [])
+const relatedBlogPosts = await getEntries(project.data.relatedBlogPosts ?? [])
+const relatedGuides = await getEntries(project.data.relatedGuides ?? [])
 
 const metadata = []
 
 const projectMetadata = []
-if (project.productUrl) {
+if (project.data.productUrl) {
 	projectMetadata.push({
 		icon: "globe",
 		text: `Live Project`,
-		link: project.productUrl
+		link: project.data.productUrl
 	})
 }
-if (project.repositoryUrl) {
+if (project.data.repositoryUrl) {
 	projectMetadata.push({
 		icon: "github",
 		text: `Source Code`,
-		link: project.repositoryUrl
+		link: project.data.repositoryUrl
 	})
 }
 if (projectMetadata.length > 0) {
@@ -44,71 +49,87 @@ if (projectMetadata.length > 0) {
 const generalMetadata = [
 	{
 		icon: "calendar",
-		text: `Published ${formatTimestamp(project.datePublished || project.dateCreated)}`,
+		text: `Published ${formatTimestamp(project.data.createdAt)}`,
 	}
 ]
-if (project.dateUpdated) {
+if (project.data.updatedAt) {
 	generalMetadata.push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(project.dateUpdated)}`,
+		text: `Updated ${formatTimestamp(project.data.updatedAt)}`,
 	})
 }
 generalMetadata.push({
 	icon: "clock",
-	text: getReadingTime(project.contentHtml)
+	text: getReadingTime(project.body ?? "")
 })
 metadata.push(generalMetadata)
 
 
 ---
 
-<GlobalLayout title={project.name}>
+<GlobalLayout title={project.data.title}>
 	<ContentHero
-		title={project.name}
+		title={project.data.title}
 		metadata={metadata}
-		tags={project.tags}
-		tagsBaseUrl="/projects?tags="
+		tags={tags}
+		tagsBaseUrl="/projects/tags/"
 	/>
 
 	<div class="max-width-container container-spacing">
-		<JArrowLink href="/projects" direction="left">All Projects</JArrowLink>
+			<JArrowLink
+							href="/projects"
+							direction="left"
+			>All Projects</JArrowLink>
 	</div>
 
 	<div class="max-width-container">
-		<div class="j-prose" set:html={project.contentHtml} />
+		<div class="j-prose">
+			<Content />
+		</div>
 	</div>
 
-	{(project.relatedProjects.length > 0 || project.relatedBlogPosts.length > 0) &&
+	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedGuides.length > 0) &&
 		<div class="max-width-container j-prose">
-			<hr />
+				<hr />
 		</div>
 	}
 
-	{project.relatedProjects.length > 0 &&
+	{relatedProjects.length > 0 &&
 		<CardSimpleListing
 			title="👨‍💻 Related Projects"
-			cards={project.relatedProjects.map(project => {
+			cards={relatedProjects.map(project => {
 				return {
-					title: project.name,
-					description: project.description,
-					link: `/projects/${project.slug}`
+					title: project.data.title,
+					description: project.data.description,
+					link: `/projects/${project.id}`
 				}
 			})}
 		/>
 	}
 
-	{project.relatedBlogPosts.length > 0 &&
+	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
-			title="🗒️ Related Blog Posts"
-			cards={project.relatedBlogPosts.map(blogPost => {
+			title="📝 Related Blog Posts"
+			cards={relatedBlogPosts.map(blogPost => {
 				return {
-					title: blogPost.title,
-					description: blogPost.description,
-					link: `/blog/${blogPost.slug}`
+					title: blogPost.data.title,
+					description: blogPost.data.description,
+					link: `/blog/${blogPost.id}`
+				}
+			})}
+		/>
+	}
+
+	{relatedBlogPosts.length > 0 &&
+		<CardSimpleListing
+			title="🤔 Related Guides"
+			cards={relatedGuides.map(guide => {
+				return {
+					title: guide.data.title,
+					description: guide.data.description,
+					link: `/guides/${guide.id}`
 				}
 			})}
 		/>
 	}
 </GlobalLayout>
-
-<LoadCodeHighlighting />

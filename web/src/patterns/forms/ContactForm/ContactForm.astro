@@ -1,0 +1,167 @@
+---
+import "./ContactForm.css"
+
+import { JProse, JInput, JTextArea, JLabel, JButton } from "@ben-ryder/jigsaw-react"
+
+const { description } = Astro.props
+---
+
+<div class="j-prose">
+    <h2>✉️ Contact Me</h2>
+    <JProse html={description} />
+
+    <noscript class="noscript">
+        <p>It looks like Javascript is disabled, and because this contact form relies on Javascript to function it is currently hidden.</p>
+        <p>If you wish to use this form, you must allow Javascript execution for this website and hcaptcha.com.</p>
+
+        <style>
+            #contact-form {
+                display: none;
+            }
+        </style>
+    </noscript>
+</div>
+
+<form class="j-form" id="contact-form">
+    <div class="j-form__content">
+        <div class="j-callout j-callout--success" id="contact-form-success-message">
+            <div class="j-callout__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big j-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
+            </div>
+            <div class="j-callout__content">
+                <p>Your submission has been received, thanks for getting in touch.</p>
+            </div>
+        </div>
+        <div class="j-callout j-callout--critical" id="contact-form-error-message">
+            <div class="j-callout__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-octagon-x j-icon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+            </div>
+            <div class="j-callout__content">
+                <p>Sorry there was an unexpected problem saving your submission, please try again later.</p>
+            </div>
+        </div>
+        <div class="j-form__row">
+            <JInput
+              name="name"
+              label="Name"
+              placeholder="John Smith / johnsmith12"
+              required={true}
+            />
+        </div>
+        <div class="j-form__row">
+            <JInput
+              name="email"
+              label="Email"
+              placeholder="johnsmith12@example.com"
+              type="email"
+              required={true}
+            />
+        </div>
+        <div class="j-form__row">
+            <JInput
+              name="subject"
+              label="Subject"
+              placeholder="I'm contacting you about..."
+              required={true}
+            />
+        </div>
+        <div class="j-form__row">
+            <JTextArea
+              name="message"
+              label="Message"
+              placeholder="Your message here..."
+              rows={4}
+              required={true}
+            />
+        </div>
+        <div class="j-form__row">
+            <div class='captcha'>
+                <JLabel htmlFor="captcha__label">Captcha</JLabel>
+                <div class='j-form__element'>
+                    <script is:inline src="https://js.hcaptcha.com/1/api.js" async defer/>
+                    <div class="h-captcha" data-sitekey={import.meta.env.PUBLIC_CAPTCHA_SITE_KEY}></div>
+                </div>
+            </div>
+        </div>
+        <div class="j-form__row">
+            <div class="j-button-group">
+                <JButton type="submit" loading={true} id="contact-form-submit">
+                    Send
+                </JButton>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    const form = document.querySelector("#contact-form") as HTMLFormElement;
+    const errorMessage = document.querySelector("#contact-form-error-message") as HTMLDivElement;
+    const successMessage = document.querySelector("#contact-form-success-message") as HTMLDivElement;
+    const submitButton = document.querySelector("#contact-form-submit") as HTMLButtonElement;
+
+    function setErrorMessage(message: string) {
+        errorMessage.style.display = "flex";
+        const content = errorMessage.querySelector(".j-callout__content p") as HTMLParagraphElement;
+        content.innerHTML = message
+    }
+
+    function displaySuccessMessage() {
+        successMessage.style.display = "flex";
+    }
+
+    function resetMessages() {
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
+    }
+
+    async function onSubmit(e: SubmitEvent) {
+        e.preventDefault();
+        submitButton.classList.add("j-button--loading")
+        submitButton.disabled = true
+
+        const formData = Object.fromEntries(new FormData(e.target as HTMLFormElement).entries())
+
+        if (!formData['h-captcha-response']) {
+            submitButton.classList.remove("j-button--loading")
+            submitButton.disabled = false
+            return setErrorMessage("You must complete the captcha to prove you're human!")
+        }
+
+        const submissionData = {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            captcha: formData['h-captcha-response'],
+        }
+
+        resetMessages()
+        try {
+            const response = await fetch('/contact/submit', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submissionData),
+            })
+            if (response.ok) {
+                displaySuccessMessage()
+                form.reset()
+                hcaptcha.reset()
+            }
+            else {
+                // todo: handle specific errors?
+                setErrorMessage("Sorry there was an unexpected problem saving your submission, please try again later.")
+            }
+        }
+        catch(e) {
+            setErrorMessage("Sorry there was an unexpected problem saving your submission, please try again later.")
+        }
+
+        submitButton.classList.remove("j-button--loading")
+        submitButton.disabled = false
+    }
+
+    submitButton.classList.remove("j-button--loading")
+    form.addEventListener("submit", onSubmit);
+</script>

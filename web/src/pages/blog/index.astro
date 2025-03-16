@@ -1,29 +1,53 @@
 ---
-import {apiClient} from "@lib/api/api-client";
-import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
-import {CardComplexListing} from "../../patterns/components/CardComplexListing/CardComplexListing";
+import {getCollection, getEntries} from "astro:content";
 
-const blogPosts = await apiClient.getBlogPosts()
-const blogPostTags = await apiClient.getBlogPostTags()
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
+
+const unsortedBlogPosts = await getCollection('blog-posts', ({data}) => {
+	return data.isPublished
+})
+const sortedBlogPosts = unsortedBlogPosts
+	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const blogPosts = []
+const relatedTagsMap = new Map()
+
+for (const blogPost of sortedBlogPosts) {
+	const relatedTags = await getEntries(blogPost.data.tags)
+	for (const tag of relatedTags) {
+		if (!relatedTagsMap.has(tag.id)) {
+			relatedTagsMap.set(tag.id, tag)
+		}
+	}
+
+	blogPosts.push({
+		...blogPost,
+		referenced: {
+			tags: relatedTags
+		}
+	})
+}
+
+const allTags = Array.from(relatedTagsMap.values())
+	.sort((a, b) => a.data.title > b.data.title ? 1 : -1)
 ---
 
 <GlobalLayout title="Blog">
 	<CardComplexListing
-		title="🗒️ Blog Posts"
-		description="<p>Here you can find a list of all my blog posts, which includes how-to guides, quick tips, opinon pieces and more.</p>"
+		title="📝 Blog Posts"
+		description="<p>Exploring random thoughts, concepts and opinions.</br> If you're intrested in more technical references, quick-tips and tutorials see my <a href='/guides'>guides</a> instead.</p>"
 		notFoundText="No Blog Posts Found"
+		tags={allTags}
 		cards={blogPosts.map(blogPost => {
 			return {
-				title: blogPost.title,
-				description: blogPost.description,
-				link: `/blog/${blogPost.slug}`,
-				tags: blogPost.tags,
-				dateCreated: blogPost.dateCreated,
-				datePublished: blogPost.datePublished,
-				dateUpdated: blogPost.dateUpdated
+				title: blogPost.data.title,
+				description: blogPost.data.description,
+				link: `/blog/${blogPost.id}`,
+				tags: blogPost.referenced.tags,
+				createdAt: blogPost.data.createdAt,
+				updatedAt: blogPost.data.updatedAt,
 			}
 		})}
-		tags={blogPostTags}
-		client:load
 	/>
 </GlobalLayout>

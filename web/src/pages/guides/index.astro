@@ -1,0 +1,53 @@
+---
+import {getCollection, getEntries} from "astro:content";
+
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
+
+const unsortedGuides = await getCollection('guides', ({data}) => {
+	return data.isPublished
+})
+const sortedGuides = unsortedGuides
+	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+
+const guides = []
+const relatedTagsMap = new Map()
+
+for (const guide of sortedGuides) {
+	const relatedTags = await getEntries(guide.data.tags)
+	for (const tag of relatedTags) {
+		if (!relatedTagsMap.has(tag.id)) {
+			relatedTagsMap.set(tag.id, tag)
+		}
+	}
+
+	guides.push({
+		...guide,
+		referenced: {
+			tags: relatedTags
+		}
+	})
+}
+
+const allTags = Array.from(relatedTagsMap.values())
+	.sort((a, b) => a.data.title > b.data.title ? 1 : -1)
+---
+
+<GlobalLayout title="Blog">
+	<CardComplexListing
+		title="🤔 Guides"
+		description="<p>Technical guides, references, quick-tips and tutorials.</br> If you're intrested in more opinionated explorations of thoughts and concepts, see my <a href='/blog'>blog posts</a> instead.</p>"
+		notFoundText="No Guides Found"
+		tags={allTags}
+		cards={guides.map(guide => {
+			return {
+				title: guide.data.title,
+				description: guide.data.description,
+				link: `/guides/${guide.id}`,
+				tags: guide.referenced.tags,
+				createdAt: guide.data.createdAt,
+				updatedAt: guide.data.updatedAt,
+			}
+		})}
+	/>
+</GlobalLayout>
