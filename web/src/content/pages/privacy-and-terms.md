@@ -36,4 +36,4 @@ The source code for this site is released [on my GitHub](https://github.com/ben-
 ### Content
 All content on my website is published with the intention of offering help and sharing my knowledge so you can use things like **code snippets** freely within your own work without attribution, although I would highly appreciate a credit.
 
-You do not have permission to republish my articles on any other site/service claiming them as your own or by crediting me. 
+You do not have permission to republish my content like blog posts, guides etc on any other site/service claiming them as your own or by crediting me. 
