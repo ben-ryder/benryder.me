@@ -1,6 +1,6 @@
 
-I'm a full-stack developer from Manchester (UK) currently working at [GAIN](https://www.thisisgain.com/) building with Drupal, Next.js and Storybook.
-I'm also experimenting with local-first web app development in my [Headbase](/projects/headbase) project and building my own design system [Jigsaw](/projects/jigsaw).
+I'm a full-stack developer from Manchester (UK) currently working at [GAIN](https://www.thisisgain.com/) building with Drupal, Next.js and Storybook.  
+I'm also exploring local-first software and malleable systems in my [Headbase](/projects/headbase) project and design systems in [Jigsaw](/projects/jigsaw).
 
 I get up to all sorts of other things too, such as playing the piano & cello, writing, hiking, camping & cycling. I've also been getting into field recording recently.
 
