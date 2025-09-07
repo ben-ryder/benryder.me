@@ -1,7 +1,7 @@
 ---
 # Basic data
 slug: 'recursively-reading-directory-in-nodejs'
-title: 'Recursively reading directory in Node.js'
+title: 'Recursively reading a directory in Node.js'
 description: 'An explanation and code example of how you can recursively read a directory with Node.js.'
 isFeatured: false
 isPublished: true

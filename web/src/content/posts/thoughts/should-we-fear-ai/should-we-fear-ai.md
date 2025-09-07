@@ -17,6 +17,7 @@ relatedPosts: []
 
 <div class="j-callout"><div class="j-callout__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="j-icon"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></div><div class="j-callout__content"><p>I originally wrote this essay for my A-Level Extended Project Qualification (EPQ) in 2019, so this essay reflects my opinion at that time.</p></div></div>
 
+## Contents
 
 ## Introduction
 

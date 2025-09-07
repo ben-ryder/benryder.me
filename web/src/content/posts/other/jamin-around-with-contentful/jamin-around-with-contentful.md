@@ -13,22 +13,18 @@ relatedProjects: []
 relatedPosts: []
 ---
 
-In web development today the Jamstack continues to grow in popularity. The JAM stack is:
-
+In web development today the Jamstack is an interesting alternative to monolithic content management systems like Drupal and Wordpress. The JAM stack is:
 > A modern web development architecture based on client-side JavaScript, reusable APIs, and prebuilt Markup.  
 > **Netlify.com**
 
-At its core the Jamstack does away with monolithic CMS systems such as Wordpress and traditional Drupal and instead decouples content and display allowing for more flexibility in the tools and services that can be used.
+At its core the Jamstack decouples content and display, allowing for more flexibility in the tools and services that can be used so you can pick the best tools for the job you need.
+Within this decouples architecture content often comes from a Headless CMS, and that is where Contentful comes in.  
 
-Within this architecture there is usually some form of headless CMS used and that is where Contentful comes in.
-
-In this article I will focus generally on what Contentful is, some features I think make it a great option as a headless CMS and what my initial experience with it has been like.
-
+In this post I will focus generally on what Contentful is, some features I think make it a great option as a Headless CMS and what my initial experience with it has been like.
 
 ## What is Contentful?
 
-Contentful is a content management system. It aims to be a single hub from which editors can create and manage content and makes this content available via APIs so that developers can pull this data into projects to use as required.
-
+Contentful is a content management system. It aims to be a single hub from which editors can create and manage content, and makes this content available via APIs so developers can pull the data into products as required.
 
 ## Why use it?
 
@@ -58,20 +54,16 @@ Contentful has a lot of features that help make it an attractive choice:
 - There are a number of API libraries prebuilt for developers to use when integrating Contentful with apps and services. These include a Javascript library, Gatsby plugin, Android APK and a variety of different endpoints for interacting with content. The contentful-cli can also be used to easily manage Contentful applications from the command line.
 
 ## Who is using Contentful?
+Contentful is being used by many top brands, at the time of writing this includes:
 
-Figma
-
-Shutterstock
-
-Stripe
-
-Spotify Artists
+- Figma
+- Shutterstock
+- Stripe
+- Spotify Artists
 
 You can view more on [contentful.com](https://contentful.com).
 
 ## My Experience
-
-So far I’ve given a general overview of Contentful as a CMS and listed some tools and features that make it an attractive choice, but what about my personal experience?
 
 Most of my experience with Contentful has been in developing my personal website. This site was a great contender to practise using the Jamstack architecture because the content doesn’t change often.
 
