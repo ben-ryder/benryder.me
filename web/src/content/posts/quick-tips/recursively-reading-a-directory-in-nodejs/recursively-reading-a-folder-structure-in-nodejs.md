@@ -1,9 +1,9 @@
 ---
 # Basic data
-slug: 'recursively-reading-a-folder-structure-in-nodejs'
-title: 'Recursively reading a folder structure in Node.js'
-description: 'An explanation and code example of how you can recursively read a folders structure with Node.js.'
-isFeatured: true
+slug: 'recursively-reading-directory-in-nodejs'
+title: 'Recursively reading directory in Node.js'
+description: 'An explanation and code example of how you can recursively read a directory with Node.js.'
+isFeatured: false
 isPublished: true
 tags:
   - quick-tips
@@ -11,8 +11,8 @@ tags:
 createdAt: 2021-02-16T00:00:00.000Z
 updatedAt: 2021-05-23T00:00:00.000Z
 # Related content
-relatedBlogPosts: []
 relatedProjects: []
+relatedPosts: []
 ---
 
 While developing an Electron based markdown editor - similar to [Mark Text](https://marktext.app/) and [Zettlr](https://www.zettlr.com/) - to practice using Electron, I came across the need to read the folder structure of a supplied folder to display the files in a sidebar to the user.

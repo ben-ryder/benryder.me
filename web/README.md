@@ -1,3 +1,7 @@
+
+Add `127.0.0.1 local.benryder.me` to /etc/hosts
+
+
 # Astro Starter Kit: Basics
 
 ```sh

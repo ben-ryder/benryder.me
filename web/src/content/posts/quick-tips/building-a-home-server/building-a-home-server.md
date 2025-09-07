@@ -11,6 +11,5 @@ createdAt: 2025-03-14T00:00:00.000Z
 updatedAt: 2025-03-14T00:00:00.000Z
 # Related content
 relatedProjects: []
-relatedBlogPosts: []
-relatedGuides: []
+relatedPosts: []
 ---

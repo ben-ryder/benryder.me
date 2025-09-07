@@ -15,15 +15,10 @@ const unsortedFeaturedProjects = await getCollection('projects', ({data}) => {
 })
 const featuredProjects = unsortedFeaturedProjects.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
-const unsortedFeaturedBlogPosts = await getCollection('blog-posts', ({data}) => {
+const unsortedFeaturedPosts = await getCollection('posts', ({data}) => {
 	return data.isPublished && data.isFeatured
 })
-const featuredBlogPosts = unsortedFeaturedBlogPosts.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
-
-const unsortedFeaturedGuides = await getCollection('guides', ({data}) => {
-	return data.isPublished && data.isFeatured
-})
-const featuredGuides = unsortedFeaturedGuides.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
+const featuredPosts = unsortedFeaturedPosts.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
 
 const socialLinks = [
 	{
@@ -58,28 +53,15 @@ const socialLinks = [
 		})}
 	/>
 
-	<CardSimpleListing
-		title="📝 Blog Posts"
-		viewAllText="All Blog Posts"
-		viewAllLink="/blog"
-		cards={featuredBlogPosts.map(blogPost => {
-			return {
-				title: blogPost.data.title,
-				description: blogPost.data.description,
-				link: `/blog/${blogPost.id}`
-			}
-		})}
-	/>
-
     <CardSimpleListing
-			title="🤔 Guides"
-			viewAllText="All Guides"
-			viewAllLink="/guides"
-			cards={featuredGuides.map(guide => {
+			title="📝 Posts"
+			viewAllText="All Posts"
+			viewAllLink="/posts"
+			cards={featuredPosts.map(post => {
 				return {
-					title: guide.data.title,
-					description: guide.data.description,
-					link: `/guides/${guide.id}`
+					title: post.data.title,
+					description: post.data.description,
+					link: `/posts/${post.id}`
 				}
 			})}
     />

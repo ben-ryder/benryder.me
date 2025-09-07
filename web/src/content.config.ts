@@ -44,16 +44,16 @@ const projectsCollection = defineCollection({
 		repositoryUrl: z.string().url().optional(),
 		// Timestamps
 		createdAt: z.date(),
-		updatedAt: z.date(),
+		updatedAt: z.date().optional(),
 		// Related content
 		relatedProjects: z.array(reference('projects')).optional(),
 		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
-		relatedGuides: z.array(reference('guides')).optional(),
+		relatedPosts: z.array(reference('guides')).optional(),
 	}),
 });
 
-const blogPostsCollection = defineCollection({
-	loader: glob({ pattern: markdownFilePattern, base: "./src/content/blog-posts/" }),
+const postsCollection = defineCollection({
+	loader: glob({ pattern: markdownFilePattern, base: "./src/content/posts/" }),
 	schema: z.object({
 		// Basic Data
 		title: z.string(),
@@ -63,30 +63,10 @@ const blogPostsCollection = defineCollection({
 		tags: z.array(reference('tags')),
 		// Timestamps
 		createdAt: z.date(),
-		updatedAt: z.date(),
+		updatedAt: z.date().optional(),
 		// Related content
 		relatedProjects: z.array(reference('projects')).optional(),
-		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
-		relatedGuides: z.array(reference('guides')).optional(),
-	}),
-});
-
-const guidesCollection = defineCollection({
-	loader: glob({ pattern: markdownFilePattern, base: "./src/content/guides/" }),
-	schema: z.object({
-		// Basic Data
-		title: z.string(),
-		description: z.string(),
-		isFeatured: z.boolean().optional(),
-		isPublished: z.boolean(),
-		tags: z.array(reference('tags')),
-		// Timestamps
-		createdAt: z.date(),
-		updatedAt: z.date(),
-		// Related content
-		relatedProjects: z.array(reference('projects')).optional(),
-		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
-		relatedGuides: z.array(reference('guides')).optional(),
+		relatedPosts: z.array(reference('posts')).optional(),
 	}),
 });
 
@@ -94,6 +74,5 @@ export const collections = {
 	'tags': tagsCollection,
 	'pages': pagesCollection,
 	'projects': projectsCollection,
-	'blog-posts': blogPostsCollection,
-	'guides': guidesCollection,
+	'posts': postsCollection,
 };

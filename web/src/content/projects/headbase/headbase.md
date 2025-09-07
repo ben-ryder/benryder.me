@@ -2,7 +2,7 @@
 # Basic data
 slug: 'headbase'
 title: 'Headbase'
-description: 'The customizable database for your brain. Note-taking, task-management, personal knowledge bases and more.'
+description: 'Turn your local files into a queryable database. Note taking, task management, knowledge bases and more.'
 isFeatured: true
 isPublished: true
 tags:

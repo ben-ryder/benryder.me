@@ -23,7 +23,7 @@ const { Content } = await render(project);
 const tags = await getEntries(project.data.tags ?? [])
 const relatedProjects = await getEntries(project.data.relatedProjects ?? [])
 const relatedBlogPosts = await getEntries(project.data.relatedBlogPosts ?? [])
-const relatedGuides = await getEntries(project.data.relatedGuides ?? [])
+const relatedPosts = await getEntries(project.data.relatedPosts ?? [])
 
 const metadata = []
 
@@ -88,7 +88,7 @@ metadata.push(generalMetadata)
 		</div>
 	</div>
 
-	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedGuides.length > 0) &&
+	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedPosts.length > 0) &&
 		<div class="max-width-container j-prose">
 				<hr />
 		</div>
@@ -123,7 +123,7 @@ metadata.push(generalMetadata)
 	{relatedBlogPosts.length > 0 &&
 		<CardSimpleListing
 			title="🤔 Related Guides"
-			cards={relatedGuides.map(guide => {
+			cards={relatedPosts.map(guide => {
 				return {
 					title: guide.data.title,
 					description: guide.data.description,

@@ -5,9 +5,6 @@
   "description": "My personal portfolio website.",
   "author": "Ben Ryder",
   "license": "AGPL-3.0-only",
-  "engines": {
-    "node": "^20.x"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ben-Ryder/benryder.me.git"
@@ -22,10 +19,8 @@
   "scripts": {
     "install": "concurrently npm:install:*",
     "install:web": "cd web && npm install",
-    "install:cms": "cd cms && npm install",
     "start": "concurrently npm:start:*",
     "start:web": "cd web && npm start",
-    "start:cms": "cd cms && npm start",
     "prepare": "husky install"
   },
   "dependencies": {

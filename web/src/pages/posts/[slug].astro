@@ -1,0 +1,96 @@
+---
+import {getCollection, getEntries, render} from 'astro:content';
+
+import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
+import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
+import {JArrowLink} from "@ben-ryder/jigsaw-react";
+import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
+import {formatTimestamp} from "../../utils/format-timestamp";
+import {getReadingTime} from "../../utils/get-reading-time";
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map(post => ({
+		params: { slug: post.id }, props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const tags = await getEntries(post.data.tags)
+const relatedProjects = await getEntries(post.data.relatedProjects ?? [])
+const relatedPosts = await getEntries(post.data.relatedPosts ?? [])
+
+const metadata = [
+	[
+		{
+			icon: "clock",
+			text: getReadingTime(post.body ?? "")
+		},
+	],
+	[
+		{
+			icon: "calendar",
+			text: `Published ${formatTimestamp(post.data.createdAt)}`,
+		}
+	]
+]
+if (post.data.updatedAt) {
+	metadata[1].push({
+		icon: "pencil",
+		text: `Updated ${formatTimestamp(post.data.updatedAt)}`,
+	})
+}
+---
+
+<GlobalLayout title={post.data.title}>
+	<ContentHero
+		title={post.data.title}
+		metadata={metadata}
+        tags={tags}
+		tagsBaseUrl="/posts/tags/"
+	/>
+
+	<div class="max-width-container container-spacing">
+		<JArrowLink href="/posts" direction="left">All Posts</JArrowLink>
+	</div>
+
+	<div class="max-width-container">
+		<div class="j-prose">
+			<Content />
+		</div>
+	</div>
+
+	{(relatedProjects.length > 0 || relatedPosts.length > 0) &&
+		<div class="max-width-container j-prose">
+			<hr />
+		</div>
+	}
+
+	{relatedProjects.length > 0 &&
+		<CardSimpleListing
+			title="👨‍💻 Related Projects"
+			cards={relatedProjects.map(project => {
+				return {
+					title: project.data.title,
+					description: project.data.description,
+					link: `/projects/${project.id}`
+				}
+			})}
+		/>
+	}
+
+	{relatedPosts.length > 0 &&
+		<CardSimpleListing
+			title="🤔 Related Posts"
+			cards={relatedPosts.map(post => {
+				return {
+					title: post.data.title,
+					description: post.data.description,
+					link: `/posts/${post.id}`
+				}
+			})}
+		/>
+	}
+</GlobalLayout>
