@@ -1,77 +1,21 @@
-import { JColourVariantsList } from '@ben-ryder/jigsaw-react';
-import { z, defineCollection, reference } from 'astro:content';
-import { glob, file } from 'astro/loaders';
-
-const tagColours = z.enum(JColourVariantsList)
-type tagColours = z.infer<typeof tagColours>
-
-const tagsCollection = defineCollection({
-	loader: file("./src/content/tags.json"),
-	schema: z.object({
-		title: z.string(),
-		description: z.string().optional(),
-		colour: tagColours
-	}),
-});
-
-// Ignore all markdown files that start with "_".
-const markdownFilePattern = "**/[^_]*.md"
+import { defineCollection } from 'astro:content';
+import {projectsLoader} from "@lib/loaders/projects.ts";
+import {pagesLoader} from "@lib/loaders/pages.ts";
+import {postsLoader} from "@lib/loaders/posts.ts";
 
 const pagesCollection = defineCollection({
-	loader: glob({ pattern: markdownFilePattern, base: "./src/content/pages/" }),
-	schema: z.object({
-		// Metadata
-		path: z.string(), // todo: ensure valid relative path
-		isPublished: z.boolean(),
-		title: z.string(),
-		description: z.string(),
-		// Timestamps
-		createdAt: z.date(),
-		updatedAt: z.date(),
-	}),
+	loader: pagesLoader(),
 });
 
 const projectsCollection = defineCollection({
-	loader: glob({ pattern: markdownFilePattern, base: "./src/content/projects/" }),
-	schema: z.object({
-		// Basic data
-		title: z.string(),
-		description: z.string(),
-		isFeatured: z.boolean().optional(),
-		isPublished: z.boolean(),
-		tags: z.array(reference('tags')),
-		productUrl: z.string().url().optional(),
-		repositoryUrl: z.string().url().optional(),
-		// Timestamps
-		createdAt: z.date(),
-		updatedAt: z.date().optional(),
-		// Related content
-		relatedProjects: z.array(reference('projects')).optional(),
-		relatedBlogPosts: z.array(reference('blog-posts')).optional(),
-		relatedPosts: z.array(reference('guides')).optional(),
-	}),
+	loader: projectsLoader(),
 });
 
 const postsCollection = defineCollection({
-	loader: glob({ pattern: markdownFilePattern, base: "./src/content/posts/" }),
-	schema: z.object({
-		// Basic Data
-		title: z.string(),
-		description: z.string(),
-		isFeatured: z.boolean().optional(),
-		isPublished: z.boolean(),
-		tags: z.array(reference('tags')),
-		// Timestamps
-		createdAt: z.date(),
-		updatedAt: z.date().optional(),
-		// Related content
-		relatedProjects: z.array(reference('projects')).optional(),
-		relatedPosts: z.array(reference('posts')).optional(),
-	}),
+	loader: postsLoader(),
 });
 
 export const collections = {
-	'tags': tagsCollection,
 	'pages': pagesCollection,
 	'projects': projectsCollection,
 	'posts': postsCollection,

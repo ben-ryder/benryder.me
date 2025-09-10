@@ -42,6 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
 			}).toString()
 		});
 		const data = await res.json()
+        console.debug(data)
 
 		if (!data.success) {
 			return new Response(JSON.stringify({

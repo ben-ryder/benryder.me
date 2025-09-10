@@ -18,37 +18,36 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const tags = await getEntries(post.data.tags)
-const relatedProjects = await getEntries(post.data.relatedProjects ?? [])
-const relatedPosts = await getEntries(post.data.relatedPosts ?? [])
+const relatedProjects = await getEntries(post.data.related_projects ?? [])
+const relatedPosts = await getEntries(post.data.related_posts ?? [])
 
 const metadata = [
 	[
 		{
 			icon: "clock",
-			text: getReadingTime(post.body ?? "")
+			text: getReadingTime(post.data.content ?? "")
 		},
 	],
 	[
 		{
 			icon: "calendar",
-			text: `Published ${formatTimestamp(post.data.createdAt)}`,
+			text: `Published ${formatTimestamp(post.data.created_at)}`,
 		}
 	]
 ]
-if (post.data.updatedAt) {
+if (post.data.updated_at) {
 	metadata[1].push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(post.data.updatedAt)}`,
+		text: `Updated ${formatTimestamp(post.data.updated_at)}`,
 	})
 }
 ---
 
-<GlobalLayout title={post.data.title}>
+<GlobalLayout title={post.data.name}>
 	<ContentHero
-		title={post.data.title}
+		title={post.data.name}
 		metadata={metadata}
-        tags={tags}
+        tags={[]}
 		tagsBaseUrl="/posts/tags/"
 	/>
 
@@ -73,7 +72,7 @@ if (post.data.updatedAt) {
 			title="👨‍💻 Related Projects"
 			cards={relatedProjects.map(project => {
 				return {
-					title: project.data.title,
+					title: project.data.name,
 					description: project.data.description,
 					link: `/projects/${project.id}`
 				}
@@ -86,7 +85,7 @@ if (post.data.updatedAt) {
 			title="🤔 Related Posts"
 			cards={relatedPosts.map(post => {
 				return {
-					title: post.data.title,
+					title: post.data.name,
 					description: post.data.description,
 					link: `/posts/${post.id}`
 				}
