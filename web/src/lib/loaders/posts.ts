@@ -16,8 +16,8 @@ export const PostSchema = z.object({
     featured: z.boolean(),
     content: z.string(),
     // Content data
-    related_projects: z.array(reference('projects')).optional(),
-    related_posts: z.array(reference('posts')).optional(),
+    related_projects: z.array(reference('projects')),
+    related_posts: z.array(reference('posts')),
 })
 export type PostSchema = z.infer<typeof PostSchema>;
 
@@ -26,10 +26,15 @@ export function postsLoader(): Loader {
         name: 'posts-loader',
         schema: PostSchema,
         async load({renderMarkdown, store}) {
-            const posts = await directus.request(readItems("posts"));
+            const posts = await directus.request(readItems("posts", {
+                filter: {status: {_eq: "published"}},
+                sort: ['-created_at'],
+                fields: ["*", "related_projects.projects_id.*", "related_posts.related_posts_id.*"]
+            }));
             store.clear();
 
-            for (const post of posts) {
+            for (const cmsPost of posts) {
+                const post = preProcessPost(cmsPost)
                 store.set({
                     id: post.slug,
                     data: post,
@@ -39,4 +44,14 @@ export function postsLoader(): Loader {
             }
         },
     };
+}
+
+// todo: improve typing/conversion layer between raw CMS and processed data.
+// todo: add computed fields like reading time here?
+function preProcessPost(post: any): PostSchema {
+    return {
+        ...post,
+        related_posts: post.related_posts.map((p: any) => (p.related_posts_id)),
+        related_projects: post.related_projects.map((p: any) => (p.projects_id))
+    }
 }

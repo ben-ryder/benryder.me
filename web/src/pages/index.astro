@@ -22,16 +22,12 @@ const socialLinks = [
     }
 ]
 
-// todo: add sorting based on a specific order/rank property rather than createdAt timestamp?
-const unsortedFeaturedProjects = await getCollection('projects', ({data}) => {
-	return data.status === 'published' && data.featured
+const featuredProjects = await getCollection('projects', ({data}) => {
+	return data.featured
 })
-const featuredProjects = unsortedFeaturedProjects.sort((p1, p2) => (p1.data.created_at < p2.data.created_at ? 1 : -1))
-
-const unsortedFeaturedPosts = await getCollection('posts', ({data}) => {
-    return data.status === 'published' && data.featured
+const featuredPosts = await getCollection('posts', ({data}) => {
+    return data.featured
 })
-const featuredPosts = unsortedFeaturedPosts.sort((p1, p2) => (p1.data.created_at < p2.data.created_at ? 1 : -1))
 
 ---
 

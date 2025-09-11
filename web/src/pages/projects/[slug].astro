@@ -1,6 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
-import {getEntries, render} from "astro:content";
+import { getCollection, render } from 'astro:content';
 
 import {JArrowLink} from "@ben-ryder/jigsaw-react"
 
@@ -20,11 +19,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const relatedProjects = await getEntries(project.data.related_projects ?? [])
-const relatedPosts = await getEntries(project.data.related_posts ?? [])
-
 const metadata = []
-
 const projectMetadata = []
 if (project.data.product_url) {
 	projectMetadata.push({
@@ -86,33 +81,33 @@ metadata.push(generalMetadata)
 		</div>
 	</div>
 
-	{(relatedProjects.length > 0 || relatedPosts.length > 0) &&
+	{(project.data.related_projects.length > 0 || project.data.related_posts.length > 0) &&
 		<div class="max-width-container j-prose">
 				<hr />
 		</div>
 	}
 
-	{relatedProjects.length > 0 &&
+	{project.data.related_projects.length > 0 &&
 		<CardSimpleListing
 			title="👨‍💻 Related Projects"
-			cards={relatedProjects.map(project => {
+			cards={project.data.related_projects.map(project => {
 				return {
-					title: project.data.name,
-					description: project.data.description,
-					link: `/projects/${project.id}`
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
 				}
 			})}
 		/>
 	}
 
-	{relatedPosts.length > 0 &&
+	{project.data.related_posts.length > 0 &&
 		<CardSimpleListing
-			title="🤔 Related Posts"
-			cards={relatedPosts.map(guide => {
+			title="📝 Related Posts"
+			cards={project.data.related_posts.map(post => {
 				return {
-					title: guide.data.name,
-					description: guide.data.description,
-					link: `/guides/${guide.id}`
+					title: post.name,
+					description: post.description,
+					link: `/posts/${post.slug}`
 				}
 			})}
 		/>

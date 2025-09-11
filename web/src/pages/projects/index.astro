@@ -1,13 +1,10 @@
 ---
-import {getCollection, getEntries} from "astro:content";
+import {getCollection} from "astro:content";
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
 
-const unsortedProjects = await getCollection('projects', ({data}) => {
-	return data.status === 'published'
-})
-const projects = unsortedProjects.sort((p1, p2) => (p1.data.created_at < p2.data.created_at ? 1 : -1))
+const projects = await getCollection('projects')
 ---
 
 <GlobalLayout title="Projects">
