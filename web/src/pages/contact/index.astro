@@ -2,8 +2,7 @@
 import ContactForm from "../../patterns/forms/ContactForm/ContactForm.astro";
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 
-import { compiledContent as getContactDescriptionHtml } from "../../content/static/contact-copy.md"
-const contactDescriptionHtml = await getContactDescriptionHtml()
+const contactDescriptionHtml = '<p>You can use this form to contact me. I will never share your data with anyone and I store submissions securely. For more information see my <a href="/privacy-and-terms">privacy policy</a>privacy policy and/or poke at the source code yourself!</p>'
 ---
 
 <GlobalLayout title="Contact">

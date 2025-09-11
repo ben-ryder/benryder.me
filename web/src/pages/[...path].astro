@@ -15,7 +15,7 @@ const { page } = Astro.props;
 const {Content} = await render(page);
 ---
 
-<GlobalLayout title={page.data.title}>
+<GlobalLayout title={page.data.name}>
 	<div class="max-width-container">
 		<div class="j-prose">
 			<Content />

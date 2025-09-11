@@ -33,6 +33,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@ben-ryder/jigsaw": "^0.21.0"
+    "@ben-ryder/jigsaw": "^0.21.0",
+    "@directus/sdk": "^20.0.3"
   }
 }
