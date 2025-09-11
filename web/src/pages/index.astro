@@ -7,8 +7,17 @@ import CardSimpleListing from "../patterns/components/CardSimpleListing/CardSimp
 
 import directus from "../lib/directus";
 import {readSingleton} from "@directus/sdk";
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
 const homeContent = await directus.request(readSingleton('home'));
+
+// Use the Astro flavoured remark parser for markdown.
+// IMPORTANT: this works but is not an officially exposed public API. It is also missing the configuration content collections get. For info, see:
+// - https://github.com/withastro/docs/issues/9543#issuecomment-2480813302
+// - https://github.com/withastro/roadmap/discussions/1094
+const processor = await createMarkdownProcessor();
+const {code: greeterHtml} = await processor.render(homeContent.greeter)
+
 const socialLinks = [
     {
         text: "GitHub",
@@ -33,7 +42,7 @@ const featuredPosts = await getCollection('posts', ({data}) => {
 
 <GlobalLayout title="Home">
 	<Greeter
-		contentHtml={homeContent.greeter}
+		contentHtml={greeterHtml}
 		socialLinks={socialLinks}
 	/>
 
