@@ -1,5 +1,5 @@
 ---
-import {getCollection, getEntries, render} from 'astro:content';
+import {getCollection, render} from 'astro:content';
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
@@ -18,37 +18,33 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const tags = await getEntries(post.data.tags)
-const relatedProjects = await getEntries(post.data.relatedProjects ?? [])
-const relatedPosts = await getEntries(post.data.relatedPosts ?? [])
-
 const metadata = [
 	[
 		{
 			icon: "clock",
-			text: getReadingTime(post.body ?? "")
+			text: getReadingTime(post.data.content ?? "")
 		},
 	],
 	[
 		{
 			icon: "calendar",
-			text: `Published ${formatTimestamp(post.data.createdAt)}`,
+			text: `Published ${formatTimestamp(post.data.published_at)}`,
 		}
 	]
 ]
-if (post.data.updatedAt) {
+if (post.data.updated_at) {
 	metadata[1].push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(post.data.updatedAt)}`,
+		text: `Updated ${formatTimestamp(post.data.updated_at)}`,
 	})
 }
 ---
 
-<GlobalLayout title={post.data.title}>
+<GlobalLayout title={post.data.name}>
 	<ContentHero
-		title={post.data.title}
+		title={post.data.name}
 		metadata={metadata}
-        tags={tags}
+        tags={[]}
 		tagsBaseUrl="/posts/tags/"
 	/>
 
@@ -62,33 +58,33 @@ if (post.data.updatedAt) {
 		</div>
 	</div>
 
-	{(relatedProjects.length > 0 || relatedPosts.length > 0) &&
+	{(post.data.related_posts.length > 0 || post.data.related_projects.length > 0) &&
 		<div class="max-width-container j-prose">
 			<hr />
 		</div>
 	}
 
-	{relatedProjects.length > 0 &&
+	{post.data.related_projects.length > 0 &&
 		<CardSimpleListing
 			title="👨‍💻 Related Projects"
-			cards={relatedProjects.map(project => {
+			cards={post.data.related_projects.map(project => {
 				return {
-					title: project.data.title,
-					description: project.data.description,
-					link: `/projects/${project.id}`
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
 				}
 			})}
 		/>
 	}
 
-	{relatedPosts.length > 0 &&
+	{post.data.related_posts.length > 0 &&
 		<CardSimpleListing
-			title="🤔 Related Posts"
-			cards={relatedPosts.map(post => {
+			title="📝 Related Posts"
+			cards={post.data.related_posts.map(post => {
 				return {
-					title: post.data.title,
-					description: post.data.description,
-					link: `/posts/${post.id}`
+					title: post.name,
+					description: post.description,
+					link: `/posts/${post.slug}`
 				}
 			})}
 		/>

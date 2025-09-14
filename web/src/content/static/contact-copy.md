@@ -1,1 +1,0 @@
-You can use this form to contact me. I will never share your data with anyone and I store submissions securely. For more information see my [privacy policy](/privacy-and-terms) and/or poke at the source code yourself!

@@ -1,6 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
-import {getEntries, render} from "astro:content";
+import { getCollection, render } from 'astro:content';
 
 import {JArrowLink} from "@ben-ryder/jigsaw-react"
 
@@ -20,26 +19,20 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const tags = await getEntries(project.data.tags ?? [])
-const relatedProjects = await getEntries(project.data.relatedProjects ?? [])
-const relatedBlogPosts = await getEntries(project.data.relatedBlogPosts ?? [])
-const relatedPosts = await getEntries(project.data.relatedPosts ?? [])
-
 const metadata = []
-
 const projectMetadata = []
-if (project.data.productUrl) {
+if (project.data.product_url) {
 	projectMetadata.push({
 		icon: "globe",
 		text: `Live Project`,
-		link: project.data.productUrl
+		link: project.data.product_url
 	})
 }
-if (project.data.repositoryUrl) {
+if (project.data.repository_url) {
 	projectMetadata.push({
 		icon: "github",
 		text: `Source Code`,
-		link: project.data.repositoryUrl
+		link: project.data.repository_url
 	})
 }
 if (projectMetadata.length > 0) {
@@ -49,29 +42,29 @@ if (projectMetadata.length > 0) {
 const generalMetadata = [
 	{
 		icon: "calendar",
-		text: `Published ${formatTimestamp(project.data.createdAt)}`,
+		text: `Published ${formatTimestamp(project.data.published_at)}`,
 	}
 ]
-if (project.data.updatedAt) {
+if (project.data.updated_at) {
 	generalMetadata.push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(project.data.updatedAt)}`,
+		text: `Updated ${formatTimestamp(project.data.updated_at)}`,
 	})
 }
 generalMetadata.push({
 	icon: "clock",
-	text: getReadingTime(project.body ?? "")
+	text: getReadingTime(project.data.content  ?? "")
 })
 metadata.push(generalMetadata)
 
 
 ---
 
-<GlobalLayout title={project.data.title}>
+<GlobalLayout title={project.data.name}>
 	<ContentHero
-		title={project.data.title}
+		title={project.data.name}
 		metadata={metadata}
-		tags={tags}
+		tags={[]}
 		tagsBaseUrl="/projects/tags/"
 	/>
 
@@ -88,46 +81,33 @@ metadata.push(generalMetadata)
 		</div>
 	</div>
 
-	{(relatedProjects.length > 0 || relatedBlogPosts.length > 0 || relatedPosts.length > 0) &&
+	{(project.data.related_projects.length > 0 || project.data.related_posts.length > 0) &&
 		<div class="max-width-container j-prose">
 				<hr />
 		</div>
 	}
 
-	{relatedProjects.length > 0 &&
+	{project.data.related_projects.length > 0 &&
 		<CardSimpleListing
 			title="👨‍💻 Related Projects"
-			cards={relatedProjects.map(project => {
+			cards={project.data.related_projects.map(project => {
 				return {
-					title: project.data.title,
-					description: project.data.description,
-					link: `/projects/${project.id}`
+					title: project.name,
+					description: project.description,
+					link: `/projects/${project.slug}`
 				}
 			})}
 		/>
 	}
 
-	{relatedBlogPosts.length > 0 &&
+	{project.data.related_posts.length > 0 &&
 		<CardSimpleListing
-			title="📝 Related Blog Posts"
-			cards={relatedBlogPosts.map(blogPost => {
+			title="📝 Related Posts"
+			cards={project.data.related_posts.map(post => {
 				return {
-					title: blogPost.data.title,
-					description: blogPost.data.description,
-					link: `/blog/${blogPost.id}`
-				}
-			})}
-		/>
-	}
-
-	{relatedBlogPosts.length > 0 &&
-		<CardSimpleListing
-			title="🤔 Related Guides"
-			cards={relatedPosts.map(guide => {
-				return {
-					title: guide.data.title,
-					description: guide.data.description,
-					link: `/guides/${guide.id}`
+					title: post.name,
+					description: post.description,
+					link: `/posts/${post.slug}`
 				}
 			})}
 		/>

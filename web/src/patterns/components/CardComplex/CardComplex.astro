@@ -6,7 +6,7 @@ import {formatTimestamp} from "../../../utils/format-timestamp";
 import "./CardComplex.css"
 
 export type Props = CardComplexProps
-const { link, title, description, tags, createdAt, updatedAt  } = Astro.props;
+const { link, title, description, tags, publishedAt, updatedAt  } = Astro.props;
 ---
 
 <div class="card-complex">
@@ -21,7 +21,7 @@ const { link, title, description, tags, createdAt, updatedAt  } = Astro.props;
       <!--    </ul>-->
 			<!--}-->
         <div class="card-complex__timestamps">
-            <p class="card-complex__timestamp-created">{`Created ${formatTimestamp(createdAt)}`}</p>
+            <p class="card-complex__timestamp-created">{`Published ${formatTimestamp(publishedAt)}`}</p>
             {updatedAt && (
                 <p class="card-complex__timestamp-updated">{`Updated ${formatTimestamp(updatedAt)}`}</p>        
             )}

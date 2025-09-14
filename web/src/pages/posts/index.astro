@@ -1,36 +1,10 @@
 ---
-import {getCollection, getEntries} from "astro:content";
+import {getCollection} from "astro:content";
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
 
-const unsortedPosts = await getCollection('posts', ({data}) => {
-	return data.isPublished
-})
-const sortedPosts = unsortedPosts
-	.sort((p1, p2) => (p1.data.createdAt < p2.data.createdAt ? 1 : -1))
-
-const posts = []
-const relatedTagsMap = new Map()
-
-for (const post of sortedPosts) {
-	const relatedTags = await getEntries(post.data.tags)
-	for (const tag of relatedTags) {
-		if (!relatedTagsMap.has(tag.id)) {
-			relatedTagsMap.set(tag.id, tag)
-		}
-	}
-
-	posts.push({
-		...post,
-		referenced: {
-			tags: relatedTags
-		}
-	})
-}
-
-const allTags = Array.from(relatedTagsMap.values())
-	.sort((a, b) => a.data.title > b.data.title ? 1 : -1)
+const posts = await getCollection('posts')
 ---
 
 <GlobalLayout title="All Posts">
@@ -38,15 +12,15 @@ const allTags = Array.from(relatedTagsMap.values())
 		title="📝 Posts"
 		description="<p>Thought pieces, technical guides, references, quick-tips and just anything else random I fancy writing about.</p>"
 		notFoundText="No Guides Found"
-		tags={allTags}
+		tags={[]}
 		cards={posts.map(post => {
 			return {
-				title: post.data.title,
+				title: post.data.name,
 				description: post.data.description,
 				link: `/posts/${post.id}`,
-				tags: post.referenced.tags,
-				createdAt: post.data.createdAt,
-				updatedAt: post.data.updatedAt,
+				tags: [],
+				publishedAt: post.data.published_at,
+				updatedAt: post.data.updated_at,
 			}
 		})}
 	/>

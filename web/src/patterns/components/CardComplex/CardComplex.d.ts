@@ -3,6 +3,6 @@ export interface CardComplexProps {
 	title: string
 	description: string
 	tags: CollectionEntry<'tags'>[]
-	createdAt: Date
+	publishedAt: Date
 	updatedAt?: Date
 }
