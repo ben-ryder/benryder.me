@@ -6,7 +6,7 @@ import {reference, z} from "astro:content";
 export const ProjectSchema = z.object({
     // Metadata
     id: z.string().uuid(),
-    created_at: z.string(),
+    published_at: z.string().nullable(),
     updated_at: z.string().nullable(),
     status: z.enum(['draft', 'published', 'archived']),
     // Basic data
@@ -30,7 +30,7 @@ export function projectsLoader(): Loader {
         async load({renderMarkdown, store}) {
             const projects = await directus.request(readItems("projects", {
                 filter: {status: {_eq: "published"}},
-                sort: ['-created_at'],
+                sort: ['-published_at'],
                 fields: ["*", "related_projects.related_projects_id.*", "related_posts.posts_id.*"]
             }));
             store.clear();

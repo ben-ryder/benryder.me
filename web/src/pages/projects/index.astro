@@ -19,7 +19,7 @@ const projects = await getCollection('projects')
 				description: project.data.description,
 				link: `/projects/${project.id}`,
                 tags: [],
-				createdAt: project.data.created_at,
+				publishedAt: project.data.published_at,
 				updatedAt: project.data.updated_at,
 			}
 		})}

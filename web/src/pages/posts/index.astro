@@ -19,7 +19,7 @@ const posts = await getCollection('posts')
 				description: post.data.description,
 				link: `/posts/${post.id}`,
 				tags: [],
-				createdAt: post.data.created_at,
+				publishedAt: post.data.published_at,
 				updatedAt: post.data.updated_at,
 			}
 		})}

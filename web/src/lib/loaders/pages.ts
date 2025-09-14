@@ -6,7 +6,7 @@ import {z} from "astro:content";
 export const PageSchema = z.object({
     // Metadata
     id: z.string().uuid(),
-    created_at: z.string(),
+    published_at: z.string().nullable(),
     updated_at: z.string().nullable(),
     status: z.enum(['draft', 'published', 'archived']),
     // Basic data
