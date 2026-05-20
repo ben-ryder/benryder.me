@@ -4,7 +4,9 @@ import {getCollection} from "astro:content";
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
 
-const projects = await getCollection('projects')
+const projects = await getCollection('projects', ({ data }) => {
+	return data.status === 'published'
+})
 ---
 
 <GlobalLayout title="Projects">
@@ -19,8 +21,8 @@ const projects = await getCollection('projects')
 				description: project.data.description,
 				link: `/projects/${project.id}`,
                 tags: [],
-				publishedAt: project.data.published_at,
-				updatedAt: project.data.updated_at,
+				publishedAt: project.data.createdAt,
+				updatedAt: project.data.updatedAt,
 			}
 		})}
 	/>

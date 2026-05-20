@@ -5,11 +5,7 @@ import GlobalLayout from '../patterns/layouts/GlobalLayout/GlobalLayout.astro';
 import Greeter from "../patterns/components/Greeter/Greeter.astro";
 import CardSimpleListing from "../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 
-import directus from "../lib/directus";
-import {readSingleton} from "@directus/sdk";
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
-
-const homeContent = await directus.request(readSingleton('home'));
 
 // Use the Astro flavoured remark parser for markdown.
 // IMPORTANT: this works but is not an officially exposed public API. It is also missing the configuration content collections get. For info, see:
@@ -62,12 +58,12 @@ const featuredPosts = await getCollection('posts', ({data}) => {
     <CardSimpleListing
 			title="📝 Posts"
 			viewAllText="All Posts"
-			viewAllLink="/posts"
+			viewAllLink="/blog"
 			cards={featuredPosts.map(post => {
 				return {
 					title: post.data.name,
 					description: post.data.description,
-					link: `/posts/${post.id}`
+					link: `/blog/${post.id}`
 				}
 			})}
     />

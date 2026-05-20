@@ -4,23 +4,25 @@ import {getCollection} from "astro:content";
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
 
-const posts = await getCollection('posts')
+const posts = await getCollection('guides', ({ data }) => {
+	return data.status === 'published'
+})
 ---
 
 <GlobalLayout title="All Posts">
 	<CardComplexListing
-		title="📝 Posts"
-		description="<p>Thought pieces, technical guides, references, quick-tips and just anything else random I fancy writing about.</p>"
+		title="📝 Guides"
+		description="<p>Technical guides, references, quick-tips and other hopefully helpful information.<br/>If you're interested in thought pieces and opinion based writing, see my <a href='/blog'>blog posts</a> instead.</p>"
 		notFoundText="No Guides Found"
 		tags={[]}
 		cards={posts.map(post => {
 			return {
 				title: post.data.name,
 				description: post.data.description,
-				link: `/posts/${post.id}`,
+				link: `/blog/${post.id}`,
 				tags: [],
-				publishedAt: post.data.published_at,
-				updatedAt: post.data.updated_at,
+				publishedAt: post.data.createdAt,
+				updatedAt: post.data.updatedAt,
 			}
 		})}
 	/>

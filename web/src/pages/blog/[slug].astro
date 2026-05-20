@@ -1,83 +1,61 @@
 ---
 import {getCollection, getEntries, render} from 'astro:content';
 
-import {JArrowLink} from "@ben-ryder/jigsaw-react"
-
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import ContentHero from "../../patterns/components/ContentHero/ContentHero.astro";
+import {JArrowLink} from "@ben-ryder/jigsaw-react";
 import CardSimpleListing from "../../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 import {formatTimestamp} from "../../utils/format-timestamp";
 import {getReadingTime} from "../../utils/get-reading-time";
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects', ({data}) => {
-		return data.status === "published" || data.status === "hidden";
+	const posts = await getCollection('blog-posts', ({ data }) => {
+		return data.status === 'published' || data.status === "hidden"
 	});
-	return projects.map(project => ({
-		params: { slug: project.id }, props: { project },
+	return posts.map(post => ({
+		params: { slug: post.id }, props: { post },
 	}));
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
+const { post } = Astro.props;
+const { Content } = await render(post);
 
-const relatedProjects = project.data.relatedProjects? await getEntries(project.data.relatedProjects) : [];
-const relatedGuides = project.data.relatedGuides? await getEntries(project.data.relatedGuides) : [];
-const relatedBlogPosts = project.data.relatedBlogPosts? await getEntries(project.data.relatedBlogPosts) : [];
+const relatedProjects = post.data.relatedProjects? await getEntries(post.data.relatedProjects) : [];
+const relatedGuides = post.data.relatedGuides? await getEntries(post.data.relatedGuides) : [];
+const relatedBlogPosts = post.data.relatedBlogPosts? await getEntries(post.data.relatedBlogPosts) : [];
 
-const metadata = []
-const projectMetadata = []
-if (project.data.productUrl) {
-	projectMetadata.push({
-		icon: "globe",
-		text: `Live Project`,
-		link: project.data.productUrl
-	})
-}
-if (project.data.repositoryUrl) {
-	projectMetadata.push({
-		icon: "github",
-		text: `Source Code`,
-		link: project.data.repositoryUrl
-	})
-}
-if (projectMetadata.length > 0) {
-	metadata.push(projectMetadata)
-}
-
-const generalMetadata = [
-	{
-		icon: "calendar",
-		text: `Published ${formatTimestamp(project.data.createdAt)}`,
-	}
+const metadata = [
+	[
+		{
+			icon: "clock",
+			text: getReadingTime(post.body ?? "")
+		},
+	],
+	[
+		{
+			icon: "calendar",
+			text: `Published ${formatTimestamp(post.data.createdAt)}`,
+		}
+	]
 ]
-if (project.data.updatedAt) {
-	generalMetadata.push({
+if (post.data.updatedAt) {
+	metadata[1].push({
 		icon: "pencil",
-		text: `Updated ${formatTimestamp(project.data.updatedAt)}`,
+		text: `Updated ${formatTimestamp(post.data.updatedAt)}`,
 	})
 }
-generalMetadata.push({
-	icon: "clock",
-	text: getReadingTime(project.body  ?? "")
-})
-metadata.push(generalMetadata)
-
 ---
 
-<GlobalLayout title={project.data.name}>
+<GlobalLayout title={post.data.name}>
 	<ContentHero
-		title={project.data.name}
+		title={post.data.name}
 		metadata={metadata}
 		tags={[]}
-		tagsBaseUrl="/projects/tags/"
+		tagsBaseUrl="/blog/tags/"
 	/>
 
 	<div class="max-width-container container-spacing">
-			<JArrowLink
-							href="/projects"
-							direction="left"
-			>All Projects</JArrowLink>
+		<JArrowLink href="/web/src/pages/blog" direction="left">All Blog Posts</JArrowLink>
 	</div>
 
 	<div class="max-width-container">
@@ -86,9 +64,10 @@ metadata.push(generalMetadata)
 		</div>
 	</div>
 
+
 	{(relatedProjects.length > 0 || relatedGuides.length > 0 || relatedBlogPosts.length > 0) &&
 		<div class="max-width-container j-prose">
-				<hr />
+			<hr />
 		</div>
 	}
 

@@ -1,5 +1,5 @@
 export interface CardSimpleProps {
 	link: string
 	title: string
-	description: string
+	description: string | null
 }
