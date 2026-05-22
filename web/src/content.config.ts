@@ -1,6 +1,7 @@
 import {defineCollection, reference} from 'astro:content';
 import {z} from "astro/zod";
-import {glob} from "astro/loaders";
+import {glob, file} from "astro/loaders";
+import { JColourVariantsList } from "@ben-ryder/jigsaw-react"
 
 export const ContentMetadata = z.object({
 	createdAt: z.string(),
@@ -8,7 +9,6 @@ export const ContentMetadata = z.object({
 	status: z.enum(['draft', 'hidden', 'published', 'archived']),
 })
 export type ContentMetadata = z.infer<typeof ContentMetadata>;
-
 
 export const PageSchema = ContentMetadata.extend({
 	path: z.string(),
@@ -23,8 +23,8 @@ export const BlogPostsSchema = ContentMetadata.extend({
 	description: z.string().nullable(),
 	featured: z.boolean(),
 	relatedProjects: z.array(reference('projects')).nullable(),
-	relatedBlogPosts: z.array(reference('posts')).nullable(),
 	relatedGuides: z.array(reference('guides')).nullable(),
+	relatedBlogPosts: z.array(reference('blog-posts')).nullable(),
 })
 export type BlogPostsSchema = z.infer<typeof BlogPostsSchema>;
 
@@ -34,8 +34,8 @@ export const GuidesSchema = ContentMetadata.extend({
 	description: z.string().nullable(),
 	featured: z.boolean(),
 	relatedProjects: z.array(reference('projects')).nullable(),
-	relatedBlogPosts: z.array(reference('posts')).nullable(),
 	relatedGuides: z.array(reference('guides')).nullable(),
+	relatedBlogPosts: z.array(reference('blog-posts')).nullable(),
 })
 export type GuidesSchema = z.infer<typeof GuidesSchema>;
 
@@ -47,10 +47,23 @@ export const ProjectsSchema = ContentMetadata.extend({
 	productUrl: z.url().nullable(),
 	repositoryUrl: z.url().nullable(),
 	relatedProjects: z.array(reference('projects')).nullable(),
-	relatedBlogPosts: z.array(reference('posts')).nullable(),
 	relatedGuides: z.array(reference('guides')).nullable(),
+	relatedBlogPosts: z.array(reference('blog-posts')).nullable(),
 })
 export type ProjectsSchema = z.infer<typeof ProjectsSchema>;
+
+export const TagColours = z.enum(JColourVariantsList);
+export type TagColours = z.infer<typeof TagColours>;
+export const TagsSchema = z.object({
+	id: z.string(),
+	colour: TagColours.optional(),
+})
+export type TagsSchema = z.infer<typeof TagsSchema>;
+
+const tagsCollection = defineCollection({
+	loader: file("../cms/content/tags.json"),
+	schema: TagsSchema,
+});
 
 const pagesCollection = defineCollection({
 	loader: glob({ base: "../cms/content/Pages", pattern: "**/*.md" }),
@@ -73,8 +86,9 @@ const projectsCollection = defineCollection({
 })
 
 export const collections = {
+	'tags': tagsCollection,
 	'pages': pagesCollection,
-	'blog-posts': blogPostsCollection,
-	'guides': guidesCollection,
 	'projects': projectsCollection,
+	'guides': guidesCollection,
+	'blog-posts': blogPostsCollection,
 };

@@ -1,17 +1,19 @@
 ---
-import {getCollection} from "astro:content";
+import {type CollectionEntry, getCollection} from "astro:content";
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
+import {orderByTimestamps} from "../../utils/order-by-timestamps.ts";
 
-const posts = await getCollection('blog-posts', ({ data }) => {
+const unorderedPosts = await getCollection('blog-posts', ({ data }) => {
 	return data.status === 'published'
 })
+const posts = orderByTimestamps<CollectionEntry<'blog-posts'>>(unorderedPosts)
 ---
 
-<GlobalLayout title="All Posts">
+<GlobalLayout title="Blog Posts">
 	<CardComplexListing
-		title="📝 Blog Posts"
+		title="🤔 Blog Posts"
 		description="<p>Thought pieces, reflections and anything else random I fancy writing about.<br/>If you're interested in technical guides and how-tos, see my <a href='/guides'>guides</a> instead.</p>"
 		notFoundText="No Guides Found"
 		tags={[]}
@@ -21,7 +23,7 @@ const posts = await getCollection('blog-posts', ({ data }) => {
 				description: post.data.description,
 				link: `/blog/${post.id}`,
 				tags: [],
-				publishedAt: post.data.createdAt,
+				createdAt: post.data.createdAt,
 				updatedAt: post.data.updatedAt,
 			}
 		})}

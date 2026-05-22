@@ -55,7 +55,7 @@ if (post.data.updatedAt) {
 	/>
 
 	<div class="max-width-container container-spacing">
-		<JArrowLink href="/web/src/pages/blog" direction="left">All Blog Posts</JArrowLink>
+		<JArrowLink href="/blog" direction="left">All Blog Posts</JArrowLink>
 	</div>
 
 	<div class="max-width-container">
@@ -99,7 +99,7 @@ if (post.data.updatedAt) {
 
 	{relatedBlogPosts?.length > 0 &&
 		<CardSimpleListing
-			title="📝 Related Blog Posts"
+			title="🤔 Related Blog Posts"
 			cards={relatedBlogPosts.map(post => {
 				return {
 					title: post.data.name,

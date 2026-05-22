@@ -5,15 +5,9 @@ import GlobalLayout from '../patterns/layouts/GlobalLayout/GlobalLayout.astro';
 import Greeter from "../patterns/components/Greeter/Greeter.astro";
 import CardSimpleListing from "../patterns/components/CardSimpleListing/CardSimpleListing.astro";
 
-import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import * as homeContent from "../../../cms/content/Home.md";
 
-// Use the Astro flavoured remark parser for markdown.
-// IMPORTANT: this works but is not an officially exposed public API. It is also missing the configuration content collections get. For info, see:
-// - https://github.com/withastro/docs/issues/9543#issuecomment-2480813302
-// - https://github.com/withastro/roadmap/discussions/1094
-const processor = await createMarkdownProcessor();
-const {code: greeterHtml} = await processor.render(homeContent.greeter)
-
+const contentHtml = await homeContent.compiledContent()
 const socialLinks = [
     {
         text: "GitHub",
@@ -28,17 +22,20 @@ const socialLinks = [
 ]
 
 const featuredProjects = await getCollection('projects', ({data}) => {
-	return data.featured
+	return data.status === 'published' && data.featured
 })
-const featuredPosts = await getCollection('posts', ({data}) => {
-    return data.featured
+const featuredGuides = await getCollection('guides', ({data}) => {
+    return data.status === 'published' && data.featured
+})
+const featuredBlogPosts = await getCollection('blog-posts', ({data}) => {
+	return data.status === 'published' && data.featured
 })
 
 ---
 
 <GlobalLayout title="Home">
 	<Greeter
-		contentHtml={greeterHtml}
+		contentHtml={contentHtml}
 		socialLinks={socialLinks}
 	/>
 
@@ -55,17 +52,29 @@ const featuredPosts = await getCollection('posts', ({data}) => {
 		})}
 	/>
 
-    <CardSimpleListing
-			title="📝 Posts"
-			viewAllText="All Posts"
-			viewAllLink="/blog"
-			cards={featuredPosts.map(post => {
-				return {
-					title: post.data.name,
-					description: post.data.description,
-					link: `/blog/${post.id}`
-				}
-			})}
-    />
+	<CardSimpleListing
+		title="📝 Guides"
+		viewAllText="All Guides"
+		viewAllLink="/guides"
+		cards={featuredGuides.map(guide => {
+			return {
+				title: guide.data.name,
+				description: guide.data.description,
+				link: `/blog/${guide.id}`
+			}
+		})}
+	/>
 
+	<CardSimpleListing
+		title="🤔 Blog Posts"
+		viewAllText="All Blog Posts"
+		viewAllLink="/blog"
+		cards={featuredBlogPosts.map(post => {
+			return {
+				title: post.data.name,
+				description: post.data.description,
+				link: `/blog/${post.id}`
+			}
+		})}
+	/>
 </GlobalLayout>

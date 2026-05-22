@@ -1,28 +1,30 @@
 ---
-import {getCollection} from "astro:content";
+import {getCollection, type CollectionEntry} from "astro:content";
 
 import GlobalLayout from "../../patterns/layouts/GlobalLayout/GlobalLayout.astro";
 import CardComplexListing from "src/patterns/components/CardComplexListing/CardComplexListing.astro";
+import {orderByTimestamps} from "../../utils/order-by-timestamps";
 
-const posts = await getCollection('guides', ({ data }) => {
+const unorderedGuides = await getCollection('guides', ({ data }) => {
 	return data.status === 'published'
 })
+const guides = orderByTimestamps<CollectionEntry<'guides'>>(unorderedGuides)
 ---
 
-<GlobalLayout title="All Posts">
+<GlobalLayout title="Guides">
 	<CardComplexListing
 		title="📝 Guides"
 		description="<p>Technical guides, references, quick-tips and other hopefully helpful information.<br/>If you're interested in thought pieces and opinion based writing, see my <a href='/blog'>blog posts</a> instead.</p>"
 		notFoundText="No Guides Found"
 		tags={[]}
-		cards={posts.map(post => {
+		cards={guides.map(guide => {
 			return {
-				title: post.data.name,
-				description: post.data.description,
-				link: `/blog/${post.id}`,
+				title: guide.data.name,
+				description: guide.data.description,
+				link: `/guides/${guide.id}`,
 				tags: [],
-				publishedAt: post.data.createdAt,
-				updatedAt: post.data.updatedAt,
+				createdAt: guide.data.createdAt,
+				updatedAt: guide.data.updatedAt,
 			}
 		})}
 	/>

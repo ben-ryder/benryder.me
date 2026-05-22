@@ -1,8 +1,8 @@
 export interface CardComplexProps {
 	link: string
 	title: string
-	description: string
+	description: string | null
 	tags: CollectionEntry<'tags'>[]
-	publishedAt: Date
-	updatedAt?: Date
+	createdAt: string
+	updatedAt: string | null
 }
