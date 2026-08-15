@@ -20,6 +20,7 @@ const featuredPosts = await getFeaturedPosts()
 		{featuredProjects.map((project) => (
 			<li>
 				<h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
+				<p>{project.data.description}</p>
 			</li>
 		))}
 	</ul>

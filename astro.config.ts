@@ -1,13 +1,12 @@
-import { defineConfig } from 'astro/config';
+import {defineConfig, envField} from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { loadEnv } from "vite";
 
-const env = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
-const SITE = env.SITE_BASE_URL ?? "https://www.benryder.me"
+const { SITE_BASE_URL } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
-    site: SITE,
+    site: SITE_BASE_URL,
     trailingSlash: "never",
     integrations: [
         // todo: this default sitemap is including "hidden" pages which shouldn't appear

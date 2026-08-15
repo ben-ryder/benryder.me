@@ -5,7 +5,8 @@ import { join as path_join, parse as path_parse } from "node:path"
 import { site } from "astro:config/client"
 import {getImage} from "astro:assets";
 
-// Loading dynamic import of images, used to lookup image paths to load via Astro
+// Loading dynamic import of images, used to lookup image paths to load via Astro.
+// see https://docs.astro.build/en/recipes/dynamically-importing-images/
 const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
     "/content/**/*.{jpeg,jpg,png,gif}"
 );
@@ -16,7 +17,7 @@ const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
  * This includes processing links and image to point to the website rather than being relative.
  *
  * Thanks to https://billyle.dev/posts/adding-rss-feed-content-and-fixing-markdown-image-paths-in-astro
- * for some helpful details on this approach of processing the HTML and images.
+ * for helpful details on this approach of processing the HTML and images.
  *
  * @param sourceFile
  * @param markdown

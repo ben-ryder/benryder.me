@@ -8,18 +8,46 @@ const { Content: HeaderContent } = await render(headerConfig);
 const footerConfig = await getEntry("config", "footer");
 if (!footerConfig) throw new Error('Footer config missing, should be file /content/Config/Footer.md');
 const { Content: FooterContent } = await render(footerConfig);
+
+interface Props {
+	title?: string
+	description?: string
+	image?: {
+		src: string
+		alt: string
+	}
+}
+const { title: titleProp, description, image } = Astro.props
+
+const title = titleProp ? `Ben Ryder | ${titleProp}` : "Ben Ryder"
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		{/** Metadata **/}
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
-		<link rel="icon" href="/favicon.ico" />
+		<title>{title}</title>
 		<meta name="generator" content={Astro.generator} />
+
+		{/** Sitemap **/}
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<title>Ben Ryder</title>
+
+		{/** Icons & Theme **/}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+
+		{/** Open Graph Tags **/}
+		<meta property="og:title" content={title} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:locale" content="en_GB" />
+		{description && <meta property="og:description" content={description} />}
+		{image && (
+			<meta property="og:image" content={image.src} />
+			<meta property="og:image:alt" content={image.alt} />
+		)}
 	</head>
 	<body>
 		<header>
