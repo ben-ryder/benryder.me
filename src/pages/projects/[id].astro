@@ -1,0 +1,67 @@
+---
+import {getCollection, render} from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import {getReadingTime} from "../../utils/get-reading-time.ts";
+import {getRelatedContent} from "../../utils/get-related-content.ts";
+import {filterPublished} from "../../utils/filter-published.ts";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects
+        .filter(filterPublished)
+        .map(project => ({
+            params: { id: project.id },
+            props: { project },
+        }));
+}
+const { project } = Astro.props;
+
+const { Content } = await render(project);
+const readingTime = getReadingTime(project.body ?? "")
+
+const { relatedProjects, relatedPosts } = await getRelatedContent(project)
+---
+
+<Layout>
+    <h1>{project.data.name}</h1>
+    <ul>
+        <li>{readingTime}</li>
+        <li>Published {project.data.publishedAt.toDateString()}</li>
+        {project.data.productUrl && (
+            <li><a href={project.data.productUrl}>Live Project</a></li>
+        )}
+        {project.data.repositoryUrl && (
+            <li><a href={project.data.repositoryUrl}>Source Code</a></li>
+        )}
+    </ul>
+    {project.data.tags?.length && (
+        <ul>
+            {project.data.tags.map(tag => (
+                <li><a href={`/tags/${tag}`}>#{tag}</a></li>
+            ))}
+        </ul>
+    )}
+    <Content />
+    {relatedProjects.length > 0 && (
+        <h2>Related Projects</h2>
+        <ul>
+            {relatedProjects.map((project) => (
+                    <li>
+                        <h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
+                        <p>{project.data.description}</p>
+                    </li>
+            ))}
+        </ul>
+    )}
+    {relatedPosts.length > 0 && (
+        <h2>Related Posts</h2>
+        <ul>
+            {relatedPosts.map((post) => (
+                <li>
+                    <h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
+                    <p>{post.data.description}</p>
+                </li>
+            ))}
+        </ul>
+    )}
+</Layout>

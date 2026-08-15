@@ -1,0 +1,18 @@
+---
+import {getCollection, getEntry, render} from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import {getAllTags} from "../../utils/tags.ts";
+
+const tags = await getAllTags()
+---
+
+<Layout>
+    <h1>Tags</h1>
+    <ul>
+        {tags.map((tag) => (
+            <li>
+                <h3><a href={`/tags/${tag}`}>{tag}</a></h3>
+            </li>
+        ))}
+    </ul>
+</Layout>

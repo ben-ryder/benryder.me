@@ -1,0 +1,60 @@
+---
+import {getCollection, render} from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import {getReadingTime} from "../../utils/get-reading-time.ts";
+import {getRelatedContent} from "../../utils/get-related-content.ts";
+import {filterPublished} from "../../utils/filter-published.ts";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+    return posts
+        .filter(filterPublished)
+        .map(post => ({
+            params: { id: post.id },
+            props: { post },
+        }));
+}
+const { post } = Astro.props;
+
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body ?? "");
+const { relatedProjects, relatedPosts } = await getRelatedContent(post)
+---
+
+<Layout>
+    <h1>{post.data.name}</h1>
+    <ul>
+        <li>{readingTime}</li>
+        <li>Published {post.data.publishedAt.toDateString()}</li>
+    </ul>
+    {post.data.tags?.length && (
+        <ul>
+            {post.data.tags.map(tag => (
+                <li><a href={`/tags/${tag}`}>#{tag}</a></li>
+            ))}
+        </ul>
+    )}
+    <Content />
+    {relatedProjects.length > 0 && (
+        <h2>Related Projects</h2>
+        <ul>
+            {relatedProjects.map((project) => (
+                <li>
+                    <h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
+                    <p>{project.data.description}</p>
+                </li>
+            ))}
+        </ul>
+    )}
+    {relatedPosts.length > 0 && (
+        <h2>Related Posts</h2>
+        <ul>
+            {relatedPosts.map((post) => (
+                <li>
+                    <h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
+                    <p>{post.data.description}</p>
+                </li>
+            ))}
+        </ul>
+    )}
+</Layout>

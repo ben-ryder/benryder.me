@@ -1,0 +1,38 @@
+---
+import {getEntry, render} from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import {getFeaturedProjects} from "../utils/projects.ts";
+import {getFeaturedPosts} from "../utils/posts";
+
+const homeConfig = await getEntry("config", "home");
+if (!homeConfig) throw new Error('Home page config missing, should be file /content/Config/Home.md');
+const { Content } = await render(homeConfig);
+
+const featuredProjects = await getFeaturedProjects()
+const featuredPosts = await getFeaturedPosts()
+---
+
+<Layout>
+	<Content/>
+
+	<h2>Projects</h2>
+	<ul>
+		{featuredProjects.map((project) => (
+			<li>
+				<h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
+			</li>
+		))}
+	</ul>
+	<a href="/projects">all projects</a>
+
+	<h2>Posts</h2>
+	<ul>
+		{featuredPosts.map((post) => (
+			<li>
+				<h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
+				<p>{post.data.description}</p>
+			</li>
+		))}
+	</ul>
+	<a href="/posts">all posts</a>
+</Layout>

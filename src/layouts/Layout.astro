@@ -1,0 +1,49 @@
+---
+import {getEntry, render} from "astro:content";
+
+const headerConfig = await getEntry("config", "header");
+if (!headerConfig) throw new Error('Header config missing, should be file /content/Config/Header.md');
+const { Content: HeaderContent } = await render(headerConfig);
+
+const footerConfig = await getEntry("config", "footer");
+if (!footerConfig) throw new Error('Footer config missing, should be file /content/Config/Footer.md');
+const { Content: FooterContent } = await render(footerConfig);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<title>Ben Ryder</title>
+	</head>
+	<body>
+		<header>
+			<HeaderContent/>
+			<nav>
+				<p><a href="/">Ben Ryder</a></p>
+				<ul>
+					<li><a href="/about">about</a></li>
+					<li><a href="/projects">projects</a></li>
+					<li><a href="/posts">posts</a></li>
+					<li><a href="/contact">contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<FooterContent/>
+			<ul>
+				<li><a href="https://github.com/ben-ryder/benryder.me">source code</a></li>
+				<li><a href="/licenses">licenses</a></li>
+				<li><a href="/credits">credits</a></li>
+			</ul>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import {getAllTags} from "../../utils/tags.ts";
+
+export async function getStaticPaths() {
+    const tags = await getAllTags()
+    return tags
+        .map(tag => ({
+            params: { id: tag },
+            props: { tag },
+        }));
+}
+const { tag } = Astro.props;
+
+const allProjects = await getCollection("projects");
+const projects = allProjects
+    .filter((project) => {
+        return project.data.status === 'published' && project.data.tags?.includes(tag)
+    })
+    .sort((a, b) => a.data.publishedAt > b.data.publishedAt ? 1 : -1)
+
+const allPosts = await getCollection("posts");
+const posts = allPosts
+    .filter((post) => {
+        return post.data.status === 'published' && post.data.tags?.includes(tag)
+    })
+    .sort((a, b) => a.data.publishedAt > b.data.publishedAt ? 1 : -1)
+---
+
+<Layout>
+    <h1>Tags - {tag}</h1>
+
+    {projects.length > 0 && (
+        <h2>Projects</h2>
+        <ul>
+            {projects.map(project => (
+                <li>
+                    <h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
+                    <p>{project.data.description}</p>
+                </li>
+            ))}
+        </ul>
+    )}
+
+    {posts.length > 0 && (
+        <h2>Posts</h2>
+        <ul>
+            {posts.map(post => (
+                <li>
+                    <h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
+                    <p>{post.data.description}</p>
+                </li>
+            ))}
+        </ul>
+    )}
+</Layout>

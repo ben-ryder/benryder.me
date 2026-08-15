@@ -1,0 +1,27 @@
+# Sitemap
+User-agent: *
+Allow: /
+Sitemap: https://benryder.me/sitemap-index.xml
+
+# Allow AI search engines
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Block AI training
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /

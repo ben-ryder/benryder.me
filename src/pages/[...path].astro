@@ -1,0 +1,21 @@
+---
+import {getCollection, render} from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import {filterPublishedOrHidden} from "../utils/filter-published.ts";
+
+export async function getStaticPaths() {
+    const pages = await getCollection('pages', filterPublishedOrHidden);
+
+    return pages.map(page => ({
+        params: { path: page.data.path }, props: { page },
+    }));
+}
+
+const { page } = Astro.props;
+
+const {Content} = await render(page);
+---
+
+<Layout>
+    <Content/>
+</Layout>
