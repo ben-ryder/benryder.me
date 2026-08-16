@@ -30,7 +30,9 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
+    "@lucide/astro": "^1.30.0",
     "astro": "^7.2.1",
+    "lightningcss": "^1.33.0",
     "markdown-it": "^15.0.0",
     "node-html-parser": "^9.0.1",
     "reading-time": "^1.5.0",

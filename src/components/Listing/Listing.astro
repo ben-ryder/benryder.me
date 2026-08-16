@@ -1,0 +1,26 @@
+---
+import Card, { type Props as CardProps } from "../Card/Card.astro"
+
+interface Props {
+    title?: string
+    items: CardProps[]
+}
+const { title, items } = Astro.props
+---
+
+<div>
+    <div>
+        <h2 class="fancy-heading">{title}</h2>
+    </div>
+    <div>
+        <ul>
+            {items.map((item) => (
+                <Card
+                    title={item.title}
+                    description={item.description}
+                    href={item.href}
+                />
+            ))}
+        </ul>
+    </div>
+</div>

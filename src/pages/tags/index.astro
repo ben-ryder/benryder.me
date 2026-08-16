@@ -7,12 +7,13 @@ const tags = await getAllTags()
 ---
 
 <Layout>
-    <h1>Tags</h1>
-    <ul>
+    <h1>All Tags</h1>
+    <div class="prose">
+        <p>This page contains all tags used by my projects and tags.</p>
+    </div>
+    <ul class="tags">
         {tags.map((tag) => (
-            <li>
-                <h3><a href={`/tags/${tag}`}>{tag}</a></h3>
-            </li>
+            <li><a href={`/tags/${tag}`}>#{tag}</a></li>
         ))}
     </ul>
 </Layout>

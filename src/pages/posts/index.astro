@@ -3,6 +3,7 @@ import {getEntry, render} from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import {getAllPostTags} from "../../utils/tags.ts";
 import {getAllPosts} from "../../utils/posts.ts";
+import Listing from "../../components/Listing/Listing.astro";
 
 const postsConfig = await getEntry("config", "posts");
 if (!postsConfig) throw new Error('Posts page config missing, should be file /content/Config/Posts.md');
@@ -12,23 +13,23 @@ const posts = await getAllPosts()
 const tags = await getAllPostTags()
 ---
 
-<Layout>
+<Layout title="Posts">
 	<h1>Posts</h1>
-	<Content/>
-	<p><a href="/feeds/posts.xml">RSS feed</a></p>
+	<div class="prose">
+		<Content/>
+	</div>
 	{tags.length && (
-		<ul>
+		<ul class="tags">
 			{tags.map(tag => (
 				<li><a href={`/tags/${tag}`}>#{tag}</a></li>
 			))}
 		</ul>
 	)}
-	<ul>
-		{posts.map((post) => (
-			<li>
-				<h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
-				<p>{post.data.description}</p>
-			</li>
-		))}
-	</ul>
+	<Listing
+		items={posts.map(post => ({
+			title: post.data.name,
+			description: post.data.description,
+			href: `/posts/${post.id}`
+		}))}
+	/>
 </Layout>

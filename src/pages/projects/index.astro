@@ -3,6 +3,7 @@ import {getEntry, render} from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import {getAllProjectTags} from "../../utils/tags.ts";
 import {getAllProjects} from "../../utils/projects.ts";
+import Listing from "../../components/Listing/Listing.astro";
 
 const projectsConfig = await getEntry("config", "projects");
 if (!projectsConfig) throw new Error('Projects page config missing, should be file /content/Config/Projects.md');
@@ -12,24 +13,23 @@ const projects = await getAllProjects()
 const tags = await getAllProjectTags()
 ---
 
-<Layout>
+<Layout title="Projects">
 	<h1>Projects</h1>
-	<Content/>
-	<p><a href="/feeds/projects.xml">RSS feed</a></p>
+	<div class="prose">
+		<Content/>
+	</div>
 	{tags.length && (
-		<ul>
+		<ul class="tags">
 			{tags.map(tag => (
 				<li><a href={`/tags/${tag}`}>#{tag}</a></li>
 			))}
 		</ul>
 	)}
-
-	<ul>
-		{projects.map((project) => (
-			<li>
-				<h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
-				<p>{project.data.description}</p>
-			</li>
-		))}
-	</ul>
+	<Listing
+		items={projects.map(project => ({
+			title: project.data.name,
+			description: project.data.description,
+			href: `/projects/${project.id}`
+		}))}
+	/>
 </Layout>

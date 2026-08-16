@@ -3,6 +3,10 @@ import {getEntry, render} from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import {getFeaturedProjects} from "../utils/projects.ts";
 import {getFeaturedPosts} from "../utils/posts";
+import Listing from "../components/Listing/Listing.astro";
+import GithubLogo from "../assets/github-logo.svg"
+import LinkedInLogo from "../assets/linkedin-logo.png"
+import BlueskyLogo from "../assets/bluesky-logo.svg"
 
 const homeConfig = await getEntry("config", "home");
 if (!homeConfig) throw new Error('Home page config missing, should be file /content/Config/Home.md');
@@ -12,28 +16,44 @@ const featuredProjects = await getFeaturedProjects()
 const featuredPosts = await getFeaturedPosts()
 ---
 
-<Layout>
-	<Content/>
+<Layout title="Home">
+	<div class="prose">
+		<Content/>
+	</div>
 
-	<h2>Projects</h2>
-	<ul>
-		{featuredProjects.map((project) => (
-			<li>
-				<h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
-				<p>{project.data.description}</p>
-			</li>
-		))}
+	{/** todo: set profile URLs via env var? **/}
+	<ul class="tags">
+		<li>
+			<GithubLogo/>
+			<a href="https://github.com/ben-ryder">GitHub</a>
+		</li>
+		<li>
+			<img src={LinkedInLogo.src} alt="" />
+			<a href="https://www.linkedin.com/in/benryderdev">LinkedIn</a>
+		</li>
+		<li>
+			<BlueskyLogo />
+			<a href="https://bsky.app/profile/benryder.me">Bluesky</a>
+		</li>
 	</ul>
+
+	<Listing
+		title="Projects"
+		items={featuredProjects.map(project => ({
+			title: project.data.name,
+			description: project.data.description,
+			href: `/projects/${project.id}`
+		}))}
+	/>
 	<a href="/projects">all projects</a>
 
-	<h2>Posts</h2>
-	<ul>
-		{featuredPosts.map((post) => (
-			<li>
-				<h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
-				<p>{post.data.description}</p>
-			</li>
-		))}
-	</ul>
+	<Listing
+		title="Posts"
+		items={featuredPosts.map(post => ({
+			title: post.data.name,
+			description: post.data.description,
+			href: `/posts/${post.id}`
+		}))}
+	/>
 	<a href="/posts">all posts</a>
 </Layout>

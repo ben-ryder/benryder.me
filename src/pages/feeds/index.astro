@@ -7,6 +7,8 @@ if (!feedsConfig) throw new Error('Feeds page config missing, should be file /co
 const { Content } = await render(feedsConfig);
 ---
 
-<Layout>
-    <Content/>
+<Layout title="RSS Feeds">
+    <div class="prose">
+        <Content/>
+    </div>
 </Layout>

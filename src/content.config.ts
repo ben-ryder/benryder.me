@@ -17,7 +17,14 @@ export type TagsSchema = z.infer<typeof TagsSchema>;
  * "Config" Content
  * Singleton content loaded for specific pages such as the homepage, contact, header/footer etc.
  */
-export const ConfigSchema = z.object({})
+export const ConfigSchema = z.object({
+	// Links are only used by header and footer config, but are included in general config schema for ease of
+	// use with the Collections API.
+	links: z.array(z.object({
+		text: z.string(),
+		href: z.string(),
+	})).nullish()
+})
 export type ConfigSchema = z.infer<typeof ConfigSchema>;
 
 const configCollection = defineCollection({

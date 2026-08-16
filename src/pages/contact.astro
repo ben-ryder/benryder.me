@@ -7,6 +7,8 @@ if (!contactConfig) throw new Error('Contact page config missing, should be file
 const { Content } = await render(contactConfig);
 ---
 
-<Layout>
-    <Content/>
+<Layout title="Contact">
+    <div class="prose">
+        <Content/>
+    </div>
 </Layout>

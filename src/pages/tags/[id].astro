@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from "../../layouts/Layout.astro";
 import {getAllTags} from "../../utils/tags.ts";
+import Listing from "../../components/Listing/Listing.astro";
 
 export async function getStaticPaths() {
     const tags = await getAllTags()
@@ -30,28 +31,28 @@ const posts = allPosts
 
 <Layout>
     <h1>Tags - {tag}</h1>
+    <div class="prose">
+        <p>This page contains my projects and posts with the tag <b>{tag}</b>.</p>
+    </div>
 
     {projects.length > 0 && (
-        <h2>Projects</h2>
-        <ul>
-            {projects.map(project => (
-                <li>
-                    <h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
-                    <p>{project.data.description}</p>
-                </li>
-            ))}
-        </ul>
+        <Listing
+            title="Projects"
+            items={projects.map(project => ({
+                title: project.data.name,
+                description: project.data.description,
+                href: `/projects/${project.id}`
+            }))}
+        />
     )}
-
     {posts.length > 0 && (
-        <h2>Posts</h2>
-        <ul>
-            {posts.map(post => (
-                <li>
-                    <h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
-                    <p>{post.data.description}</p>
-                </li>
-            ))}
-        </ul>
+        <Listing
+            title="Posts"
+            items={posts.map(post => ({
+                title: post.data.name,
+                description: post.data.description,
+                href: `/posts/${post.id}`
+            }))}
+        />
     )}
 </Layout>

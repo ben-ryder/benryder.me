@@ -1,25 +1,30 @@
 ---
 import {getEntry, render} from "astro:content";
 
+import "../styles/normalize.css"
+import "../styles/vars.css"
+import "./Layout.css"
+
 const headerConfig = await getEntry("config", "header");
 if (!headerConfig) throw new Error('Header config missing, should be file /content/Config/Header.md');
+if (!headerConfig.data.links) throw new Error('Header config missing links, required for navigation menu');
 const { Content: HeaderContent } = await render(headerConfig);
 
 const footerConfig = await getEntry("config", "footer");
 if (!footerConfig) throw new Error('Footer config missing, should be file /content/Config/Footer.md');
+if (!footerConfig.data.links) throw new Error('Footer config missing links, required for footer menu');
 const { Content: FooterContent } = await render(footerConfig);
 
 interface Props {
 	title?: string
-	description?: string
+	description?: string | null
 	image?: {
 		src: string
 		alt: string
 	}
 }
 const { title: titleProp, description, image } = Astro.props
-
-const title = titleProp ? `Ben Ryder | ${titleProp}` : "Ben Ryder"
+const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 ---
 
 <!doctype html>
@@ -53,12 +58,10 @@ const title = titleProp ? `Ben Ryder | ${titleProp}` : "Ben Ryder"
 		<header>
 			<HeaderContent/>
 			<nav>
-				<p><a href="/">Ben Ryder</a></p>
 				<ul>
-					<li><a href="/about">about</a></li>
-					<li><a href="/projects">projects</a></li>
-					<li><a href="/posts">posts</a></li>
-					<li><a href="/contact">contact</a></li>
+					{headerConfig.data.links.map(link => (
+						<li><a href={link.href}>{link.text}</a></li>
+					))}
 				</ul>
 			</nav>
 		</header>
@@ -67,11 +70,13 @@ const title = titleProp ? `Ben Ryder | ${titleProp}` : "Ben Ryder"
 		</main>
 		<footer>
 			<FooterContent/>
-			<ul>
-				<li><a href="https://github.com/ben-ryder/benryder.me">source code</a></li>
-				<li><a href="/licenses">licenses</a></li>
-				<li><a href="/credits">credits</a></li>
-			</ul>
+			<nav>
+				<ul>
+					{footerConfig.data.links.map(link => (
+						<li><a href={link.href}>{link.text}</a></li>
+					))}
+				</ul>
+			</nav>
 		</footer>
 	</body>
 </html>

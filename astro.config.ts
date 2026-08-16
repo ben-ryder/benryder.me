@@ -12,5 +12,10 @@ export default defineConfig({
         // todo: this default sitemap is including "hidden" pages which shouldn't appear
         // These pages don't have anything private/secret, but should still be "unlisted" where possible
         sitemap()
-    ]
+    ],
+    vite: {
+        css: {
+            transformer: "lightningcss"
+        }
+    }
 });

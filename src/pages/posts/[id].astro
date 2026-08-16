@@ -4,6 +4,8 @@ import Layout from "../../layouts/Layout.astro";
 import {getReadingTime} from "../../utils/get-reading-time.ts";
 import {getRelatedContent} from "../../utils/get-related-content.ts";
 import {filterPublished} from "../../utils/filter-published.ts";
+import {Calendar, Clock} from "@lucide/astro";
+import Listing from "../../components/Listing/Listing.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -22,39 +24,40 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(post)
 ---
 
 <Layout>
+    <a href="/posts">All Posts</a>
     <h1>{post.data.name}</h1>
-    <ul>
-        <li>{readingTime}</li>
-        <li>Published {post.data.publishedAt.toDateString()}</li>
+    <ul class="metadata">
+        <li><Clock size="20" /> {readingTime}</li>
+        <li><Calendar size="20" /> Published {post.data.publishedAt.toDateString()}</li>
     </ul>
+    <div class="prose">
+        <Content />
+    </div>
     {post.data.tags?.length && (
-        <ul>
+        <ul class="tags">
             {post.data.tags.map(tag => (
                 <li><a href={`/tags/${tag}`}>#{tag}</a></li>
             ))}
         </ul>
     )}
-    <Content />
     {relatedProjects.length > 0 && (
-        <h2>Related Projects</h2>
-        <ul>
-            {relatedProjects.map((project) => (
-                <li>
-                    <h3><a href={`/projects/${project.id}`}>{project.data.name}</a></h3>
-                    <p>{project.data.description}</p>
-                </li>
-            ))}
-        </ul>
+        <Listing
+            title="Related Projects"
+            items={relatedProjects.map(project => ({
+                title: project.data.name,
+                description: project.data.description,
+                href: `/projects/${project.id}`
+            }))}
+        />
     )}
     {relatedPosts.length > 0 && (
-        <h2>Related Posts</h2>
-        <ul>
-            {relatedPosts.map((post) => (
-                <li>
-                    <h3><a href={`/posts/${post.id}`}>{post.data.name}</a></h3>
-                    <p>{post.data.description}</p>
-                </li>
-            ))}
-        </ul>
+        <Listing
+            title="Related Posts"
+            items={relatedPosts.map(post => ({
+                title: post.data.name,
+                description: post.data.description,
+                href: `/posts/${post.id}`
+            }))}
+        />
     )}
 </Layout>
