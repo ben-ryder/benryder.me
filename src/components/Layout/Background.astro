@@ -1,0 +1,32 @@
+<style>
+    /*
+    Source - https://stackoverflow.com/a/63615485
+    Posted by Christophe, modified by community. See post 'Timeline' for change history
+    Retrieved 2026-08-17, License - CC BY-SA 4.0
+    */
+    #paper-tear {
+        position: absolute;
+        display: flex;
+        width: 105%;
+        min-height: 100vh;
+        /* center page with absolute position */
+        top: 0%; left: 50%; transform: translate(-50%, 0);
+        /* box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset; */
+        background: #FEFAF6;
+        filter: url(#tear);
+        z-index: -1;
+        margin: 0;
+    }
+    body {
+        overflow-x: hidden;
+    }
+</style>
+
+<div id="paper-tear">
+    <svg>
+        <filter id="tear">
+            <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1"></feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="30" />
+        </filter>
+    </svg>
+</div>

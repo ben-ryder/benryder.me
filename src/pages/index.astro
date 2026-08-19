@@ -1,12 +1,20 @@
 ---
 import {getEntry, render} from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+
 import {getFeaturedProjects} from "../utils/projects.ts";
 import {getFeaturedPosts} from "../utils/posts";
+
+import Layout from '../components/Layout/Layout.astro';
 import Listing from "../components/Listing/Listing.astro";
-import GithubLogo from "../assets/github-logo.svg"
-import LinkedInLogo from "../assets/linkedin-logo.png"
-import BlueskyLogo from "../assets/bluesky-logo.svg"
+import Prose from "../components/Prose/Prose.astro";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+import BadgeList from "../components/Badges/BadgeList.astro";
+import Badge from "../components/Badges/Badge.astro";
+
+import GithubLogo from "../assets/social/github-logo.svg"
+import LinkedInLogo from "../assets/social/linkedin-logo.png"
+import BlueskyLogo from "../assets/social/bluesky-logo.svg"
+
 
 const homeConfig = await getEntry("config", "home");
 if (!homeConfig) throw new Error('Home page config missing, should be file /content/Config/Home.md');
@@ -17,32 +25,32 @@ const featuredPosts = await getFeaturedPosts()
 ---
 
 <Layout title="Home">
-	<div class="prose">
-		<Content/>
-	</div>
+	<PageHeader>
+		<Prose slot="prose">
+			<Content/>
+		</Prose>
 
-	{/** todo: set profile URLs via env var? **/}
-	<ul class="tags">
-		<li>
-			<GithubLogo/>
-			<a href="https://github.com/ben-ryder">GitHub</a>
-		</li>
-		<li>
-			<img src={LinkedInLogo.src} alt="" />
-			<a href="https://www.linkedin.com/in/benryderdev">LinkedIn</a>
-		</li>
-		<li>
-			<BlueskyLogo />
-			<a href="https://bsky.app/profile/benryder.me">Bluesky</a>
-		</li>
-	</ul>
+		{/** todo: set profile URLs via env var/config? **/}
+		<BadgeList slot="meta">
+			<Badge text="GitHub" href="https://github.com/ben-ryder">
+				<GithubLogo />
+			</Badge>
+			<Badge text="LinkedIn" href="https://www.linkedin.com/in/benryderdev">
+				<img src={LinkedInLogo.src} alt="" />
+			</Badge>
+			<Badge text="Bluesky" href="https://bsky.app/profile/benryder.me">
+				<BlueskyLogo />
+			</Badge>
+		</BadgeList>
+	</PageHeader>
 
 	<Listing
 		title="Projects"
 		items={featuredProjects.map(project => ({
 			title: project.data.name,
+			href: `/projects/${project.id}`,
 			description: project.data.description,
-			href: `/projects/${project.id}`
+			publishedAt: project.data.publishedAt
 		}))}
 	/>
 	<a href="/projects">all projects</a>
@@ -51,8 +59,9 @@ const featuredPosts = await getFeaturedPosts()
 		title="Posts"
 		items={featuredPosts.map(post => ({
 			title: post.data.name,
+			href: `/posts/${post.id}`,
 			description: post.data.description,
-			href: `/posts/${post.id}`
+			publishedAt: post.data.publishedAt
 		}))}
 	/>
 	<a href="/posts">all posts</a>

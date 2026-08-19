@@ -1,0 +1,21 @@
+.listing {
+    margin-top: 3rem;
+}
+
+.listing__heading {
+    width: fit-content;
+    padding: 0 15px;
+
+    &.--underline {
+        &:after {
+            content: "";
+            height: 10px;
+            width: 80%;
+            display: block;
+            background-image: url("/ink/underline-2.svg");
+            background-size: auto 75%;
+            background-repeat: no-repeat;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,9 +1,12 @@
 ---
 import {getEntry, render} from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../components/Layout/Layout.astro';
 import {getAllProjectTags} from "../../utils/tags.ts";
 import {getAllProjects} from "../../utils/projects.ts";
 import Listing from "../../components/Listing/Listing.astro";
+import Prose from "../../components/Prose/Prose.astro";
+import BadgeList from "../../components/Badges/BadgeList.astro";
+import Badge from "../../components/Badges/Badge.astro";
 
 const projectsConfig = await getEntry("config", "projects");
 if (!projectsConfig) throw new Error('Projects page config missing, should be file /content/Config/Projects.md');
@@ -14,22 +17,24 @@ const tags = await getAllProjectTags()
 ---
 
 <Layout title="Projects">
-	<h1>Projects</h1>
-	<div class="prose">
+	<Prose>
+		<h1>Projects</h1>
 		<Content/>
-	</div>
+	</Prose>
+
 	{tags.length && (
-		<ul class="tags">
-			{tags.map(tag => (
-				<li><a href={`/tags/${tag}`}>#{tag}</a></li>
+		<BadgeList>
+			{tags.map((tag) => (
+				<Badge text={`#${tag}`} href={`/tags/${tag}`} />
 			))}
-		</ul>
+		</BadgeList>
 	)}
 	<Listing
 		items={projects.map(project => ({
 			title: project.data.name,
+			href: `/projects/${project.id}`,
 			description: project.data.description,
-			href: `/projects/${project.id}`
+			publishedAt: project.data.publishedAt
 		}))}
 	/>
 </Layout>

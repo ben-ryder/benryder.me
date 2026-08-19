@@ -1,0 +1,121 @@
+:root {
+    --colour-bg: #FEFAF6;
+    --colour-text: #1a1c24;
+    --color-text-interact: #A25A12;
+
+    --colour-brand: #16658d;
+    --colour-brand-interact: #A25A12;
+
+    --badge-colour-bg: #eee;
+    --badge-colour-text: #444;
+    --badge-colour-text-interact: #A25A12;
+
+    --font-size: 16px;
+    --text-sm: 0.8rem;
+    --text-rg: 1rem;
+    --text-md: 1.25rem;
+    --text-lg: 1.5rem;
+    --text-xl: 2rem;
+    --text-2xl: 3rem;
+}
+
+html {
+    font-family: var(--font-lora);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--font-size);
+    background: var(--colour-brand);
+    color: var(--colour-text);
+    border-top: 20px solid var(--colour-brand);
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    background: #FEFAF6;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+}
+
+header {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 15px;
+
+    nav {
+        ul {
+            list-style-type: none;
+            display: flex;
+            gap: 10px;
+            padding: 0;
+
+            li {
+                ::before {
+                    content: "/";
+                }
+            }
+        }
+    }
+}
+
+footer {
+    max-width: 800px;
+    margin: 4rem auto auto;
+    padding: 0 15px;
+
+    display: flex;
+    justify-content: space-between;
+
+    nav {
+        ul {
+            list-style-type: none;
+            display: flex;
+            gap: 10px;
+            padding: 0;
+
+            li {
+                ::before {
+                    content: "/";
+                }
+            }
+        }
+    }
+}
+
+header,
+footer {
+    a {
+        font-weight: 600;
+        color: var(--colour-brand);
+
+        &:hover {
+            color: var(--colour-brand-interact);
+        }
+    }
+}
+
+
+
+.astro-code {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/** thanks to https://www.a11y-collective.com/blog/visually-hidden/ **/
+.visually-hidden {
+    border: 0;
+    clip-path: inset(50%);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

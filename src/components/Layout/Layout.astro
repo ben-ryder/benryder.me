@@ -1,8 +1,10 @@
 ---
 import {getEntry, render} from "astro:content";
 
-import "../styles/normalize.css"
-import "../styles/vars.css"
+import Background from "./Background.astro";
+import Font from "astro/components/Font.astro";
+
+import "../../styles/reset.css"
 import "./Layout.css"
 
 const headerConfig = await getEntry("config", "header");
@@ -28,7 +30,7 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="noise-texture">
 	<head>
 		{/** Metadata **/}
 		<meta charset="utf-8" />
@@ -42,6 +44,7 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 		{/** Icons & Theme **/}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<Font cssVariable="--font-lora" preload />
 
 		{/** Open Graph Tags **/}
 		<meta property="og:title" content={title} />
@@ -55,6 +58,7 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 		)}
 	</head>
 	<body>
+		<Background/>
 		<header>
 			<HeaderContent/>
 			<nav>

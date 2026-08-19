@@ -1,19 +1,23 @@
 ---
 import {getCollection, getEntry, render} from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
 import {getAllTags} from "../../utils/tags.ts";
+
+import Layout from '../../components/Layout/Layout.astro';
+import Prose from "../../components/Prose/Prose.astro";
+import BadgeList from "../../components/Badges/BadgeList.astro";
+import Badge from "../../components/Badges/Badge.astro";
 
 const tags = await getAllTags()
 ---
 
 <Layout>
-    <h1>All Tags</h1>
-    <div class="prose">
+    <Prose>
+        <h1>All Tags</h1>
         <p>This page contains all tags used by my projects and tags.</p>
-    </div>
-    <ul class="tags">
+    </Prose>
+    <BadgeList>
         {tags.map((tag) => (
-            <li><a href={`/tags/${tag}`}>#{tag}</a></li>
+            <Badge text={`#${tag}`} href={`/tags/${tag}`} />
         ))}
-    </ul>
+    </BadgeList>
 </Layout>

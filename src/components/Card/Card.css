@@ -1,0 +1,19 @@
+.card {
+    padding: 10px;
+
+    &:focus-within,
+    &:hover{
+        background: #eee;
+        cursor: pointer;
+    }
+}
+
+.card__date {
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.card__title {
+    margin-top: 0;
+}

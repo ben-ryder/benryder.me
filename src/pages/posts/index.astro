@@ -1,9 +1,12 @@
 ---
 import {getEntry, render} from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../components/Layout/Layout.astro';
 import {getAllPostTags} from "../../utils/tags.ts";
 import {getAllPosts} from "../../utils/posts.ts";
 import Listing from "../../components/Listing/Listing.astro";
+import Prose from "../../components/Prose/Prose.astro";
+import BadgeList from "../../components/Badges/BadgeList.astro";
+import Badge from "../../components/Badges/Badge.astro";
 
 const postsConfig = await getEntry("config", "posts");
 if (!postsConfig) throw new Error('Posts page config missing, should be file /content/Config/Posts.md');
@@ -14,22 +17,23 @@ const tags = await getAllPostTags()
 ---
 
 <Layout title="Posts">
-	<h1>Posts</h1>
-	<div class="prose">
+	<Prose>
+		<h1>Posts</h1>
 		<Content/>
-	</div>
+	</Prose>
 	{tags.length && (
-		<ul class="tags">
-			{tags.map(tag => (
-				<li><a href={`/tags/${tag}`}>#{tag}</a></li>
+		<BadgeList>
+			{tags.map((tag) => (
+				<Badge text={`#${tag}`} href={`/tags/${tag}`} />
 			))}
-		</ul>
+		</BadgeList>
 	)}
 	<Listing
 		items={posts.map(post => ({
 			title: post.data.name,
+			href: `/posts/${post.id}`,
 			description: post.data.description,
-			href: `/posts/${post.id}`
+			publishedAt: post.data.publishedAt
 		}))}
 	/>
 </Layout>

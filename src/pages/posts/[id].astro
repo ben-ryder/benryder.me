@@ -1,11 +1,14 @@
 ---
 import {getCollection, render} from 'astro:content';
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../components/Layout/Layout.astro";
 import {getReadingTime} from "../../utils/get-reading-time.ts";
 import {getRelatedContent} from "../../utils/get-related-content.ts";
 import {filterPublished} from "../../utils/filter-published.ts";
 import {Calendar, Clock} from "@lucide/astro";
 import Listing from "../../components/Listing/Listing.astro";
+import Prose from "../../components/Prose/Prose.astro";
+import BadgeList from "../../components/Badges/BadgeList.astro";
+import Badge from "../../components/Badges/Badge.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -23,22 +26,29 @@ const readingTime = getReadingTime(post.body ?? "");
 const { relatedProjects, relatedPosts } = await getRelatedContent(post)
 ---
 
-<Layout>
+<Layout
+    title={`${post.data.name} | Posts`}
+    description={post.data.description}
+>
     <a href="/posts">All Posts</a>
     <h1>{post.data.name}</h1>
-    <ul class="metadata">
-        <li><Clock size="20" /> {readingTime}</li>
-        <li><Calendar size="20" /> Published {post.data.publishedAt.toDateString()}</li>
-    </ul>
-    <div class="prose">
-        <Content />
-    </div>
+    <BadgeList>
+        <Badge text={readingTime}>
+            <Clock size="20" />
+        </Badge>
+        <Badge text={`Published ${post.data.publishedAt.toDateString()}`}>
+            <Calendar size="20" />
+        </Badge>
+    </BadgeList>
+    <Prose>
+        <Content/>
+    </Prose>
     {post.data.tags?.length && (
-        <ul class="tags">
-            {post.data.tags.map(tag => (
-                <li><a href={`/tags/${tag}`}>#{tag}</a></li>
+        <BadgeList>
+            {post.data.tags.map((tag) => (
+                <Badge text={`#${tag}`} href={`/tags/${tag}`} />
             ))}
-        </ul>
+        </BadgeList>
     )}
     {relatedProjects.length > 0 && (
         <Listing

@@ -1,4 +1,4 @@
-import {defineConfig, envField} from 'astro/config';
+import {defineConfig, envField, fontProviders} from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { loadEnv } from "vite";
 
@@ -17,5 +17,25 @@ export default defineConfig({
         css: {
             transformer: "lightningcss"
         }
-    }
+    },
+    fonts: [{
+        provider: fontProviders.local(),
+        name: "Lora",
+        cssVariable: "--font-lora",
+        fallbacks: ["serif"],
+        options: {
+            variants: [
+                {
+                    src: ["./src/assets/fonts/Lora/Variable.ttf"],
+                    weight: "400 700",
+                    style: "normal"
+                },
+                {
+                    src: ["./src/assets/fonts/Lora/Variable-Italic.ttf"],
+                    weight: "400 700",
+                    style: "italic"
+                }
+            ]
+        }
+    }]
 });

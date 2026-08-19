@@ -1,8 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../components/Layout/Layout.astro";
 import {getAllTags} from "../../utils/tags.ts";
 import Listing from "../../components/Listing/Listing.astro";
+import Prose from "../../components/Prose/Prose.astro";
 
 export async function getStaticPaths() {
     const tags = await getAllTags()
@@ -30,10 +31,10 @@ const posts = allPosts
 ---
 
 <Layout>
-    <h1>Tags - {tag}</h1>
-    <div class="prose">
+    <Prose>
+        <h1>Tags - {tag}</h1>
         <p>This page contains my projects and posts with the tag <b>{tag}</b>.</p>
-    </div>
+    </Prose>
 
     {projects.length > 0 && (
         <Listing

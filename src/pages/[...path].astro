@@ -1,7 +1,8 @@
 ---
 import {getCollection, render} from "astro:content";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../components/Layout/Layout.astro";
 import {filterPublishedOrHidden} from "../utils/filter-published.ts";
+import Prose from "../components/Prose/Prose.astro";
 
 export async function getStaticPaths() {
     const pages = await getCollection('pages', filterPublishedOrHidden);
@@ -17,7 +18,7 @@ const {Content} = await render(page);
 ---
 
 <Layout title={page.data.name} description={page.data.description}>
-    <div class="prose">
+    <Prose>
         <Content/>
-    </div>
+    </Prose>
 </Layout>
