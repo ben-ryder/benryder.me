@@ -36,7 +36,6 @@ const configCollection = defineCollection({
  * Pages
  */
 export const PageSchema = ContentMetadata.extend({
-	path: z.string(),
 	name: z.string(),
 	description: z.string().nullish(),
 	status: z.enum(['draft', 'hidden', 'published', 'archived']),

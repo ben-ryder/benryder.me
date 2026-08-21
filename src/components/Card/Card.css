@@ -1,5 +1,5 @@
 .card {
-    padding: 10px;
+    padding: 15px;
 
     &:focus-within,
     &:hover{
@@ -8,12 +8,18 @@
     }
 }
 
+.card__title {
+    font-size: var(--text-size-h3);
+    font-weight: bold;
+}
+
+.card__description {
+    margin-top: 10px;
+    line-height: 1.2;
+}
+
 .card__date {
     font-size: 14px;
     font-style: italic;
-    margin-bottom: 0;
-}
-
-.card__title {
-    margin-top: 0;
+    margin-top: 10px;
 }

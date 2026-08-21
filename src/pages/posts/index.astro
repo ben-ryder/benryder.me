@@ -7,6 +7,8 @@ import Listing from "../../components/Listing/Listing.astro";
 import Prose from "../../components/Prose/Prose.astro";
 import BadgeList from "../../components/Badges/BadgeList.astro";
 import Badge from "../../components/Badges/Badge.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 const postsConfig = await getEntry("config", "posts");
 if (!postsConfig) throw new Error('Posts page config missing, should be file /content/Config/Posts.md');
@@ -17,17 +19,24 @@ const tags = await getAllPostTags()
 ---
 
 <Layout title="Posts">
-	<Prose>
-		<h1>Posts</h1>
-		<Content/>
-	</Prose>
-	{tags.length && (
-		<BadgeList>
-			{tags.map((tag) => (
-				<Badge text={`#${tag}`} href={`/tags/${tag}`} />
-			))}
-		</BadgeList>
-	)}
+	<PageHeader>
+		<Breadcrumbs
+			slot="navigation"
+			crumbs={[]}
+			current={{text: "Posts", href: "/posts"}}
+		/>
+		<Prose slot="prose">
+			<h1>Posts</h1>
+			<Content/>
+		</Prose>
+		{tags.length && (
+			<BadgeList slot="meta">
+				{tags.map((tag) => (
+					<Badge text={`#${tag}`} href={`/tags/${tag}`} />
+				))}
+			</BadgeList>
+		)}
+	</PageHeader>
 	<Listing
 		items={posts.map(post => ({
 			title: post.data.name,

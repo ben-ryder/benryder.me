@@ -4,6 +4,8 @@ import Layout from "../../components/Layout/Layout.astro";
 import {getAllTags} from "../../utils/tags.ts";
 import Listing from "../../components/Listing/Listing.astro";
 import Prose from "../../components/Prose/Prose.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 export async function getStaticPaths() {
     const tags = await getAllTags()
@@ -31,11 +33,17 @@ const posts = allPosts
 ---
 
 <Layout>
-    <Prose>
-        <h1>Tags - {tag}</h1>
-        <p>This page contains my projects and posts with the tag <b>{tag}</b>.</p>
-    </Prose>
-
+    <PageHeader>
+        <Breadcrumbs
+            slot="navigation"
+            crumbs={[{text: "Tags", href: "/tags"}]}
+            current={{text: tag, href: `/tags/${tag}`}}
+        />
+        <Prose slot="prose">
+            <h1>Tags - {tag}</h1>
+            <p>This page contains my projects and posts with the tag <b>{tag}</b>.</p>
+        </Prose>
+    </PageHeader>
     {projects.length > 0 && (
         <Listing
             title="Projects"

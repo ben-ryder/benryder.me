@@ -1,3 +1,11 @@
 .page-header {
-    padding: 0 15px;
+    margin-top: 3rem;
+
+    .page-header__navigation {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header__meta {
+        margin-top: 15px;
+    }
 }

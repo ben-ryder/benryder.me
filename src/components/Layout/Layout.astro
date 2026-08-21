@@ -45,6 +45,10 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<Font cssVariable="--font-lora" preload />
+		<link rel="stylesheet" href="/styles/prism.css" />
+		{/** preload underline images to prevent flash/CLS when loading on hover **/}
+		<link rel="preload" href="/ink/underline-1-interact.svg" />
+		<link rel="preload" href="/ink/underline-2-interact.svg" />
 
 		{/** Open Graph Tags **/}
 		<meta property="og:title" content={title} />

@@ -9,6 +9,13 @@ import Listing from "../../components/Listing/Listing.astro";
 import Prose from "../../components/Prose/Prose.astro";
 import BadgeList from "../../components/Badges/BadgeList.astro";
 import Badge from "../../components/Badges/Badge.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import LinkedInLogo from "../../assets/social/linkedin-logo.png";
+import BlueskyLogo from "../../assets/social/bluesky-logo.svg";
+import GithubLogo from "../../assets/social/github-logo.svg";
+import PageContent from "../../components/PageContent/PageContent.astro";
+import ArrowLink from "../../components/ArrowLink/ArrowLink.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -30,26 +37,39 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(post)
     title={`${post.data.name} | Posts`}
     description={post.data.description}
 >
-    <a href="/posts">All Posts</a>
-    <h1>{post.data.name}</h1>
-    <BadgeList>
-        <Badge text={readingTime}>
-            <Clock size="20" />
-        </Badge>
-        <Badge text={`Published ${post.data.publishedAt.toDateString()}`}>
-            <Calendar size="20" />
-        </Badge>
-    </BadgeList>
-    <Prose>
-        <Content/>
-    </Prose>
-    {post.data.tags?.length && (
-        <BadgeList>
-            {post.data.tags.map((tag) => (
-                <Badge text={`#${tag}`} href={`/tags/${tag}`} />
-            ))}
+    <PageHeader>
+        <Breadcrumbs
+            slot="navigation"
+            current={{text: post.data.name, href: `/posts/${post.id}`}}
+            crumbs={[{text: "Posts", href: "/posts"}]}
+        />
+        <Prose slot="prose">
+            <h1>{post.data.name}</h1>
+            <!--{post.data.description && (-->
+            <!--    <p>{post.data.description}</p>-->
+            <!--)}-->
+        </Prose>
+        <BadgeList slot="meta">
+            <Badge text={readingTime}>
+                <Clock size="20" />
+            </Badge>
+            <Badge text={`Published ${post.data.publishedAt.toDateString()}`}>
+                <Calendar size="20" />
+            </Badge>
         </BadgeList>
-    )}
+    </PageHeader>
+    <PageContent>
+        <Prose>
+            <Content/>
+        </Prose>
+        {post.data.tags?.length && (
+            <BadgeList>
+                {post.data.tags.map((tag) => (
+                        <Badge text={`#${tag}`} href={`/tags/${tag}`} />
+                ))}
+            </BadgeList>
+        )}
+    </PageContent>
     {relatedProjects.length > 0 && (
         <Listing
             title="Related Projects"

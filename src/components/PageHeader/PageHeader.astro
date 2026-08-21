@@ -2,6 +2,19 @@
 import "./PageHeader.css"
 ---
 <div class="page-header">
-    <slot name="prose"/>
-    <slot name="meta"></slot>
+    {Astro.slots.has("navigation") && (
+        <div class="page-header__navigation">
+            <slot name="navigation" />
+        </div>
+    )}
+    {Astro.slots.has("prose") && (
+        <div class="page-header__content">
+            <slot name="prose" />
+        </div>
+    )}
+    {Astro.slots.has("meta") && (
+        <div class="page-header__meta">
+            <slot name="meta" />
+        </div>
+    )}
 </div>

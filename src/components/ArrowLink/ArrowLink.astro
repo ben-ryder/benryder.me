@@ -1,0 +1,16 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro"
+import "./ArrowLink.css"
+
+export interface Props {
+    text: string;
+    href: string;
+    direction?: "back" | "forward"
+}
+const { text, href, direction = "forward" } = Astro.props
+---
+<a class="arrow-link" href={href}>
+    {direction === "back" && <ArrowLeft />}
+    {text}
+    {direction === "forward" && <ArrowRight />}
+</a>

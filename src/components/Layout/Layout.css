@@ -12,17 +12,16 @@
 
     --font-size: 16px;
     --text-sm: 0.8rem;
-    --text-rg: 1rem;
-    --text-md: 1.25rem;
-    --text-lg: 1.5rem;
-    --text-xl: 2rem;
-    --text-2xl: 3rem;
+    --text-size-p: 1rem;
+    --text-size-h3: 1.15rem;
+    --text-size-h2: 1.5rem;
+    --text-size-h1: 2rem;
 }
 
 html {
     font-family: var(--font-lora);
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: normal;
     font-style: normal;
     font-size: var(--font-size);
     background: var(--colour-brand);
@@ -32,22 +31,28 @@ html {
 
 html,
 body {
-    min-height: 100vh;
+    min-height: calc(100vh - 20px);
 }
 
 body {
-    background: #FEFAF6;
+    background: var(--colour-bg);
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 main {
     max-width: 800px;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
 header {
     max-width: 800px;
-    margin: auto;
-    padding: 0 15px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 15px;
 
     nav {
         ul {
@@ -67,8 +72,9 @@ header {
 
 footer {
     max-width: 800px;
-    margin: 4rem auto auto;
-    padding: 0 15px;
+    width: 100%;
+    margin: auto auto 0 auto;
+    padding: 3rem 0 1rem 0;
 
     display: flex;
     justify-content: space-between;
@@ -92,20 +98,13 @@ footer {
 header,
 footer {
     a {
-        font-weight: 600;
+        font-weight: bold;
         color: var(--colour-brand);
 
         &:hover {
             color: var(--colour-brand-interact);
         }
     }
-}
-
-
-
-.astro-code {
-    padding: 15px;
-    border-radius: 5px;
 }
 
 /** thanks to https://www.a11y-collective.com/blog/visually-hidden/ **/

@@ -1,38 +1,51 @@
 ---
 import Card, { type Props as CardProps } from "../Card/Card.astro"
 import "./Listing.css"
+import ArrowLink from "../ArrowLink/ArrowLink.astro";
 
 interface Props {
     title?: string
     titleDecoration?: boolean
     level?: "h1" | "h2"
     items: CardProps[]
+    link?: {
+        text: string
+        href: string
+    }
 }
 const {
     title, titleDecoration = true,
     level,
-    items
+    items,
+    link
 } = Astro.props
 ---
 
 <div class="listing">
-    <div class="listing__header">
-        {level === "h1"
-            ? <h1 class={`listing__heading${titleDecoration && ' --underline'}`}>{title}</h1>
-            : <h2 class={`listing__heading${titleDecoration && ' --underline'}`}>{title}</h2>
-        }
-        <slot/>
-    </div>
-    <div class="listing__items">
-        <ul class="listing__item">
-            {items.map((item) => (
+    {title && (
+        <div class="listing__header">
+            {level === "h1"
+                ? <h1 class={`listing__heading${titleDecoration && ' --underline'}`}>{title}</h1>
+                : <h2 class={`listing__heading${titleDecoration && ' --underline'}`}>{title}</h2>
+            }
+            <slot/>
+        </div>
+    )}
+    <ul class="listing__items">
+        {items.map((item) => (
+            <div class="listing__item">
                 <Card
                     title={item.title}
                     href={item.href}
                     description={item.description}
                     publishedAt={item.publishedAt}
                 />
-            ))}
-        </ul>
-    </div>
+            </div>
+        ))}
+    </ul>
+    {link && (
+        <div class="listing__link">
+            <ArrowLink href={link.href} text={link.text} />
+        </div>
+    )}
 </div>

@@ -1,16 +1,19 @@
 .listing {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .listing__heading {
     width: fit-content;
-    padding: 0 15px;
+    font-size: var(--text-size-h2);
+    font-weight: bold;
+    margin-bottom: 10px;
 
     &.--underline {
         &:after {
             content: "";
             height: 10px;
             width: 80%;
+            margin-top: 2px;
             display: block;
             background-image: url("/ink/underline-2.svg");
             background-size: auto 75%;
@@ -18,4 +21,18 @@
             text-decoration: none;
         }
     }
+}
+
+/*.listing__items {*/
+/*    border-top: 1px solid var(--badge-colour-bg);*/
+/*}*/
+
+.listing__item {
+    border-bottom: 1px solid var(--badge-colour-bg);
+}
+
+.listing__link {
+    margin: 15px;
+    display: flex;
+    justify-content: end;
 }

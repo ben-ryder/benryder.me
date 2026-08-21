@@ -2,12 +2,20 @@
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../components/Layout/Layout.astro';
 import Prose from "../components/Prose/Prose.astro";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+import PageContent from "../components/PageContent/PageContent.astro";
 ---
 
 <Layout title="Page Not Found">
-	<Prose>
-		<h1>Page Not Found</h1>
-		<p>The page you requested could not be found. It's possible you've typed an incorrect URL or followed a dead link.</p>
-		<p>If you think the page you tried to visit should exist you're welcome to <a href="https://github.com/ben-ryder/benryder.me">raise an issue</a>.</p>
-	</Prose>
+	<PageHeader>
+		<Prose slot="prose">
+			<h1>Page Not Found</h1>
+		</Prose>
+	</PageHeader>
+	<PageContent>
+		<Prose>
+			<p>The page you requested could not be found. It's possible you've typed an incorrect URL or followed a dead link.</p>
+			<p>If you think the page you tried to visit should exist you're welcome to <a href="https://github.com/ben-ryder/benryder.me">raise an issue</a>.</p>
+		</Prose>
+	</PageContent>
 </Layout>

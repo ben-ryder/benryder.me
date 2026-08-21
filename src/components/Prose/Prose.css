@@ -19,10 +19,10 @@
     blockquote {
         color: #666;
         background: #eee;
-        margin-left: 0;
         padding: 1px 15px;
         border-left: 5px solid #666;
         border-right-radius: 5px;
+        margin: 10px 0;
     }
 
     a {
@@ -42,5 +42,50 @@
 
     p {
         line-height: 1.5rem;
+        margin-top: 5px;
+    }
+
+    h1 {
+        font-size: var(--text-size-h1);
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: var(--text-size-h2);
+        font-weight: bold;
+    }
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: var(--text-size-h3);
+        font-weight: bold;
+    }
+    h4, h5, h6 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: var(--text-size-p);
+        font-weight: bold;
+    }
+
+    b, strong {
+        font-weight: bold;
+    }
+
+    i, em {
+        font-style: italic;
+    }
+
+    pre {
+        padding: 10px;
+        border-radius: 5px;
+    }
+    code {
+        background-color: var(--badge-colour-bg);
+        font-family: monospace;
+        font-size: 14px;
+        padding: 2px 5px;
+        border-radius: 5px;
     }
 }

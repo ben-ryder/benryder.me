@@ -1,0 +1,22 @@
+---
+import "./Breadcrumbs.css"
+
+export interface BreadcrumbCrumb {
+    text: string
+    href: string
+}
+
+export interface Props {
+    crumbs: BreadcrumbCrumb[]
+    current: BreadcrumbCrumb
+}
+const { current, crumbs } = Astro.props
+---
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol class="breadcrumbs__list">
+        {crumbs.map((crumb) => (
+            <li class="breadcrumbs__item"><a href={crumb.href}>{crumb.text}</a></li>
+        ))}
+        <li class="breadcrumbs__item"><a href={current.href} aria-current="page">{current.text}</a></li>
+    </ol>
+</nav>

@@ -29,6 +29,6 @@ export async function GET(context: APIContext) {
         site: context.site,
         trailingSlash: false,
         items: feedItems,
-        stylesheet: "/rss-style.xsl",
+        stylesheet: "/styles/rss.xsl",
     });
 }

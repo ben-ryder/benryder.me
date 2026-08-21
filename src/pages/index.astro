@@ -14,6 +14,7 @@ import Badge from "../components/Badges/Badge.astro";
 import GithubLogo from "../assets/social/github-logo.svg"
 import LinkedInLogo from "../assets/social/linkedin-logo.png"
 import BlueskyLogo from "../assets/social/bluesky-logo.svg"
+import ArrowLink from "../components/ArrowLink/ArrowLink.astro";
 
 
 const homeConfig = await getEntry("config", "home");
@@ -52,8 +53,11 @@ const featuredPosts = await getFeaturedPosts()
 			description: project.data.description,
 			publishedAt: project.data.publishedAt
 		}))}
+		link={{
+			text: "All Projects",
+			href: "/projects",
+		}}
 	/>
-	<a href="/projects">all projects</a>
 
 	<Listing
 		title="Posts"
@@ -63,6 +67,9 @@ const featuredPosts = await getFeaturedPosts()
 			description: post.data.description,
 			publishedAt: post.data.publishedAt
 		}))}
+		link={{
+			text: "All Posts",
+			href: "/posts",
+		}}
 	/>
-	<a href="/posts">all posts</a>
 </Layout>

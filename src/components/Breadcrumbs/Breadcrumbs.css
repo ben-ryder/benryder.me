@@ -1,0 +1,25 @@
+.breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.breadcrumbs__item {
+    display: flex;
+    align-items: center;
+
+    &:before {
+        content: '/';
+        padding-right: 2px;
+    }
+
+    a {
+        color: var(--colour-brand);
+
+        &:hover {
+            color: var(--colour-brand-interact);
+        }
+    }
+}

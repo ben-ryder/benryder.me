@@ -1,0 +1,13 @@
+.arrow-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    color: var(--colour-brand);
+    width: fit-content;
+    font-size: 14px;
+
+    &:hover {
+        color: var(--colour-brand-interact);
+    }
+}

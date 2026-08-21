@@ -9,6 +9,10 @@ import {filterPublished} from "../../utils/filter-published.ts";
 import Prose from "../../components/Prose/Prose.astro";
 import BadgeList from "../../components/Badges/BadgeList.astro";
 import Badge from "../../components/Badges/Badge.astro";
+import PageContent from "../../components/PageContent/PageContent.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import ArrowLink from "../../components/ArrowLink/ArrowLink.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -30,34 +34,46 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(project)
     title={`${project.data.name} | Projects`}
     description={project.data.description}
 >
-    <a href="/projects" >All Projects</a>
-    <h1>{project.data.name}</h1>
-    <BadgeList>
-        <Badge text={`Published ${project.data.publishedAt.toDateString()}`}>
-            <Calendar size="20" />
-        </Badge>
-        {project.data.productUrl && (
-            <Badge text="Live Project" href={project.data.productUrl}>
-                <Globe size="20" />
+    <PageHeader>
+        <Breadcrumbs
+            slot="navigation"
+            current={{text: project.data.name, href: `/projects/${project.id}`}}
+            crumbs={[{text: "Projects", href: "/projects"}]}
+        />
+        <Prose slot="prose">
+            <h1>{project.data.name}</h1>
+            <!--{project.data.description && (-->
+            <!--    <p>{project.data.description}</p>-->
+            <!--)}-->
+        </Prose>
+        <BadgeList slot="meta">
+            <Badge text={`Published ${project.data.publishedAt.toDateString()}`}>
+                <Calendar size="20" />
             </Badge>
-        )}
-        {project.data.repositoryUrl && (
-            <Badge text="Source Code" href={project.data.repositoryUrl}>
-                <CodeXml size="20" />
-            </Badge>
-        )}
-    </BadgeList>
-
-    <Prose>
-        <Content />
-    </Prose>
-    {project.data.tags?.length && (
-        <BadgeList>
-            {project.data.tags.map((tag) => (
-                <Badge text={`#${tag}`} href={`/tags/${tag}`} />
-            ))}
+            {project.data.productUrl && (
+                <Badge text="Live Project" href={project.data.productUrl}>
+                    <Globe size="20" />
+                </Badge>
+            )}
+            {project.data.repositoryUrl && (
+                <Badge text="Source Code" href={project.data.repositoryUrl}>
+                    <CodeXml size="20" />
+                </Badge>
+            )}
         </BadgeList>
-    )}
+    </PageHeader>
+    <PageContent>
+        <Prose>
+            <Content/>
+        </Prose>
+        {project.data.tags?.length && (
+            <BadgeList>
+                {project.data.tags.map((tag) => (
+                    <Badge text={`#${tag}`} href={`/tags/${tag}`} />
+                ))}
+            </BadgeList>
+        )}
+    </PageContent>
     {relatedProjects.length > 0 && (
         <Listing
             title="Related Projects"

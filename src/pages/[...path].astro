@@ -1,24 +1,51 @@
 ---
-import {getCollection, render} from "astro:content";
+import {getCollection, getEntry, render} from "astro:content";
+import {Calendar, Clock} from "@lucide/astro";
+
 import Layout from "../components/Layout/Layout.astro";
-import {filterPublishedOrHidden} from "../utils/filter-published.ts";
 import Prose from "../components/Prose/Prose.astro";
+import PageContent from "../components/PageContent/PageContent.astro";
+import Breadcrumbs, {type BreadcrumbCrumb} from "../components/Breadcrumbs/Breadcrumbs.astro";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+import {filterPublishedOrHidden} from "../utils/filter-published.ts";
+
 
 export async function getStaticPaths() {
     const pages = await getCollection('pages', filterPublishedOrHidden);
 
     return pages.map(page => ({
-        params: { path: page.data.path }, props: { page },
+        params: { path: page.id }, props: { page },
     }));
 }
 
 const { page } = Astro.props;
 
+const pathParts = page.id.split("/").filter(Boolean)
+const crumbs: BreadcrumbCrumb[] = []
+let currentPath = "/"
+for (const part of pathParts.splice(0, pathParts.length-1)) {
+    const href = currentPath + part
+    const parentPage = await getEntry("pages", href);
+    if (!parentPage) {
+        throw new Error(`Unable to find parent page "${href}" while creating breadcrumb for "${page.id}". Ensure a parent page existing.`);
+    }
+    crumbs.push({text: parentPage.data.name, href: href})
+}
+
 const {Content} = await render(page);
 ---
 
 <Layout title={page.data.name} description={page.data.description}>
-    <Prose>
-        <Content/>
-    </Prose>
+    <PageHeader>
+        <Breadcrumbs
+            slot="navigation"
+            current={{text: page.data.name, href: page.id}}
+            crumbs={crumbs}
+        />
+    </PageHeader>
+    <PageContent>
+        <Prose>
+            <Content/>
+        </Prose>
+    </PageContent>
 </Layout>

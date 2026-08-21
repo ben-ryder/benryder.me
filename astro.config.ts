@@ -18,6 +18,9 @@ export default defineConfig({
             transformer: "lightningcss"
         }
     },
+    markdown: {
+        syntaxHighlight: "prism",
+    },
     fonts: [{
         provider: fontProviders.local(),
         name: "Lora",

@@ -2,6 +2,9 @@
 import {getEntry, render} from "astro:content";
 import Layout from "../../components/Layout/Layout.astro";
 import Prose from "../../components/Prose/Prose.astro";
+import PageContent from "../../components/PageContent/PageContent.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 const feedsConfig = await getEntry("config", "feeds");
 if (!feedsConfig) throw new Error('Feeds page config missing, should be file /content/Config/Feeds.md');
@@ -9,7 +12,16 @@ const { Content } = await render(feedsConfig);
 ---
 
 <Layout title="RSS Feeds">
-    <Prose>
-        <Content/>
-    </Prose>
+    <PageHeader>
+        <Breadcrumbs
+            slot="navigation"
+            crumbs={[]}
+            current={{text: "Feeds", href: "/feeds"}}
+        />
+    </PageHeader>
+    <PageContent>
+        <Prose>
+            <Content/>
+        </Prose>
+    </PageContent>
 </Layout>

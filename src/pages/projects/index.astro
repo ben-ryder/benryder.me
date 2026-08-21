@@ -7,6 +7,8 @@ import Listing from "../../components/Listing/Listing.astro";
 import Prose from "../../components/Prose/Prose.astro";
 import BadgeList from "../../components/Badges/BadgeList.astro";
 import Badge from "../../components/Badges/Badge.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 
 const projectsConfig = await getEntry("config", "projects");
 if (!projectsConfig) throw new Error('Projects page config missing, should be file /content/Config/Projects.md');
@@ -17,18 +19,24 @@ const tags = await getAllProjectTags()
 ---
 
 <Layout title="Projects">
-	<Prose>
-		<h1>Projects</h1>
-		<Content/>
-	</Prose>
-
-	{tags.length && (
-		<BadgeList>
-			{tags.map((tag) => (
-				<Badge text={`#${tag}`} href={`/tags/${tag}`} />
-			))}
-		</BadgeList>
-	)}
+	<PageHeader>
+		<Breadcrumbs
+			slot="navigation"
+			crumbs={[]}
+			current={{text: "Projects", href: "/projects"}}
+		/>
+		<Prose slot="prose">
+			<h1>Projects</h1>
+			<Content/>
+		</Prose>
+		{tags.length && (
+			<BadgeList slot="meta">
+				{tags.map((tag) => (
+					<Badge text={`#${tag}`} href={`/tags/${tag}`} />
+				))}
+			</BadgeList>
+		)}
+	</PageHeader>
 	<Listing
 		items={projects.map(project => ({
 			title: project.data.name,

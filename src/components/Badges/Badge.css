@@ -24,4 +24,8 @@
             text-decoration-color: var(--badge-colour-text-interact);
         }
     }
+
+    &:not(:has(img,svg)) {
+        padding: 8px;
+    }
 }
