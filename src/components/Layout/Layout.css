@@ -6,9 +6,9 @@
     --colour-brand: #16658d;
     --colour-brand-interact: #A25A12;
 
-    --badge-colour-bg: #eee;
-    --badge-colour-text: #444;
-    --badge-colour-text-interact: #A25A12;
+    --colour-bg-secondary: #f2f2f2;
+    --colour-text-secondary: #444;
+    --colour-text-secondary-interact: #A25A12;
 
     --font-size: 16px;
     --text-sm: 0.8rem;
@@ -24,9 +24,7 @@ html {
     font-weight: normal;
     font-style: normal;
     font-size: var(--font-size);
-    background: var(--colour-brand);
     color: var(--colour-text);
-    border-top: 20px solid var(--colour-brand);
 }
 
 html,
@@ -52,7 +50,7 @@ header {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
-    padding-top: 15px;
+    padding-top: 20px;
 
     nav {
         ul {

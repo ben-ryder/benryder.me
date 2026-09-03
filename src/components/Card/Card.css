@@ -1,25 +1,28 @@
 .card {
-    padding: 15px;
-
-    &:focus-within,
-    &:hover{
-        background: #eee;
-        cursor: pointer;
-    }
+    padding: 15px 0;
 }
 
 .card__title {
     font-size: var(--text-size-h3);
     font-weight: bold;
+
+    a {
+        color: var(--colour-brand);
+
+        &:hover {
+            color: var(--colour-brand-interact);
+        }
+    }
 }
 
 .card__description {
     margin-top: 10px;
     line-height: 1.2;
+    font-size: var(--text-sm);
 }
 
 .card__date {
-    font-size: 14px;
+    font-size: var(--text-sm);
     font-style: italic;
     margin-top: 10px;
 }

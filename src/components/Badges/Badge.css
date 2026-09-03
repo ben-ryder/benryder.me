@@ -2,17 +2,17 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border-radius: 3px;
     font-size: var(--text-sm);
     font-family: monospace;
-    background: var(--badge-colour-bg);
-    color: var(--badge-colour-text);
+    background: var(--colour-bg-secondary);
+    color: var(--colour-text-secondary);
 
     svg,
     img {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
 
     a {
@@ -20,12 +20,12 @@
         text-decoration: underline;
 
         &:hover {
-            color: var(--badge-colour-text-interact);
-            text-decoration-color: var(--badge-colour-text-interact);
+            color: var(--colour-text-secondary-interact);
+            text-decoration-color: var(--colour-text-secondary-interact);
         }
     }
 
     &:not(:has(img,svg)) {
-        padding: 8px;
+        padding: 7px;
     }
 }

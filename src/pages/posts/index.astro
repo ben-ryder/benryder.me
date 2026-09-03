@@ -21,7 +21,7 @@ const tags = await getAllPostTags()
 <Layout title="Posts">
 	<PageHeader>
 		<Breadcrumbs
-			slot="navigation"
+			slot="breadcrumb"
 			crumbs={[]}
 			current={{text: "Posts", href: "/posts"}}
 		/>
@@ -29,7 +29,7 @@ const tags = await getAllPostTags()
 			<h1>Posts</h1>
 			<Content/>
 		</Prose>
-		{tags.length && (
+		{tags.length > 0 && (
 			<BadgeList slot="meta">
 				{tags.map((tag) => (
 					<Badge text={`#${tag}`} href={`/tags/${tag}`} />
@@ -42,7 +42,7 @@ const tags = await getAllPostTags()
 			title: post.data.name,
 			href: `/posts/${post.id}`,
 			description: post.data.description,
-			publishedAt: post.data.publishedAt
+			//publishedAt: post.data.publishedAt
 		}))}
 	/>
 </Layout>

@@ -82,7 +82,8 @@
         border-radius: 5px;
     }
     code {
-        background-color: var(--badge-colour-bg);
+        background-color: #263238;
+        color: var(--colour-bg);
         font-family: monospace;
         font-size: 14px;
         padding: 2px 5px;

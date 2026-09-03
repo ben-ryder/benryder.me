@@ -1,6 +1,5 @@
 # Content
-The content for benryder.me is loaded from markdown files saved in the root `content` folder.  
-In local development these can be manually added or symlinked, however for production builds files are downloaded from S3-compatible object storage during the build.
+The content for benryder.me is loaded from markdown files saved in the root `content` folder.
 
 ## Structure
 The content folder must use the following file structure:

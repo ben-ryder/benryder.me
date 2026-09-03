@@ -38,7 +38,7 @@ const {Content} = await render(page);
 <Layout title={page.data.name} description={page.data.description}>
     <PageHeader>
         <Breadcrumbs
-            slot="navigation"
+            slot="breadcrumb"
             current={{text: page.data.name, href: page.id}}
             crumbs={crumbs}
         />

@@ -39,7 +39,7 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(post)
 >
     <PageHeader>
         <Breadcrumbs
-            slot="navigation"
+            slot="breadcrumb"
             current={{text: post.data.name, href: `/posts/${post.id}`}}
             crumbs={[{text: "Posts", href: "/posts"}]}
         />

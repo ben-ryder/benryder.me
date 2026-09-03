@@ -32,10 +32,12 @@ const posts = allPosts
     .sort((a, b) => a.data.publishedAt > b.data.publishedAt ? 1 : -1)
 ---
 
-<Layout>
+<Layout
+    title={`${tag} | Tags`}
+>
     <PageHeader>
         <Breadcrumbs
-            slot="navigation"
+            slot="breadcrumb"
             crumbs={[{text: "Tags", href: "/tags"}]}
             current={{text: tag, href: `/tags/${tag}`}}
         />

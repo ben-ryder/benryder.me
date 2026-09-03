@@ -7,14 +7,14 @@ import {getFeaturedPosts} from "../utils/posts";
 import Layout from '../components/Layout/Layout.astro';
 import Listing from "../components/Listing/Listing.astro";
 import Prose from "../components/Prose/Prose.astro";
-import PageHeader from "../components/PageHeader/PageHeader.astro";
+import Greeter from "../components/Greeter/Greeter.astro";
 import BadgeList from "../components/Badges/BadgeList.astro";
 import Badge from "../components/Badges/Badge.astro";
 
 import GithubLogo from "../assets/social/github-logo.svg"
 import LinkedInLogo from "../assets/social/linkedin-logo.png"
 import BlueskyLogo from "../assets/social/bluesky-logo.svg"
-import ArrowLink from "../components/ArrowLink/ArrowLink.astro";
+import {Mail as MailLogo} from "@lucide/astro"
 
 
 const homeConfig = await getEntry("config", "home");
@@ -26,8 +26,8 @@ const featuredPosts = await getFeaturedPosts()
 ---
 
 <Layout title="Home">
-	<PageHeader>
-		<Prose slot="prose">
+	<Greeter>
+		<Prose>
 			<Content/>
 		</Prose>
 
@@ -42,8 +42,11 @@ const featuredPosts = await getFeaturedPosts()
 			<Badge text="Bluesky" href="https://bsky.app/profile/benryder.me">
 				<BlueskyLogo />
 			</Badge>
+			<Badge text="hello@benryder.me" href="mailto:hello@benryder.me">
+				<MailLogo size="20"/>
+			</Badge>
 		</BadgeList>
-	</PageHeader>
+	</Greeter>
 
 	<Listing
 		title="Projects"
@@ -51,7 +54,7 @@ const featuredPosts = await getFeaturedPosts()
 			title: project.data.name,
 			href: `/projects/${project.id}`,
 			description: project.data.description,
-			publishedAt: project.data.publishedAt
+			// publishedAt: project.data.publishedAt
 		}))}
 		link={{
 			text: "All Projects",
@@ -65,7 +68,7 @@ const featuredPosts = await getFeaturedPosts()
 			title: post.data.name,
 			href: `/posts/${post.id}`,
 			description: post.data.description,
-			publishedAt: post.data.publishedAt
+			// publishedAt: post.data.publishedAt
 		}))}
 		link={{
 			text: "All Posts",

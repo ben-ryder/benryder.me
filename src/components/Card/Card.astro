@@ -9,27 +9,12 @@ export interface Props {
 }
 const { title, href, description, publishedAt } = Astro.props
 ---
-
-<script>
-    const cards = document.querySelectorAll('.card')
-    cards.forEach(card => {
-        // Visually hide link
-        card.querySelector("a")?.classList.add("visually-hidden")
-
-        // Add listener
-        card.addEventListener('click', () => {
-            card.querySelector("a")?.click()
-        })
-    })
-
-</script>
 <li class="card">
-    <h3 class="card__title">{title}</h3>
+    <h3 class="card__title"><a href={href}>{title}</a></h3>
     {description && (
         <p class="card__description">{description}</p>
     )}
     {publishedAt && (
         <p class="card__date">Published {publishedAt.toDateString()}</p>
     )}
-    <a href={href} class="card__link">View {title}</a>
 </li>

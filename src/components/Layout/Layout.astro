@@ -1,7 +1,5 @@
 ---
 import {getEntry, render} from "astro:content";
-
-import Background from "./Background.astro";
 import Font from "astro/components/Font.astro";
 
 import "../../styles/reset.css"
@@ -62,7 +60,6 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 		)}
 	</head>
 	<body>
-		<Background/>
 		<header>
 			<HeaderContent/>
 			<nav>

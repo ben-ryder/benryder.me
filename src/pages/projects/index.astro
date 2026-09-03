@@ -21,7 +21,7 @@ const tags = await getAllProjectTags()
 <Layout title="Projects">
 	<PageHeader>
 		<Breadcrumbs
-			slot="navigation"
+			slot="breadcrumb"
 			crumbs={[]}
 			current={{text: "Projects", href: "/projects"}}
 		/>
@@ -42,7 +42,7 @@ const tags = await getAllProjectTags()
 			title: project.data.name,
 			href: `/projects/${project.id}`,
 			description: project.data.description,
-			publishedAt: project.data.publishedAt
+			//publishedAt: project.data.publishedAt
 		}))}
 	/>
 </Layout>

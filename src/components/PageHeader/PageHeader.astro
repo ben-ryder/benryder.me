@@ -2,9 +2,9 @@
 import "./PageHeader.css"
 ---
 <div class="page-header">
-    {Astro.slots.has("navigation") && (
-        <div class="page-header__navigation">
-            <slot name="navigation" />
+    {Astro.slots.has("breadcrumb") && (
+        <div class="page-header__breadcrumb">
+            <slot name="breadcrumb" />
         </div>
     )}
     {Astro.slots.has("prose") && (
