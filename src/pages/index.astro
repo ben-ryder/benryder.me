@@ -13,7 +13,6 @@ import Badge from "../components/Badges/Badge.astro";
 
 import GithubLogo from "../assets/social/github-logo.svg"
 import LinkedInLogo from "../assets/social/linkedin-logo.png"
-import BlueskyLogo from "../assets/social/bluesky-logo.svg"
 import {Mail as MailLogo} from "@lucide/astro"
 
 
@@ -39,40 +38,38 @@ const featuredPosts = await getFeaturedPosts()
 			<Badge text="LinkedIn" href="https://www.linkedin.com/in/benryderdev">
 				<img src={LinkedInLogo.src} alt="" />
 			</Badge>
-			<Badge text="Bluesky" href="https://bsky.app/profile/benryder.me">
-				<BlueskyLogo />
-			</Badge>
-			<Badge text="hello@benryder.me" href="mailto:hello@benryder.me">
+			<Badge text="ben@benryder.me" href="mailto:ben@benryder.me">
 				<MailLogo size="20"/>
 			</Badge>
 		</BadgeList>
 	</Greeter>
 
-	<Listing
-		title="Projects"
-		items={featuredProjects.map(project => ({
-			title: project.data.name,
-			href: `/projects/${project.id}`,
-			description: project.data.description,
-			// publishedAt: project.data.publishedAt
-		}))}
-		link={{
-			text: "All Projects",
-			href: "/projects",
-		}}
-	/>
-
-	<Listing
-		title="Posts"
-		items={featuredPosts.map(post => ({
-			title: post.data.name,
-			href: `/posts/${post.id}`,
-			description: post.data.description,
-			// publishedAt: post.data.publishedAt
-		}))}
-		link={{
-			text: "All Posts",
-			href: "/posts",
-		}}
-	/>
+	<div>
+		<Listing
+			title="Posts"
+			items={featuredPosts.map(post => ({
+				title: post.data.name,
+				href: `/posts/${post.id}`,
+				description: post.data.description,
+				publishedAt: post.data.publishedAt
+			}))}
+			link={{
+				text: "All Posts",
+				href: "/posts",
+			}}
+		/>
+		<Listing
+			title="Projects"
+			items={featuredProjects.map(project => ({
+				title: project.data.name,
+				href: `/projects/${project.id}`,
+				description: project.data.description,
+				publishedAt: project.data.publishedAt
+			}))}
+			link={{
+				text: "All Projects",
+				href: "/projects",
+			}}
+		/>
+	</div>
 </Layout>

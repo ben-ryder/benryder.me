@@ -1,5 +1,6 @@
 ---
 import "./Card.css"
+import {formatDate} from "../../utils/format-date.ts";
 
 export interface Props {
     title: string;
@@ -15,6 +16,6 @@ const { title, href, description, publishedAt } = Astro.props
         <p class="card__description">{description}</p>
     )}
     {publishedAt && (
-        <p class="card__date">Published {publishedAt.toDateString()}</p>
+        <p class="card__date">{formatDate(publishedAt)}</p>
     )}
 </li>

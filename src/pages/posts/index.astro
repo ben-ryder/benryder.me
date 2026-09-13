@@ -42,7 +42,7 @@ const tags = await getAllPostTags()
 			title: post.data.name,
 			href: `/posts/${post.id}`,
 			description: post.data.description,
-			//publishedAt: post.data.publishedAt
+			publishedAt: post.data.publishedAt
 		}))}
 	/>
 </Layout>

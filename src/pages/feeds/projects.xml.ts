@@ -8,7 +8,16 @@ export async function GET(context: APIContext) {
 
     const feedItems: RSSFeedItem[] = []
     for (const project of projects) {
-        const content = await renderRssContent(project.filePath!, project.body!);
+        // Fallback to name as RSS feed breaks if content is empty. This should never happen for production, but may impact testing etc.
+        let body: string
+        if (project.body) {
+            body = project.body
+        } else {
+            console.warn(`[Projects RSS] Project '${project.id}' missing body, falling back to name to prevent invalid XML and parsing issues.`)
+            body = project.data.name;
+        }
+
+        const content = await renderRssContent(project.filePath!, body);
         feedItems.push({
             title: project.data.name,
             description: project.data.description ?? undefined,

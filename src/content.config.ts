@@ -47,25 +47,6 @@ const pagesCollection = defineCollection({
 	schema: PageSchema,
 })
 
-/**
- * Posts
- */
-export const PostsSchema = ContentMetadata.extend({
-	slug: z.string(),
-	name: z.string(),
-	description: z.string().nullish(),
-	featured: z.boolean(),
-	tags: TagsSchema.nullish(),
-	status: z.enum(['draft', 'published', 'archived']),
-	relatedProjects: z.array(reference('projects')).nullish(),
-	relatedPosts: z.array(reference('posts')).nullish(),
-})
-export type PostsSchema = z.infer<typeof PostsSchema>;
-
-const postsCollection = defineCollection({
-	loader: glob({ base: "./content/Posts", pattern: "**/*.md" }),
-	schema: PostsSchema,
-})
 
 /**
  * Projects
@@ -87,6 +68,26 @@ export type ProjectsSchema = z.infer<typeof ProjectsSchema>;
 const projectsCollection = defineCollection({
 	loader: glob({ base: "./content/Projects", pattern: "**/*.md" }),
 	schema: ProjectsSchema,
+})
+
+/**
+ * Posts
+ */
+export const PostsSchema = ContentMetadata.extend({
+	slug: z.string(),
+	name: z.string(),
+	description: z.string().nullish(),
+	featured: z.boolean(),
+	tags: TagsSchema.nullish(),
+	status: z.enum(['draft', 'published', 'archived']),
+	relatedProjects: z.array(reference('projects')).nullish(),
+	relatedPosts: z.array(reference('posts')).nullish(),
+})
+export type PostsSchema = z.infer<typeof PostsSchema>;
+
+const postsCollection = defineCollection({
+	loader: glob({ base: "./content/Posts", pattern: "**/*.md" }),
+	schema: PostsSchema,
 })
 
 export const collections = {

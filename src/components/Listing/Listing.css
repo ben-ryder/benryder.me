@@ -23,11 +23,6 @@
     }
 }
 
-.listing__items {
-    /*list-style-type: initial;*/
-    /*padding-left: 15px;*/
-}
-
 .listing__item {
     border-bottom: 1px solid var(--colour-bg-secondary);
 }

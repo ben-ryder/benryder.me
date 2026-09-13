@@ -39,9 +39,12 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 		{/** Sitemap **/}
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
-		{/** Icons & Theme **/}
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		{/** Icons **/}
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+
+		{/** Styling **/}
 		<Font cssVariable="--font-lora" preload />
 		<link rel="stylesheet" href="/styles/prism.css" />
 		{/** preload underline images to prevent flash/CLS when loading on hover **/}
@@ -74,7 +77,6 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 			<slot />
 		</main>
 		<footer>
-			<FooterContent/>
 			<nav>
 				<ul>
 					{footerConfig.data.links.map(link => (
@@ -82,6 +84,7 @@ const title = titleProp ? `${titleProp} | Ben Ryder` : "Ben Ryder"
 					))}
 				</ul>
 			</nav>
+			<p>© Ben Ryder {new Date().getFullYear()}</p>
 		</footer>
 	</body>
 </html>

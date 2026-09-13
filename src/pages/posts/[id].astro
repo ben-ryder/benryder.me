@@ -16,6 +16,7 @@ import GithubLogo from "../../assets/social/github-logo.svg";
 import PageContent from "../../components/PageContent/PageContent.astro";
 import ArrowLink from "../../components/ArrowLink/ArrowLink.astro";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
+import {formatDate} from "../../utils/format-date.ts";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -53,7 +54,7 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(post)
             <Badge text={readingTime}>
                 <Clock size="20" />
             </Badge>
-            <Badge text={`Published ${post.data.publishedAt.toDateString()}`}>
+            <Badge text={`Published ${formatDate(post.data.publishedAt)}`}>
                 <Calendar size="20" />
             </Badge>
         </BadgeList>

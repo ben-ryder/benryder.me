@@ -13,6 +13,7 @@ import PageContent from "../../components/PageContent/PageContent.astro";
 import PageHeader from "../../components/PageHeader/PageHeader.astro";
 import ArrowLink from "../../components/ArrowLink/ArrowLink.astro";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
+import {formatDate} from "../../utils/format-date.ts";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -47,7 +48,7 @@ const { relatedProjects, relatedPosts } = await getRelatedContent(project)
             <!--)}-->
         </Prose>
         <BadgeList slot="meta">
-            <Badge text={`Published ${project.data.publishedAt.toDateString()}`}>
+            <Badge text={`Published ${formatDate(project.data.publishedAt)}`}>
                 <Calendar size="20" />
             </Badge>
             {project.data.productUrl && (

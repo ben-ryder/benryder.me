@@ -25,4 +25,5 @@
     font-size: var(--text-sm);
     font-style: italic;
     margin-top: 10px;
+    color: var(--colour-text-secondary);
 }

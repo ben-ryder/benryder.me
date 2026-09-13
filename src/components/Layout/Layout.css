@@ -52,10 +52,14 @@ header {
     margin: 0 auto;
     padding-top: 20px;
 
+    display: flex;
+    justify-content: space-between;
+
     nav {
         ul {
             list-style-type: none;
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             padding: 0;
 
@@ -76,11 +80,14 @@ footer {
 
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 
     nav {
         ul {
             list-style-type: none;
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             padding: 0;
 

@@ -7,7 +7,16 @@ export async function GET(context: APIContext) {
     const posts = await getAllPosts()
     const feedItems: RSSFeedItem[] = []
     for (const post of posts) {
-        const content = await renderRssContent(post.filePath!, post.body!);
+        // Fallback to name as RSS feed breaks if content is empty. This should never happen for production, but may impact testing etc.
+        let body: string
+        if (post.body) {
+            body = post.body
+        } else {
+            console.warn(`[Posts RSS] Post '${post.id}' missing body, falling back to name to prevent invalid XML and parsing issues.`)
+            body = post.data.name;
+        }
+
+        const content = await renderRssContent(post.filePath!, body);
         feedItems.push({
             title: post.data.name,
             description: post.data.description ?? undefined,
