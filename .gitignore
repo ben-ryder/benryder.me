@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # content
 /content
+
+# Local Netlify folder
+.netlify
